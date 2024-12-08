@@ -1,0 +1,29 @@
+body, p, li, ul, ol, blockquote {
+    font-size: 14px !important;  /* Ajusta este valor según tus preferencias */
+    line-height: 1.6;  /* Mejora la legibilidad */
+}
+
+p {
+    text-align: justify;
+}
+.md-content {
+    max-width: 100%; /* Ajusta este valor según tus necesidades */
+    margin: 0 auto; /* Centra el contenedor en la página */
+}
+
+.rojo {
+    color: red !important;
+}
+
+.azul {
+    color: blue !important;
+}
+
+.verde {
+    color: green !important;
+} 
+
+code, pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
