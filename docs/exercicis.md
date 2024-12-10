@@ -1,6 +1,8 @@
-# Exercicis
+# :pencil2: Exercicis
 
-## ![](icon_activity.gif) Exercici 7.1 
+
+##  Exercici 7.1 
+
 
 En un nou paquet anomenat **Exercicis** dins del projecte **Tema7_1** , crea
 la fitxer Kotlin **T7Ex1_ConsultarClaus.kt** , que permeta consultar totes les
@@ -69,7 +71,7 @@ puntuacions
 Introdueix un número (0 per a eixir)  
 0
 ```
-## ![](icon_activity.gif)  Exercici 7.2 (Redis)
+## Exercici 7.2 (Redis)
 
 
 
@@ -152,7 +154,7 @@ I aquest el seu aspecte
 ![](T8_Ex2_1.png)
 
 
-## ![](icon_activity.gif) Exercici 7.3 (Redis) (voluntari)
+## Exercici 7.3 (Redis) (voluntari)
 
 Realitzar un programa anomenat **T7Ex3_JocEndevinaNumero.kt** , que faça el
 joc d'endevinar un número del 1 al 100. Cada vegada que el jugador pose un
@@ -171,7 +173,7 @@ conjunt) no es poden repetir els valors. Ha de ser de la següent manera:
   * **(Voluntari)** Finalment, limita la llista de puntuacions a les 10 millors.
 
 
-## ![](icon_activity.gif) Exercici 7.4 (MongoDB)
+## Exercici 7.4 (MongoDB)
 
 Agafa l'estat actual de Bicicas de la següent adreça:
 
@@ -208,7 +210,7 @@ tal i com vam veure en el Tema 3.
 10.- PLAZA DOCTOR MARAÃ±Ã³N (0/23)
 ```
 
-## ![](icon_activity.gif) Exercici 7.5 (voluntari)
+## Exercici 7.5 (voluntari)
 
 Fes un programa **T7Ex5.kt** que per mig d'una interfície gràfica agafe els
 documents de Bicicas de l'exercici anterior:

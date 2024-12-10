@@ -2,6 +2,7 @@ site_name: AD - Accés a Dades
 
 extra_css:
   - css/extra.css
+  - img/favicon.ico 
 
 theme: 
   name: readthedocs
@@ -10,6 +11,9 @@ theme:
 
 markdown_extensions:
   - admonition
+  - pymdownx.emoji
+  - pymdownx.extra
+  - pymdownx.superfences 
   - tables    
   - attr_list
   - toc

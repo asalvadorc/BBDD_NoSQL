@@ -193,7 +193,7 @@ Torna el valor de la clau especificada, sempre que siga de tipus **String**.
 Si la clau és d'un altre tipus, donarà error. I si la clau no existeix,
 tornarà el valor especial **_nil_** .
 
-<u>_Exemples_</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> get clau_1  
   "primera"  
@@ -218,7 +218,7 @@ li passem un valor enter o real.
 I una altra característica és que si la clau existeix ja, matxacarà el seu
 contingut, com era de esperar.
 
-<u>_Exemples_</u>
+**<u>Exemples</u>**
 ```
 127.0.0.1:6379> set clau_2 segona  
 OK  
@@ -250,7 +250,7 @@ valor clar). Açò s'anomena _**temps d'expiració**_ i s'aconsegueix amb el
 paràmetre **EX** del comando **SET** seguit del número de segons que volem que
 dure la clau.
 
-<u>_Exemple_</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> set clau_3 tercera ex 10  
   OK  
@@ -308,7 +308,7 @@ d'existència.
 ```
 Torna una llista de valors, els de les claus indicades.
 
-_Exemple_
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> set mes1 gener  
   OK  
@@ -614,7 +614,7 @@ Torna el tipus de la clau especificada. Els valors possibles són:
   * set
   * zset (conjunt ordenat)
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> type clau_1  
   string  
@@ -629,7 +629,7 @@ Torna el tipus de la clau especificada. Els valors possibles són:
 Canvia el nom de la clau a la clau nova, conservant el valor. Dóna error si la
 clau antiga no existeix. Si la clau nova ja existia reemplaçarà el seu valor.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> get salutacio  
   "Hola. Com va?"  
@@ -652,7 +652,7 @@ clau antiga no existeix. Si la clau nova ja existia reemplaçarà el seu valor.
 Igual que l'anterior però únicament si la clau nova no existia. Si ja existia
 no fa res (tornant 0 per a indicar-h0).
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> renamenx compt1 compt3  
   (integer) 0  
@@ -690,7 +690,7 @@ El mateix però en milisegons
 Torna el temps de vida (fins l'expiració) d'una clau. Si la clau no té temps
 d'expiració, torna -1.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> expire compt3 10  
   (integer) 1  
@@ -721,7 +721,7 @@ Igual que l'anterior, però ens torna el temps en milisegons.
 Elimina el temps d'expiració d'una clau, si és que en tenia. Ara la clau no
 expirarà mai.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> expire compt1 20  
   (integer) 1  
@@ -763,7 +763,7 @@ camp. I si d'aquesta clau ja existia el camp, modificarà el seu valor.
 
 Evidentment, en claus diferents poden haver camps amb els mateixos noms.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 
 ```
   127.0.0.1:6379> hset empleat_1 nom Andreu  
@@ -788,7 +788,7 @@ Evidentment, en claus diferents poden haver camps amb els mateixos noms.
 Torna el valor del camp de la clau. Si no existia (el camp o la clau) torna
 **nil**. Només podem especificar un camp.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> hget empleat_1 nom  
   "Andreu"  
@@ -810,7 +810,7 @@ Torna una llista amb tots els camps i els seus valors de la clau. La seqüència
 és: camp1 valor1 camp2 valor2 ... Però no ens podem fiar que l'ordre siga el
 mateix ordre que quan el vam definir.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
 127.0.0.1:6379> hgetall empleat_1  
   1) "nom"  
@@ -830,7 +830,7 @@ mateix ordre que quan el vam definir.
 Elimina el o els camps especificats. Si no existeixen algun d'ells,
 senzillament l'ignora i si que elimina els altres.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> hdel empleat_1 departament  
   (integer) 1  
@@ -850,7 +850,7 @@ senzillament l'ignora i si que elimina els altres.
 Torna una llista amb els camps de la clau. Si la clau no existia, torna una
 llista buida
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> hkeys empleat_1  
   1) "nom"  
@@ -866,7 +866,7 @@ llista buida
 Torna una llista amb els valors (únicament els valors) de tots els camps de la
 clau. Si la clau no existia, torna una llista buida
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> hvals empleat_1  
   1) "Andreu"  
@@ -916,7 +916,7 @@ posem més d'un valor, s'aniran introduint sempre en la primera posició. El
 comando tornarà el número d'elements (strings) de la llista després de la
 inserció.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> lpush llista1 primera segona tercera  
   (integer) 3  
@@ -952,7 +952,7 @@ PUSH**), imaginant que els elements estan ordenats d'esquerra a dreta. El
 comando tornarà el número d'elements (strings) de la llista després de la
 inserció.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> rpush llista1 sisena setena  
   (integer) 7  
@@ -974,7 +974,7 @@ inserció.
 ```
 Torna i elimina el primer element (el de més a l'esquerra).
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
 127.0.0.1:6379> lpop llista1  
 "cinquena"  
@@ -995,7 +995,7 @@ Torna i elimina el primer element (el de més a l'esquerra).
 ```
 Torna i elimina l'últim element (el de més a la dreta).
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> rpop llista1  
   "setena"  
@@ -1020,7 +1020,7 @@ l'element de la posició indicada han d'existir, sinó donarà error. Ara la
 La primera posició és la 0. I també es poden posar números negatius: -1 és
 l'últim, -2 el penúltim, ...
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> lset llista1 2 quarta  
   OK  
@@ -1051,7 +1051,7 @@ Observeu com es poden repetir els valors
 Torna l'element situat en la posició indicada per l'índex, **però sense
 eliminar-lo de la llista**.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> lrange llista1 0 -1  
   1) "quarta"  
@@ -1084,7 +1084,7 @@ que troba el valor1. No substitueix, sinó que insereix en una determinada
 posició. Els elements que van després de l'element introduït veuran
 actualitzat el seu índex.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> lrange llista1 0 -1  
   1) "quarta"  
@@ -1138,7 +1138,7 @@ Torna els elements de la llista inclosos entre els index inici i final, ambdós
 inclosos. El primer element és el 0. Es poden posar valors negatius, sent -1
 l'últim, -2 el penúltim, ...
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> lrange llista1 0 -1  
   1) "quarta"  
@@ -1170,7 +1170,7 @@ l'últim, -2 el penúltim, ...
 ```
 Torna el número d'elements de la llista
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> llen llista1  
   (integer) 7  
@@ -1189,7 +1189,7 @@ element amb aquest valor, si posem 2 s'esborraran els dos primers elements
 (els de més a l'esquerra) que tingen aquest valor. Si posem 0 s'esborraran
 tots els elements amb aquest valor
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> rpush llista1 segona  
   (integer) 8  
@@ -1232,7 +1232,7 @@ Elimina els elements que queden fora dels índex inici i final, és a dir
 elimina els que estiguen a l'esquerra d'inici, i els que estiguen a la dreta
 de final.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> ltrim llista1 1 -2  
   OK  
@@ -1264,7 +1264,7 @@ l'ordre no és important, i que no es poden repetir els valors; si intentem
 introduir un repetit, no donarà error, però no l'introduirà. El comando
 tornarà el número d'elements que realment s'han afegit.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> sadd colors roig verd blau  
   (integer) 3  
@@ -1282,7 +1282,7 @@ tornarà el número d'elements que realment s'han afegit.
 Torna tots els valors del conjunt. Si la clau no existeix tornarà un conjunt
 buit. Recordeu que l'ordre dels elements no és predecible
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> smembers colors  
   1) "groc"  
@@ -1300,7 +1300,7 @@ buit. Recordeu que l'ordre dels elements no és predecible
 Comprova si el valor està en el conjunt, tornant 1 en cas afirmatiu i 0 en cas
 negatiu.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> sismember colors verd  
   (integer) 1  
@@ -1317,7 +1317,7 @@ negatiu.
 Torna la cardinalitat, és a dir, el número d'elements del conjunt en
 l'actualitat.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> scard colors  
   (integer) 4
@@ -1333,7 +1333,7 @@ Elimina els valors del conjunt. Si el conjunt es queda buit, eliminarà la clau
 també. Si algun dels valor no és cap element del conjunt, senzillament
 s'ignorarà. El comando torna el número d'elements realment eliminat.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> srem colors verd negre  
   (integer) 1  
@@ -1352,7 +1352,7 @@ s'ignorarà. El comando torna el número d'elements realment eliminat.
 Torna i elimina un valor aleatori del conjunt. Recordeu que a més de tornar-
 lo, l'elimina del conjunt.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> smembers colors  
   1) "groc"  
@@ -1374,7 +1374,7 @@ lo, l'elimina del conjunt.
 Molt paregut a l'anterior. Torna un valor aleatori del conjunt, però en
 aquesta ocasió no l'elimina del conjunt.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> srandmember colors  
   "blau"  
@@ -1395,7 +1395,7 @@ Torna la unió dels elements dels conjunts especificats. És una unió correcta,
 No modifica cap conjunt, i el resultat únicament es torna, no es guarda en cap
 lloc de forma permanent.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> smembers colors  
   1) "roig"  
@@ -1422,7 +1422,7 @@ Igual que l'anterior, però ara sí que es guarda el resultat de la unió en un
 conjunt, clau_destí (el primer especificat). Si la clau_destí ja existia,
 substituirà el contingut.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> smembers colors  
   1) "roig"  
@@ -1452,7 +1452,7 @@ pertanyen acap dels altres.
 No modifica cap conjunt, i el resultat únicament es torna, no es guarda en cap
 lloc de forma permanent.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> smembers colors  
   1) "roig"  
@@ -1476,7 +1476,7 @@ Igual que l'anterior, però ara sí que es guarda el resultat de la diferència
 en un conjunt, clau_destí (el primer especificat). Si la clau_destí ja
 existia, substituirà el contingut.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> smembers colors  
   1) "roig"  
@@ -1504,7 +1504,7 @@ que pertanyen a tots els conjunts especificats.
 No modifica cap conjunt, i el resultat únicament es torna, no es guarda en cap
 lloc de forma permanent.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> smembers colors  
   1) "roig"  
@@ -1527,7 +1527,7 @@ Igual que l'anterior, però ara sí que es guarda el resultat de la intersecció
 en un conjunt, clau_destí (el primer especificat). Si la clau_destí ja
 existia, substituirà el contingut.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> smembers colors  
   1) "roig"  
@@ -1552,7 +1552,7 @@ Meneja el valor del conjunt orígen (el primer conjunt) al conjunt destí (el
 segon). Això suposarà eliminar-lo del primer i afegir-lo al segon. Tornarà 1
 si l'ha menejat, i 0 si no l'ha menejat.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> smembers colors  
   1) "roig"  
@@ -1595,7 +1595,7 @@ puntuacions corresponents. Les puntuacions seran Strings de valors reals
 introduir un valor repetit, el que farà serà actualitzar la puntuació. El
 comando tornarà el número d'elements que realment s'han afegit.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> zadd puntuacions 1 Nom1 2 Nom2 5 Nom3 4 Nom4  
   (integer) 4
@@ -1615,7 +1615,7 @@ comando tornarà el número d'elements que realment s'han afegit.
 Torna la cardinalitat, és a dir, el número d'elements del conjunt ordenat en
 l'actualitat.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> zcard puntuacions  
   (integer) 4
@@ -1630,7 +1630,7 @@ l'actualitat.
 Torna la puntuació (score) del valor especificat del conjunt ordenat. Si no
 existeix el valor o no existaix la clao, torna nil.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> zscore puntuacions Nom3  
   "5"  
@@ -1647,7 +1647,7 @@ existeix el valor o no existaix la clao, torna nil.
 Torna el número de valors que estan entre les puntuacions especificades
 (ambdues incloses).
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> zcount puntuacions 2 5  
   (integer) 3
@@ -1665,7 +1665,7 @@ element és el 0. Es poden posar valors negatius, sent -1 l'últim, -2 el
 penúltim, ... Opcionalment podem posar **WITHSCORES** per a que ens torne
 també la puntuació de cada element
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
 127.0.0.1:6379> zrange puntuacions 0 -1  
 1) "Nom1"  
@@ -1707,7 +1707,7 @@ Torna els elements del conjunt ordenat que tenen una puntuació compresa entre
 puntuació. Opcionalment podem posar **WITHSCORES** per a que ens torne també
 la puntuació de cada element. ****
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> zrangebyscore puntuacions 2 5  
   1) "Nom2"  
@@ -1753,7 +1753,7 @@ invers, ara el valor màxim ha de ser el primer, i el mínim el segon.
 Torna el número d'ordre de l'element amb el valor especificat. El primer valor
 és el 0. Si no existeix, torna **nil**.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> zrank puntuacions Nom1  
   (integer) 0  
@@ -1780,7 +1780,7 @@ invers), hem d'utilitzar **ZREVRANK** :
 Elimina els elements amb els valors especificats. Si algun valor no existeix,
 senzillament l'ignora. Torna el número d'elements realment eliminats.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> zrem puntuacions Nom1  
   (integer) 1  
@@ -1803,7 +1803,7 @@ inclusiva.els valors especificats. Si volem fer-ho de forma excusiva (sense
 incloure les puntuacions dels extrems) posarem un parèntesi avant del mínim
 i/o el màxim. Torna el número d'elements realment eliminats.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> zremrangebyscore puntuacions (2 4  
   (integer) 1  
@@ -1824,7 +1824,7 @@ Incrementa la puntuació de l'element especificat. El valor de la puntuació a
 incrementar és un número real. Torna el valor la puntuació final de l'element.
 Si l'element no existia, l'inserirà, assumint una puntuació inicial de 0.
 
-<u>Exemples</u>
+**<u>Exemples</u>**
 ```
   127.0.0.1:6379> zincrby puntuacions 1.5 Nom2  
   "3.5"  
@@ -1854,7 +1854,7 @@ No és l'última versió, però és suficient per a nosaltres i és molt fàcil
 d'utilitzar
 
 Per a fer proves, creem un nou projecte anomenat **Tema7_1** , i incorporem la
-llibreria de **Jedis**. Creem un paquet anomenat **<u>Exemples</u>** , per separar
+llibreria de **Jedis**. Creem un paquet anomenat **Exemples** , per separar
 aquestos dels exercicis.
 
 ### Connexió

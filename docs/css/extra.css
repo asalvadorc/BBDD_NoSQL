@@ -1,8 +1,7 @@
-body, p, li, ul, ol, blockquote {
+body, p, li, ul, ol, blockquote, pre, code, table {
     font-size: 14px !important;  /* Ajusta este valor según tus preferencias */
     line-height: 1.6;  /* Mejora la legibilidad */
 }
-
 p {
     text-align: justify;
 }
@@ -16,7 +15,7 @@ p {
 }
 
 .azul {
-    color: blue !important;
+    color: #2980B9 !important;
 }
 
 .verde {
@@ -27,3 +26,4 @@ code, pre {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+
