@@ -107,7 +107,7 @@ També està la possibilitat de crear un servidor en el núvol, fins i tot
 gratuït. És l'opció que ens suggereix Mongo per defecte, però nosaltres no la
 utilitzarem.
 
-#### Instal·lació en Linux
+**Instal·lació en Linux**{.azul}
 
 Per a poder fer la instal·lació més bàsica, podrem fer-lo sense permisos
 d'administrador. Si els tenim tot és més còmode, però si no en tenim també ho
@@ -214,7 +214,7 @@ següent sentència, que ens torna el nom de la Base de Dades:
 > db.getName()  
 test
 ```
-#### Instal·lació en Windows
+**Instal·lació en Windows**{.azul}
 
 No ofereix cap dificultat. Ens baixem la versió apropiada de MongoDB per a
 Windows, depenent de si és de 32 o 64 bits la nostra versió, que resultarà ser
@@ -336,7 +336,7 @@ En aquesta última consola del client podem utilitzar sentències del llenguatge
 sentències d'accés a dades. Del llenguatge Javascript pràcticament l'únic que
 utilitzarem són variables i algunes funcions.
 
-**<u>Utilització de variables</u>**
+**Utilització de variables**{.azul}
 
 Com comentàvem el que més utilitzarem del llenguatge **Javascript** és la
 utilització de variables, que ens pot ser molt útil en algunes ocasions.
@@ -874,7 +874,7 @@ potent: creant i eliminant claus (elements) d'un document, o canviant-los, i
 fins i tot afegir o eliminar elements d'un array.
 
 
-#### 3.2.3.1 - $set
+#### $set {.azul}
 
 El modificador **$set** assigna un valor a un camp del document seleccionat de
 la Base de Dades. Si el camp ja existia, modificarà el valor, i si no existia
@@ -989,7 +989,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
   }  
 }
 ```
-#### 3.2.3.2 - $unset
+#### $unset {.azul}
 
 El modificador **$unset** servirà per a **eliminar** elements (camps) d'un o
 uns documents. Si el camp existia, l'eliminarà, i si no existia, no donarà
@@ -1057,7 +1057,7 @@ documents. Podem comprovar al final com el document ha quedat com esperàvem.
     }  
 }
 ```
-#### 3.2.3.3 - $rename
+#### $rename {.azul}
 
 El modificador **$rename** canviarà el nom d'un camp. Si no existia, no donarà
 error i senzillament no el modificarà. Hem de cuidar de posar el nou nom del
@@ -1116,7 +1116,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
   ]  
 }
 ```
-#### 3.2.3.4 - $inc
+#### $inc {.azul}
 
 Com cabria esperar, el modificador **$inc** servirà per a incrementar un camp
 numèric. Si el camp existia, l'incrementarà en la quantitat indicada. Si no
@@ -1180,71 +1180,8 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
     "puntuacio" : 5.25  
 }
 ```
-#### 3.2.3.4 - $inc
 
-Com cabria esperar, el modificador **$inc** servirà per a incrementar un camp
-numèric. Si el camp existia, l'incrementarà en la quantitat indicada. Si no
-existia, crearà el camp amb un valor inicial de 0, i incrementarà el valor amb
-la quantitat indicada. La quantitat pot ser positiva, negativa o fins i tot
-amb part fraccionària. Sempre funcionarà bé, excepte quan el camp a
-incrementar no siga numèric, que donarà error.
-
-La sintaxi és aquesta:
-```
-{ $inc : {camp : quantitat } }
-```
-En els següents exemples, incrementem un camp nou (per tant el crearà amb el
-valor especificat), i després l'incrementem en quantitats positives, negatives
-i fraccionàries, concretament l'inicialitzem amb un **2** , i despés
-l'incrementem en **5** , en **-4** i en **2.25** , per tant el resultat final
-serà **5.25** :
-```
-> db.alumnes.update( {nom:"Abel"} , { $inc: {puntuacio:2} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "nota" : [  
-        8.5,  
-        7.5,  
-        9  
-    ],  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-},  
-"puntuacio" : 2  
-}  
-> db.alumnes.update( {nom:"Abel"} , { $inc: {puntuacio:5} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.update( {nom:"Abel"} , { $inc: {puntuacio:-4} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.update( {nom:"Abel"} , { $inc: {puntuacio:2.25} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "nota" : [  
-          8.5,  
-          7.5,  
-          9  
-    ],  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-    },  
-    "puntuacio" : 5.25  
-}
-```
-#### 3.2.3.5 - Elements d'un array
+#### Elements d'un array {.azul}
 
 Per a accedir directament a un element d'un array d'un determinat document es
 pot utilitzar la següent sintaxi:
@@ -1281,7 +1218,7 @@ utilitzant en tots els exemples :
     ]  
 }
 ```
-#### 3.2.3.6 - Inserció en Arrays: $push
+#### Inserció en Arrays: $push {.azul}
 
 La manera més senzilla d'introduir un element en un array és utilitzar
 **$push** sense més. Si existia l'array, introduirà el o els nous elements al
@@ -1366,7 +1303,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
     ]     
 }
 ```
-#### 3.2.3.7 - Eliminació en arrays: $pop i $pull
+#### Eliminació en arrays: $pop i $pull {.azul}
 
 Hi ha més d'una manera d'eliminar elements d'un array.
 
@@ -1449,7 +1386,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
       ]  
 }
 ```
- **$pull**{.azul} 
+ ### $pull {.azul} 
 
 Amb aquest modificador esborrarem els elements de l'array que coincidesquen
 amb una condició, estiguen en la posició que estiguem. Observeu com es pot
@@ -1505,7 +1442,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
       ]  
 }
 ```
-#### 3.2.3.8 - Upsert
+#### Upsert {.azul}
 
 Aquesta paraula ja l'havíem comentada en un punt anterior.
 
@@ -2382,7 +2319,7 @@ per tant sempre serà de l'estil:
 ```
 { $operador : { clau:valor , ... } }
 ```
-#### Operador $match
+#### $match {.azul}
 
 Servirà per a filtrar els documents. Aleshores, l'agregació només afectarà als
 documents seleccionats. Es poden utilitzar tots els operadors que hem anat
@@ -2403,13 +2340,13 @@ visualitzar millor el resultat.
 { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
 { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial": "Planeta" }
 ```
-#### Operador $project
+#### $project {.azul}
 
 Ens permet projectar sobre determinats camps del document, però és molt més
 complet que en la projecció "normal" que havíem fet fins ara, ja que permet
 també renomenar camps, fer càlculs, etc.
 
- **Projeccció**{.azul}
+ **Projeccció**
 
 La manera més senzilla, evidentment és projectar sobre alguns camps dels
 existents, i el funcionament és idèntic al de l'altra vegada (valors 1 per a
@@ -2424,7 +2361,7 @@ que apareguen, 0 per a que no apareguen; per defecte**_id** sempre apareix):
 { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }  
 { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
 ```
- **Renomenar**{.azul}
+ **Renomenar**
 
 **$project** també ens permet renomenar camps existents (després veurem que també
 càlculs). La manera serà posar d'aquest manera:
@@ -2448,7 +2385,7 @@ manera ens referim al valor d'aquest camp. Així per exemple renomenem el camp
 { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "disponible" : true }
 ```
 
-  **Camps calculats**{.azul}
+  **Camps calculats**
 
 Amb aquest nom genèric ens referirem a tots els càlculs, expressions i més
 coses que podrem posar per a trasnsformar el que ja tenim. Com veiem, açò és
@@ -2515,7 +2452,7 @@ I ara el mateix, però amb el títol en majúscules:
 { "_id" : "9788408113331", "Llibre:" : "LAS CARRERAS DE ESCORPIO (Maggie Stiefvater)" }  
 { "_id" : "9788468738895", "Llibre:" : "LAS REGLAS DEL JUEGO (Anna Casanovas)" }
 ```
-#### Operador $group
+#### $group {.azul}
 
 Realitza grups sobre els documents seleccionats prèviament, per a valors
 iguals del camp o expressions que determinem. Posteriorment, amb els grups,
@@ -2565,7 +2502,7 @@ són del 2013)
 { "_id" : { "Editorial" : "Plaza & Janes", "any" : 2014 } }  
 { "_id" : { "Editorial" : "Planeta", "any" : 2013 } }
 ```
- **Operadors d'agrupació**{.azul}
+ **Operadors d'agrupació**
 
 Ens permetran fer alguna operació sobre els documents del grup. Es posen com a
 segon paràmetre del grup (després de la definició del **_id**).
@@ -2613,7 +2550,7 @@ I ara intentem comptar la quantitat de llibres de cada editorial:
 { "_id" : "Plaza & Janes", "quants" : 1 }  
 { "_id" : "Planeta", "quants" : 2 }
 ```
-#### Operador $sort
+#### $sort {.azul}
 
 Serveix per a ordenar i segueix la mateixa sintàxi que en les consultes normal
 (1: ordre ascendent; -1: ordre descendent). Podrem ordenar pels camps normals
@@ -2640,7 +2577,7 @@ I ara ordenem de forma descendent per la mitjana de preus de cada any:
 { "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
 { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
 ```
-#### Operador $limit
+#### $limit {.azul}
 
 Limita el resultat del aggregate al número indicat.
 
@@ -2653,7 +2590,7 @@ exemple, afegint el límit:
 { "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
 { "_id" : { "any" : 2012 }, "mitjana preus" : 11 }
 ```
-#### Operador $skip
+#### $skip {.azul}
 
 Salta el número indicat
 
@@ -2681,7 +2618,7 @@ java-driver-3.9.1.jar>
 Per a separar les proves i exercicis de la part de **Redis** , creem un nou
 projecte anomenat **Tema7_2** , en un paquet anomenat **Exemples**.
 
- **Connexió**{.azul}
+ **<u>Connexió**</u>
 
 La connexió és tan senzilla com el següent:
 
@@ -2706,7 +2643,7 @@ Per a tancar la connexió:
 ```   
        con.close()
 ```
- **Inserció de documents**{.azul}
+ **<u>Inserció de documents</u>**
 
 Des de Kotlin podrem inserir documents amb la mateixa facilitat que des de la
 consola. Només haurem de crear un objecte **Document** de **BSON** (recordeu
@@ -2734,7 +2671,7 @@ en la terminal com s'ha inserit el document:
 
 ![](T8_3_4_1.png)
 
- **Consultes**{.azul}
+ **<u>Consultes</u>**
 
 Tenim el mètode **find()** per a fer consultes, i li podem posar un document
 com a paràmetre per a seleccionar determinats documents o traure determinada
@@ -2829,7 +2766,7 @@ I el resultat ara serà:
 
 ![](T8_3_4_3.png)
 
- **Agregació**{.azul}
+ **<u>Agregació</u>**
 
 Per a poder utilitzar la funció d'agregació, que té tanta potència, ens ho hem
 de muntar d'aquesta manera:

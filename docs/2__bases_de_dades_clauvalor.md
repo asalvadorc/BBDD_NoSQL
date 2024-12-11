@@ -33,7 +33,7 @@ Algunes característiques de Redis són:
 Redis està construït per a Linux. També funciona, però, des de Windows com
 veurem una miqueta més avant.
 
-**<u>Instal·lació en Linux</u>**
+**Instal·lació en Linux**{.azul}
 
 El lloc des d'on baixar-lo és la pàgina oficial:
 
@@ -113,7 +113,7 @@ En la següent imatge es veu com sí que hem pogut connectar
 
 ![](T8_2_1_5.png)
 
-**<u>Instal·lació en Windows de 64 bits</u>**
+**Instal·lació en Windows de 64 bits**{.azul}
 
 Encara que Redis està construït per a Linux, hi ha versions per a Windows,
 preferiblement de 64 bits. També podrem trobar versions de 32 bits, però molt
@@ -141,19 +141,6 @@ Executem **redis-server** directament i ja el tindrem en marxa:
 ![](T8_3_6.png)
 
 Executem també el **redis-cli** i el resultat serà el mateix que en Linux.
-
-**<u>Instal·lació en Windows de 32 bits</u>**
-
-És un poc més complicada de trobar. I sobretot, és una versió prou més antiga.
-Podem descarregar-la de la següent adreça:
-
-<https://github.com/cuiwenyuan/Redis-Windows-32bit>
-
-Aquesta sí que és d'instal·lació (no de descompressió únicament). La
-documentació suggereix que s'active com un servei. Per això, en la llista de
-programes de l'Inici no està el server, únicament el **client**. Però el podem
-trobar en el directori on s'ha instal·lat: **C:\Archivos de programa\Redis**.
-Trobarem tant **redis-server.exe** com **redis-cli.exe**.
 
 ## 2.2 - Utilització de Redis
 
