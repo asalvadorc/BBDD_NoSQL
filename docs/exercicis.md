@@ -1,10 +1,10 @@
 # :pencil2: Exercicis
 
 
-##  Exercici 7.1 
+##  Exercici 7.1 (Redis)
 
 
-En un nou paquet anomenat **Exercicis** dins del projecte **Tema7_1** , crea
+En un nou paquet anomenat **ExercicisRedis** dins del projecte **Tema7** , crea
 el fitxer Kotlin **T7Ex1_ConsultarClaus.kt** , que permeta consultar totes les
 claus guardades en el nostre servidor **Redis**.
 
@@ -173,7 +173,7 @@ conjunt) no es poden repetir els valors. Ha de ser de la següent manera:
   * **(Voluntari)** Finalment, limita la llista de puntuacions a les 10 millors.
 
 -->
-## Exercici 7.4 (MongoDB)
+## Exercici 7.3 (MongoDB)
 
 Agafa l'estat actual de Bicicas de la següent adreça:
 
@@ -195,8 +195,10 @@ del **JSONTokener** , vist en el Tema 3.
 Estudia el format JSON, per a poder agafar bé la informació de cada estació,
 tal i com vam veure en el Tema 3.
 
-  * Fes un programa anomenat **T7Ex4_IntroduirBicicas** (amb **main**) que introduesca en **MongoDB** cada estació com un document en una col·lecció anomenada **bicicas**.
-  * Fes un altre programa anomenat **T7Ex4_****MostrarBicicas** que agafe tots els documents de la col·lecció **bicicas** de la Base de Dades de MongoDb, que són totes les estacions, i traga la seua informació amb aquest aspecte (en la imatge només es mostren les 10 primeres, però han d'eixir totes)
+En un paquet nou anomenat **ExercicisMongo** dins del projecte **Tema7**:
+
+  * Fes un programa anomenat **T7Ex3_IntroduirBicicas** (amb **main**) que introduesca en **MongoDB** cada estació com un document en una col·lecció anomenada **bicicas**.
+  * Fes un altre programa anomenat **T7Ex3_****MostrarBicicas** que agafe tots els documents de la col·lecció **bicicas** de la Base de Dades de MongoDb, que són totes les estacions, i traga la seua informació amb aquest aspecte (en la imatge només es mostren les 10 primeres, però han d'eixir totes)
 ```
 01.- UJI - FCHS (5/27)  
 02.- ESTACIÃ³N DE FERROCARRIL Y AUTOBUSES (11/28)  
