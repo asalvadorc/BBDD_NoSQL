@@ -5,7 +5,7 @@
 
 
 En un nou paquet anomenat **Exercicis** dins del projecte **Tema7_1** , crea
-la fitxer Kotlin **T7Ex1_ConsultarClaus.kt** , que permeta consultar totes les
+el fitxer Kotlin **T7Ex1_ConsultarClaus.kt** , que permeta consultar totes les
 claus guardades en el nostre servidor **Redis**.
 
 Ha de presentar totes les claus actuals en **Redis** i el seu tipus, però amb
@@ -153,7 +153,7 @@ I aquest el seu aspecte
 
 ![](T8_Ex2_1.png)
 
-
+<!--
 ## Exercici 7.3 (Redis) (voluntari)
 
 Realitzar un programa anomenat **T7Ex3_JocEndevinaNumero.kt** , que faça el
@@ -172,7 +172,7 @@ conjunt) no es poden repetir els valors. Ha de ser de la següent manera:
   * **(Voluntari)** Després millora'l, per a que si es posa un nom que ja existeix, li afegisca un número: **nom, nom_1, nom_2, ...**
   * **(Voluntari)** Finalment, limita la llista de puntuacions a les 10 millors.
 
-
+-->
 ## Exercici 7.4 (MongoDB)
 
 Agafa l'estat actual de Bicicas de la següent adreça:
@@ -209,7 +209,7 @@ tal i com vam veure en el Tema 3.
 09.- PATRONAT DESPORTS (7/14)  
 10.- PLAZA DOCTOR MARAÃ±Ã³N (0/23)
 ```
-
+<!--
 ## Exercici 7.5 (voluntari)
 
 Fes un programa **T7Ex5.kt** que per mig d'una interfície gràfica agafe els
@@ -329,7 +329,7 @@ I aquest seria un exemple d'execució, en el qual s'han triat els documents amb
 descendent
 
 ![](T8_Ex5_1.png)
-
+-->
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
 SenseObraDerivada 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/)
