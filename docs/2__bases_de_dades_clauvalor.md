@@ -1830,7 +1830,7 @@ La utilització des de Java és molt senzilla, i podrem utilitzar tots els
 comandos que hem vist.
 
 Haurem d'incorporar en el projecte una llibreria. Podem utilitzar per exemple
-la de **Jedis**(acrònim de **J** ava R**edis**). A la següent adreça la podeu
+la de **Jedis** (acrònim de **J** ava R**edis**). A la següent adreça la podeu
 trobar:
 
 <https://repo1.maven.org/maven2/redis/clients/jedis/3.5.0/jedis-3.5.0.jar>
