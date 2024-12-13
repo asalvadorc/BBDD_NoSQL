@@ -37,33 +37,34 @@ veurem una miqueta més avant.
 
 El lloc des d'on baixar-lo és la pàgina oficial:
 
-<http://redis.io>
+<https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-from-source/>
 
-En el moment de fer aquestos apunts, l'última versió estable és la **7.0.8**.
+En el moment de fer aquestos apunts, l'última versió estable és la **7.4.1**.
 
-Ens baixem el fitxer, el descomprimim, i després des d'una terminal ens situem
-en el directori on s'ha descomprimit i fem **make** per a generar els
-executables. Després de molts avisos, s'hauria d'haver instal·lat bé. Aquest
-seria el resum d'accions, fetes totes elles des d'una terminal (però no cal
-descomprimir des d'una terminal) i havent-nos situat prèviament en el lloc on
-està el fitxer baixat. També suposarem que el fitxer està col·locat en el lloc
-on volem que estiga instal·lat de forma definitiva. Recordeu que podeu
-descomprimir-lo de la manera que us resulte més còmoda:
-```
-  tar xzf redis-4.0.6.tar.gz  
-  cd redis-4.0.6   
-  make
-```
+Per obtenir els fitxers font de la darrera versió estable de Redis des del lloc de descàrregues de Redis, executeu:
+
+    wget https://download.redis.io/redis-stable.tar.gz
+
+
+**Compilando Redis**
+
+Suposarem que el fitxer està col·locat en el lloc on volem que estiga instal·lat de forma definitiva.
+Per compilar Redis, primer extrae el fitxer tar, canvia al directori arrel i després executa make:
+
+    tar -xzvf redis-stable.tar.gz
+    cd redis-stable
+    make
+
+
 Amb açò s'haurien d'haver generat els executables, i ja hauria de funcionar.
 
 Per a posar en marxa el servidor, quasi que el més còmode serà obrir un
-terminal, situar-nos en el directori **redis-6.0.10/src** i des d'ahi executar
+terminal, situar-nos en el directori **redis-stable/src** i des d'ahi executar
 **redis-server**. Hauria d'eixir una finestra similar a la següent, amb més o
-menys avisos (observeu que al principi de la imatge estan les ordres donades;
-i en la imatge està per a la versió 3.0.7, però per a la versió actual és
-completament equivalent).
+menys avisos (observeu que al principi de la imatge estàn les ordres donades per a executar el servidor).
 
-![](T8_2_1_1.png)
+
+![](redis-server.png)
 
 Entre altres coses diu que el servidor està en marxa esperant connexions al
 port 6379, que és el port per defecte de Redis. Aquesta finestra del terminal
@@ -78,7 +79,7 @@ definitiva controlar-lo tan còmodament.
 Per a fer una connexió des d'un client, també des d'un terminal (un altre)
 executem **redis-cli** :
 
-![](T8_2_1_2.png)
+![](redis-cli.png)
 
 Ja ha fet la connexió, concretament a localhost (127.0.0.1) i al port 6379,
 que havíem quedat que és el port per defecte.
@@ -88,7 +89,7 @@ d'instal·lar. I recordeu que és una Base de Dades clau-valor. Per crear una
 entrada posarem **set clau valor**. Per a obtenir-la posarem **get clau**. En
 la imatge es pot comprovar:
 
-![](T8_2_1_3.png)
+![](redis-primera.png)
 
 Hem creat una clau anomenada **clau_1** amb el valor **primera** , com es pot
 comprovar en el moment d'obtenir-la amb **get**.
@@ -96,12 +97,9 @@ comprovar en el moment d'obtenir-la amb **get**.
 Si al programa **redis-cli** no li posem paràmetres, intentarà fer una
 connexió local (localhost). Si volem connectar a un servidor situat en una
 altra adreça, li la posem amb el paràmetre **-h adreça** , per exemple:
-```
-  redis-cli -h 192.168.1.26
-```
-Ací tenim una imatge des d'una connexió externa, des d'un altre equip:
 
-![](T8_2_1_4.png)
+    redis-cli -h 192.168.1.26
+
 
 !!! note "Connexió al servidor de l'Institut"
     En el servidor de dades de l'Institut també tenim instal·lat redis. Però per a
@@ -111,7 +109,7 @@ Ací tenim una imatge des d'una connexió externa, des d'un altre equip:
 
 En la següent imatge es veu com sí que hem pogut connectar
 
-![](T8_2_1_5.png)
+![](redis-auth.png)
 
 **Instal·lació en Windows de 64 bits**{.azul}
 
