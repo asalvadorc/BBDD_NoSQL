@@ -5,6 +5,12 @@ body, p, li, ul, ol, blockquote, pre, code, table {
 p {
     text-align: justify;
 }
+
+.wy-nav-content { 
+    max-width: 100%; 
+    padding: 2rem; 
+  } 
+  
 .md-content {
     max-width: 100%; /* Ajusta este valor según tus necesidades */
     margin: 0 auto; /* Centra el contenedor en la página */
