@@ -168,9 +168,9 @@ anterior de MongoDB, però és totalment equivalent:
 
 ![](T8_3_1_1.png)
 
-!!!note "Nota"
-  Una vegada en marxa el servidor, no hem de tancar aquesta terminal, ja que
-  pararíem el servidor.
+
+!!! note "Nota"
+    Una vegada en marxa el servidor, no hem de tancar aquesta terminal, ja que pararíem el servidor.
 
 
 **Instal·lació del client**{.azul}
