@@ -178,7 +178,7 @@ anterior de MongoDB, però és totalment equivalent:
 De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú Products - > Tools ->MongoDB Shell
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
 en el paquet el **tgz** , ja que amb descomprimir el fitxer serà suficient. En
-el cas d'**Ubuntu 22.04 de 64 bits** , triarem l'opió genèrica **Linux 64** ja que es la opció que te el paquet **tgz**, i aquest fitxer és:
+el cas d'**Ubuntu 22.04 de 64 bits** , triarem l'opió genèrica **Linux 64** ja que és la opció que té el paquet **tgz**, i aquest fitxer és:
 **<https://downloads.mongodb.com/compass/mongosh-2.3.6-linux-x64.tgz>**. Però recordeu que us heu d'assegurar de la versió.
 
 
