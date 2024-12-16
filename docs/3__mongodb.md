@@ -107,7 +107,7 @@ També està la possibilitat de crear un servidor en el núvol, fins i tot
 gratuït. És l'opció que ens suggereix Mongo per defecte, però nosaltres no la
 utilitzarem.
 
-**Instal·lació en Linux**{.azul}
+### Instal·lació en Linux
 
 Per a poder fer la instal·lació més bàsica, podrem fer-lo sense permisos
 d'administrador. Si els tenim tot és més còmode, però si no en tenim també ho
@@ -226,7 +226,7 @@ següent sentència, que ens torna el nom de la Base de Dades:
 > db.getName()  
 test
 ```
-**Instal·lació en Windows**{.azul}
+### Instal·lació en Windows
 
 No ofereix cap dificultat. Ens baixem la versió apropiada de MongoDB per a
 Windows, depenent de si és de 32 o 64 bits la nostra versió, que resultarà ser
