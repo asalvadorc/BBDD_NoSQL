@@ -113,14 +113,11 @@ Per a poder fer la instal·lació més bàsica, podrem fer-lo sense permisos
 d'administrador. Si els tenim tot és més còmode, però si no en tenim també ho
 podem fer, com veurem i remarcarem a continuació.
 
-De la pàgina de **MongoDB** anem al menú **Products - > Comunity Edition ->
-Comunity Server **(<https://www.mongodb.com/try/download/community>) ens
-baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el
-cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
+De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú Products - > Comunity Edition ->Comunity Server
+i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
 en el paquet el **tgz** , ja que amb descomprimir el fitxer serà suficient. En
 el cas d'**Ubuntu 20.04 de 64 bits** , aquest fitxer és:
-**<https://fastdl.mongodb.org/linux/mongodb-
-linux-x86_64-ubuntu2004-5.0.5.tgz>**. Però recordeu que us heu d'assegurar de
+**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2004-5.0.5.tgz>**. Però recordeu que us heu d'assegurar de
 la versió.
 
 Senzillament descomprimirem aquest fitxer on vulguem, i ja estarà feta la
@@ -221,10 +218,12 @@ Windows, depenent de si és de 32 o 64 bits la nostra versió, que resultarà se
 un .msi directament executable. En el moment de fer aquestos apunts, el de la
 versió de 64 bits era el fitxer:
 
+<https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.6.2-signed.msi/download>
+<!--
 [mongodb-win32-x86_64-2008plus-
 ssl-3.6.2-signed.msi](https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-
 win32-x86_64-2008plus-ssl-3.6.2-signed.msi/download)
-
+-->
 Una vegada baixat, executem el fitxer. Haurem d'acceptar la llicència,
 instal·lar la versió completa, i acceptar quan Windows ens avise que un
 programa vol instal·lar software. El de sempre.
