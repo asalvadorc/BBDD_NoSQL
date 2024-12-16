@@ -180,7 +180,7 @@ guardar un document i un altre per a recuperar-lo.
 Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
 i després l'operació que volem fer. Amb el següent:
 ```
-> db.exemple.save( {msg:"Hola, què tal?"} )
+> db.exemple.Insert( {msg:"Hola, què tal?"} )
 ```
 Ens contestarà:
 ```
@@ -256,7 +256,7 @@ guardar un document i un altre per a reculerar-lo.
 Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
 i després l'operació que volem fer. Amb el sgüent:
 ```
-> db.exemple.save( {msg:"Hola, què tal?"} )
+> db.exemple.InsertOne( {msg:"Hola, què tal?"} )
 ```
 Ens contestarà:
 ```
@@ -521,7 +521,7 @@ _document_) ens permet guardar la informació d'una manera més real, no tan
 plana. Així per exemple, les dades d'una persona les podríem definir de la
 següent manera. Les posarem en una variable, per veure després com podem
 accedir als diferents elements, encara que el més normal serà guardar-lo en la
-Base de Dades (amb **insert()** o **save()**). Si copiem el que va a
+Base de Dades (amb **insert()**). Si copiem el que va a
 continuació al terminal de Mongo, ens apareixerà amb un format estrany. És
 perquè la sentència d'assignació a la variable ocupa més d'una línia, i
 apareixeran 3 punts al principi per a indicar que continua la sentència. Però
@@ -788,75 +788,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 }  
 >
 ```
-#### Funció Save {.azul}
 
-Hem vist la manera d'inserir nous documents amb **insert()** i d'actualitzar
-documents existents amb **update()**. Però si intentem inserir un document ja
-existent (la manera de saber-ho és pel camp **_id**) ens donarà error. I si
-intentem actualitzar un document no existent, no donarà error, però no
-actualitzarà res.
-
-La funció **save()** és una barreja dels dos: si el document que anem a salvar
-ja existeix, doncs el modificarà, i si no existeix el crearà.
-
-Provem-ho amb un exemple, i aprofitem-nos que en la variable **doc1** tenim el
-contingut d'un document. Fem una modificació, per exemple afegint el camp
-destinatari:
-```
-> doc1.destinatari = "Ferran"  
-Ferran
-
-> doc1  
-{  
-  "_id" : ObjectId("56ce310bc61e04ba81def50b"),  
-  "msg" : "Hola, què tal?",  
-  "titol" : "Missatge 1",  
-  "destinatari" : "Ferran"  
-}
-```
-Anem a guardar-lo amb **save()** :
-```
-> db.exemple.save(doc1)  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
-```
-Ja ens avisa que com ha trobat el document (**"nMatched : 1"**) ha modificat
-un. Efectivament, mirem com ha modificat el document existent:
-```
-> db.exemple.find()  
-{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?",
-"titol" : "Missatge 1", "destinatari" : "Ferran" }  
-{ "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Què? Com va la
-cosa?" }
-```
-Anem a fer ara una modificació del camp **_id**. A tots els efectes serà un
-document nou, ja que la manera d'identificar un document és per aquest camp:
-```
-> doc1._id=100  
-100
-
-> doc1  
-{  
-  "_id" : 100,  
-  "msg" : "Hola, què tal?",  
-  "titol" : "Missatge 1",  
-  "destinatari" : "Ferran"  
-}
-```
-I ara anem a fer el **save()** d'aquest document:
-```
-> db.exemple.save(doc1)  
-WriteResult({ "nMatched" : 0, "nUpserted" : 1, "nModified" : 0, "_id" : 100 })
-```
-Observeu com ara avisa que no n'ha trobat cap igual, i el que fa és inserir-lo
-(ens diu **nUpserted** , que és una barreja de **Up** dated i **Inserted**
-; més avant tornarem a aquesta paraula)
-```
-> db.exemple.find()  
-{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?", "titol" : "Missatge 1", "destinatari" : "Ferran" }  
-{ "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Què? Com va la cosa?" }  
-{ "_id" : 100, "msg" : "Hola, què tal?", "titol" : "Missatge 1", "destinatari" : "Ferran" }
-```
-Efectivament s'ha guardat com un nou document
 
 ### 3.2.3 - Operacions d'actualització avançada
 
@@ -1612,7 +1544,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
 
     
     
-    db.libro.save({  
+    db.libro.insert({  
         "_id":"9788408117117",  
           "titulo":"Circo Máximo",  
         "autor":"Santiago Posteguillo",  
@@ -1624,7 +1556,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
         "resumen":"Circo Máximo, de Santiago Posteguillo, que ha escrito otras obras de narrativa histórica como Las Legiones Malditas o La traición de Roma, es la segunda parte de la trilogía de Trajano, que comenzó con Los asesinos del emperador, un relato impactante, descomunal, descrito con un trepidante pulso narrativo destinado a trasla dar al lector a la Roma imperial de los césares. Santiago posteguillo se ha convertido en el autor español de referencia de la novela histórica sobre Roma y el mundo antiguo. Bienvenidos al mundo de Marco Ulpio Trajano. Circo Máximo es la historia de Trajano y su gobierno, guerras y traiciones, lealtades insobornables e historias de amor imposibles. Hay una vestal, un juicio, inocentes acusados, un abogado especial, mensajes cifrados, códigos secretos, batallas campales, fortalezas inexpugnables, asedios sin fin, dos aurigas rivales, el Anfiteatro, los gladiadores y tres carreras de cuadrigas. Hay también un caballo especial, diferente a todos, leyes antiguas olvidadas, sacrificios humanos, amargura y terror, pero también destellos de nobleza y esperanza, como la llama de Vesta, que mientras arde preserva a Roma. Sólo que hay noches en las que la llama del Templo de Vesta tiembla. La rueda de la Fortuna comienza entonces a girar. En esos momentos, todo puede pasar y hasta la vida del propio Trajano, aunque él no lo sepa, corre peligro. Y, esto es lo mejor de todo, ocurrió: hubo un complot para asesinar a Marco Ulpio Trajano."  
     })  
       
-    db.libro.save({  
+    db.libro.insert({  
          "_id":"9788401342158",  
           "titulo":"El juego de Ripper",  
           "autor":"Isabel Allende",  
@@ -1636,7 +1568,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
           "resumen":"Tal como predijo la astróloga más reputada de San Francisco, una oleada de crímenes comienza a sacudir la ciudad. En la investigación sobre los asesinatos, el inspector Bob Martín recibirá la ayuda inesperada de un grupo de internautas especializados en juegos de rol, Ripper. 'Mi madre todavía está viva, pero la matará el Viernes Santo a medianoche', le advirtió Amanda Martín al inspector jefe y éste no lo puso en duda, porque la chica había dado pruebas de saber más que él y todos sus colegas del Departamento de Homicidios. La mujer estaba cautiva en algún punto de los dieciocho mil kilómetros cuadrados de la bahía de San Francisco, tenían pocas horas para encontrarla con vida y él no sabía por dónde empezar a buscarla",  
      })  
        
-    db.libro.save({  
+    db.libro.insert({  
         "_id":"9788496208919",  
        "titulo":"Juego de tronos: Canción de hielo y fuego 1",  
        "autor":"George R.R. Martin",  
@@ -1648,7 +1580,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
        "resumen":"Tras el largo verano, el invierno se acerca a los Siete Reinos. Lord Eddars Stark, señor de Invernalia, deja sus dominios para unirse a la corte del rey Robert Baratheon el Usurpador, hombre díscolo y otrora guerrero audaz cuyas mayores aficiones son comer, beber y engendrar bastardos. Eddard Stark desempeñará el cargo de M ano del Rey e intentará desentrañar una maraña de intrigas que pondrá en peligro su vida... y la de los suyos. En un mundo cuyas estaciones duran décadas y en el que retazos de una magia inmemorial y olvidada surgen en los rincones más sombrios y maravillosos, la traición y la lealtad, la compasión y la sed de venganza, el amor y el poder hacen del juego de tronos una poderosa trampa que atrapa en sus fauces a los personajes... y al lector. 'El regreso triunfal de Martin a la fantasía de más alta calidad... con personajes desarrollados con maestría, prosa hábil y pura obstinación.'"  
     })  
       
-    db.libro.save({  
+    db.libro.insert({  
       "_id":"9788499088075",  
       "titulo":"La ladrona de libros",  
       "autor":"Markus Zusak",  
@@ -1660,7 +1592,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
       "resumen":"En plena II Guerra Mundial, la pequeña Liesel hallará su salvación en la lectura. Una novela preciosa, tremendamente humana y emocionante, que describe las peripecias de una niña alemana de nueve años desde que es dada en adopción por su madre hasta el final de la guerra. Su nueva familia, gente sencilla y nada afecta al na zismo, le enseña a leer y a través de los libros Rudy logra distraerse durante los bombardeos y combatir la tristeza. Pero es el libro que ella misma está escribiendo el que finalmente le salvará la vida.",  
     })  
       
-    db.libro.save({  
+    db.libro.insert({  
       "_id":"9788415140054",  
       "titulo":"La princesa de hielo",  
       "autor":"Camilla Lackberg",  
@@ -1671,7 +1603,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
       "resumen":"Misterio y secretos familiares en una emocionante novela de suspense Erica vuelve a su pueblo natal tras el fallecimiento de sus padres, pero se va a encontrar con un nuevo drama. Aparentemente su amiga de la infancia, Alex, se ha suicidado. Pronto se descubre que no solamente fue asesinada sino que estaba embarazada. El primer sospechoso es Anders, un artista fracasado con quien Alex mantenía una relación especial. Pero poco después de ser liberado por falta de pruebas, Anders aparece muerto en su domicilio. Con la ayuda del comisario Patrik, Erica investigará el pasado de su amiga Alex."  
     })  
       
-    db.libro.save({  
+    db.libro.insert({  
       "_id":"9788408113331",  
       "titulo":"Las carreras de Escorpio",  
       "autor":"Maggie Stiefvater",  
@@ -1683,7 +1615,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
       "resumen":"En la pequeña isla de Thisby, cada noviembre los caballos de agua de la mitología celta emergen del mar. Y cada noviembre, los hombres los capturan para participar en una emocionante carrera mortal. En las carreras de Escorpio, algunos compiten para ganar. Otros para sobrevivir. Los jinetes intentan dominar a sus caballos de agua el tiempo suficiente para acabar la carrera. Algunos lo consiguen. El resto, muere en el intento. Sean Kendrick es el favorito, y necesita ganar la carrera para ganar, también, su libertad. Pero Puck Connolly está dispuesta a ser su más dura adversaria. Ella nunca quiso participar en las carreras. Pero no tiene elección: o compite y gana o… lo pierde todo.",  
     })  
       
-    db.libro.save({  
+    db.libro.insert({  
       "_id":"9788468738895",  
       "titulo":"Las reglas del juego",  
       "autor":"Anna Casanovas",  
@@ -1695,8 +1627,6 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
     })
     
 
-Com podeu comprovar estan els comandos d'inserció (**save()** ) i també es veu
-prou bé els camps de cada document.
 
 Podeu comprovar que hi ha 7 documents en la nova col·lecció **libro** :
 ```
