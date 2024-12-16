@@ -113,15 +113,17 @@ Per a poder fer la instal·lació més bàsica, podrem fer-lo sense permisos
 d'administrador. Si els tenim tot és més còmode, però si no en tenim també ho
 podem fer, com veurem i remarcarem a continuació.
 
+**Instal·lació del servidor**{.azul}
+
 De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú Products - > Comunity Edition ->Comunity Server
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
 en el paquet el **tgz** , ja que amb descomprimir el fitxer serà suficient. En
-el cas d'**Ubuntu 20.04 de 64 bits** , aquest fitxer és:
-**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2004-5.0.5.tgz>**. Però recordeu que us heu d'assegurar de
-la versió.
+el cas d'**Ubuntu 22.04 de 64 bits** , aquest fitxer és:
+**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.4.tgz>**. Però recordeu que us heu d'assegurar de la versió.
 
 Senzillament descomprimirem aquest fitxer on vulguem, i ja estarà feta la
 instal·lació bàsica.
+
 
 Per defecte el directori de la Base de Dades és **/data/db**
 
@@ -166,11 +168,24 @@ anterior de MongoDB, però és totalment equivalent:
 
 ![](T8_3_1_1.png)
 
-Una vegada en marxa el servidor, no hem de tancar aquesta terminal, ja que
-pararíem el servidor. Per a connectar un client, obrim una segona terminal i
-executem el client **mongo** :
+!!!note "Nota"
+  Una vegada en marxa el servidor, no hem de tancar aquesta terminal, ja que
+  pararíem el servidor.
+
+
+**Instal·lació del client**{.azul}
+
+De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú Products - > Tools ->MongoDB Shell
+i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
+en el paquet el **tgz** , ja que amb descomprimir el fitxer serà suficient. En
+el cas d'**Ubuntu 22.04 de 64 bits** , triarem l'opió genèrica **Linux 64** ja que es la opció que te el paquet **tgz**, i aquest fitxer és:
+**<https://downloads.mongodb.com/compass/mongosh-2.3.6-linux-x64.tgz>**. Però recordeu que us heu d'assegurar de la versió.
+
+
+Per a connectar un client, obrim una segona terminal i
+executem el client **mongosh** :
 ```
-./bin/mongo
+./bin/mongosh
 ```
 ![](T8_3_1_2.png)
 
