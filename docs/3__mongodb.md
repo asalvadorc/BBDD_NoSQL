@@ -343,7 +343,7 @@ final de la instal·lació.
 Recordeu que tindrem dues teminals:
 
   * Una amb el servidor en marxa (i que no hem de tancar): **mongod**
-  * Una altra amb el client que es connecta al servidor: **mongo**
+  * Una altra amb el client que es connecta al servidor: **mongosh**
 
 En aquesta última consola del client podem utilitzar sentències del llenguatge
 **Javascipt** , però el que més ens interessarà, evidentment, són les
