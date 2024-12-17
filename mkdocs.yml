@@ -27,6 +27,6 @@ nav:
 
 - UD 5. BD NoSQL:
   - 1 - Introducció: 1__introducci.md
-  - 2 - Bases de Dades Clau-Valor: 2__bases_de_dades_clauvalor.md
+  - 2 - Bases de Dades Clau-Valor (Redis): 2__bases_de_dades_clauvalor.md
   - 3 - MongoDB: 3__mongodb.md
   - Exercicis: exercicis.md

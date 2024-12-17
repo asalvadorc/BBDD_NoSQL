@@ -13,7 +13,7 @@ p {
   
 .md-content {
     max-width: 100%; /* Ajusta este valor según tus necesidades */
-    margin: 0 auto; /* Centra el contenedor en la página */
+    margin: 2rem;; /* Centra el contenedor en la página */
 }
 
 .rojo {
