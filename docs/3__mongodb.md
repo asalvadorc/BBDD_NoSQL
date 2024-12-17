@@ -181,11 +181,18 @@ en el paquet el **tgz** , ja que amb descomprimir el fitxer serà suficient. En
 el cas d'**Ubuntu 22.04 de 64 bits** , triarem l'opió genèrica **Linux 64** ja que és la opció que té el paquet **tgz**, i aquest fitxer és:
 **<https://downloads.mongodb.com/compass/mongosh-2.3.6-linux-x64.tgz>**. Però recordeu que us heu d'assegurar de la versió.
 
+Senzillament descomprimirem aquest fitxer on vulguem, i ja estarà feta la
+instal·lació bàsica.
 
 Per a connectar un client, obrim una segona terminal i
 executem el client **mongosh** :
+
 ```
-./bin/mongosh
+  <directori arrel MongoDB>/bin/mongosh
+```  
+
+```
+  ./bin/mongosh
 ```
 ![](T8_3_1_2.png)
 
