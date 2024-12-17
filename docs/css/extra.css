@@ -16,20 +16,29 @@ p {
     margin: 2rem;; /* Centra el contenedor en la página */
 }
 
+code, pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
 .rojo {
     color: red !important;
 }
 
 .azul {
     color: #2980B9 !important;
+    font-size: 16px;
+    text-decoration: underline;
+
 }
 
 .verde {
     color: green !important;
 } 
 
-code, pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
+
+
+img {
+    border: 1px solid black; /* Marco negro de 2 píxeles */
+  }
 

@@ -8,22 +8,20 @@ theme:
   name: readthedocs
   highlightjs: true
   logo: assets/logocaminas.png
+  features: content.code.copy
 
 markdown_extensions:
   - admonition
   - pymdownx.emoji
-  - pymdownx.extra
-  - pymdownx.superfences 
+ # - pymdownx.extra
+ # - pymdownx.superfences 
+ # - pymdownx.highlight # Resalta sintaxis
+  - pymdownx.superfences # Permite bloques de código avanzados
   - tables    
   - attr_list
-  - toc
+  
 
 nav:
-
-#- UD 4. BD NoSQL:
-#  - 1 - Les Bases de Dades Orientades a Objectes: 3__bases_de_dades_orientades_a_objectes.md
-#  - 2 - Exercicis: exercicis.md
-
 
 - UD 5. BD NoSQL:
   - 1 - Introducció: 1__introducci.md
