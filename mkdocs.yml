@@ -8,7 +8,8 @@ theme:
   name: readthedocs
   highlightjs: true
   logo: assets/logocaminas.png
-  features: content.code.copy
+  features:
+    - content.code.copy  # Habilita el botón de copiar en bloques de código
 
 markdown_extensions:
   - admonition
