@@ -133,7 +133,7 @@ el moment d'arrancar el servidor, li especificarem aquest lloc.
 
 La manera d'arrancar el servidor serà:
 ```
-<dirctori arrel MongoDB>/bin/mongod
+<directori arrel MongoDB>/bin/mongod
 ```
 Opcionalment li podem dir on està la Base de Dades (si no ho especifiquem
 assumirà que està en **/data/db**):

@@ -179,7 +179,7 @@ Agafa l'estat actual de Bicicas de la següent adreça:
 
 <http://gestiona.bicicas.es/apps/apps.php>
 
-En compte de copiar aquestes dades actuals en un fitxer i després nalitzar el
+En compte de copiar aquestes dades actuals en un fitxer i després analitzar el
 fitxer, analitzarem directament fent la petició a la pàgina del servidor
 d'aquesta manera:
 
