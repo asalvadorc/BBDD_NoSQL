@@ -2567,7 +2567,7 @@ En el moment de fer aquestos apunts, l'últim driver disponible és el següent:
 java-driver-3.9.1.jar>
 
 Per a separar les proves i exercicis de la part de **Redis** , creem un nou
-projecte anomenat **Tema7_2** , en un paquet anomenat **Exemples**.
+paquet anomenat **ExemplesMongo**.
 
  **<u>Connexió**</u>
 

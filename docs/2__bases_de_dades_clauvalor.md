@@ -1838,8 +1838,8 @@ trobar:
 No és l'última versió, però és suficient per a nosaltres i és molt fàcil
 d'utilitzar
 
-Per a fer proves, creem un nou projecte anomenat **Tema7_1** , i incorporem la
-llibreria de **Jedis**. Creem un paquet anomenat **Exemples** , per separar
+Per a fer proves, creem un nou projecte anomenat **Tema7** , i incorporem la
+llibreria de **Jedis**. Creem un paquet anomenat **ExemplesRedis** , per separar
 aquestos dels exercicis.
 
 ### Connexió
@@ -2054,7 +2054,7 @@ següent codi en un fitxer kotlin anomenat **Prova8.kt** :
     	con.close()
     }
 
-    
+
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
 SenseObraDerivada 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/)
