@@ -2054,6 +2054,8 @@ següent codi en un fitxer kotlin anomenat **Prova8.kt** :
     	con.close()
     }
 
+    
+
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
 SenseObraDerivada 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/)
 

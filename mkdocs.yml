@@ -26,6 +26,16 @@ nav:
 
 - UD 5. BD NoSQL:
   - 1 - Introducció: 1__introducci.md
+- REDIS:  
   - 2 - Bases de Dades Clau-Valor (Redis): 2__bases_de_dades_clauvalor.md
+  - Exercicis: exercicis_redis.md
+- MONGO:  
   - 3 - MongoDB: 3__mongodb.md
-  - Exercicis: exercicis.md
+  - Exercicis: exercicis_mongo.md
+#- FIREBASE: 
+#    - 4.1 - Introducció: AD_Firebase/1__introducci_firebase.md
+#    - 4.2 - Creació d'una aplicació: AD_Firebase/2__creaci_duna_aplicaci.md
+#    - 4.3 - Realtime Database (RD): AD_Firebase/3__realtime_database_rd.md
+#    - 4.4. - Cloud Firestore (CF): AD_Firebase/4__cloud_firestore_cf.md
+#    - 4.5. - Cloud Storage: AD_Firebase/5__cloud_storage.md
+#    - Exercicis: AD_Firebase/exercicis.md

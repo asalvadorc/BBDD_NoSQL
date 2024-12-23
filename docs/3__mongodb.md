@@ -336,7 +336,7 @@ La manera d'autenticar serà utilitzant el comando **db.auth("_usuari"_ ,
 la BD test:
 
   * Usuari: **ad**
-  * Contrasenya: **ieselcaminas**
+  * Contrasenya: **Ad_ieselcamina$**
 
 A partir d'eixe moment ja podrem utilitzar-lo sense problemes:
 
