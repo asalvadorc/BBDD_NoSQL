@@ -2832,29 +2832,26 @@ l'autenticació per a intentar evitar atacs.
 Si no tinguèrem autenticació, la connexió seria com abans:
 
     
-```   
-        val con = MongoClient("89.36.214.106")
-        val bd = con.getDatabase("test")
-```    
+
+    val con = MongoClient("89.36.214.106")
+    val bd = con.getDatabase("test")
+  
 
 Però per tenir l'autenticació activada la connexió haurà de ser diferent:
 
     
-```    
-        val con = MongoClient(MongoClientURI("mongodb://ad:ieselcaminas@89.36.214.106/?authSource=test"))
-        val bd = con.getDatabase("test")
-```    
+  
+    val con = MongoClient(MongoClientURI("mongodb://ad:Ad_ieselcamina$@89.36.214.106/?authSource=test"))
+    val bd = con.getDatabase("test")   
 
 on hem especificat l'adreça donant-li un usuari (**ad**), una contrasenya
-(**ieselcaminas**), el servidor (**89.36.214.106**) i fins i tot la Base de
+(**Ad_ieselcamina$**), el servidor (**89.36.214.106**) i fins i tot la Base de
 Dades on connectem, que ja va comentar que només teníem la BD **test**
 
 Per a tancar la connexió, com sempre:
 
-    
-```    
-        con.close()
-```
+      
+    con.close()
   
   
 
@@ -2873,7 +2870,7 @@ l'Institut. Guardeu-lo amb el nom **ProvaServidor.kt** :
     fun main(){
         LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE)
     
-        val con = MongoClient(MongoClientURI("mongodb://ad:ieselcaminas@89.36.214.106/?authSource=test"))
+        val con = MongoClient(MongoClientURI("mongodb://ad:Ad_ieselcamina$@89.36.214.106/?authSource=test"))
         val bd = con.getDatabase("test")
     
         val ordenar = Document()
