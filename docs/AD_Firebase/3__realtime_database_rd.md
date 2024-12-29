@@ -1,8 +1,8 @@
-# 3 - Realtime Database (RD)
+# 4.3 - Realtime Database (RD)
 
-Encara que la finalitat és utilitzar-lo des del nostre entorn de programació,
-més concretament Android, sempre ens anirà bé "tocar" les dades directament
-des d'un entorn propi.
+Encara que la finalitat és utilitzar-lo des del nostre entorn de programació, sempre ens anirà bé "tocar" les dades directament des d'un entorn propi.
+
+El seguent vídeo correspon a una versió anterior de Firebase però, es igualment vàlid.
 
 <iframe src="https://slides.com/aliciasalvador/t7_firebase_inserirdades/embed" width="576" height="420" title="Copy of T7_Firebase_InserirDades" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
@@ -17,16 +17,18 @@ Recordem que podrem utilitzar 2 versions:
 
 Comencem per **Realtime Database**
 
-## 3.1 RD: Utilització des de l'entorn de Firebase
+## 4.3.1 RD: Utilització des de l'entorn de Firebase
 
-Farem especial menció al fet que el que guardem és un document JSON. Fins i
-tot ens el podrem baixar (exportar) o pujar un document nou (importar). Això
+Farem especial menció al fet que el que guardem és un document **JSON**. Fins i
+tot ens el podrem baixar (exportar) o pujar com un document (importar). Això
 sí, l'operació d'importació destrueix les dades anteriors, mostra de que només
-podem guardar un document JSON.
+podem guardar un document **JSON**.
 
 Aques és el contingut del fitxer **Empleats.json** que s'introdueix en el
 vídeo. Està formatat per a una fàcil lectura, però en realitat no importaria
 que estiguera tot seguit.
+
+Ho teniu disponible a l'aula virtual perquè us ho importeu.
 
     {  
     "empresa": {  
@@ -70,20 +72,17 @@ exemples. Així ens queda l'estructura per als posteriors exemples:
 
 ![](T7_2_2_1.png)
 
-## 3.2 RD: Utilització des de IntelliJ
+## 4.3.2 RD: Utilització des de IntelliJ
 
-El nostre objectiu final d'accedir a Firebase serà des d'Android. Mirarem
-primer l'accés des de IntelliJ, que és l'entorn que utilitzem en el present
-mòdul. Passar després a Android serà una cosa senzilla.
 
 Per als exemples i exercicis d'aquesta part, ens crearem un projecte anomenat
-**Tema7** , amb els paquets **exemples_realtimedatabase** ,
-**exemples_cloudfirestore** , **exemples_cloudstorage** i **exercicis**.
+**Tema8**, amb els paquets **exemples_realtimedatabase**,
+**exemples_cloudfirestore**, **exemples_cloudstorage** i **exercicis**.
 
-### 3.2.1 RD-IntelliJ: Connexió des de Kotlin
+### 4.3.2.1 RD-IntelliJ: Connexió des de Kotlin
 
-**Drivers necessaris**{.azul}
 
+<!--
 L'accés des de IntelliJ a Firebase no és senzill. És més complicat que accedir
 des d'Android, en contra del que cabria esperar.
 
@@ -101,20 +100,22 @@ Una vegada baixat i descomprimit el contingut en una carpeta, construiu-vos
 una llibreria anomenada **Firebase** que incorpore tots els **jar**. El
 següent vídeo mostra com fer-ho:
 
+-->
+
 **Configuració**{.azul}
 
 El primer que hem de fer és preparar el nostre projecte per a que puga accedir
 a l'aplicació que hem creat en Firebase. En l'entron de IntelliJ ens baixarem
 un fitxer json on estarà la clau per a accedir a la nostra aplicació. Hem
-d'anar a la configuració del projecte:
-
-![](T7_2_2_2_1_1.png)
-
-I dins de la configuració anar a la pestanya **Cuentas de servicio**(**Service
-Accounts**). Ahí veurem uns exemples d'utilització (a nosaltres ens interessa
+d'anar a la configuració del projecte i dins de la configuració anar a la pestanya **Cuentas de servicio** (**Service Accounts**). Ahí veurem uns exemples d'utilització (a nosaltres ens interessa
 **Java**), i baix de tot un botó per a **Generar una nova clau privada** :
 
-![](T7_2_2_2_1_2.png)
+![](T7_RD_con.png)
+
+<!--![](T7_2_2_2_1_1.png)-->
+
+
+<!--![](T7_2_2_2_1_2.png)-->
 
 Ens baixarà un fitxer **json** que **haurem de guardar** a l'arrel del
 projecte. Després, com deia l'exemple, col·loquem el següent per a un accés
@@ -122,19 +123,22 @@ correcte:
 
     
     
-    FileInputStream serviceAccount =
-      new FileInputStream("path/to/serviceAccountKey.json");
-    
-    FirebaseOptions options = new FirebaseOptions.Builder()
-      .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-      .setDatabaseUrl("https://acces-a-dades-6e5a6.firebaseio.com")
-      .build();
-    
-    FirebaseApp.initializeApp(options);
+    val serviceAccount = FileInputStream("access-a-dades-d119e-firebase-adminsdk-ehn3k-14a46f56f4.json")
 
-**No us oblideu de substituir el nom del fitxer json**. També heu de tenir en
-compte que **la URL de la base de dades serà diferent per a cadascú de
-nosaltres**.
+
+    val options = FirebaseOptions.builder()
+        .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+        .setDatabaseUrl("https://access-a-dades-d119e-default-rtdb.firebaseio.com/").build()
+
+
+    FirebaseApp.initializeApp(options)
+    
+
+
+!!!warning "Avís"
+    **No us oblideu de substituir el nom del fitxer json**. També heu de tenir en
+    compte que **la URL de la base de dades serà diferent per a cadascú de
+    nosaltres**.
 
 Ho tenim escrit en **Java** , i per tant haurem de fer la transformació a
 **Kotlin**. i quedarà així (ho he particularitzat al meu projecte, però
@@ -142,13 +146,15 @@ recordeu que heu de canviar el nom del fitxer json i la URL pels vostres):
 
     
     
-    	val serviceAccount = FileInputStream("acces-a-dades-6e5a6-firebase-adminsdk-ei7uc-fcf7da56aa.json")
-    
-    	val options = FirebaseOptions.Builder()
-    		.setCredentials(GoogleCredentials.fromStream(serviceAccount))
-    		.setDatabaseUrl("https://acces-a-dades-6e5a6.firebaseio.com").build()
-    
-    	FirebaseApp.initializeApp(options)
+    	val serviceAccount = FileInputStream("access-a-dades-d119e-firebase-adminsdk-ehn3k-14a46f56f4.json")
+
+
+        val options = FirebaseOptions.builder()
+            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+            .setDatabaseUrl("https://access-a-dades-d119e-default-rtdb.firebaseio.com/").build()
+
+
+        FirebaseApp.initializeApp(options)
 
 **Referència a la Base de Dades i a les dades concretes a les quals volem
 accedir**{.azul}
@@ -195,7 +201,7 @@ treballar posteriorment per a accedir més avall en l'estructura:
 
 Ho mostrarem en els exemples posteriors.
 
-### 3.2.2 RD-IntelliJ: Accés a les dades
+### 4.3.2.2 RD-IntelliJ: Accés a les dades
 
 **Guardar dades**{.azul}
 
@@ -207,7 +213,6 @@ accedir. Accepta 2 paràmetres:
 
 Si per exemple vulguérem guardar en la variable **a1** , de forma senzilla ho
 faríem així (ens funcionaria en els gràfics):
-
     
     
     refA1.setValue("Valor per a a1", null);
@@ -236,7 +241,7 @@ ens ho deixem per a més avant.
 Però com havíem dit abans, s'ha de sincronitzar amb Firebase, des del programa
 Java ens hem d'esperar a aquesta sincronització, si no no ens funcionarà. En
 el segon paràmetre ens posem un **listener**. Aquest exemple ja està complet.
-Guardeu-lo amb el nom **Exemple_7_3_1_FirebaseRD_Guardar.kt**
+Guardeu-lo amb el nom **Exemple_8_3_1_FirebaseRD_Guardar.kt**
 
     
     
@@ -250,13 +255,15 @@ Guardeu-lo amb el nom **Exemple_7_3_1_FirebaseRD_Guardar.kt**
     import com.google.firebase.database.DatabaseError
     
     fun main() {
-    	val serviceAccount = FileInputStream("acces-a-dades-6e5a6-firebase-adminsdk-ei7uc-fcf7da56aa.json")
-    
-    	val options = FirebaseOptions.builder()
-    		.setCredentials(GoogleCredentials.fromStream(serviceAccount))
-    		.setDatabaseUrl("https://acces-a-dades-6e5a6.firebaseio.com").build()
-    
-    	FirebaseApp.initializeApp(options)
+    	val serviceAccount = FileInputStream("access-a-dades-d119e-firebase-adminsdk-ehn3k-14a46f56f4.json")
+
+
+        val options = FirebaseOptions.builder()
+            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+            .setDatabaseUrl("https://access-a-dades-d119e-default-rtdb.firebaseio.com/").build()
+
+
+        FirebaseApp.initializeApp(options)
     
     	val empresa = FirebaseDatabase.getInstance().getReference("empresa")
     
@@ -288,7 +295,7 @@ servirà per a practicar totes les coses que us volem mostrar en Realtme
 Database de Firebase.
 
 Aquest és l'esquelet del programa. Guardeu-lo amb el nom
-**Exemple_7_3_2_FirebaseRD_CrearXat.kt** :
+**Exemple_8_3_2_FirebaseRD_CrearXat.kt** :
 
     
     
@@ -353,12 +360,14 @@ Aquest és l'esquelet del programa. Guardeu-lo amb el nom
             setVisible(true)
             enviar.addActionListener{enviar()}
     
-            val serviceAccount = FileInputStream("acces-a-dades-6e5a6-firebase-adminsdk-ei7uc-fcf7da56aa.json")
-    
+            val serviceAccount = FileInputStream("access-a-dades-d119e-firebase-adminsdk-ehn3k-14a46f56f4.json")
+
+
             val options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://acces-a-dades-6e5a6.firebaseio.com").build()
-    
+                .setDatabaseUrl("https://access-a-dades-d119e-default-rtdb.firebaseio.com/").build()
+
+
             FirebaseApp.initializeApp(options)
     
             // Exemple de listener de lectura única addListenerForSingleValue()
@@ -387,24 +396,23 @@ Aquest és l'esquelet del programa. Guardeu-lo amb el nom
     }
 
 Recordeu que heu de canviar el **nom del fitxer json** i la **URL** per les
-vostres. Ho podeu copiar de l'exemple anterior``
+vostres. Ho podeu copiar de l'exemple anterior.
 
 Observeu que ja tenim col·locades en l'anterior programa les dades de
 connexió:
 
     
     
-    		val serviceAccount = FileInputStream("acces-a-dades-6e5a6-firebase-adminsdk-ei7uc-fcf7da56aa.json")
-    
-    		val options = FirebaseOptions.Builder()
-    				.setCredentials(GoogleCredentials.fromStream(serviceAccount))
-    				.setDatabaseUrl("https://acces-a-dades-6e5a6.firebaseio.com").build()
-    
-    		FirebaseApp.initializeApp(options)
-    
+    		val serviceAccount = FileInputStream("access-a-dades-d119e-firebase-adminsdk-ehn3k-14a46f56f4.json")
 
-I torne a insistir en què heu de **canviar la referència al fitxer JSON i la
-URL**.
+
+            val options = FirebaseOptions.builder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setDatabaseUrl("https://access-a-dades-d119e-default-rtdb.firebaseio.com/").build()
+
+
+    FirebaseApp.initializeApp(options)
+    
 
 Per a guardar les dades, en aquest exemple de moment guardarem en la clau de
 Firebase **a1** en el moment de apretar el botó de baix d'**Enviar**. No farà
@@ -472,7 +480,7 @@ Firebase.
 ![](T7_2_2_2_2_3.png)
 
 Modificarem el fragment de programa marcat pel comentari, i el que fem és
-esperar per a llegir només una vegada.****
+esperar per a llegir només una vegada.
 
     
     
@@ -738,7 +746,7 @@ inicialment s'afegeix cadascun dels elements de la llista, i en el mateix
 ordre en que estan definits. En aquest imatge hem aprofitat per afegir un
 quart missatge:
 
-### 3.2.3 RD-IntelliJ: Tot l'exemple
+### 4.3.2.3 RD-IntelliJ: Tot l'exemple
 
 **Tot l'exemple**{.azul}
 
@@ -753,7 +761,7 @@ Primer la classe **Missatge.java** :
 
 
 Ara el programa, que havíem quedat de guardar-lo en el fitxer
-**Exemple_7_3_2_2_FirebaseRD_CrearXat.kt** :
+**Exemple_8_3_2_2_FirebaseRD_CrearXat.kt** :
 
     
     
@@ -818,14 +826,16 @@ Ara el programa, que havíem quedat de guardar-lo en el fitxer
             setVisible(true)
             enviar.addActionListener{enviar()}
     
-            val serviceAccount = FileInputStream("acces-a-dades-6e5a6-firebase-adminsdk-ei7uc-fcf7da56aa.json")
-    
+            val serviceAccount = FileInputStream("access-a-dades-d119e-firebase-adminsdk-ehn3k-14a46f56f4.json")
+
+
             val options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://acces-a-dades-6e5a6.firebaseio.com").build()
-    
+                .setDatabaseUrl("https://access-a-dades-d119e-default-rtdb.firebaseio.com/").build()
+
+
             FirebaseApp.initializeApp(options)
-    
+            
             // Exemple de listener de lectura única addListenerForSingleValue()
             // Per a posar el títol. Sobre nomXat
             val nomXat = FirebaseDatabase.getInstance().getReference("nomXat")
@@ -904,17 +914,20 @@ Ara el programa, que havíem quedat de guardar-lo en el fitxer
         }
     }
 
-
+<!--
 **Xat compartit**{.azul}
 
 Per a fer-lo més divertit, podríem connectar-nos tots a la mateixa Base de
-Dades de Realtime Database. Tenim un usuari per a poder fer proves.
+Dades de Realtime Database. 
+
+Tenim un usuari per a poder fer proves.
 
 Si voleu connectar-vos des de la consola, aquestes són les dades
 
 * Compte de Google: **ad.ieselcaminas@gmail.com**
 * Contrasenya: **ieselcaminas_ad**
 * Aplicació: **xat-ad**
+
 
 En l'aplicació l'únic que haureu de fer és incorporar el fitxer json on està
 la configuració i la clau privada de la connexió. El fitxer s'anomena **xat-
@@ -926,7 +939,7 @@ ad-9f901-default-rtdb.europe-west1.firebasedatabase.app/)
 Únicament canviant aquestes 2 coses de la connexió, veureu que estem
 compartint tots el mateix xat.
 
-
+-->
 <!--
 ## 3.3 RD: Utilització des d'Android
 

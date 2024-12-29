@@ -1,4 +1,4 @@
-# 4 - Cloud Firestore (CF)
+# 4.4 - Cloud Firestore (CF)
 
 **Cloud Firestore** és l'evolució de Realtime Database, on podrem guardar més
 d'un document. Els documents aniran organitzats en col·leccions. Ja podem
@@ -12,7 +12,7 @@ les dades. I l'accés és igual de fàcil.
 
 De vegades Firebase l'anomena **Firestore Database** o **Cloud Firestore**
 
-## 4.1 CF: Utilització des de l'entorn de Firebase
+## 4.4.1 CF: Utilització des de l'entorn de Firebase
 
 Amb el **Cloud Firestore** ja podrem guardar més d'un document, i aniran
 agrupats en **col·leccions** de documents. En el següent vídeo anem a insistir
@@ -60,14 +60,14 @@ per Cloud Firestore
 
 ![](T7_4_1_2.png)
 
-## 4.2 CF: Utilització des de IntelliJ
+## 4.4.2 CF: Utilització des de IntelliJ
 
 **Exemple**{.azul}
 
 Practicarem tot el que ve a continuació sobre un programa gràfic.
 
 Aquest és el seu esquelet. Guardeu-lo en un fitxer anomenat
-**Exemple_7_4_1_FirebaseCF_CrearXatCloud****.kt** :
+**Exemple_8_4_1_FirebaseCF_CrearXatCloud****.kt** :
 
     
     
@@ -84,15 +84,8 @@ Aquest és el seu esquelet. Guardeu-lo en un fitxer anomenat
     import java.awt.Color
     import javax.swing.JScrollPane
     import java.io.FileInputStream
-    
-    import com.google.api.core.ApiFuture
     import com.google.auth.oauth2.GoogleCredentials
     import com.google.cloud.firestore.DocumentChange
-    import com.google.cloud.firestore.DocumentReference
-    import com.google.cloud.firestore.DocumentSnapshot
-    import com.google.cloud.firestore.EventListener
-    import com.google.cloud.firestore.Firestore
-    import com.google.cloud.firestore.FirestoreException
     import com.google.firebase.FirebaseApp
     import com.google.firebase.FirebaseOptions
     import com.google.firebase.cloud.FirestoreClient
@@ -148,7 +141,7 @@ Aquest és el seu esquelet. Guardeu-lo en un fitxer anomenat
     		setVisible(true)
     		enviar.addActionListener { enviar() }
     
-    		val serviceAccount = FileInputStream("acces-a-dades-6e5a6-firebase-adminsdk-ei7uc-fcf7da56aa.json")
+    		val serviceAccount = FileInputStream("access-a-dades-d119e-firebase-adminsdk-ehn3k-14a46f56f4.json")
     
     		val options = FirebaseOptions.builder()
     			.setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -184,18 +177,12 @@ I aquest és el seu aspecte:
 
 ![](T7_4_2_1.png)
 
-### 4.2.1 CF-IntelliJ: Connexió des de Kotlin
-
-**Drivers necessaris**{.azul}
-
-Els drivers necessaris són els mateixos que vam baixar-nos per al cas de
-**Realtime Database**. Millor dit, estan inclosos en la llibreria que ens vam
-muntar, per tant aquesta feina la vam fer en el punt **3.2.1**
+### 4.4.2.1 CF-IntelliJ: Connexió des de Kotlin
 
 **Configuració**{.azul}
 
 Ara serà lleugerament més que en el cas de **Realtime Database** vist en el
-punt **3.2.1**., ja que no caldrà especificar la URL de la Base de Dades, amb
+punt **4.3.2.1**., ja que no caldrà especificar la URL de la Base de Dades, amb
 la referència al fitxer json serà suficient.
 
 Recordeu que ens vam baixar un fitxer **json** amb la clau privada que vam
@@ -205,7 +192,7 @@ no posem el **.setDatebaseURL()** :
 
     
     
-    		val serviceAccount = FileInputStream("acces-a-dades-6e5a6-firebase-adminsdk-ei7uc-fcf7da56aa.json")
+    		val serviceAccount = FileInputStream("access-a-dades-d119e-firebase-adminsdk-ehn3k-14a46f56f4.json")
     
     		val options = FirebaseOptions.Builder()
     			.setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -249,7 +236,7 @@ Com en **Cloud Firestore** ho podem organitzar en col·leccions i documents,
 cadascun d'ells el podem dissenyar millor i que continga únicament les dades
 estrictes. Aleshores ens anirà bé accedir a tot el document.
 
-### 4.2.2 CF-IntelliJ: Accés a les dades
+### 4.4.2.2 CF-IntelliJ: Accés a les dades
 
 **Guardar dades**{.azul}
 
@@ -617,13 +604,11 @@ Ho arreglarem fàcilment posant un camp més amb la data i ordenant per aquest
 camp amb **orderBy()** (que aniria en el lloc del **whereEqualTo()** de la
 sentència anterior).
 
-### 4.2.3 CF-IntelliJ: Tot l'exemple
+### 4.4.2.3 CF-IntelliJ: Tot l'exemple
 
 Aquest és el programa, que recordeu que li havíem posat el nom de
-**Exemple_7_4_2_FirebaseCF_CrearXatCloud.kt** :
+**Exemple_8_4_2_FirebaseCF_CrearXatCloud.kt** :
 
-    
-    
     import java.awt.EventQueue
     import javax.swing.JFrame
     import javax.swing.JLabel
@@ -631,24 +616,24 @@ Aquest és el programa, que recordeu que li havíem posat el nom de
     import javax.swing.JButton
     import javax.swing.JTextField
     import javax.swing.JPanel
+    import javax.swing.JComboBox
     import java.awt.BorderLayout
     import java.awt.FlowLayout
     import java.awt.GridLayout
     import java.awt.Color
     import javax.swing.JScrollPane
     import java.io.FileInputStream
-    
-    import com.google.api.core.ApiFuture
     import com.google.auth.oauth2.GoogleCredentials
-    import com.google.cloud.firestore.DocumentChange
     import com.google.cloud.firestore.DocumentReference
-    import com.google.cloud.firestore.DocumentSnapshot
-    import com.google.cloud.firestore.EventListener
     import com.google.cloud.firestore.Firestore
-    import com.google.cloud.firestore.FirestoreException
     import com.google.firebase.FirebaseApp
     import com.google.firebase.FirebaseOptions
     import com.google.firebase.cloud.FirestoreClient
+    import com.google.cloud.firestore.ListenerRegistration
+    import java.text.SimpleDateFormat
+    import java.util.Date
+
+    
     
     class CrearXatCloud : JFrame() {
     
@@ -701,7 +686,7 @@ Aquest és el programa, que recordeu que li havíem posat el nom de
     		setVisible(true)
     		enviar.addActionListener { enviar() }
     
-    		val serviceAccount = FileInputStream("acces-a-dades-6e5a6-firebase-adminsdk-ei7uc-fcf7da56aa.json")
+    		val serviceAccount = FileInputStream("access-a-dades-d119e-firebase-adminsdk-ehn3k-14a46f56f4.json")
     
     		val options = FirebaseOptions.builder()
     			.setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -783,7 +768,7 @@ Aquest és el programa, que recordeu que li havíem posat el nom de
     	}
     }
 
-### 4.2.4 CF-IntelliJ: Exemple ampliat
+### 4.4.2.4 CF-IntelliJ: Exemple ampliat
 
 Anem a ampliar l'exemple anterior, fent algunes modificacions i millores:
 
@@ -804,7 +789,7 @@ aquest programa.
 
 No es visualitzaran els missatge que no tinguen la data incorporada.
 
-Guardeu-lo amb el nom **Exemple_7_4_2****_FirebaseCF_XatCloud_Millorat.kt** :
+Guardeu-lo amb el nom **Exemple_8_4_2****_FirebaseCF_XatCloud_Millorat.kt** :
 
     
     

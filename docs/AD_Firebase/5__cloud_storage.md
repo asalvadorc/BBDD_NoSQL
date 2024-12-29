@@ -1,4 +1,4 @@
-# 5 - Cloud Storage
+# 4.5 - Cloud Storage
 
 Cloud Storage ens permet guardar fitxers còmodament: fotos, vídeos, audios,
 ...
@@ -7,7 +7,14 @@ Combinat amb Reltime Database o Cloud Firestore ens permet guardar les nostres
 dedes de forma eficient, ja que podem guardar en les primeres les referències
 als fitxers que pugem al Storage.
 
-## 5.1 CS: Utilització des de l'entorn
+La utilització d'estoratge no és de gratis, per la qual cosa els exemples d'aquest apartat es faran sobre una base de dades externa (la mateixa que la de l'exercici 2) on sí que tindreu accés.
+
+Necessitareu el fitxer de connexió d'aquesta base de dades al que teniu com un recurs en l'aula virtual: [**xat-ad-9f901-firebase-adminsdk-f1vja-b8957819d1.json**](https://aules.edu.gva.es/semipresencial/mod/folder/view.php?id=1847725)
+
+
+![](T7_storage.png)
+
+## 4.5.1 CS: Utilització des de l'entorn
 
 L'entorn que ens ofereix Firebase per a gestionar Cloud Storage és molt
 senzill i no té cap secret, ja que ens permetrà pujar els fitxers,
@@ -44,25 +51,22 @@ corresponent de la consola:
 
 En aquesta imatge s'aprecia que no hi haurà permís per a llegir ni escriure
 fora de la consola. Com que el que volem és accedir des de les aplicacions
-d'Eclipse i d'Android, substituirem el permís per aquest:
-
+d'IntelliJ i d'Android, substituirem el permís per aquest:
+   
     
-    
-    allow read, write: if request.time < timestamp.date(2023, 6, 30);
-
-![](T7_5_1_1.1.png)
+    allow read, write: if request.time < timestamp.date(2025, 6, 14);
 
 amb una data en la qual no ens pillem els dits.
 
+![](T7_5_1_1.1.png)
+
+
+
 !!!note "Nota"
     Observeu com tant en la consola senzilla com en la del browser de GoogleCloud,
-    ens posa una adreça, que en el meu cas és: **gs://acces-a-
-    dades-6e5a6.appspot.com**. Es tracta de l'adreça del **bucket** (poal,
-    contenidor) on estan col·locats els fitxers. Podem crear més **buckets** ,
-    però no ho complicarem. Haurem de tenir clara la referència a aquest bucket
-    per defecte.
+    ens posa una adreça, que en el meu cas és: **gs://xat-ad-9f901.appspot.com**. Es tracta de l'adreça del **bucket** (poal, contenidor) on estan col·locats els fitxers. Podem crear més **buckets**, però no ho complicarem. Haurem de tenir clara la referència a aquest bucket  per defecte.
 
-## 5.2 CS: Utilització des de IntelliJ
+## 4.5.2 CS: Utilització des de IntelliJ
 
 **Exemple**{.azul}
 
@@ -72,7 +76,7 @@ on tenir el nom de la imatge que volem baixar, i un lloc on visualitzar la
 imatge
 
 Aquest és el seu esquelet. Guardeu-lo en un fitxer anomenat
-**Exemple_7_5_1_FirebaseCS_AgafarImatge****.kt** :
+**Exemple_8_5_1_FirebaseCS_AgafarImatge.kt** :
 
     
     
@@ -90,15 +94,11 @@ Aquest és el seu esquelet. Guardeu-lo en un fitxer anomenat
     import com.google.firebase.FirebaseApp
     import com.google.cloud.storage.Bucket
     import com.google.firebase.cloud.StorageClient
-    import java.nio.file.Paths
-    import java.awt.image.BufferedImage
     import javax.imageio.ImageIO
-    import java.io.IOException
     import java.nio.ByteBuffer
     import java.io.ByteArrayInputStream
     import javax.swing.ImageIcon
-    import java.io.File
-    
+
     class AgafarImatge_1 : JFrame() {
     	val nomIm = JTextField(25)
     	val boto = JButton("Agafar")
@@ -136,17 +136,11 @@ Aquest és el seu esquelet. Guardeu-lo en un fitxer anomenat
     	}
     }
 
-### 5.2.1 CS-IntelliJ: Connexió
-
-**Drivers necessaris**{.azul}
-
-Els drivers necessaris són els mateixos que vam baixar-nos per al cas de
-**Realtime Database**. Millor dit, estan inclosos en la llibreria que ens vam
-muntar, per tant aquesta feina la vam fer en el punt **3.2.1**
+### 4.5.2.1 CS-IntelliJ: Connexió
 
 **Configuració**{.azul}
 
-Tampoc caldrà fer referència a la URL de l'aplicació Firebase, perquè quan
+No caldrà fer referència a la URL de l'aplicació Firebase, perquè quan
 especifiquem el bucket, li posarem l'adreça i amb això és suficient.
 
 Recordeu que ens vam baixar un fitxer **json** amb la clau privada que vam
@@ -154,7 +148,7 @@ guardar a l'arrel del projecte (i del qual és molt convenient guardar còpia).
 
     
     
-    	val serviceAccount = FileInputStream("xat-ad-9f901-firebase-adminsdk-f1vja-ee7dc206de.json")  
+    	val serviceAccount = FileInputStream("xat-ad-9f901-firebase-adminsdk-f1vja-b8957819d1.json")  
     
     	val options = FirebaseOptions.Builder()
     		.setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -162,19 +156,15 @@ guardar a l'arrel del projecte (i del qual és molt convenient guardar còpia).
     
     	FirebaseApp.initializeApp(options)
 
-**No us oblideu de substituir el nom del fitxer json**.
 
 **Referència al bucket de Cloud Storage**{.azul}
 
-Aquesta serà la diferència més gran amb el que farem en Android. Ací haurem de
-fer una referència explícita al **bucket** que vam comentar en el punt
+Ací haurem de fer una referència explícita al **bucket** que vam comentar en el punt
 anterior, mentre que en Android ens el podrem saltar, ja que la referència
 estarà implícitament. Ho farem a través de **StorageClient** , mentre que en
 Android serà un altra classe.:
 
-    
-    
-    bucket = StorageClient.getInstance().bucket("acces-a-dades-6e5a6.appspot.com")
+      bucket = StorageClient.getInstance().bucket("xat-ad-9f901.appspot.com")
 
 
 !!!note "Nota"
@@ -183,18 +173,18 @@ Android serà un altra classe.:
     passar-li el paràmetre.
     
     
-            val serviceAccount = FileInputStream("acces-a-dades-6e5a6-firebase-adminsdk-ei7uc-fcf7da56aa.json")
+            val serviceAccount = FileInputStream("xat-ad-9f901-firebase-adminsdk-f1vja-b8957819d1.json")
         
             val options = FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setStorageBucket("acces-a-dades-6e5a6.appspot.com")
+                .setStorageBucket("xat-ad-9f901.appspot.com")
                 .build()
         
             FirebaseApp.initializeApp(options)
             
             bucket StorageClient.getInstance().bucket()
 
-### 5.2.2 CS-IntelliJ: Accés a les dades
+### 4.5.2.2 CS-IntelliJ: Accés a les dades
 
 Farem accés als fitxers de Cloud Storage per a llegir-los, per a baixar-los.
 Mencionarem el fet de guardar fitxers, però no l'utilitzarem tant.
@@ -260,7 +250,7 @@ Altres mètodes del **bucket** que ens poden interessar són:
   * **create()** : serveix per a pujar un fitxer al bucket; se li passen 3 paràmetres, el nom que tindrà el fitxer en el Clousd Storage, el contingut que se li pot passar en forma de ByteArray o de InputStream, i el tipus de fitxer (per exemple **"image/png"**)
   * **list()** : torna un conjunt de blobs en forma de **Page <Blob>**. De cada element blob podrem baixar-nos el contingut a un fitxer auxiliar, a un ByteBuffer, agafar el seu nom, ...
 
-### 5.2.3 CS-IntelliJ: Tot l'exemple
+### 4.5.2.3 CS-IntelliJ: Tot l'exemple
 
 Anem a ajuntar tot l'exemple que visualitza una imatge guardada en Cloud
 Storage, modificant-lo un poc:
@@ -269,7 +259,7 @@ Storage, modificant-lo un poc:
   * Per a provar la pujada d'imatges, proposarem un segon nom a la imatge, i un botó. Si s'apreta es guardarà la imatge amb el nom proposat (o canviat), aprofitant l'extensió del nom per a posar el tipus d'imatge
 
 El guardarem amb un altre nom, en el fitxer Kotlin
-**Exemple_7_5_2_FirebaseCS_AgafarImatge****.kt**
+**Exemple_8_5_2_FirebaseCS_AgafarImatge****.kt**
 
     
     
@@ -286,9 +276,10 @@ El guardarem amb un altre nom, en el fitxer Kotlin
     import com.google.cloud.storage.Bucket
     import com.google.firebase.cloud.StorageClient
     import javax.imageio.ImageIO
+    import java.nio.ByteBuffer
+    import java.io.ByteArrayInputStream
     import javax.swing.ImageIcon
     import javax.swing.JButton
-    import javax.swing.JTextField
     
     class AgafarImatge_2 : JFrame() {
         val nomIm = JComboBox<String>()
@@ -316,7 +307,7 @@ El guardarem amb un altre nom, en el fitxer Kotlin
             panell2.add(boto)
             contentPane.add(panell2,BorderLayout.SOUTH)
     
-            val serviceAccount = FileInputStream("xat-ad-9f901-firebase-adminsdk-f1vja-ee7dc206de.json")
+            val serviceAccount = FileInputStream("xat-ad-9f901-firebase-adminsdk-f1vja-b8957819d1.json")
     
             val options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -365,15 +356,16 @@ I aquest seria el resultat:
 
 ![](T7_5_2_3_1.png)
 
-### 5.2.4 CS-IntelliJ: Exemple ampliat, combinant amb Cloud Firestore
+### 4.5.2.4 CS-IntelliJ: Exemple ampliat, combinant amb Cloud Firestore
 
+<!-->
 Anem a fer un altre exemple, que serà el de CoffeeShops_Fragments, ja fet en
 el mòdul DI, i retocat en l'Annex d'Android, al qual vam incorporar una Base
 de Dades SQLite amb les dades (inclosa la imatge del cafè), i a la qual
 accedíem a través de la llibreria ROOM.
+-->
 
-Des d'**IntelliJ** només ens plantegem accedir a Cloud Firestore i Cloud
-Storage per a agafar:
+Anem a fer un altre exemple. Des d'**IntelliJ** només ens plantegem accedir a Cloud Firestore i Cloud Storage per a agafar:
 
   * De Cloud Firestore els documents de la col·lecció on està entre altres coses el nom de la imatge
   * Amb aquest nom d'imatge anirem a Cloud Storage per a agafar-la
@@ -382,11 +374,8 @@ D'aquesta manera ens queda una pantalla molt senzilla, pràcticament com en
 l'exemple anterior, és a dir amb un **JComboBox** amb el nom de les imatges,
 que ara agafarem de Cloud Firestore, i un **JButton** per a mostrar la imatge.
 
-Li posarem ara el nom de **Exemple_7_5_3_FirebaseCF-CS_CoffeeShops****.kt**.
+Li posarem ara el nom de **Exemple_8_5_3_FirebaseCF-CS_CoffeeShops****.kt**.
 El codi està simplificat al màxim, llevant tractament d'errors i opcions.
-Observeu que estem connectant a l'usuari comú que tenim per a fer proves,
-**ad.ieselcaminas@gmail.com**
-
     
     
     import javax.swing.JFrame
@@ -480,7 +469,7 @@ Observeu que estem connectant a l'usuari comú que tenim per a fer proves,
 
 <!--
 
-## 5.3 CS: Utilització des d'Android
+## 4.5.3 CS: Utilització des d'Android
 
 Ens basarem en un exemple similar al d'**IntelliJ**. Primer només amb:
 

@@ -1,4 +1,4 @@
-# 1 - Introducció: Firebase
+# 4.1 - Introducció: Firebase
 
 **Firebase** és un servei de backend, és a dir del costat del servidor, que
 ofereix la possibilitat de guardar les dades d'aplicacions web i de

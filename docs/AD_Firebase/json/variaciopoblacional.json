@@ -1,0 +1,5984 @@
+{
+  "EstadisticaVariacioPoblacional": [
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 1489
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 204
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -783
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -929
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1098
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1249
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2335
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -1367
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 561
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": -35
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 731
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 2682
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 4636
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 5018
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 3886
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 4059
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 3061
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 3251
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 3407
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 2916
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 224
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -7
+        }
+      ],
+      "Nombre": "Albacete"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 30310
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 24760
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 6186
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -7952
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -12618
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -9107
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -384
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 3605
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 11183
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 4116
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 7822
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 19271
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 53472
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 55413
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 54957
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 59258
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 48271
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 52341
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 50331
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 37304
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 22628
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 13219
+        }
+      ],
+      "Nombre": "Alicante/Alacant"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 7997
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 7942
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 813
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -41
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 2838
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1707
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1369
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 1632
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 555
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 3307
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 7672
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 9876
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 10834
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 14839
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 23842
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 25212
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 13606
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 11075
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 9777
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 8808
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 2839
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 2095
+        }
+      ],
+      "Nombre": "Almería"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 3100
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 3273
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 2679
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 1994
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 1113
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 1724
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": 648
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -719
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 2735
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1322
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 2795
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 3456
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 3425
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 3491
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 2424
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 3046
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 2559
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 2838
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 2432
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 1990
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 756
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 659
+        }
+      ],
+      "Nombre": "Araba/Álava"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 4528
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 2314
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 428
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 8
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1335
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -4082
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1608
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -435
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 2915
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 2357
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 4454
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 9096
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 8667
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 5424
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 5244
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 4431
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 4325
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 2724
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 2324
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 1977
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -303
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -737
+        }
+      ],
+      "Nombre": "Asturias"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 721
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 220
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -638
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -851
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1318
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -644
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1103
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -1144
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -541
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 315
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": -42
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 567
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 3065
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 2757
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 2040
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 1529
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 938
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 337
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 296
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -385
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -371
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -410
+        }
+      ],
+      "Nombre": "Ávila"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 676
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": -504
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -1881
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -3757
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1172
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -2345
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -571
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -17
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 1350
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1433
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 2985
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 2874
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 6067
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 4616
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 3458
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 3847
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 2107
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": -162
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -618
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 202
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -615
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -863
+        }
+      ],
+      "Nombre": "Badajoz"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 26013
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 23919
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 18844
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 15559
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 9380
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 4778
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": 5107
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 8353
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 1317
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 3035
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 8702
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 21586
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 29391
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 30484
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 24547
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 19734
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 10571
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 15503
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 16472
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 17077
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 14941
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 13330
+        }
+      ],
+      "Nombre": "Balears, Illes"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 81222
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 70846
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 48666
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 44542
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 27059
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 3691
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -12105
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -6095
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 13613
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 6461
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 4006
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 59714
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 62813
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 62094
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 69856
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 68788
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 14030
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 19459
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 18847
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 11261
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 585
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 178
+        }
+      ],
+      "Nombre": "Barcelona"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 12149
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 8183
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 6149
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 4766
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 1826
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 1167
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2024
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 751
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 4483
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 2931
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 3548
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 7070
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 5484
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 4963
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 4563
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 3262
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 3116
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 1917
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 2386
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 576
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -2022
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -2988
+        }
+      ],
+      "Nombre": "Bizkaia"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 2012
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 1328
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 528
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -1528
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1425
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1279
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -3061
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -2203
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -70
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": -1040
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": -9
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 2820
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 7629
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 4746
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 3292
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 3372
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 463
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 806
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 743
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -525
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -647
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -255
+        }
+      ],
+      "Nombre": "Burgos"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": -170
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": -631
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -1723
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -1710
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1368
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1140
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -975
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -796
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -49
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 75
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 1378
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 313
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 871
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 625
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 260
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 356
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": -455
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": -747
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -880
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -1393
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 172
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 186
+        }
+      ],
+      "Nombre": "Cáceres"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 6080
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 1603
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -1166
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -784
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1371
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1069
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2628
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -139
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 1106
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1943
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 2012
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 4577
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 6777
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 8643
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 7835
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 9266
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 4068
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 1952
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 454
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -68
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -2811
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -2890
+        }
+      ],
+      "Nombre": "Cádiz"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 3624
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 3197
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 2467
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 589
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -446
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1007
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1185
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -426
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 1353
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1319
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 2822
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 6571
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 8468
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 6701
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 5968
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 6053
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 4231
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 2878
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 3293
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 3168
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 2113
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 1644
+        }
+      ],
+      "Nombre": "Cantabria"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 6327
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 4039
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 2198
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -2175
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -3237
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -5777
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -10176
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -3467
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -826
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": -940
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 602
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 5617
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 19771
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 18616
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 15047
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 13622
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 11988
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 9621
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 8492
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 6982
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 3504
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 2539
+        }
+      ],
+      "Nombre": "Castelló"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 1140
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": -2054
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -4390
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -2833
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -4354
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -3226
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -3212
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -2623
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 479
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": -300
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 1534
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 4569
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 9854
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 7064
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 7312
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 5063
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 3475
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 2604
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 1778
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 237
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -1041
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -1173
+        }
+      ],
+      "Nombre": "Ciudad Real"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 244
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": -672
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -2501
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -1959
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -2125
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -2325
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -4197
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -1296
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -41
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 554
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 335
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 3084
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 4135
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 2847
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 2276
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 3098
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 2284
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 1334
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -293
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -1484
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -2138
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -2456
+        }
+      ],
+      "Nombre": "Córdoba"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 8376
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 6155
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 5369
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 1492
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 221
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -94
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1128
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 850
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 2945
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 3679
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 3849
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 7659
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 9396
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 7644
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 6915
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 7168
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 6190
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 6146
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 3749
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 3331
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 1383
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 1799
+        }
+      ],
+      "Nombre": "Coruña, A"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 1155
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 642
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -449
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -694
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1513
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -957
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1941
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -1814
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -609
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1080
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 1005
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 2730
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 4531
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 3589
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 2459
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 3388
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 2069
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 1718
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 622
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 426
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -313
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -131
+        }
+      ],
+      "Nombre": "Cuenca"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 6116
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 5100
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 3565
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 3144
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 2473
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 2738
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": 2118
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 2256
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 2350
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1633
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 1212
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 4158
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 5076
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 3491
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 3139
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 1723
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 1498
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 721
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 1325
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 102
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 231
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -27
+        }
+      ],
+      "Nombre": "Gipuzkoa"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 12131
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 10130
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 5447
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 2916
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 424
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -4081
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2957
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -740
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 2045
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 564
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 2287
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 12439
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 20728
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 23221
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 20854
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 23183
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 19181
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 17054
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 13042
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 9695
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 6172
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 5114
+        }
+      ],
+      "Nombre": "Girona"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 7080
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 4699
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 1487
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -1163
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -2332
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1886
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1027
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -593
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 1018
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 2924
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 4039
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 4706
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 11513
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 9187
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 12321
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 9800
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 5772
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 3399
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 2071
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -788
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -1785
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -1009
+        }
+      ],
+      "Nombre": "Granada"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 4522
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 3721
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 1472
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 732
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -383
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1922
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2599
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -1076
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 1854
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 3463
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 4457
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 7278
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 11460
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 10529
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 9821
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 8452
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 7242
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 6379
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 4621
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 3592
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 3216
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 3133
+        }
+      ],
+      "Nombre": "Guadalajara"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 3836
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 3374
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 1260
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 24
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -180
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 915
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": 468
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 1152
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 596
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 2119
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 2910
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 3203
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 7364
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 5160
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 7682
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 4384
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 1349
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 919
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 632
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 758
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 266
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 144
+        }
+      ],
+      "Nombre": "Huelva"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 2584
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 1555
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 477
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -31
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -363
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -600
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -518
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -359
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -343
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 51
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 428
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 2921
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 4557
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 3307
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 2838
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 2907
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 1600
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 1974
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 2067
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 909
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 437
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 552
+        }
+      ],
+      "Nombre": "Huesca"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": -1093
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": -2603
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -3918
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -3416
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -4352
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -3599
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -4159
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -4039
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 869
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": -242
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 229
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": -41
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 1573
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 1453
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 995
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 1527
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": -67
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": -587
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -985
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -1475
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -1795
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -1419
+        }
+      ],
+      "Nombre": "Jaén"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 494
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 155
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -1093
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -1426
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -2962
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1766
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1458
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -866
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 211
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1210
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 1176
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 2840
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 4055
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 3477
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 1758
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 1039
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 720
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 801
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -143
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -759
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -558
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -659
+        }
+      ],
+      "Nombre": "León"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 6046
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 4464
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 1307
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 313
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -759
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -770
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2432
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -823
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 289
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1995
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 2093
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 7383
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 11585
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 9568
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 7975
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 11509
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 7669
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 5846
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 4623
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 1377
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 1597
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 1400
+        }
+      ],
+      "Nombre": "Lleida"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 1808
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 1209
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 1053
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 581
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 294
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -527
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -85
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 263
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 518
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 664
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 991
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 2201
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 2665
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 2097
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 1839
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 1183
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 815
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 462
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 309
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 40
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 202
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 323
+        }
+      ],
+      "Nombre": "Lugo"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 105252
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 87386
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 72031
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 42962
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 38155
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -353
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -21162
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 2952
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -10804
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 3020
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 29037
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 63819
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 108627
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 113473
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 83595
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 77886
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 93497
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 116296
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 125161
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 130824
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 21236
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 6662
+        }
+      ],
+      "Nombre": "Madrid"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 25727
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 21150
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 3682
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 4134
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 4461
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 10645
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1205
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 13064
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 12370
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 14396
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 11323
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 24920
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 30625
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 34575
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 36690
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 40935
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 31930
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 29774
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 20703
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 17609
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 13840
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 9634
+        }
+      ],
+      "Nombre": "Málaga"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 15920
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 12721
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 1977
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 3331
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -2732
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1909
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2373
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -7763
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -1225
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1464
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 10444
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 16539
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 24505
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 30572
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 33953
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 30364
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 23939
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 22556
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 18510
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 21306
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 5679
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 4215
+        }
+      ],
+      "Nombre": "Murcia"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 8253
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 7823
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 5393
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 3698
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 1772
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 218
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2451
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -789
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 2147
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 2529
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 4282
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 8376
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 12396
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 9033
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 6937
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 6257
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 1294
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 866
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 1650
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 2826
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 2136
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 1698
+        }
+      ],
+      "Nombre": "Navarra"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 2119
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 1708
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 665
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -200
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -668
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -507
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -634
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 303
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 520
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 659
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 1992
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 1851
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 1471
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 1799
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 1629
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 1105
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 35
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 120
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 258
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 948
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 455
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 536
+        }
+      ],
+      "Nombre": "Ourense"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 444
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 122
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -241
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -101
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -441
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -497
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -541
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -810
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -213
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": -107
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": -122
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 458
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 727
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 484
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 371
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 100
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": -438
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": -471
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -380
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -335
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -622
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -518
+        }
+      ],
+      "Nombre": "Palencia"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 14060
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 15566
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 9224
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 6464
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -2411
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 1334
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": 2747
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 7225
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 6509
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 4562
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 3368
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 9915
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 16530
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 17401
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 16246
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 15722
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 14213
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 14212
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 17051
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 19667
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 13153
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 9947
+        }
+      ],
+      "Nombre": "Palmas, Las"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 5444
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 3319
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -404
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 1152
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -621
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1151
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -986
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -170
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 825
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1645
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 3866
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 6099
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 6051
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 6061
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 6462
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 5596
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 4135
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 3613
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 2850
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 2575
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 1328
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 618
+        }
+      ],
+      "Nombre": "Pontevedra"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 4290
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 1819
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 1266
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 307
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -601
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1567
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2290
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -1117
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 579
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": -111
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": -452
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 3968
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 7690
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 5108
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 4771
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 6544
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 5542
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 5139
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 5907
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 5357
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 2157
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 1033
+        }
+      ],
+      "Nombre": "Rioja, La"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 843
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 714
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -222
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -867
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1554
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1259
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1469
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -647
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -444
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 586
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": -3
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 2036
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 2630
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 2075
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 1558
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 1650
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": -571
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": -782
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -1493
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -927
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -806
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -237
+        }
+      ],
+      "Nombre": "Salamanca"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 20020
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 20037
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 15953
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 13265
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1934
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 6476
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": 7626
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 9468
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 6395
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 5068
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 6202
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 13377
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 18406
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 18296
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 17903
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 19903
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 15405
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 14000
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 12159
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 11104
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 7773
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 7857
+        }
+      ],
+      "Nombre": "Santa Cruz de Tenerife"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 1134
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 530
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -80
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -383
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -737
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -872
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1705
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -1095
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -264
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 274
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": -330
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 821
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 4031
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 2774
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 2221
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 2491
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 1068
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 675
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 833
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 389
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 333
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 122
+        }
+      ],
+      "Nombre": "Segovia"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 8603
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 4171
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 1002
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -987
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1362
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -2027
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -2633
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -221
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 4671
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 4409
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 7567
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 12919
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 17402
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 13308
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 13913
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 11104
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 7592
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 5864
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 3951
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 2158
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -740
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -2061
+        }
+      ],
+      "Nombre": "Sevilla"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 968
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 606
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 426
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -329
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -418
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -394
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -451
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -486
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -167
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 283
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 440
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 728
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 1401
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 1014
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 917
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 693
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 607
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 466
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 460
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 424
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 7
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 171
+        }
+      ],
+      "Nombre": "Soria"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 14498
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 11084
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 6092
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 1351
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -625
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -4379
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -3952
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -2148
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 1428
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 952
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 2612
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 11669
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 28752
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 28452
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 27845
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 26405
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 15212
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 14194
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 11266
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 12520
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 6414
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 6043
+        }
+      ],
+      "Nombre": "Tarragona"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 822
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 528
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -201
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -717
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1043
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -912
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1110
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -1010
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -726
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 27
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": -559
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 1168
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 2441
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 3014
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 2001
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 1840
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 1392
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 2231
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 1501
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 358
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 204
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 183
+        }
+      ],
+      "Nombre": "Teruel"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 10428
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 8501
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 1244
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -811
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -2936
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -6266
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -6948
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -2676
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 2785
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 6900
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 7345
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 15775
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 25683
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 23860
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 17283
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 15554
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 11275
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 10507
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 7018
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 5705
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 3194
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 1826
+        }
+      ],
+      "Nombre": "Toledo"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 34500
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 17951
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 15753
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 4988
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 4023
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -4572
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -12169
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -9384
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -179
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": -7800
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 2771
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 23774
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 47136
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 42840
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 41083
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 39961
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 32681
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 33879
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 32661
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 23171
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 5244
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 3087
+        }
+      ],
+      "Nombre": "Valencia/València"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 3094
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 1608
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -834
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -682
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1254
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -1200
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -1350
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -772
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 707
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 578
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 1178
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 2880
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 6675
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 4988
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 3734
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 3334
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 2066
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 2722
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 3240
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 742
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -486
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -1022
+        }
+      ],
+      "Nombre": "Valladolid"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": -362
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": -421
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -810
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -919
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -1192
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -842
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -928
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -698
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": -266
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 394
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 191
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": -35
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 1555
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 1032
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 722
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 579
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 205
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": 339
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -289
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -307
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -264
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -191
+        }
+      ],
+      "Nombre": "Zamora"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": 12508
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": 10474
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": 3027
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": 2520
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": 530
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 1213
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": -762
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 30
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 4865
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 2260
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 4995
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 15582
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 25521
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 15265
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 15352
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": 13209
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": 1934
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": -86
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": 1451
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": 1758
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": -414
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": -634
+        }
+      ],
+      "Nombre": "Zaragoza"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": -884
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": -760
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -133
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -101
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -553
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": -872
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": 241
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": -30
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 954
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1008
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 1344
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 529
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": -31
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 306
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": -211
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": -747
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": -771
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": -840
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -263
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -420
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 416
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 484
+        }
+      ],
+      "Nombre": "Ceuta"
+    },
+    {
+      "Data": [
+        {
+          "NombrePeriodo": "2019",
+          "Secreto": false,
+          "Valor": -105
+        },
+        {
+          "NombrePeriodo": "2018",
+          "Secreto": false,
+          "Valor": -451
+        },
+        {
+          "NombrePeriodo": "2017",
+          "Secreto": false,
+          "Valor": -532
+        },
+        {
+          "NombrePeriodo": "2016",
+          "Secreto": false,
+          "Valor": -466
+        },
+        {
+          "NombrePeriodo": "2015",
+          "Secreto": false,
+          "Valor": -239
+        },
+        {
+          "NombrePeriodo": "2014",
+          "Secreto": false,
+          "Valor": 219
+        },
+        {
+          "NombrePeriodo": "2013",
+          "Secreto": false,
+          "Valor": 248
+        },
+        {
+          "NombrePeriodo": "2012",
+          "Secreto": false,
+          "Valor": 2415
+        },
+        {
+          "NombrePeriodo": "2011",
+          "Secreto": false,
+          "Valor": 1813
+        },
+        {
+          "NombrePeriodo": "2010",
+          "Secreto": false,
+          "Valor": 1500
+        },
+        {
+          "NombrePeriodo": "2009",
+          "Secreto": false,
+          "Valor": 1822
+        },
+        {
+          "NombrePeriodo": "2008",
+          "Secreto": false,
+          "Valor": 1161
+        },
+        {
+          "NombrePeriodo": "2007",
+          "Secreto": false,
+          "Valor": 1115
+        },
+        {
+          "NombrePeriodo": "2006",
+          "Secreto": false,
+          "Valor": 1754
+        },
+        {
+          "NombrePeriodo": "2005",
+          "Secreto": false,
+          "Valor": 895
+        },
+        {
+          "NombrePeriodo": "2004",
+          "Secreto": false,
+          "Valor": -1275
+        },
+        {
+          "NombrePeriodo": "2003",
+          "Secreto": false,
+          "Valor": -867
+        },
+        {
+          "NombrePeriodo": "2002",
+          "Secreto": false,
+          "Valor": -1182
+        },
+        {
+          "NombrePeriodo": "2001",
+          "Secreto": false,
+          "Valor": -607
+        },
+        {
+          "NombrePeriodo": "2000",
+          "Secreto": false,
+          "Valor": -835
+        },
+        {
+          "NombrePeriodo": "1999",
+          "Secreto": false,
+          "Valor": 261
+        },
+        {
+          "NombrePeriodo": "1998",
+          "Secreto": false,
+          "Valor": 483
+        }
+      ],
+      "Nombre": "Melilla"
+    }
+  ]
+}

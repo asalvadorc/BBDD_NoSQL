@@ -3,12 +3,9 @@
 ## Exercici 1 (Realtime Database)
 
 Farem una aplicació per a agafar unes dades corresponents a unes estadístiques
-guardades en **Realtime Database** de **Firebase** , concretament en la
-següent aplicació:
+guardades en **Realtime Database** de **Firebase**.
 
-  * Compte de Google: **ad.ieselcaminas@gmail.com**
-  * Contrasenya: **ieselcaminas_ad**
-  * Aplicació: **xat-ad**
+Per no haver de substuir les dades que ja teniu, podeu crear-vos un nou projecte, per exemple, **ExercicisAD**, i en una base de dades **RealtimeDatabase** importar el  fitxer [**variaciopoblacional.json**](https://aules.edu.gva.es/semipresencial/mod/folder/view.php?id=1847725), al que teniu com un recurs a l'aula virtual.
 
 La informació a la qual volem accedir està en el array
 **EstadisticaVariacioPoblacional** amb les províncies, i en cada província
@@ -24,10 +21,9 @@ Podeu utilitzar el "esquelet" que hi ha a continuació. En ell tenim:
   * Un JTextArea, per a mostrar les dades de la província triada
 
 Haureu d'incorporar el fitxer json on està la configuració i la clau privada
-de la connexió. El fitxer s'anomena **xat-ad-9f901-firebase-adminsdk-f1vja-
-ee7dc206de.json** , i el teniu com un recurs en l'aula virtual. La URL d'accés
-a aquesta Base de Dades és: **<https://xat-ad-9f901-default-rtdb.europe-
-west1.firebasedatabase.app>**
+de la connexió.
+
+![](T7_Ex_1_2.png)
 
 L'aplicació ha de agafar les províncies (observeu que estan en una llista) i
 guardar-les en un JComboBox, per a poder triar-les. Quan es trie una
@@ -43,7 +39,6 @@ les dades de la primera província
 
 A continuació teniu l'esquelet del programa que podeu utilitzar, que el podeu
 guardar en el fitxer Kotlin **T8Ex1_EstadisticaRD.kt**:
-
     
     
     import javax.swing.JFrame
@@ -91,11 +86,11 @@ guardar en el fitxer Kotlin **T8Ex1_EstadisticaRD.kt**:
     
             setVisible(true)
     
-            val serviceAccount = FileInputStream("xat-ad-9f901-firebase-adminsdk-f1vja-ee7dc206de.json")
+            val serviceAccount = FileInputStream("path/to/your-credentials.json")
     
             val options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://xat-ad-9f901-default-rtdb.europe-west1.firebasedatabase.app").build()
+                .setDatabaseUrl("https://<your-database-name>").build()
     
             FirebaseApp.initializeApp(options)
     
@@ -212,21 +207,10 @@ s'executarà després del **addChildEventListener**
 ## Exercici 2 (Cloud Firestore)
 
 Farem un exercici paregut a l'anterior, però ara les dades estaran guardades
-en **Cloud Firestore.**
+en **Cloud Firestore**, d'una base de dades externa, per tant, haureu d'incorporar el fitxer json on està la configuració i la clau privada de la connexió, al que teniu com un recurs en l'aula virtual: [**xat-ad-9f901-firebase-adminsdk-f1vja-b8957819d1.json**](https://aules.edu.gva.es/semipresencial/mod/folder/view.php?id=1847725)
 
-Es tractaran d'unes estadístiques lleugerament diferents, i sobretot,
-organitzades de forma diferent, més a l'estil de Cloud Firestore.
+A la base de dades hi ha una col.lecció, **Estadistica**, on tindrem un document per cada província i any, amb la població de dones i homes. Per tant, com que hi ha 52 províncies i 10 anys d'estadístiques, tindrem un total de 520 documents.
 
-Les dades de connexió són les mateixes que en l'exercici anterior:
-
-  * Compte de Google: **ad.ieselcaminas@gmail.com**
-  * Contrasenya: **ieselcaminas_ad**
-  * Aplicació: **xat-ad**
-
-Però ara ens connectem a Cloud Firestore, i tindrem totes les dades en la
-col·lecció **Estadistica**. Tindrem un document per cada província i any, amb
-la població de dones i homes. Per tant, com que hi ha 52 províncies i 10 anys
-d'estadístiques, tindrem un total de 520 documents.
 
 ![](T7Ex2_1.png)
 
@@ -252,7 +236,6 @@ Aquest seria l'aspecte:
 
 I aquest seria l'esquelet, que podeu guardar amb el nom
 **T8Ex2_EstadisticaCF.kt** :
-
     
     
     import javax.swing.JFrame
