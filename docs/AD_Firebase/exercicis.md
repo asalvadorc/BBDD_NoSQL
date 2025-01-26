@@ -224,7 +224,7 @@ Podeu utilitzar el "esquelet" que hi ha a continuació. En ell tenim:
   * Un JTextArea, per a mostrar les dades de la província triada
 
 
-  * L'aplicació ha de agafar les províncies per a guardar-les en un JComboBox i poder triar-les, **però tenint en compte que eixiran repetides** (concretament 10 vegades cada província). Podeu afegir-les a un**Mutable Set** per a evitar que estiguen repetides, ja que un set es defineix com un conjunt no ordenat de valors que no es poden repetir. Així, si afegim un valor que ja estava, senzillament no el repetirà. Després només haureu d'ordenar aquest set.
+  * L'aplicació ha de agafar les províncies per a guardar-les en un JComboBox i poder triar-les, **però tenint en compte que eixiran repetides** (concretament 10 vegades cada província). Podeu afegir-les a un **Mutable Set** per a evitar que estiguen repetides, ja que un set es defineix com un conjunt no ordenat de valors que no es poden repetir. Així, si afegim un valor que ja estava, senzillament no el repetirà. Després només haureu d'ordenar aquest set.
   * Quan es trie una província, s'haurà de mostrar en el JTextArea la informació corresponent a la província, agafant tots els documents d'aquesta província, i millor ordenar-los per l'any. S'haurà de mostrar aquest any, i el número de dones i d'homes (respectivament **any** , **Dones** i **Homes**)
 
 Aquest seria l'aspecte:
