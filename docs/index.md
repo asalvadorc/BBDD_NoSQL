@@ -1,5 +1,5 @@
 ---
-title:  "Baes de Dades - Bases de Dades NoSQL"
+title:  "Baes de Dades -- Bases de Dades NoSQL"
 ---
 
 ![ref1](T8_Portada2.png)
