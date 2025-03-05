@@ -1,4 +1,6 @@
-name: ci 
+git push origin main
+
+git name: ci 
 on:
   push:
     branches:
