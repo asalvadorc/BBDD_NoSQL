@@ -24,7 +24,7 @@ Bases de Dades NoSQL, depenent del tipus d'informació que vulguen guardar:
 
 En aquest tema només veurem les Bases de Dades Clau-Valor, per la seua
 senzillesa, i una altra Base de Dades orientada a documents, **MongoDB** , per
-la seua utilització actual. Com que ja hem vist una Orientada a Objectes.
+la seua utilització actual.
 
 
 

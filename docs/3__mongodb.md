@@ -30,66 +30,66 @@ la informació.
 De la primera manera, guardant els llibres amb el seu autor, podríem tenir
 documents amb aquesta estructura, que es podrien guardar en una col·lecció
 anomenada **Llibres** :
-```
-  {  
-    _id:101,  
-    titol:"El secret de Khadrell",  
-    autor: {  
-    nom:"Pep",  
-    cognoms:"Castellano Puchol",  
-    any_naixement:1960  
-    },  
-    isbn:"84-95620-72-3"  
-  },  
-  {  
-    _id:102,  
-    titol:"L'Ombra del Vent",  
-    autor: {  
-    nom:"Carlos",  
-    cognoms:"Ruiz Zafon",  
-    pais:"Espanya"  
-    },  
-    pagines:490,  
-    editorial:"Planeta"  
-  }
-```
+
+      {  
+        _id:101,  
+        titol:"El secret de Khadrell",  
+        autor: {  
+        nom:"Pep",  
+        cognoms:"Castellano Puchol",  
+        any_naixement:1960  
+        },  
+        isbn:"84-95620-72-3"  
+      },  
+      {  
+        _id:102,  
+        titol:"L'Ombra del Vent",  
+        autor: {  
+        nom:"Carlos",  
+        cognoms:"Ruiz Zafon",  
+        pais:"Espanya"  
+        },  
+        pagines:490,  
+        editorial:"Planeta"  
+      }
+
 Observeu com els objectes no tenen per què tenir la mateixa estructura. La
 manera d'accedir al nom d'un autor seria aquesta: _objecte.autor.nom_
 
 Una manera alternativa de guardar la informació, com havíem comentat abans
 seria organitzar per autors, amb els seus llibres. D'aquesta manera podríem
 anar omplint la col·lecció **Autors** amb un o més documents d'aquest estil:
-```json
-  {  
-      _id: 201,  
-      nom:"Pep",  
-      cognoms:"Castellano Puchol",  
-      any_naixement:1960,  
-      llibres: [  
-      {  
-        titol:"El secret de Khadrell",  
-        isbn:"84-95620-72-3"  
-      },  
-      {  
-        titol:"Habitació 502",  
-        editorial:"Tabarca"  
-      }  
-    ]  
-  },  
-  {  
-      _id:202,  
-      nom:"Carlos",  
-      cognoms:"Ruiz Zafon",  
-      pais:"Espanya",  
-      llibres: [  
+
+    {  
+        _id: 201,  
+        nom:"Pep",  
+        cognoms:"Castellano Puchol",  
+        any_naixement:1960,  
+        llibres: [  
         {  
-          titol:"L'Ombra del Vent",  
-          pagines:490,  
-          editorial:"Planeta"  
+          titol:"El secret de Khadrell",  
+          isbn:"84-95620-72-3"  
+        },  
+        {  
+          titol:"Habitació 502",  
+          editorial:"Tabarca"  
         }  
-    ]  
-  }
-```
+      ]  
+    },  
+    {  
+        _id:202,  
+        nom:"Carlos",  
+        cognoms:"Ruiz Zafon",  
+        pais:"Espanya",  
+        llibres: [  
+          {  
+            titol:"L'Ombra del Vent",  
+            pagines:490,  
+            editorial:"Planeta"  
+          }  
+      ]  
+    }
+
 Observeu com per a un autor, ara tenim un array ( els claudàtors: **[ ]**) amb
 els seus llibres.
 
@@ -98,7 +98,204 @@ de l'accés que s'haja de fer a les dades. La millor serà segurament aquella
 que depenent dels accessos que s'hagen de fer, torne la informació de forma
 més ràpida.
 
-## 3.1 - Instal·lació de MongoDB
+## 3.1 - Estructura JSON
+
+Amb JSON podrem representar:
+
+  * **Valors** , de tipus **caràcter** (entre cometes dobles), **numèric** (sense cometes) , **booleà** (true o false) o **null**.
+  * **Parelles clau valor** , és a dir un nom simbòlic acompanyat d'un valor associat.. Es representen així: **"nom" : valor**
+  * **Objectes** , que és una col·lecció de membres, cadascú dels quals pot ser una parella clau valor, o altres objectes (fins i tot arrays): es representen entre claus, i amb els elements separats per comes: **{ "nom1" : "valor1" , "nom2": valor2 , valor 3 , ... }**
+  * **Arrays** , que són llistes d'elements. Els elements no tenen per què tenir la mateixa estructura, però nosaltres intentarem que sí que la tinguen per coherència. Cada element pot ser un valor , una parella clau valor, un objecte o un array.
+
+Veja'm algun exemples:
+
+    { "p1" : 2 , "p2" : 4 , "p3" : 6 , "p4" : 8 , "p5" : 10 }
+
+en aquest cas tenim un objecte, l'arrel, que té 5 membres, tots ells parelles
+clau-valor.
+
+    {  
+      "num": 1 ,  
+      "nom": "Andreu" ,  
+      "departament": 10 ,  
+      "edat": 32 ,  
+      "sou": 1000.0  
+    }
+
+ara un objecte, l'arrel, també amb 5 membres que són parelles clau-valor.
+Observeu com la clau sempre la posem entre cometes, i el valor quan és un
+string també, però quan és numèric, no.
+
+    { "empleat" :  
+      { "num": 1 ,  
+        "nom": "Andreu" ,  
+        "departament": 10 ,  
+        "edat": 32 ,  
+        "sou": 1000.0  
+      }  
+    }
+
+en aquest cas tenim un objecte, l'arrel que consta d'un únic objecte,
+**empleat** , el qual consta de 5 membres clau-valor.
+
+Mirem ara un exemple amb un array:
+
+    { "notes" :  
+      [ 5 , 7 , 8 , 7 ]  
+    }
+
+on tenim l'element arrel que consta d'un únic membre, notes, que és un array.
+
+També seria correcte d'aquesta manera, per veure que l'element arrel no té
+perquè ser un objecte, sinó també un array
+
+    [ 5 , 7 , 8 , 7 ]
+
+I ara un més complet amb la mateixa estructura que el fitxer XML que havíem
+vist en la pregunta 4. Tindrem un objecte arrel, amb només un objecte,
+**empresa** , que té un únic element **empleat** que és un array amb 4
+elements, cadascun dels empleats:
+
+    { "empresa":  
+      { "empleat":  
+        [ {  
+              "num": "1",  
+              "nom": "Andreu",  
+              "departament": "10",  
+              "edat": "32",  
+              "sou": "1000.0"  
+            },  
+            {  
+              "num": "2",  
+              "nom": "Bernat",  
+              "departament": "20",  
+              "edat": "28",  
+              "sou": "1200.0"  
+            },  
+            {  
+              "num": "3",  
+              "nom": "Clàudia",  
+              "departament": "10",  
+              "edat": "26",  
+              "sou": "1100.0"  
+            },  
+            {  
+              "num": "4",  
+              "nom": "Damià",  
+              "departament": "10",  
+              "edat": "40",  
+              "sou": "1500.0"  
+            }
+        ]  
+      }  
+    }
+
+Anem a veure un parell de casos més reals. Aquesta és la contestació que fa el
+WebService de **Bicicas** en sol·licitar l'estat actual de bicicletes en els
+diferents punts (en el moment de fer els apunts es consulta en l'adreça
+<http://gestiona.bicicas.es/apps/apps.php>):
+
+    [  
+      {"ocupacion":  
+        [  
+          {"id":"01","punto":"UJI -
+          FCHS","puestos":27,"ocupados":12,"latitud":"39.99533","longitud":"-0.06999",
+          "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+          {"id":"02","punto":"ESTACIÓN DE FERROCARRIL Y
+          AUTOBUSES","puestos":24,"ocupados":7,"latitud":"39.98765","longitud":"-0.05281",
+          "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+          {"id":"03","punto":"PLAZA DE
+          PESCADERÍA","puestos":28,"ocupados":4,"latitud":"39.98580","longitud":"-0.03798",
+          "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+          ...  
+        ]  
+      }  
+    ]
+
+Com podeu comprovar, l'arrel no és un objecte, sinó un **Array**. En l'array
+només ens interessa el primer element que és un objecte amb un únic membre,
+**ocupacion**(en l'exemple no hi ha més elements, però en poden haver més en
+un moment determinat, quan volen fer avisos). I **ocupacion és un array** ,
+amb **un objecte per cada estació de bicicas** , amb les parelles clau valor
+**id** , **punto** , **puestos** (les bicicletes que caben), **ocupados**
+(quantes bicicletes hi ha col·locades en aquest moment), **latitud** i
+**longitud** (les coordenades), ...
+
+!!!Note "Nota"
+    En realitat ens apareixerà tota la informació molt més apegada, perquè
+    realment està en una única línia.
+
+    Per a poder observar millor l'estructura podem utilitzar un **visor** de json.
+    Normalment el navegador Firefox els visualitza bé, encara que també depén de
+    la versió. Si tenim instal·lada una versió que admet la visualització de JSON,
+    ho intentarà interpretar, encara que segurament la millor manera de veure el
+    format JSON és,tiar les opcions **Dades sense processar -- > Format
+    d'impressió**, que és la que veiem a la dreta:
+
+      ![](T3_5_1_0_1.png) | ![](T3_5_1_0_2.png)  
+      ---|---  
+  
+    Si la versió nostra de Firefox no visualitza el format JSON, podem buscar un
+    visor dels molts que hi ha per internet. En la figura n'hem utilitzat un, i es
+    pot observar com facilita molt la lectura.
+
+      ![](T3_5_1_1.png)
+
+Un altre exemple. Un WebService de GeoNames (una Base de Dade geogràfica
+gratuïta i accessible a través d'Internet) ens proporciona informació dels
+llocs que troba dins d'un rectangle delimitat per un latitud al nord i al sud,
+i una longitud a l'esti a l'oest (en l'exemple: nord 40.01, sud 39.9, est 0.1
+i oest -0.1). Per exemple,
+[http://api.geonames.org/citiesJSON?north=40.01&south=39.99&east=0.01&west=-0.01&lang=ES&username=demo](https://maps.googleapis.com/maps/api/geocode/json?latlng=40,0)
+torna el següent:
+
+    
+    
+    {
+      "geonames": [
+        {
+          "lng": -0.04935,
+          "geonameId": 2519752,
+          "countrycode": "ES",
+          "name": "Castelló de la Plana",
+          "fclName": "city, village,...",
+          "toponymName": "Castelló de la Plana",
+          "fcodeName": "seat of a second-order administrative division",
+          "wikipedia": "en.wikipedia.org/wiki/Castell%C3%B3n_de_la_Plana",
+          "lat": 39.98567,
+          "fcl": "P",
+          "population": 180005,
+          "fcode": "PPLA2"
+        },
+        {
+          "lng": -0.06313,
+          "geonameId": 2521909,
+          "countrycode": "ES",
+          "name": "Almazora",
+          "fclName": "city, village,...",
+          "toponymName": "Almassora",
+          "fcodeName": "populated place",
+          "wikipedia": "en.wikipedia.org/wiki/Almassora",
+          "lat": 39.94729,
+          "fcl": "P",
+          "population": 24963,
+          "fcode": "PPL"
+        },
+        ...
+        ]
+    }
+
+A partir de l'arrel (que ara sí que és un objecte), tenim un membre:
+**geonames**, que és un array (un element per cada "lloc" trobat), on cada
+element té informació diversa, com el nom del lloc, les coordenades, la
+població, ...
+
+!!!Note "Nota"
+    De fa uns mesos que Google limita el servei anterior, i ha de ser amb un
+    usuari validat. No valdrà la pena, per al poc profit que li trauríem. Mostrem
+    en què consisteix el servei únicament a nivell il·lustratiu
+
+## 3.2 - Instal·lació de MongoDB
 
 Podrem instal·lar MongoDB en qualsevol plataforma. I fins i tot sense tenir
 permisos d'administrador, com veurem en el cas d'Ubuntu.
@@ -132,37 +329,31 @@ permís per crear aquest directori. Aleshores crearem un altre directori i en
 el moment d'arrancar el servidor, li especificarem aquest lloc.
 
 La manera d'arrancar el servidor serà:
-```
-<directori arrel MongoDB>/bin/mongod
-```
+
+    <directori arrel MongoDB>/bin/mongod
+
 Opcionalment li podem dir on està la Base de Dades (si no ho especifiquem
 assumirà que està en **/data/db**):
-```
-<directori arrel MongoDB>/bin/mongod --dbpath <directori de la BD>
-```
+
+    <directori arrel MongoDB>/bin/mongod --dbpath <directori de la BD>
+
 Resumint, i estant situats al directori on hem descomprimit MongoDB:
 
-* Si som administradors: 
-  >* Creem el directori de dades:
-```
-mkdir /data  
-mkdir /data/db
-```
-  > * Arranquem el servidor:
-  
-```
-./bin/mongod
-```
-* Si no som administradors: 
-  >* Creem el directori de dades:
-```
-mkdir data  
-mkdir data/db
-```
-  > * Arranquem el servidor:
-```
-./bin/mongod --dbpath ./data/db
-```
+* Creem el directori de dades:
+
+        mkdir /data  
+        mkdir /data/db
+
+* Si no som administradors, arranquem el servidor:
+      
+        ./bin/mongod --dbpath ./data/db
+
+* Si som administradors, arranquem el servidor:
+
+        ./bin/mongod
+
+
+
 La següent imatge il·lustra aquesta segona opció. Està per a una versió
 anterior de MongoDB, però és totalment equivalent:
 
@@ -187,13 +378,11 @@ instal·lació bàsica.
 Per a connectar un client, obrim una segona terminal i
 executem el client **mongosh** :
 
-```
-  <directori arrel MongoDB>/bin/mongosh
-```  
 
-```
-  ./bin/mongosh
-```
+    <directori arrel MongoDB>/bin/mongosh
+ 
+    ./bin/mongosh
+
 ![](T8_3_1_2.png)
 
 Per a provar el seu funcionament, anem a fer un parell de comandos: un per a
@@ -201,24 +390,24 @@ guardar un document i un altre per a recuperar-lo.
 
 Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
 i després l'operació que volem fer. Amb el següent:
-```
-> db.exemple.Insert( {msg:"Hola, què tal?"} )
-```
+
+    db.exemple.Insert( {msg:"Hola, què tal?"} )
+
 Ens contestarà:
-```
-WriteResult({ "nInserted" : 1 })
-```
+
+    WriteResult({ "nInserted" : 1 })
+
 Indicant que ha inserit un document en la col·lecció **exemple** (si no estava
 creada, la crearà).
 
 I amb el següent comando recuperem la informació:
-```
-> db.exemple.findOne()
-```
+
+    db.exemple.findOne()
+
 Que ens tornarà:
-```
-{ "_id" : ObjectId("56cc130590d651d45ef3d3be"), "msg" : "Hola, què tal?" }
-```
+
+    { "_id" : ObjectId("56cc130590d651d45ef3d3be"), "msg" : "Hola, què tal?" }
+
 Tot ho fa en la mateixa terminal, i a cadascú de nosaltres ens donarà un
 número diferent en **ObjectId**. En la següent imatge es veuen les dues
 operacions:
@@ -229,10 +418,10 @@ En realitat estem connectats a una Base de Dades anomenada **test**. Podem
 crear i utilitzar més d'una Base de Dades, però en aquest curs tindrém més que
 suficient amb aquesta Base de Dades. Per a comprovar-ho podem executar la
 següent sentència, que ens torna el nom de la Base de Dades:
-```
-> db.getName()  
-test
-```
+
+    > db.getName()  
+    test
+
 ### Instal·lació en Windows
 
 No ofereix cap dificultat. Ens baixem la versió apropiada de MongoDB per a
@@ -255,10 +444,10 @@ directori creat. Per defecte el directori serà **\data\db**
 
 Aqueste serien les ordres per a crear el directori i després arrancar el
 servidor. Està per a una versió anterior, però seria totalment equivalent:
-```
-mkdir \data\db  
-C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe
-```
+
+    mkdir \data\db  
+    C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe
+
 En aquest a imatge s'observa que en intentar posar en marxa el servidor, el
 Firewall de Windows ho detecta, i sol·licita permís per posar-lo en marxa.
 Acceptem i prou:
@@ -267,9 +456,9 @@ Acceptem i prou:
 
 Per a connectar-nos com a clients, ho haurem de fer des d'una altra terminal,
 ja que si tanquem aquesta pararem el servidor. El programa és **mongo.exe** :
-```
-C:\Program Files\MongoDB\Server\3.2\bin\mongo.exe
-```
+
+    C:\Program Files\MongoDB\Server\3.2\bin\mongo.exe
+
 ![](T8_3_1_12.png)
 
 Per a provar el seu funcionament, anem a fer un parell de comandos: un per a
@@ -277,24 +466,24 @@ guardar un document i un altre per a reculerar-lo.
 
 Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
 i després l'operació que volem fer. Amb el sgüent:
-```
-> db.exemple.InsertOne( {msg:"Hola, què tal?"} )
-```
+
+    db.exemple.InsertOne( {msg:"Hola, què tal?"} )
+
 Ens contestarà:
-```
-WriteResult({ "nInserted" : 1 })
-```
+
+    WriteResult({ "nInserted" : 1 })
+
 Indicant que ha inserit un document en la col·lecció **exemple** (si no estava
 creada, la crearà).
 
 I amb el següent comando recuperem la informació:
-```
-> db.exemple.findOne()
-```
+
+  db.exemple.findOne()
+
 Que ens tornarà:
-```
-{ "_id" : ObjectId("56cc1acd73b559230de8f71b"), "msg" : "Hola, què tal?" }
-```
+
+    { "_id" : ObjectId("56cc1acd73b559230de8f71b"), "msg" : "Hola, què tal?" }
+
 Tot ho fa en la mateixa terminal, i a cadascú de nosaltres ens donarà un
 número diferent en **ObjectId**. En la següent imatge es veuen les dues
 operacions:
@@ -305,11 +494,11 @@ En realitat estem connectats a una Base de Dades anomenada **test**. Podem
 crear i utilitzar més d'una Base de Dades, però en aquest curs tindrés més que
 suficient amb aquesta Base de Dades. Per a comprovar-ho podem executar la
 següent sentència, que ens torna el nom de la Base de Dades:
-```
-> db.getName()  
-test
-```
-### 3.1.1 - Connexió al servidor de l'Institut
+
+    db.getName()  
+    test
+
+### 3.2.1 - Connexió al servidor de l'Institut
 
 Quan hem utilitzat el client, hem executat el programa **mongo** sense posar-
 li res més. Per defecte s'ha connectat al servidor que tenim en la mateixa
@@ -319,9 +508,9 @@ Però en realitat li podem especificar l'adreça on està el servidor al qual
 volem connectar. En concret, l'adreça del servidor de dades de l'Institut en
 el qual també tenim instal·lat MongoDB:
 
-```    
+   
     mongo  89.36.214.106
-```
+
 Podem connectar, però no podrem fer cap operació, perquè està habilitada
 l'autenticació per a previndre atacs, cosa que no tenim en el servidor que hem
 instal·lat cadascú en la seua màquina.
@@ -342,7 +531,7 @@ A partir d'eixe moment ja podrem utilitzar-lo sense problemes:
 
 ![](T8_3_1_1_2.png)
 
-## 3.2 - Utilització de MongoDB
+## 3.3 - Utilització de MongoDB
 
 Començarem la utilització de MongoDB des de la consola que havíem arrancat al
 final de la instal·lació.
@@ -373,50 +562,49 @@ funcions de Javascript, ...
 Especialment interessant són les variables que poden contenir un document
 JSON.
 
-Per exemple:
-```
-  > a = 30  
-  30  
-  > b = a/4  
-  7.5  
-  > Math.sqrt(b)  
-  2.7386127875258306  
-  > doc = {camp1: "Hola", camp2: 45, camp3: new Date()}  
-  {  
-    "camp1" : "Hola",  
-    "camp2" : 45,  
-    "camp3" : ISODate("2022-01-16T18:07:51.118Z")  
-  }  
-  >
-```
+    Per exemple:
+      > a = 30  
+      30  
+      > b = a/4  
+      7.5  
+      > Math.sqrt(b)  
+      2.7386127875258306  
+      > doc = {camp1: "Hola", camp2: 45, camp3: new Date()}  
+      {  
+        "camp1" : "Hola",  
+        "camp2" : 45,  
+        "camp3" : ISODate("2022-01-16T18:07:51.118Z")  
+      }  
+      >
+
 Una variable de tipus JSON es podrà modificar molt fàcilment, tota ella, o
 algun dels elements. Per a arribar als elements posarem
 **_nom_variable.nom_camp_** :
-```
-> doc.camp4 = 3.141592  
-3.141592
-```
-```
-> doc.camp5 = [ 2 , 4 , 6 , 8]  
-[ 2, 4, 6, 8 ]
-```
+
+    > doc.camp4 = 3.141592  
+    3.141592
+
+
+    > doc.camp5 = [ 2 , 4 , 6 , 8]  
+    [ 2, 4, 6, 8 ]
+
 I si ara intentem traure el contingut de la variable:
-```
-> doc  
-{  
-  "camp1" : "Hola",  
-  "camp2" : 45,  
-  "camp3" : ISODate("2022-01-16T18:07:51.118Z"),  
-  "camp4" : 3.141592,  
-  "camp5" : [  
-              2,  
-              4,  
-              6,  
-              8  
-    ]  
-}  
->
-```
+
+    > doc  
+    {  
+      "camp1" : "Hola",  
+      "camp2" : 45,  
+      "camp3" : ISODate("2022-01-16T18:07:51.118Z"),  
+      "camp4" : 3.141592,  
+      "camp5" : [  
+                  2,  
+                  4,  
+                  6,  
+                  8  
+        ]  
+    }  
+    >
+
 També hem de fer constar que en un document, que serà de tipus JSON
 (pràcticament), serà un conjunt de parelles clau-valor, amb algunes
 restriccions:
@@ -427,7 +615,7 @@ restriccions:
   * Els valors són dels tipus que veurem en la pregunta 3.2.1
   * Un document guardat ha de contenir obligatòriament un camp anomenat **_id** , i que contindrà un valor únic en la col·lecció i servirà per a identificar-lo. Si en guardar un document no li hem posat camp **_id** , el generarà automàticament MongoDB.
 
-### 3.2.1 - Tipus de dades
+### 3.3.1 - Tipus de dades
 
 Els valors dels elements, és a dir de les parelles clau valor, poden ser d'uns
 quants tipus. Fem un ràpid repàs.
@@ -444,86 +632,86 @@ clau-valor d'un determinat tipus
 **NULL**
 
 Més que un tipus de dades és un valor, millor dit, l'absència de valor
-```
-{ "x" : null }
-```
+
+    { "x" : null }
+
 **BOOLEAN**
 
 El tipus booleà, que pot agafar els valors true o false.
-```
-{ "x" : true }
 
-{ "y" : false }
-```
+    { "x" : true }
+
+    { "y" : false }
+
 **NUMBER**
 
 Per defecte, el tiups de dades numèrics serà el de coma flotant (**float**),
 simple precisió. Si volem un altre tiups (enter, doble precisió, ...) ho
 haurem d'indicar expressament. Així els dos següents valors són float:
-```
-{ "x" : 3.14 }
 
-{ "y" : 3 }
-```
+    { "x" : 3.14 }
+
+    { "y" : 3 }
+
 Si volem que siga estrictament enter, per exemple, haurem d'utilitzar una
 funció de conversió:
-```
-{ "x" : NumberDouble("3.14") }
 
-{ "y" : NumberInt("3") }
-```
+    { "x" : NumberDouble("3.14") }
+
+    { "y" : NumberInt("3") }
+
 **STRING**
 
 Es pot guardar qualsevol cadena amb caràcters de la codificació UTF-8
-```
-{ x : "Hola, què tal?"}
-```
+
+    { x : "Hola, què tal?"}
+
 **DATE**
 
 Es guarda data i hora, i internament es guarden en milisegons des de l'any
 inicial. No es guarda el ****_Time zone_ , és a dir,__ la desviació respecte a
 l'hora internacional.
-```
-{ x : ISODate("2022-01-16T11:15:27.471Z") }
-```
+
+    { x : ISODate("2022-01-16T11:15:27.471Z") }
+
 Normalment utilitzarem funcions de tractament de la data-hora. L'anterior era
 per a convertir el string en data-hora. La següent és per a obtenir la data-
 hora actual:
-```
-{ x : new Date() }
-```
+
+    { x : new Date() }
+
 És a dir, que si no posem paràmetre, ens dóna la data-hora actual. Però li
 podem posar com a paràmetre la data-hora que volem que genere. En aquest
 exemple, només posem data, per tant l'hora serà les 00:00:
-```
-> z = new Date("2022-01-16")  
-ISODate("2022-01-16T00:00:00Z")
-```
+
+    > z = new Date("2022-01-16")  
+    ISODate("2022-01-16T00:00:00Z")
+
 En aquest sí que posem una determinada hora, i observeu com hem deposar la T
 (Time) entre el dia i l'hora:
-```
-> z = new Date("2022-02-16T18:00")  
-ISODate("2022-01-16T18:00:00Z")
-```
+
+    > z = new Date("2022-02-16T18:00")  
+    ISODate("2022-01-16T18:00:00Z")
+
 És molt important que posem sempre **New Date()** per a generar una data-hora.
 Si posem únicament **Date()** , el que estem generant és un string (segurament
 amb la data i hora actual, però un string):
-```
-> z = Date("2022-01-16")  
-Sun Jan 16 2022 22:20:09 GMT+0100 (CET)
-```
+
+    > z = Date("2022-01-16")  
+    Sun Jan 16 2022 22:20:09 GMT+0100 (CET)
+
 **ARRAY**
 
 És un conjunt d'elements, cadascun de qualsevol tipus, encara que el més
 habitual és que siguen del mateix tipus. Van entre claudàtors (**[ ]**) i els
 elements separats per comes.
-```
-{ x : [ 2 , 4 , 6 , 8 ] }
-```
+
+    { x : [ 2 , 4 , 6 , 8 ] }
+
 Com comentàvem, cada element de l'array pot ser de qualsevol tipus:
-```
-{ y : [ 2 , 3.14 , "Hola" , new Date() ] }
-```
+
+    { y : [ 2 , 3.14 , "Hola" , new Date() ] }
+
 En MongoDB podrem treballar molt bé amb arrays, i tindrem operacions per a
 poder buscar dins de l'array, modificar un element, crear índex, ...
 
@@ -535,9 +723,9 @@ en la terminologia JSON, però **documents** en la terminologia de MongoDB).
 Van entre claus ( **{ }** ), i els elements que contindran van separats per
 comes i seran parelles clau-valor de qualsevol tipus (fins i tot altres
 documents).
-```
-{ x : { a : 1 , b : 2 } }
-```
+
+    { x : { a : 1 , b : 2 } }
+
 Posar documents dins d'uns altres documents (el que s'anomena _embedded_
 _document_) ens permet guardar la informació d'una manera més real, no tan
 plana. Així per exemple, les dades d'una persona les podríem definir de la
@@ -549,17 +737,17 @@ perquè la sentència d'assignació a la variable ocupa més d'una línia, i
 apareixeran 3 punts al principi per a indicar que continua la sentència. Però
 funcionarà perfectament :
 
-```json
-doc = {  
-  nom:"Joan Martí",  
-  adreça: {  
-  carrer:"Major",  
-  número:1,  
-  població:"Castelló"  
-  } ,  
-  telèfons : [964223344,678345123]  
-}
-```
+
+    doc = {  
+      nom:"Joan Martí",  
+      adreça: {  
+      carrer:"Major",  
+      número:1,  
+      població:"Castelló"  
+      } ,  
+      telèfons : [964223344,678345123]  
+    }
+
 Observeu com aquesta estructura que ha quedat tan clara, segurament en una
 Base de Dades Relacional ens hauria tocat guardar en 3 taules: la de persones,
 la d'adreces i la de telèfons.
@@ -567,22 +755,22 @@ la d'adreces i la de telèfons.
 Per a accedir als elements d'un document posàvem el punt. Doncs el mateix per
 als elements d'un document dins d'un document. I també podem accedir als
 elements d'un array, posant l'índex entre claudàtors.
-```
-  > doc.nom  
-  Joan Martí  
-    
-  > doc.adreça  
-  { "carrer" : "Major", "número" : 1, "població" : "Castelló" }  
-    
-  > doc.adreça.carrer  
-  Major  
-    
-  > doc.telèfons  
-  [ 964223344, 678345123 ]  
-    
-  > doc.telèfons[0]  
-  964223344
-```
+
+      > doc.nom  
+      Joan Martí  
+        
+      > doc.adreça  
+      { "carrer" : "Major", "número" : 1, "població" : "Castelló" }  
+        
+      > doc.adreça.carrer  
+      Major  
+        
+      > doc.telèfons  
+      [ 964223344, 678345123 ]  
+        
+      > doc.telèfons[0]  
+      964223344
+
 **OBJECT ID**
 
 És un tipus que defineix MongoDB per a poder obtenir valors únics. És el valor
@@ -593,7 +781,7 @@ l'objecte de JSON). És un número long, és a dir que utilitza 24 bytes.
 Farem proves de la seua utilització en la seüent pregunta, en el moment
 d'inserir diferents documents.
 
-### 3.2.2 - Operacions bàsiques
+### 3.3.2 - Operacions bàsiques
 
 En aquest punt anem a veure les operacions més bàsiques, per a poder treballar
 sobre exemples pràctics, i així disposar ja d'unes dades inicials per a
@@ -618,12 +806,12 @@ tots els altres de la col·lecció.
 
 I en aquest exemple ens guardem el document en la variable **doc** , i després
 l'inserim
-```
-> doc = { msg3 : "Per ací no ens podem queixar ..."}  
-{ "msg3" : "Per ací no ens podem queixar ..." }  
-> db.exemple.insert(doc)  
-WriteResult({ "nInserted" : 1 })
-```
+
+    > doc = { msg3 : "Per ací no ens podem queixar ..."}  
+    { "msg3" : "Per ací no ens podem queixar ..." }  
+    > db.exemple.insert(doc)  
+    WriteResult({ "nInserted" : 1 })
+
 També ens indica que ha inserit un document. I haurà creat també el camp
 **_id** com veurem en el següent punt.
 
@@ -635,19 +823,19 @@ Tenim dues funcions per a recuperar informació: _**find**_ i _**findOne**_.
   * **findOne()** : només tornarà un document, en principi el primer. Pot ser sobre tots els documents (i per tant seria el primer document), o posar una condició, i tornaria el primer que acomplirà la condició.
 
 Exemple de **find()** :
-```
-> db.exemple.find()  
-{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
-{ "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Com va la cosa?" }  
-{ "_id" : ObjectId("56ce3237c61e04ba81def50d"), "msg3" : "Per ací no ens podem queixar ..." }  
->
-```
+
+    > db.exemple.find()  
+    { "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
+    { "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Com va la cosa?" }  
+    { "_id" : ObjectId("56ce3237c61e04ba81def50d"), "msg3" : "Per ací no ens podem queixar ..." }  
+    >
+
 Exemple de **findOne()** :
-```
-> db.exemple.findOne()  
-{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
->
-```
+
+    > db.exemple.findOne()  
+    { "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
+    >
+
 En tots els casos podem comprovar que és cert el que veníem afirmant, que ha
 creat automàticament l'element **_id** per a cada document guardat.
 Evidentment, cadascú de nosaltres tindrà una valors diferents.
@@ -667,31 +855,31 @@ col·lecció, o ens donarà un error.
 Així per exemple anem a inserir la informació d'uns alumnes. Els posarem en
 una col·lecció nova anomenada **alumnes** , i els intentarem posar un **_id**
 personal. Per exemple posarem els números 51, 52, 53, ...
-```
-> db.alumnes.insert ({_id: 51 , nom: "Rebeca" , cognoms: "Martí Peral"})  
-WriteResult({ "nInserted" : 1 })
-```
+
+    > db.alumnes.insert ({_id: 51 , nom: "Rebeca" , cognoms: "Martí Peral"})  
+    WriteResult({ "nInserted" : 1 })
+
 Ha anat bé, i si mirem els documents que tenim en la col·lecció, comprovarem
 que ens ha respectat el **_id** :
-```
-> db.alumnes.find()  
-{ "_id" : 51, "nom" : "Rebeca", "cognoms" : "Martí Peral" }  
->
-```
+
+    > db.alumnes.find()  
+    { "_id" : 51, "nom" : "Rebeca", "cognoms" : "Martí Peral" }  
+    >
+
 Però si intentem inserir un altre document amb el mateix **_id** (51), ens
 donarà error:
-```
-> db.alumnes.insert ({_id: 51 , nom: "Raquel" , cognoms: "Gomis Arnau"})  
-WriteResult({  
-"nInserted" : 0,  
-"writeError" : {  
-    "code" : 11000,  
-    "errmsg" : "E11000 duplicate key error collection: test.alumnes index: _id_
-    dup key: { : 51.0 }"  
-  }  
-})  
->
-```
+
+    > db.alumnes.insert ({_id: 51 , nom: "Raquel" , cognoms: "Gomis Arnau"})  
+    WriteResult({  
+    "nInserted" : 0,  
+    "writeError" : {  
+        "code" : 11000,  
+        "errmsg" : "E11000 duplicate key error collection: test.alumnes index: _id_
+        dup key: { : 51.0 }"  
+      }  
+    })  
+    >
+
 Ens avisa que estem duplicant la _clau_ _principal_ , és a dir
 l'identificador.
 
@@ -701,61 +889,61 @@ Quan els documents que volem inserir són senzills, podem inserir més d'un a la
 vegada, posant dis del **insert()** un **array** amb tots els elements. En el
 següent exemple creem uns quants nombres primers en la col·lecció del mateix
 nom:
-```
-> db.nombresprimers.insert( [ {_id:2} , {_id:3} , {_id:5} , {_id:7} , {_id:11}
-> , {_id:13} , {_id:17} , {_id:19} ] )  
-BulkWriteResult({  
-    "writeErrors" : [ ],  
-    "writeConcernErrors" : [ ],  
-    "nInserted" : 8,  
-    "nUpserted" : 0,  
-    "nMatched" : 0,  
-    "nModified" : 0,  
-    "nRemoved" : 0,  
-    "upserted" : [ ]  
-})  
->
-```
+
+    > db.nombresprimers.insert( [ {_id:2} , {_id:3} , {_id:5} , {_id:7} , {_id:11}
+    > , {_id:13} , {_id:17} , {_id:19} ] )  
+    BulkWriteResult({  
+        "writeErrors" : [ ],  
+        "writeConcernErrors" : [ ],  
+        "nInserted" : 8,  
+        "nUpserted" : 0,  
+        "nMatched" : 0,  
+        "nModified" : 0,  
+        "nRemoved" : 0,  
+        "upserted" : [ ]  
+    })  
+    >
+
 Ens avisa que ha fet 8 insercions, i ací els tenim:
-```
-> db.nombresprimers.find()  
-{ "_id" : 2 }  
-{ "_id" : 3 }  
-{ "_id" : 5 }  
-{ "_id" : 7 }  
-{ "_id" : 11 }  
-{ "_id" : 13 }  
-{ "_id" : 17 }  
-{ "_id" : 19 }  
->
-```
+
+    > db.nombresprimers.find()  
+    { "_id" : 2 }  
+    { "_id" : 3 }  
+    { "_id" : 5 }  
+    { "_id" : 7 }  
+    { "_id" : 11 }  
+    { "_id" : 13 }  
+    { "_id" : 17 }  
+    { "_id" : 19 }  
+    >
+
 #### Esborrat: remove {.azul}
 
 Per a esborrar un document d 'una col·lecció utilitzarem la funció **remove**
 , passant-li com a paràmetre la condició del document o documents a esborrar.
-```
-> db.nombresprimers.remove( {"_id" : 19} )  
-WriteResult({ "nRemoved" : 1 })  
->
-```
+
+    > db.nombresprimers.remove( {"_id" : 19} )  
+    WriteResult({ "nRemoved" : 1 })  
+    >
+
 
 Ens avisa que ha esborrat un document.
 
 La condició no cal que siga sobre el camp **_id**. Pot ser sobre qualsevol
 camp, i esborrarà tots els que coincideixen.
-```
-> db.exemple.remove( {"msg3" : "Per ací no ens podem queixar ..."} )  
-WriteResult({ "nRemoved" : 1 })  
->
-```
+
+    > db.exemple.remove( {"msg3" : "Per ací no ens podem queixar ..."} )  
+    WriteResult({ "nRemoved" : 1 })  
+    >
+
 També tenim la possibilitat d'esborrar tota una col·lecció amb la funció
 **drop()**. Pareu atenció perquè és molt senzilla d'eliminar, i per tant,
 potencialment molt perillosa.
-```
-> db.nombresprimers.drop()  
-true  
->
-```
+
+    > db.nombresprimers.drop()  
+    true  
+    >
+
 #### Actualització - update {.azul}
 
 La funció _**update**_ servirà per a actualitzar un document ja guardat.
@@ -812,7 +1000,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 ```
 
 
-### 3.2.3 - Operacions d'actualització avançada
+### 3.3.3 - Operacions d'actualització avançada
 
 Al final de la pregunta anterior hem vist l'actualització de documents ja
 existents a la Base de Dades. Aquesta actualització la féiem modificant tot el
@@ -1260,7 +1448,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
 Hi ha més d'una manera d'eliminar elements d'un array.
 
- **$pop**{.azul}
+**$pop**{.azul}
 
 Si volem eliminar el primer element o l'últim, el modificador adequat és
 **$pop**. La sintaxi és
@@ -1339,7 +1527,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
       ]  
 }
 ```
- ### $pull {.azul} 
+**$pull**{.azul} 
 
 Amb aquest modificador esborrarem els elements de l'array que coincidesquen
 amb una condició, estiguen en la posició que estiguem. Observeu com es pot
@@ -1449,7 +1637,7 @@ El nou document tindrà els camps:
   * Els camps de la condició, que en el nostre exemple és **{ nom:"Berta" }**
   * Els camps de l'actualització, que en el nostre exemple eren els cognoms
 
-## 3.3 - Consulta de documents
+## 3.4 - Consulta de documents
 
 En la pregunta anterior hem vist com introduir, eliminar i modificar
 documents. Les consultes de documents han segut molt senzilles, per a
@@ -1461,7 +1649,7 @@ En aquesta pregunta veurem en profunditat la consulta de documents.
   * Limitarem i ordenarem també els resultats
   * Fins i tot podrem elaborar més els resultats, agrupant els resultats, utilitzant funcions d'agregació (o millor dir operadors d'agregació) i donant-los un aspecte diferent
 
-### 3.3.1 - Paràmetres de les funcions find() i findOne()
+### 3.4.1 - Paràmetres de les funcions find() i findOne()
 
 Les funcions **find()** i **findOne()** són absolutament equivalents, amb
 l'única diferència que la primera torna tots els documents trobats, mentre que
@@ -1553,7 +1741,7 @@ o bonica (_pretty_), posarem aquesta funció al final: **find().pretty()**
 "cognoms" : "Bernat Cantero"  
 }
 ```
-### 3.3.2 - Operadors de les condicions
+### 3.4.2 - Operadors de les condicions
 
 Abans de començar aquesta pregunta, anem a agafar unes dades de prova, que
 estan en el fitxer **libros_ejemplo.json**
@@ -2241,7 +2429,7 @@ col·locar skip, limit i sort.
 { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }
 ```
 
-### 3.3.3 - Agregació
+### 3.4.3 - Agregació
 
 L'agregació ens permetrà fer consultes molt avançades. És un procés un poc
 complicat però molt potent. Ens donarà una potència quasi com la del SQL quan
@@ -2552,342 +2740,6 @@ En l'exemple anterior, ara saltem els 3 primers:
 { "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
 { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
 ```
-
-## 3.4 - Connexió des de Kotlin i Exemples
-
-Per a poder connectar des de Java o Kotlin ens sera suficient amb un driver,
-que haurem d'incorporar al projecte. En la següent pàgina podem trobar-lo, en
-diferents versions:
-
-<https://repo1.maven.org/maven2/org/mongodb/mongo-java-driver/>
-
-En el moment de fer aquestos apunts, l'últim driver disponible és el següent:
-
-<https://repo1.maven.org/maven2/org/mongodb/mongo-java-driver/3.9.1/mongo-
-java-driver-3.9.1.jar>
-
-Per a separar les proves i exercicis de la part de **Redis** , creem un nou
-paquet anomenat **ExemplesMongo**.
-
- **<u>Connexió**</u>
-
-La connexió és tan senzilla com el següent:
-
-```   
-       val con = MongoClient("localhost", 27017)
-       val bd = con.getDatabase("test")
-```    
-
-És a dir, obtenim un objecte **MongoClient** passant-li al constructor
-l'adreça del servidor i el port de connexió (que per defecte és 27017).
-
-Posteriorment hem de connectar amb la Base de Dades. Ja havíem comentat en la
-instal·lació de Mongo que nosaltres només utilitzaríem una Base de Dades ja
-creada anomenada **test**. Obtenim un objecte **MongoDatabase** que farà
-referència a la Base de Dades, i és l'objecte que utilitzarem a partir d'ara.
-Evidentment ho podríem haver fet en una única línia.
-
-Si el servidor no el tenim en la mateixa màquina, només haurem de substituir
-**localhost** per l'adreça on estiga el servidor.
-
-Per a tancar la connexió:
-```   
-       con.close()
-```
- **<u>Inserció de documents</u>**
-
-Des de Kotlin podrem inserir documents amb la mateixa facilitat que des de la
-consola. Només haurem de crear un objecte **Document** de **BSON** (recordeu
-que és el format intern de Mongo, absolutament similar a **JSON**). La manera
-d'anar posant parelles calu valor en aquest document és per mig del mètode
-**put**. Fem un exemple molt senzill on senzillament guardem un document amb
-una parella clau-valor d'un missatge. Guardeu-lo amb el nom **Prova1.kt** :
-
-    
-    
-    import com.mongodb.MongoClient
-    import org.bson.Document
-    
-    fun main(args: Array<String>) {
-        val con = MongoClient("localhost", 27017)
-        val bd = con.getDatabase("test")
-        val doc = Document()
-        doc.put("msg4", "Missatge inserit des de Kotlin")
-        bd.getCollection("exemple").insertOne(doc)
-        con.close()
-    }
-
-Segurament traurà avisos en la consola, però només són avisos. Podem comprovar
-en la terminal com s'ha inserit el document:
-
-![](T8_3_4_1.png)
-
- **<u>Consultes</u>**
-
-Tenim el mètode **find()** per a fer consultes, i li podem posar un document
-com a paràmetre per a seleccionar determinats documents o traure determinada
-informació. Guardeu el següent exemple amb el nom **Prova2.kt** :
-
-    
-    
-    import com.mongodb.MongoClient
-    
-    fun main(){
-        val con = MongoClient("localhost" , 27017)
-        val bd = con.getDatabase("test")
-       val llibres = bd.getCollection("libro").find()
-    
-        for (llibre in llibres)
-            println(llibre.get("titulo"))
-    
-       con.close();
-    }
-
-I com comentàvem podem posar com a paràmetres en el find() per a seleccionar
-determinats documents, ordenar, etc. Només hem de cuidar que ho hem de posar
-en **JSON**(millor dit **BSON**), i per tant haurem de crear un document per a
-això. Copieu el següent exemple amb el nom **Prova3.kt** :
-
-    
-    
-    import com.mongodb.MongoClient
-    import org.bson.Document
-    
-    fun main(){
-        val con = MongoClient("localhost", 27017)
-        val bd = con.getDatabase("test")
-    
-        val ordenar = Document()
-        ordenar.put("precio", -1)
-    
-        val llibres = bd.getCollection("libro").find().sort(ordenar)
-    
-        for (llibre in llibres) System.out.println(
-            "Títol: " + llibre.get("titulo").toString() + ". Preu: " + llibre.get("precio")
-        )
-    
-        con.close()
-    }
-
-El resultat serà aquest:
-
-![](T8_3_4_2.png)
-
-Hem pogut observar en l'execució dels exemples anteriors que ens trau una gran
-quantitat d'avisos. No són errors, sinó senzillament informació de com van les
-connexions, que mongo torna, i apareixen en l'eixida estàndar.
-
-Si no volem que apareguen podem posar al principi del programa una sentència
-per a dir que únicament apareguen els errors, i no els avisos. Els errors
-estarien en la categoria de **SEVERE**
-
-    
-```
-        LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE)
-```  
-
-Hem d'importar les classes de **java.util**. Quedaria el mateix exemple
-**Prova3.kt** d'aquesta manera:
-
-    
-    
-    import com.mongodb.MongoClient
-    import org.bson.Document
-    import java.util.logging.Level
-    import java.util.logging.LogManager
-    
-    fun main(){
-        LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE)
-        val con = MongoClient("localhost", 27017)
-        val bd = con.getDatabase("test")
-    
-        val ordenar = Document()
-        ordenar.put("precio", -1)
-    
-        val llibres = bd.getCollection("libro").find().sort(ordenar)
-    
-        for (llibre in llibres) System.out.println(
-            "Títol: " + llibre.get("titulo").toString() + ". Preu: " + llibre.get("precio")
-        )
-    
-        con.close()
-    }
-
-I el resultat ara serà:
-
-![](T8_3_4_3.png)
-
- **<u>Agregació</u>**
-
-Per a poder utilitzar la funció d'agregació, que té tanta potència, ens ho hem
-de muntar d'aquesta manera:
-
-  * Sobre la col·lecció utilitzar el mètode **aggregate()**
-  * Com a paràmetres, afegirem un **MutableList**. Cada element d'ell serà una opció d'aggregate
-  * Per a cada opció ($match, $project...), utilitzarem el mètode d'**Aggregates**(una classe del driver de Mongo) amb el mateix nom: 
-    * Per a **$match** : **Aggregates.match()**
-    * Per a **$project: Aggregates.project()**
-    * ...
-  * Dins de cadascun d'aquestos mètodes posarem un document BSon amb les especificacions que necessitem
-
-En aquest exemple farem la selecció (match) dels llibres de l'editorial
-Planeta, agafant (project) únicament el títol i l'editorial.
-
-La sentència en la consola la faríem així:
-```
-> db.libro.aggregate({$match:{editorial:"Planeta"}},{$project:{titulo:1,
-> editorial:1}})  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta" }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }
-```
-El programa ens quedaria així. Guardeu-lo en en fitxer Kotlin anomenat
-**Prova_Aggregate_1.kt** :
-
-    
-    
-    import com.mongodb.MongoClient
-    import com.mongodb.client.model.Aggregates
-    import org.bson.Document
-    import java.util.logging.Level
-    import java.util.logging.LogManager
-    
-    fun main(){
-        LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE)
-        val con = MongoClient("localhost", 27017)
-        val bd = con.getDatabase("test")
-    
-        val seleccionar = Document()
-        seleccionar.put("editorial", "Planeta")
-    
-        val projeccio = Document()
-        projeccio.put("titulo",1)
-        projeccio.put("editorial",1)
-    
-        val llibres = bd.getCollection("libro").aggregate(mutableListOf(Aggregates.match(seleccionar),Aggregates.project(projeccio)))
-    
-        for (llibre in llibres)
-            println("Títol: " + llibre.get("titulo").toString() + ".   Editorial: " + llibre.get("editorial").toString()
-        )
-    
-        con.close()
-    }
-
-Mirem un altre exemple. Traure el llibre més barat de cada any.
-
-La consulta en Mongo que faríem en la consola de Mongo seria:
-```
-> db.libro.aggregate(  
-{$group : {"_id" : { "any" : { $year : "$fecha" } } , "minim":{$min: "$precio"}}}, {$sort:{"_id":1}})  
-{ "_id" : { "any" : 2009 }, "minim" : 9.45 }  
-{ "_id" : { "any" : 2011 }, "minim" : 9.5 }  
-{ "_id" : { "any" : 2012 }, "minim" : 11 }  
-{ "_id" : { "any" : 2013 }, "minim" : 17.23 }  
-{ "_id" : { "any" : 2014 }, "minim" : 15.9 }
-```
-Ara col·locarem aquesta sentència en un programa Kotlin. Guardeu el següent
-codi com el fitxer Kotlin **Prova_Aggregate_2.kt** :
-
-    
-    
-    import com.mongodb.MongoClient
-    import com.mongodb.client.model.Aggregates
-    import org.bson.Document
-    import java.util.logging.Level
-    import java.util.logging.LogManager
-    
-    fun main(){
-        LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE)
-        val con = MongoClient("localhost", 27017)
-        val bd = con.getDatabase("test")
-    
-        val grup = Document()
-        grup.put("_id", Document("any",Document("\$year","\$fecha")))
-        grup.put("minim",Document("\$min","\$precio"))
-    
-        val ordenar = Document()
-        ordenar.put("_id",1)
-    
-        val llibres = bd.getCollection("libro").aggregate(mutableListOf(Aggregates.group(grup),Aggregates.sort(ordenar)))
-    
-        for (llibre in llibres){
-            val d = llibre.get("_id") as Document
-            println("Any: " + (d.get("_id") as Document).getInteger("any")+ ".   Mínim: " + d.getDouble("minim"))
-        }
-    
-        con.close()
-    }
-
-Hem tingut la complicació que el resultat és més complicat, té un document
-dins d'una altre document (com es veu en el resultat de la sentència executada
-en la consola). Aquest serà el resultat:
-
-![](T8_3_4_1.1.png)
-
-## 3.5 - Connexió des de Kotlin al servidor de l'Institut
-
-La connexió canvia si la fem al servidor de l'Institut, no per ser una
-direcció externa, sinó perquè cal la autenticació. Hem habilitat
-l'autenticació per a intentar evitar atacs.
-
-Si no tinguèrem autenticació, la connexió seria com abans:
-
-    
-
-    val con = MongoClient("89.36.214.106")
-    val bd = con.getDatabase("test")
-  
-
-Però per tenir l'autenticació activada la connexió haurà de ser diferent:
-
-    
-  
-    val con = MongoClient(MongoClientURI("mongodb://ad:Ad_ieselcamina$@89.36.214.106/?authSource=test"))
-    val bd = con.getDatabase("test")   
-
-on hem especificat l'adreça donant-li un usuari (**ad**), una contrasenya
-(**Ad_ieselcamina$**), el servidor (**89.36.214.106**) i fins i tot la Base de
-Dades on connectem, que ja va comentar que només teníem la BD **test**
-
-Per a tancar la connexió, com sempre:
-
-      
-    con.close()
-  
-  
-
-Mirem un exemple on podem comprovar que l'utilitzem exactament igual que amb
-la connexió a localhost, però ara ens està contestant el servidor de
-l'Institut. Guardeu-lo amb el nom **ProvaServidor.kt** :
-
-    
-    
-    import com.mongodb.MongoClient
-    import com.mongodb.MongoClientURI
-    import org.bson.Document
-    import java.util.logging.Level
-    import java.util.logging.LogManager
-    
-    fun main(){
-        LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE)
-    
-        val con = MongoClient(MongoClientURI("mongodb://ad:Ad_ieselcamina$@89.36.214.106/?authSource=test"))
-        val bd = con.getDatabase("test")
-    
-        val ordenar = Document()
-        ordenar.put("precio", -1)
-    
-        val llibres = bd.getCollection("libro").find().sort(ordenar)
-    
-        for (llibre in llibres)
-            System.out.println(llibre.get("titulo").toString() + " --> " + llibre.get("precio"))
-    
-        con.close()
-    }
-
-I ací tenim el resultat:
-
-![](T8_3_5_2.png)
-
 
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial

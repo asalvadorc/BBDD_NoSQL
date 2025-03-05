@@ -22,7 +22,7 @@ claus iguals. En Redis els valors poden ser de 5 tipus diferents:
   * **Conjunts****(Sets)** són conjunts desordenats de valors. No importa el seu ordre, i de fet serà impredecible l'ordre amb el qual els torna Redis. Per exemple: **colors -- > { "Blau" , "Verd" , "Roig" }******
   * **Conjunts Ordenats (Sorted Sets)** , que intenten reunir els avantatges dels conjunts, però que seran ordenats. Ja veurem la diferència entre llistes i conjunts ordenats.
 
-Algunes característiques de Redis són:
+Algunes **característiques** de Redis són:
 
   * És una arquitectura client-servidor
   * És extraordinàriament eficient quan es pot carregar tota en memòria, encara que si no pot carregar-la també funcionarà de forma molt ràpida. I a més manté una sincronització constant a disc per a fer les dades persistents. Aquesta tasca la fa en segon pla, de manera que no afecta al servei.
@@ -116,33 +116,77 @@ En la següent imatge es veu com sí que hem pogut connectar
 **Instal·lació en Windows de 64 bits**{.azul}
 
 Encara que Redis està construït per a Linux, hi ha versions per a Windows,
-preferiblement de 64 bits. També podrem trobar versions de 32 bits, però molt
-més antigues.
+preferiblement de 64 bits.
 
 El lloc on poder baixar els fitxers de Redis per a Windows de 64 bits és:
 
 <https://github.com/MSOpenTech/redis/releases>
 
-En el moment de fer aquestos apunts va per la versió 3.2.100, però les imatges
+En el moment de fer aquestos apunts va per la versió 3.0.504, però les imatges
 que van a continuació, corresponents a una versió anterior, són totalment
 equivalents:
 
-![](T8_3_4.png)
+![](redis_5.png)
 
 Ens baixem el zip, el descomprimim, i ja ho tindrem disponible (sense fer
 **make** ni res). Observeu com en la carpeta resultat de descomprimir ja tenim
 els executables **redis-server** i **redis-cli** que són els que ens
 interessen:
 
-![](T8_3_5.png)
+![](redis_6.png)
 
 Executem **redis-server** directament i ja el tindrem en marxa:
 
-![](T8_3_6.png)
+![](redis_7.png)
 
 Executem també el **redis-cli** i el resultat serà el mateix que en Linux.
 
-## 2.2 - Utilització de Redis
+##  2.2 - Entron gràfic: Redis Insight
+
+Com hem comprovat en el punt anterior, la connexió que fem des del client és a
+través de consola. Per tant haurem de posar comandos i ens contestarà la seua
+execució.
+
+Podem instal·lar-nos una aplicació gràfica que faça un poc més atractiva la
+presentació.
+
+La instal·lació d'aquesta eina és**totalment optativa** , no cal que la feu.
+De fet, ens els exemples que es mostraran en tot el tema només s'utilitzarà el
+mode consola.
+
+És completament independent del servidor, i podem instal·lar-la perfectament
+sense tenir el servidor, utilitzant-la aleshores per a connectar a un servidor
+remot.
+
+El podem baixar lliurement de la pàgina oficial
+[redis.io/insight](https://redis.io/insight/) on podrem comprovar que tenim per a totes
+les plataformes:
+
+![](redis_1.png)
+
+
+**Instal·lació en Windows**
+
+En Windows el que ens baixarem és un exe. L'executem (permetent l'execució
+quan ho pregunta Windows) i li podem donar a totes les opcions per defecte.
+
+Quan l'executem, ens eixirà la següent pantalla:
+
+![](redis_2.png)
+
+Podem comprovar que tenim el botó per a afegir una BD Redis (+ Add Redis database). Per a
+connectar al servidor local la conexió serà redis://default@127.0.0.1:6379. En la imatge
+s'ha fet el test de connexió.
+
+![](redis_3.png)
+
+Per a connectar a un remot, posarem la seua adreça
+
+![](redis_4.png)
+
+En aquesta imatge es veu com hem connectat perfectament als dos servidors. 
+
+## 2.3 - Utilització de Redis
 
 Anam a veure la utilització de Redis, Ens connectarem com a clients i
 intentarem fer operacions.
@@ -1822,239 +1866,6 @@ Si l'element no existia, l'inserirà, assumint una puntuació inicial de 0.
     4) "3.5"  
     5) "Nom3"  
     6) "5"
-
-
-## 2.3 - Connexió des de Kotlin
-
-La utilització des de Java és molt senzilla, i podrem utilitzar tots els
-comandos que hem vist.
-
-Haurem d'incorporar en el projecte una llibreria. Podem utilitzar per exemple
-la de **Jedis** (acrònim de **J** ava R**edis**). A la següent adreça la podeu
-trobar:
-
-<https://repo1.maven.org/maven2/redis/clients/jedis/3.5.0/jedis-3.5.0.jar>
-
-No és l'última versió, però és suficient per a nosaltres i és molt fàcil
-d'utilitzar
-
-Per a fer proves, creem un nou projecte anomenat **Tema7** , i incorporem la
-llibreria de **Jedis**. Creem un paquet anomenat **ExemplesRedis** , per separar
-aquestos dels exercicis.
-
-### Connexió
-
-La connexió és tan senzilla com el següent:
-
-    val con = Jedis("localhost")  
-    con.connect()
-
-
-És a dir, obtenim un objecte **Jedis** passant-li al constructor l'adreça del
-servidor, i després connectem amb el mètode **connect**.
-
-Si el servidor no el tenim en la mateixa màquina, només haurem de substituir
-**localhost** per l'adreça on estiga el servidor.
-
-L'objecte Jedis representarà una connexió amb el servidor **Redis**. Tots els
-comandos que hem vist per a utilitzar des del client de Redis, seran mètodes
-d'aquest objecte. Només haurem d'anar amb compte amb el que ens torna el
-servidor quan fem una petició. Moltes vegades serà un **String** , però en
-moltes altres ocasions seran col·leccions; sets, lists, ...
-
-Per a tancar la connexió:
-
-    con.close()
-
-### Comandos que tornen Strings
-
-Tots els comandos que vam veure seran ara mètodes de l'objecte **Jedis**. En
-concret obtenir el valor d'una clau (comando **get clau**) serà el mètode
-**get** al qual li passarem la clau com a paràmetre:
-
-Ací tenim ja la primera prova. Guardeu el següent codi en un fitxer kotlin
-anomenat **Prova1.kt** :
-
-    
-    
-    import redis.clients.jedis.Jedis
-    
-    fun main() {
-    	val con = Jedis("localhost")
-    	con.connect()
-    	println(con.get("saludar"))
-    	con.close()
-    }
-
-  
-Si volem guardar una clau amb un valor, utilitzarem el mètode
-**set(clau,valor)** , al qual com veiem li hem de passar els dos paràmetres.
-Guardeu el següent codi en un fitxer kotlin anomenat **Prova2.kt** :
-
-    
-    
-    import redis.clients.jedis.Jedis
-    
-    fun main() {
-    	val con = Jedis("localhost")
-    	con.connect()
-    
-    	val valor = "Aquesta clau és una clau creada des de Kotlin"
-    	con.set("clau_Java", valor)
-    
-    	println(con.get("clau_Java"))
-    	con.close()
-    }
-
-  
-  
-
-### Comandos que tornen conjunts
-
-En moltes ocasions, el que ens tornarà **Redis** no és un únic String, sinó un
-conjunt de Strings. Açò serà cert quan treballem amb **Sets** , però també en
-moltes altres ocasions. Per exemple quan demanem unes quantes claus amb
-**MGET** , o quan utilitzem **KEYS** per a que ens torne les claus que
-coincideixen amb el patró.
-
-En algunes ocasions ho haurem d'arreplegar amb un objecte **Set** , quan no
-importe l'ordre. En altres ocasions amb un objecte **List** quan aquest ordre
-sí que importe.
-
-Per exemple, si volem obtenir amb **MGET** els valors d'unes quantes claus, sí
-que importa l'ordre (el primer valor és de la primera clau, el segon de la
-segona). Aleshores ho obtindrem en un **List**. Guardeu el següent codi en un
-fitxer kotlin anomenat **Prova3.kt** :
-
-    
-    
-    import redis.clients.jedis.Jedis
-    
-    fun main() {
-    	val con = Jedis("localhost")
-    	con.connect()
-    
-    	val c = con.mget("mes1", "mes2", "mes3")  // c serà un MutableList
-    	for (s in c)
-    		println(s)
-    
-    	con.close()
-    }
-
-Però en canvi si volem obtenir totes les claus utilitzarem el mètode **keys**
-passant-li el patró com a paràmetre. L'ordre no importa, i a més no el podem
-predir. Per tant arreplegarem el resultat amb un **Set**. Guardeu el següent
-codi en un fitxer kotlin anomenat **Prova4.kt** :
-
-    
-    
-    import redis.clients.jedis.Jedis
-    
-    fun main() {
-    	val con = Jedis("localhost")
-    	con.connect()
-    
-    	val c = con.keys("*")  //c és un MutableSet
-    	for (s in c)
-    		println(s)
-    
-    	con.close()
-    }
-
-I evidentment també serà el cas quan accedim als tipus de dades **List** ,
-**Set** i segurament també **Hash**.
-
-Per a accedir a tot el contingut d'un **List** utilitzem per exemple **lrange
-0 -1**. Si utilitzem aquest mètode de **Jedis** ens tornarà un
-**MutableList**. Guardeu el següent codi en un fitxer kotlin anomenat
-**Prova5.kt** :
-
-    
-    
-    import redis.clients.jedis.Jedis
-    
-    fun main(){
-    	    val con = Jedis("localhost")
-            con.connect()
-            
-            val ll = con.lrange("llista1", 0, -1)  // ll és un MutableList
-            for (e in ll)
-                println(e)
-            
-            con.close()
-    }
-
-Si és un **Set** accedirem amb el mètode **smembers** que tornarà un
-**MutableSet**. Guardeu el següent codi en un fitxer kotlin anomenat
-**Prova6.kt** :
-
-    
-    
-    import redis.clients.jedis.Jedis
-    
-    fun main(){
-    	    val con = Jedis("localhost")
-            con.connect()
-            
-            val s = con.smembers("colors")  // s és un MutableSet
-            for (e in s)
-                println(e)
-            
-            con.close()
-    }
-
-I en el cas de **Hash** , amb el mètode **hkeys** podem obtenir tots els camps
-(subclaus), i a partir d'ells els seus valors. El que torna **hkeys** és un
-**MutableSet**. Guardeu el següent codi en un fitxer kotlin anomenat
-**Prova7.kt** :
-
-    
-    
-    import redis.clients.jedis.Jedis
-    
-    fun main(){
-            val con = Jedis("localhost")
-            con.connect()
-            
-            val subcamps = con.hkeys("empleat_1")  // sucamps és un MutableSet
-            for (subcamp in subcamps)
-                System.out.println(subcamp + ": " + con.hget("empleat_1", subcamp))
-            
-            con.close()
-    }
-
-### Tractament dels conjunts ordenats
-
-Els conjunts ordenats (**Sorted Sets**) tenen mètodes específics, igual que
-tots els tipus. Alguns d'aquestos mètodes tornen Strings, i un altres conjunts
-(**MutableSet**). No hi ha problema amb aquestos tipus, que ja els hem
-tractat.
-
-Però hi ha uns mètodes que tornen llistes **amb més d'un valor per cada
-element**. És el cas dels mètodes **ZRANGE** (amb les variants **ZREVRANGE** ,
-**ZRANGEBYSCORE** i **ZREVRANGEBYSCORE**), que tenen la possibilitat de dur el
-paràmetre **WITHSCORES**. En aquest cas cada element constarà del valor i de
-la puntuació. El que tornaran els mètodes és un **MutableSet** de **Tuples** ,
-objecte proporcionat per **Jedis** , que disposarà dels mètodes
-**getElement()** per al valor i **getScore()** per a la puntuació. Guardeu el
-següent codi en un fitxer kotlin anomenat **Prova8.kt** :
-
-    
-    
-    import redis.clients.jedis.Jedis
-    
-    fun main() {
-    	val con = Jedis("localhost")
-    	con.connect()
-    
-    	val conjOrd = con.zrangeWithScores("puntuacions", 0, -1)  // conjOrd és un MutableSet<Tuple>
-    	for (t in conjOrd)
-    		println(t.getElement() + " ---> " + t.getScore())
-    
-    	con.close()
-    }
-
-
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
 SenseObraDerivada 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/)
