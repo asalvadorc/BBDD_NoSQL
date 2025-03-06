@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_NoSQL/4_relaciones_mongo/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>📌 Implementación de Relaciones en MongoDB - BBDD - Bases de Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\ud83d\udccc Implementaci\u00f3n de Relaciones en MongoDB";
+        var mkdocs_page_input_path = "4_relaciones_mongo.md";
+        var mkdocs_page_url = "/BBDD_NoSQL/4_relaciones_mongo/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">UD 5. BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../2__bases_de_dades_clauvalor/">2 - Bases de Dades Clau-Valor (Redis)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_redis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../3__mongodb/">3 - MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_mongo/">Exercicis</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BBDD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">📌 Implementación de Relaciones en MongoDB</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="implementacion-de-relaciones-en-mongodb"><strong>📌 Implementación de Relaciones en MongoDB</strong></h1>
+<p>MongoDB, al ser una <strong>base de datos NoSQL</strong>, <strong>no maneja relaciones de la misma manera que SQL</strong>. Sin embargo, permite representar relaciones entre documentos utilizando dos enfoques principales:</p>
+<p>1️⃣ <strong>Relaciones mediante documentos embebidos (Denormalización - "Embeddeding")</strong><br />
+2️⃣ <strong>Relaciones mediante referencias (Normalización - "Referencing")</strong>  </p>
+<p>Cada enfoque tiene ventajas y desventajas según el caso de uso.</p>
+<hr />
+<h2 id="1-relacion-con-documentos-embebidos-denormalizacion"><strong>🔹 1. Relación con Documentos Embebidos (Denormalización)</strong></h2>
+<p>Este enfoque <strong>anida los datos relacionados dentro del mismo documento</strong>.<br />
+Se usa cuando los datos relacionados se consultan frecuentemente juntos y no crecen demasiado en tamaño.</p>
+<h3 id="ejemplo-cliente-con-sus-pedidos-embebidos"><strong>Ejemplo: Cliente con sus Pedidos embebidos</strong></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Juan&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;juan@email.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;pedidos&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;producto&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laptop&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;producto&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mouse&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>✅ <strong>Ventajas</strong><br />
+✔ Rápida recuperación de datos (no requiere <code>JOINs</code>).<br />
+✔ Menos consultas a la base de datos.<br />
+✔ Buena opción si los datos no crecen demasiado.  </p>
+<p>❌ <strong>Desventajas</strong><br />
+✖ Si los pedidos crecen mucho, el documento se hace muy grande.<br />
+✖ No se pueden actualizar pedidos de forma independiente sin modificar el cliente.  </p>
+<hr />
+<h2 id="2-relacion-con-referencias-normalizacion"><strong>🔹 2. Relación con Referencias (Normalización)</strong></h2>
+<p>En este enfoque, los documentos <strong>almacenan solo referencias (IDs) de documentos en otras colecciones</strong>.<br />
+Se usa cuando los datos son reutilizados en múltiples documentos o crecen mucho en tamaño.</p>
+<h3 id="ejemplo-cliente-y-pedidos-en-colecciones-separadas-con-referencia"><strong>Ejemplo: Cliente y Pedidos en colecciones separadas con referencia</strong></h3>
+<h4 id="coleccion-clientes"><strong>Colección <code>clientes</code></strong></h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;nombre&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Juan&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;juan@email.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;pedidos&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="mi">102</span><span class="p">]</span><span class="w">  </span><span class="c1">// Referencias a pedidos</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="coleccion-pedidos"><strong>Colección <code>pedidos</code></strong></h4>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;cliente_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;producto&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Laptop&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;cliente_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;producto&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mouse&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>✅ <strong>Ventajas</strong><br />
+✔ Evita documentos muy grandes.<br />
+✔ Permite reutilizar datos sin duplicarlos.<br />
+✔ Se pueden actualizar las referencias sin modificar el documento original.  </p>
+<p>❌ <strong>Desventajas</strong><br />
+✖ Se necesitan consultas adicionales (<code>$lookup</code>) para traer los datos completos.<br />
+✖ Puede ser más lento en consultas frecuentes.  </p>
+<hr />
+<h2 id="comparacion-de-enfoques"><strong>🔍 📌 Comparación de Enfoques</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Embebido</th>
+<th>Referenciado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔹 Rendimiento</td>
+<td>Mejor para lecturas rápidas</td>
+<td>Mejor para estructuras grandes</td>
+</tr>
+<tr>
+<td>🔹 Facilidad de consulta</td>
+<td>Más fácil, todo en un solo documento</td>
+<td>Requiere <code>$lookup</code> para unir datos</td>
+</tr>
+<tr>
+<td>🔹 Tamaño del documento</td>
+<td>Puede crecer mucho</td>
+<td>Más optimizado</td>
+</tr>
+<tr>
+<td>🔹 Modificación de datos</td>
+<td>Más costoso, debe actualizar todo el documento</td>
+<td>Más flexible, actualiza partes específicas</td>
+</tr>
+</tbody>
+</table>
+<p>📌 <strong>Regla general</strong>:<br />
+- <strong>Si los datos relacionados son de uso frecuente y pequeños →</strong> Usa documentos embebidos.<br />
+- <strong>Si los datos crecen mucho o se usan en varias colecciones →</strong> Usa referencias con <code>$lookup</code>.  </p>
+<hr />
+<h2 id="relaciones-en-mongodb-con-lookup"><strong>🔗 Relaciones en MongoDB con <code>$lookup</code></strong></h2>
+<p>Si usaste <strong>referencias</strong> en lugar de embebidos, puedes usar <code>$lookup</code> para unir colecciones.</p>
+<p>Ejemplo para obtener los clientes con sus pedidos referenciados:
+<div class="highlight"><pre><span></span><code>db.clientes.aggregate<span class="o">([</span>
+<span class="w">  </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;</span><span class="nv">$lookup</span><span class="s2">&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;from&quot;</span>:<span class="w"> </span><span class="s2">&quot;pedidos&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;localField&quot;</span>:<span class="w"> </span><span class="s2">&quot;pedidos&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;foreignField&quot;</span>:<span class="w"> </span><span class="s2">&quot;_id&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;as&quot;</span>:<span class="w"> </span><span class="s2">&quot;detalles_pedidos&quot;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="o">])</span>
+</code></pre></div>
+📌 Esto traerá <strong>los datos completos de los pedidos referenciados</strong> en cada cliente.</p>
+<hr />
+<h2 id="que-enfoque-usar-en-cada-caso"><strong>🎯 ¿Qué enfoque usar en cada caso?</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Caso de Uso</th>
+<th>Recomendación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datos relacionados pequeños y consultados juntos</td>
+<td><strong>Embebidos</strong></td>
+</tr>
+<tr>
+<td>Datos que pueden crecer mucho</td>
+<td><strong>Referencias</strong></td>
+</tr>
+<tr>
+<td>Datos reutilizados en múltiples documentos</td>
+<td><strong>Referencias</strong></td>
+</tr>
+<tr>
+<td>Rendimiento en consultas es prioridad</td>
+<td><strong>Embebidos</strong></td>
+</tr>
+<tr>
+<td>Se necesita actualizar datos frecuentemente</td>
+<td><strong>Referencias</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conclusion"><strong>🚀 Conclusión</strong></h2>
+<ul>
+<li>MongoDB <strong>no usa <code>JOINs</code> directamente</strong>, pero puedes hacer relaciones con documentos <strong>embebidos o referenciados</strong>.  </li>
+<li><strong>Embebidos</strong> → Son mejores para consultas rápidas y estructuras pequeñas.  </li>
+<li><strong>Referenciados</strong> → Son mejores cuando los datos crecen mucho o se usan en varios lugares.  </li>
+<li>Para unir colecciones referenciadas, usa <strong><code>$lookup</code></strong>.  </li>
+</ul>
+<p>Si necesitas más ejemplos o un caso específico, dime. 😊🚀</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

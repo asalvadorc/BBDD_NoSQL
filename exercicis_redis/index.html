@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_NoSQL/exercicis_redis/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exercicis - BBDD - Bases de Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercicis";
+        var mkdocs_page_input_path = "exercicis_redis.md";
+        var mkdocs_page_url = "/BBDD_NoSQL/exercicis_redis/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">UD 5. BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../2__bases_de_dades_clauvalor/">2 - Bases de Dades Clau-Valor (Redis)</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercicis</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-1">Exercici 1</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../3__mongodb/">3 - MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_mongo/">Exercicis</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BBDD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">REDIS</li>
+      <li class="breadcrumb-item active">Exercicis</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h1>
+<h2 id="exercici-1">Exercici 1</h2>
+<p>Sobre la Base de Dades <strong>REDIS</strong> del Servidor de l'Institut (adreça
+<strong>89.36.214.106</strong>) fer les següents operacions, tant per a guardar una sèrie
+de dades, com per a recuperar-les. Sempre posarem a les claus el prefix
+<strong>9999x_</strong> , on com sempre heu de substituir 9999 per les 4 últimes xifres del
+vostre DNI, i la x per la letra del NIF. Copia-les en un únic fitxer de text,
+de forma numerada. És aquest fitxer el que hauràs de pujar.</p>
+<ol>
+<li>Crea la clau <strong>9999x_Nom</strong> amb el teu nom</li>
+<li>Crea la clau <strong>9999x_Cognoms</strong> amb els teus cognoms. Una de les dues almenys, nom o cognoms, ha de constar de més d'una paraula.</li>
+<li>Mostra totes les claus teues, i únicament les teues.</li>
+<li>Dóna un temps de vida a la clau <strong>9999x_Nom</strong> de <strong>200 segons</strong>. Comprova el temps de vida que li queda. Posteriorment fes-la <strong>permanent</strong>.</li>
+<li>Crea la clau <strong>9999x_Adreca</strong> , de tipus Hash, amb els subcamps <strong>carrer</strong> , <strong>numero</strong> i <strong>cp</strong>. No importa que les dades siguen falses. Pots fer-lo en una sentència o en més d'una.</li>
+<li>Afegeix a l'anterior el subcamp <strong>poblacio</strong></li>
+<li>Mostra tota la informació de la teua adreça (només la informació, no les subclaus)****</li>
+<li>Crea la clau <strong>9999x_Moduls_ASIX</strong> o <strong>9999x_Moduls_DAM</strong> o <strong>9999x_Moduls_DAW</strong> , depenent del teu cicle. Ha de ser de tipus Set, amb tots els mòduls del teu cicle, que es detallen a continuació. Pots fer-lo en una o en més d'una sentència. <ul>
+<li><strong>ASIX</strong> : ISO, PAX, FH, GBD, LM, FOL, ASO, SXI, IAW, ASGBD, SAD, EIE, PROJ i FCT</li>
+<li><strong>DAW</strong> : SI, BD, PR, LM, ED, FOL, DWEC, DWES, DAW, DIW, EIE, PROJ i FCT</li>
+<li><strong>DAM</strong> : SI, BD, PR, LM, ED, FOL, AD, PMDM, DI, PSP, SGE, EIE, PROJ i FCT.</li>
+</ul>
+</li>
+<li>Crea la clau <strong>9999x_Moduls_meus</strong> , de tipus Set, amb tots els mòduls als quals estàs matriculat. Pots fer-lo en una o en més d'una sentència.</li>
+<li>Guarda en la clau <strong>9999x_Moduls_altres</strong> els mòduls en els quals no estàs matriculat actualment. Ha de ser per mig d'operacions de conjunts. Pots comprovar que el resultat és correcte amb <strong>smembers</strong></li>
+<li>Crea una llista amb el nom <strong>9999x_Notes_BD</strong> amb la nota de 4 exercicis de BD. Les notes seran: 7, 9, 6, 10. Han de quedar en aquest ordre (no en ordre invers)</li>
+<li>Modifica la tercera nota, que passa de ser 6 a 8.</li>
+<li>
+<p>Crea un <strong>Set Ordenat</strong> (<strong>zset</strong>) anomenat <strong>9999x_Carrera</strong> amb els següents valors. Pots fer-lo en una o en més d'una sentència. I ves amb compte perquè els temps han de ser numèrics  </p>
+<pre><code>Sandra  12'52
+Isabel  12'25
+Marta   12'10
+Maria   12'07
+Rosa    11'95
+Bea     11'97
+Balma   11'90
+Anna    12'74
+</code></pre>
+</li>
+<li>
+<p>Trau les participants de la carrera ordenades pel temps</p>
+</li>
+<li>Penalitza el temps de Bea amb 2 dècimes (0'2), i torna a traure les participants ordenades (Bea ha d'haver perdut 2 posicions, passant de tercera a cinquena posició)</li>
+</ol>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 4.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2__bases_de_dades_clauvalor/" class="btn btn-neutral float-left" title="2 - Bases de Dades Clau-Valor (Redis)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3__mongodb/" class="btn btn-neutral float-right" title="3 - MongoDB">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2__bases_de_dades_clauvalor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3__mongodb/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
