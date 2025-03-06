@@ -3,7 +3,7 @@
 Segurament **MongoDB** és el més famós dels Sistemes Gestors de Bases de Dades
 **NoSQL**.
  
-El nom de **MongoDB** prové de la paraula anglesa _hu **mongo** us_, que
+El nom de **MongoDB** prové de la paraula anglesa _hu**mongo**us_, que
 significa enorme, que és el propòsit d'aquesta Base de Dades: guardar grans
 quantitats d'informació. És de codi obert i està programada en C++. El va
 crear l'empresa **10gen** (actualment **MongoDB Inc.**)
@@ -310,13 +310,13 @@ Per a poder fer la instal·lació més bàsica, podrem fer-lo sense permisos
 d'administrador. Si els tenim tot és més còmode, però si no en tenim també ho
 podem fer, com veurem i remarcarem a continuació.
 
-**Instal·lació del servidor**{.azul}
+**Instal·lació del servidor (Linux)**{.azul}
 
-De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú Products - > Comunity Edition ->Comunity Server
+De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú **Products - > Comunity Edition ->Comunity Server**
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
-en el paquet el **tgz** , ja que amb descomprimir el fitxer serà suficient. En
+el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient. En
 el cas d'**Ubuntu 22.04 de 64 bits** , aquest fitxer és:
-**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.4.tgz>**. Però recordeu que us heu d'assegurar de la versió.
+**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz>**. Però recordeu que us heu d'assegurar de la versió.
 
 Senzillament descomprimirem aquest fitxer on vulguem, i ja estarà feta la
 instal·lació bàsica.
@@ -330,12 +330,12 @@ el moment d'arrancar el servidor, li especificarem aquest lloc.
 
 La manera d'arrancar el servidor serà:
 
-    <directori arrel MongoDB>/bin/mongod
+    <directori arrel MongoDB>./bin/mongod
 
 Opcionalment li podem dir on està la Base de Dades (si no ho especifiquem
 assumirà que està en **/data/db**):
 
-    <directori arrel MongoDB>/bin/mongod --dbpath <directori de la BD>
+    <directori arrel MongoDB>./bin/mongod --dbpath <directori de la BD>
 
 Resumint, i estant situats al directori on hem descomprimit MongoDB:
 
@@ -364,13 +364,13 @@ anterior de MongoDB, però és totalment equivalent:
     Una vegada en marxa el servidor, no hem de tancar aquesta terminal, ja que pararíem el servidor.
 
 
-**Instal·lació del client**{.azul}
+**Instal·lació del client MongoShell (Linux)**{.azul}
 
-De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú Products - > Tools ->MongoDB Shell
-i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
-en el paquet el **tgz** , ja que amb descomprimir el fitxer serà suficient. En
+De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú **Products - > Tools ->MongoDB Shell**
+i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions, i millor triar
+el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient. En
 el cas d'**Ubuntu 22.04 de 64 bits** , triarem l'opió genèrica **Linux 64** ja que és la opció que té el paquet **tgz**, i aquest fitxer és:
-**<https://downloads.mongodb.com/compass/mongosh-2.3.6-linux-x64.tgz>**. Però recordeu que us heu d'assegurar de la versió.
+**<https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz>**. Però recordeu que us heu d'assegurar de la versió.
 
 Senzillament descomprimirem aquest fitxer on vulguem, i ja estarà feta la
 instal·lació bàsica.
@@ -379,87 +379,54 @@ Per a connectar un client, obrim una segona terminal i
 executem el client **mongosh** :
 
 
-    <directori arrel MongoDB>/bin/mongosh
+    <directori arrel Mongosh>/bin/mongosh
  
     ./bin/mongosh
 
 ![](T8_3_1_2.png)
 
-Per a provar el seu funcionament, anem a fer un parell de comandos: un per a
-guardar un document i un altre per a recuperar-lo.
-
-Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
-i després l'operació que volem fer. Amb el següent:
-
-    db.exemple.Insert( {msg:"Hola, què tal?"} )
-
-Ens contestarà:
-
-    WriteResult({ "nInserted" : 1 })
-
-Indicant que ha inserit un document en la col·lecció **exemple** (si no estava
-creada, la crearà).
-
-I amb el següent comando recuperem la informació:
-
-    db.exemple.findOne()
-
-Que ens tornarà:
-
-    { "_id" : ObjectId("56cc130590d651d45ef3d3be"), "msg" : "Hola, què tal?" }
-
-Tot ho fa en la mateixa terminal, i a cadascú de nosaltres ens donarà un
-número diferent en **ObjectId**. En la següent imatge es veuen les dues
-operacions:
-
-![](T8_3_1_3.png)
-
-En realitat estem connectats a una Base de Dades anomenada **test**. Podem
-crear i utilitzar més d'una Base de Dades, però en aquest curs tindrém més que
-suficient amb aquesta Base de Dades. Per a comprovar-ho podem executar la
-següent sentència, que ens torna el nom de la Base de Dades:
-
-    > db.getName()  
-    test
 
 ### Instal·lació en Windows
 
-No ofereix cap dificultat. Ens baixem la versió apropiada de MongoDB per a
-Windows, depenent de si és de 32 o 64 bits la nostra versió, que resultarà ser
-un .msi directament executable. En el moment de fer aquestos apunts, el de la
-versió de 64 bits era el fitxer:
+**Instal·lació del servidor (Windows)**{.azul}
 
-<https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.6.2-signed.msi/download>
-<!--
-[mongodb-win32-x86_64-2008plus-
-ssl-3.6.2-signed.msi](https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-
-win32-x86_64-2008plus-ssl-3.6.2-signed.msi/download)
--->
-Una vegada baixat, executem el fitxer. Haurem d'acceptar la llicència,
-instal·lar la versió completa, i acceptar quan Windows ens avise que un
-programa vol instal·lar software. El de sempre.
+No ofereix cap dificultat. Ens baixem la versió apropiada de MongoDB per a
+Windows, que resultarà ser un .msi directament executable. En el moment de fer aquestos apunts, la versió de 64 bits és la 8.0.5:
+
+<https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-8.0.5-signed.msi>
+
 
 Com en el cas de Linux, abans d'executar el servidor haurem de tenir el
 directori creat. Per defecte el directori serà **\data\db**
 
 Aqueste serien les ordres per a crear el directori i després arrancar el
-servidor. Està per a una versió anterior, però seria totalment equivalent:
+servidor.
 
     mkdir \data\db  
-    C:\Program Files\MongoDB\Server\3.2\bin\mongod.exe
+    C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe
 
-En aquest a imatge s'observa que en intentar posar en marxa el servidor, el
-Firewall de Windows ho detecta, i sol·licita permís per posar-lo en marxa.
-Acceptem i prou:
+Hauria d'aparèixer la imatge següent
 
 ![](T8_3_1_11.png)
 
+!!!Note "Nota"
+    Si vas instal·lar MongoDB amb el MongoDB MSI Installer, normalment el servei ja estarà instal·lat i no caldrà executar-lo.
+
+**Instal·lació del client MongoShell (Windows)**{.azul}
+
 Per a connectar-nos com a clients, ho haurem de fer des d'una altra terminal,
-ja que si tanquem aquesta pararem el servidor. El programa és **mongo.exe** :
+amb **mongosh.exe**, que és la interfície de línia d'ordres (CLI) oficial de MongoDB, utilitzada per interactuar amb la base de dades mitjançant ordres en JavaScript:
 
-    C:\Program Files\MongoDB\Server\3.2\bin\mongo.exe
+Ens baixem la versió apropiada de MongoDB per a Windows 
 
-![](T8_3_1_12.png)
+<https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz>
+
+!!!Tip "Mongo Compass"
+    També us podeu descarregar la versió **MongoDB Compass**, que és l'eina gràfica oficial de MongoDB que permet visualitzar, explorar i administrar bases de dades de MongoDB sense necessitat de fer servir la línia de comandos.
+
+    <https://downloads.mongodb.com/compass/mongodb-compass-1.45.3-win32-x64.exe>
+
+**Probar el funcionament**{.azul}
 
 Per a provar el seu funcionament, anem a fer un parell de comandos: un per a
 guardar un document i un altre per a reculerar-lo.
@@ -467,7 +434,7 @@ guardar un document i un altre per a reculerar-lo.
 Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
 i després l'operació que volem fer. Amb el sgüent:
 
-    db.exemple.InsertOne( {msg:"Hola, què tal?"} )
+    db.exemple.insertOne( {msg:"Hola, què tal?"} )
 
 Ens contestarà:
 
@@ -478,7 +445,7 @@ creada, la crearà).
 
 I amb el següent comando recuperem la informació:
 
-  db.exemple.findOne()
+      db.exemple.find()
 
 Que ens tornarà:
 
