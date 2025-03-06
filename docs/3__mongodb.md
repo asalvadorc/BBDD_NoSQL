@@ -422,7 +422,7 @@ Ens baixem la versió apropiada de MongoDB per a Windows
 <https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz>
 
 !!!Tip "Mongo Compass"
-    També us podeu descarregar la versió **MongoDB Compass**, que és l'eina gràfica oficial de MongoDB que permet visualitzar, explorar i administrar bases de dades de MongoDB sense necessitat de fer servir la línia de comandos.
+    També us podeu descarregar la versió **MongoDB Compass**, que és l'eina gràfica oficial de MongoDB que permet visualitzar, explorar i administrar bases de dades de MongoDB sense necessitat d'utilitzar la línia de comandos.
 
     <https://downloads.mongodb.com/compass/mongodb-compass-1.45.3-win32-x64.exe>
 
@@ -464,7 +464,7 @@ següent sentència, que ens torna el nom de la Base de Dades:
 
     db.getName()  
     test
-
+<!--
 ### 3.2.1 - Connexió al servidor de l'Institut
 
 Quan hem utilitzat el client, hem executat el programa **mongo** sense posar-
@@ -476,7 +476,7 @@ volem connectar. En concret, l'adreça del servidor de dades de l'Institut en
 el qual també tenim instal·lat MongoDB:
 
    
-    mongo  89.36.214.106
+    mongosh  89.36.214.106
 
 Podem connectar, però no podrem fer cap operació, perquè està habilitada
 l'autenticació per a previndre atacs, cosa que no tenim en el servidor que hem
@@ -497,6 +497,8 @@ la BD test:
 A partir d'eixe moment ja podrem utilitzar-lo sense problemes:
 
 ![](T8_3_1_1_2.png)
+
+-->
 
 ## 3.3 - Utilització de MongoDB
 
