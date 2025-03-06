@@ -1,45 +1,66 @@
 # 2 - Bases de Dades Clau-Valor
 
-Segurament de tots els tipus de Bases de Dades NoSQL existents, la de més
-fàcil comprensió és la **Base de Dades Clau-Valor**. En ella s'aniran guardant
-parelles clau-valor, és a dir, el nom d'una determinada propietat i el seu
-valor. La clau ha de ser única, és a dir, no es pot repetir ja que en cas
-contrari no es podria tornar a recuperar.
+Dins dels diferents tipus de **Bases de Dades NoSQL**, les **Bases de Dades Clau-Valor** són les més fàcils de comprendre. Aquest model es basa en parelles **clau-valor**, on cada clau representa un identificador únic i el seu valor associat.  
 
-Per tant no hi ha definició de taules ni cap altra estructura; es van guardant
-parelles clau-valor i prou. En el moment de recuperar la informació veurem que
-podrem obtenir el contingut d'una clau, o el de més d'una al mateix temps.
+**🔑 Característica principal:** La clau ha de ser **única**, ja que en cas contrari no es podria recuperar correctament la informació.  
 
-L'exemple que veurem de Base de Dades Clau-Valor és **Redis** , molt famosa
-per a seua potència i eficiència.
+✅ **Avantatge:** No requereix definició de taules ni estructures complexes. Simplement es guarden parelles clau-valor i es recupera la informació mitjançant la clau corresponent.  
 
-La clau sempre és de tipus String, i com ja hem comentat no poden haver dues
-claus iguals. En Redis els valors poden ser de 5 tipus diferents:
+---
 
-  * **Cadenes de caràcters (String)**. Per exemple: **nom_1 -- > Albert**
-  * **Mapes (Hashes)** que vindria a ser un registre amb subcamps (sub-claus). Per exemple: **empleat_1 -- > [ nom="Albert" , departament="10" , sou="1000.0" ]**
-  * **Llistes (Lists)** que són conjunts ordenats de valors. Per exemple: **llista_1 -- > { "Primer" , "Segon" , "Tercer" }**
-  * **Conjunts****(Sets)** són conjunts desordenats de valors. No importa el seu ordre, i de fet serà impredecible l'ordre amb el qual els torna Redis. Per exemple: **colors -- > { "Blau" , "Verd" , "Roig" }******
-  * **Conjunts Ordenats (Sorted Sets)** , que intenten reunir els avantatges dels conjunts, però que seran ordenats. Ja veurem la diferència entre llistes i conjunts ordenats.
+**🔥 Redis: Un exemple de Base de Dades Clau-Valor**{.azul}
 
-Algunes **característiques** de Redis són:
+L'exemple més conegut d'aquest tipus de bases de dades és **Redis**, famosa per la seva **potència i eficiència**.  
 
-  * És una arquitectura client-servidor
-  * És extraordinàriament eficient quan es pot carregar tota en memòria, encara que si no pot carregar-la també funcionarà de forma molt ràpida. I a més manté una sincronització constant a disc per a fer les dades persistents. Aquesta tasca la fa en segon pla, de manera que no afecta al servei.
-  * Per a poder suportar ratios de lectura molt alts fa una replicació master/slave, és a dir que pot haver més d'un servidor, i un és el que actua de master i els altres són rèpliques del primer. El slave rep una còpia inicial de la Base de Dades sencera. A mida que es van realitzant escriptures en el master, es van enviant a tots els slaves connectats. Els clients es poden connectar als distints servidors, bé siga al master o als slaves, sense haver de carregar sempre al master.
+En Redis, les **claus** sempre són de tipus **String**, mentre que els **valors** poden ser de diferents tipus:  
+
+**📌 Tipus de valors en Redis:**{.azul}  
+
+* **Cadenes de caràcters (String)**  
+    - Exemple: nom_1 → "Albert"  
+
+* **Mapes (Hashes)** *(semblants a un registre amb subcamps)*  
+    - Exemple: empleat_1 → { nom="Albert", departament="10", sou="1000.0" }  
+
+* **Llistes (Lists)** *(conjunts ordenats de valors)*  
+    - Exemple: llista_1 → ["Primer", "Segon", "Tercer"]  
+
+* **Conjunts (Sets)** *(conjunts desordenats de valors, l'ordre és imprevisible)*  
+    - Exemple: colors → {"Blau", "Verd", "Roig"}  
+
+* **Conjunts ordenats (Sorted Sets)** *(semblants als Sets, però amb ordre definit)*  
+    - Es diferencia de les **llistes** per la forma en què Redis gestiona l'ordenació interna.  
+
+---
+
+**⚙️ Característiques principals de Redis**{.azul}  
+
+🔹 **Arquitectura Client-Servidor**  
+Redis segueix un model **client-servidor**, on múltiples clients poden connectar-se a un servidor Redis per llegir i escriure dades.  
+
+🔹 **Alta eficiència i velocitat**  
+Redis és extraordinàriament ràpid, especialment quan pot carregar tota la base de dades a **memòria**.  
+- Tot i que prioritza la velocitat en memòria, també permet sincronització constant a disc per garantir la **persistència** de les dades.  
+
+🔹 **Replicació Master-Slave per alta disponibilitat**  
+- Per suportar alts volums de lectura, Redis permet **replicació** (`master/slave`).  
+- Un servidor actua com a **master** i els altres com a **slaves** (rèpliques del master).  
+- Els esclaus poden gestionar consultes de lectura per reduir la càrrega sobre el **master**.  
+
+---
 
 ## 2.1 - Instal·lació de Redis
 
 Redis està construït per a Linux. També funciona, però, des de Windows com
 veurem una miqueta més avant.
 
-**Instal·lació en Linux**{.azul}
+**🐧Instal·lació en Linux**{.azul}
 
 El lloc des d'on baixar-lo és la pàgina oficial:
 
 <https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-from-source/>
 
-En el moment de fer aquestos apunts, l'última versió estable és la **7.4.1**.
+En el moment de fer aquestos apunts, l'última versió estable és la **7.4.1**.  
 
 Per obtenir els fitxers font de la darrera versió estable de Redis des del lloc de descàrregues de Redis, executeu:
 
@@ -113,7 +134,7 @@ En la següent imatge es veu com sí que hem pogut connectar
 
 ![](redis-auth.png)
 
-**Instal·lació en Windows de 64 bits**{.azul}
+**🖥️Instal·lació en Windows de 64 bits**{.azul}
 
 Encara que Redis està construït per a Linux, hi ha versions per a Windows,
 preferiblement de 64 bits.
