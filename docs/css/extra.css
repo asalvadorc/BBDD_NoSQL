@@ -15,12 +15,12 @@ p {
     max-width: 100%; /* Ajusta este valor según tus necesidades */
     margin: 2rem;; /* Centra el contenedor en la página */
 }
-
+/*
 code, pre {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
-
+*/
 .rojo {
     color: red !important;
 }
