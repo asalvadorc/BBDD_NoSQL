@@ -1,30 +1,31 @@
-# **📌 Implementación de Relaciones en MongoDB**
+# **Implementación de Relaciones en MongoDB**
+
 
 MongoDB, al ser una **base de datos NoSQL**, **no maneja relaciones de la misma manera que SQL**. Sin embargo, permite representar relaciones entre documentos utilizando dos enfoques principales:
 
-1️⃣ **Relaciones mediante documentos embebidos (Denormalización - "Embeddeding")**  
-2️⃣ **Relaciones mediante referencias (Normalización - "Referencing")**  
+1️⃣ Relaciones mediante documentos embebidos.  
+2️⃣ Relaciones mediante referencias.
 
-Cada enfoque tiene ventajas y desventajas según el caso de uso.
+Cada enfoque tiene ventajas y desventajas, según el caso de uso.
 
 ---
 
-## **🔹 1. Relación con Documentos Embebidos (Denormalización)**
+## 4.1. Relación con Documentos Embebidos
 Este enfoque **anida los datos relacionados dentro del mismo documento**.  
 Se usa cuando los datos relacionados se consultan frecuentemente juntos y no crecen demasiado en tamaño.
 
-### **Ejemplo: Cliente con sus Pedidos embebidos**
-```json
-{
-  "_id": 1,
-  "nombre": "Juan",
-  "email": "juan@email.com",
-  "pedidos": [
-    { "producto": "Laptop", "total": 1200 },
-    { "producto": "Mouse", "total": 25 }
-  ]
-}
-```
+**<u>Ejemplo</u>:** Cliente con sus Pedidos embebidos
+
+    {
+      "_id": 1,
+      "nombre": "Juan",
+      "email": "juan@email.com",
+      "pedidos": [
+        { "producto": "Laptop", "total": 1200 },
+        { "producto": "Mouse", "total": 25 }
+      ]
+    }
+
 
 ✅ **Ventajas**  
 ✔ Rápida recuperación de datos (no requiere `JOINs`).  
@@ -37,28 +38,30 @@ Se usa cuando los datos relacionados se consultan frecuentemente juntos y no cre
 
 ---
 
-## **🔹 2. Relación con Referencias (Normalización)**
+## 4.2. Relación con Referencias
 En este enfoque, los documentos **almacenan solo referencias (IDs) de documentos en otras colecciones**.  
-Se usa cuando los datos son reutilizados en múltiples documentos o crecen mucho en tamaño.
+Se usa cuando los datos son reutilizados en múltiples documentos o crecen mucho en tamaño.  
+Estas referencias pueden ser de dos tipos; referencias manuales o por DBRefs.
 
-### **Ejemplo: Cliente y Pedidos en colecciones separadas con referencia**
-#### **Colección `clientes`**
-```json
-{
-  "_id": 1,
-  "nombre": "Juan",
-  "email": "juan@email.com",
-  "pedidos": [101, 102]  // Referencias a pedidos
-}
-```
+**<u>Ejemplo</u>:** Cliente y Pedidos en colecciones separadas con referencia 
 
-#### **Colección `pedidos`**
-```json
-[
-  { "_id": 101, "cliente_id": 1, "producto": "Laptop", "total": 1200 },
-  { "_id": 102, "cliente_id": 1, "producto": "Mouse", "total": 25 }
-]
-```
+ **Colección `clientes`**
+
+    {
+      "_id": 1,
+      "nombre": "Juan",
+      "email": "juan@email.com",
+      "pedidos": [101, 102]  // Referencias a pedidos
+    }
+
+
+ **Colección `pedidos`**
+
+    [
+      { "_id": 101, "cliente_id": 1, "producto": "Laptop", "total": 1200 },
+      { "_id": 102, "cliente_id": 1, "producto": "Mouse", "total": 25 }
+    ]
+
 
 ✅ **Ventajas**  
 ✔ Evita documentos muy grandes.  
@@ -71,55 +74,339 @@ Se usa cuando los datos son reutilizados en múltiples documentos o crecen mucho
 
 ---
 
-## **🔍 📌 Comparación de Enfoques**
-| Característica | Embebido | Referenciado |
-|--------------|---------|--------------|
-| 🔹 Rendimiento | Mejor para lecturas rápidas | Mejor para estructuras grandes |
-| 🔹 Facilidad de consulta | Más fácil, todo en un solo documento | Requiere `$lookup` para unir datos |
-| 🔹 Tamaño del documento | Puede crecer mucho | Más optimizado |
-| 🔹 Modificación de datos | Más costoso, debe actualizar todo el documento | Más flexible, actualiza partes específicas |
-
-📌 **Regla general**:  
-- **Si los datos relacionados son de uso frecuente y pequeños →** Usa documentos embebidos.  
-- **Si los datos crecen mucho o se usan en varias colecciones →** Usa referencias con `$lookup`.  
+!!!Tip ""Regla general" 
+    - **Si los datos relacionados son de uso frecuente y pequeños →** Usa documentos embebidos.  
+    - **Si los datos crecen mucho o se usan en varias colecciones →** Usa referencias con `$lookup`.  
 
 ---
 
-## **🔗 Relaciones en MongoDB con `$lookup`**
-Si usaste **referencias** en lugar de embebidos, puedes usar `$lookup` para unir colecciones.
+## 4.3. Relaciones en MongoDB con `$lookup`
 
-Ejemplo para obtener los clientes con sus pedidos referenciados:
-```sh
-db.clientes.aggregate([
-  {
-    "$lookup": {
-      "from": "pedidos",
-      "localField": "pedidos",
-      "foreignField": "_id",
-      "as": "detalles_pedidos"
-    }
-  }
-])
-```
-📌 Esto traerá **los datos completos de los pedidos referenciados** en cada cliente.
+En **MongoDB**, la agregación con **$lookup** permite realizar joins entre colecciones.  
+Es útil cuando seguimos un enfoque de **modelado de datos con referencias**, donde almacenamos solo el **ObjectId** en lugar de los documentos embebidos.
+
+!!!Note "Sintaxis"
+  ```
+      {   
+        $lookup: {       
+          from: <collection_to_join>,     
+          localField: <field_from_the_input_documents>,       
+          foreignField: <field_from_collection>,
+          as: <output_array_field>     
+        }
+      }
+  ```
+**<u>Ejemplo 1</u>:** Relacionar la coleción Usuarios con sus Pedidos
+
+* **Colección `usuarios`**  
+
+        [
+          { "_id": 1, "nombre": "Carlos", "email": "carlos@example.com" },
+          { "_id": 2, "nombre": "Ana", "email": "ana@example.com" }
+        ]
+
+* **Colección `pedidos`**
+
+        [
+          { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 },
+          { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 },
+          { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+        ]
+
+
+* **Consulta** con **`$lookup`** para unir usuarios con sus pedidos
+
+        db.usuarios.aggregate([
+          {
+            "$lookup": {
+              "from": "pedidos",         // Colección a unir
+              "localField": "_id",       // Campo en la colección actual (usuarios)
+              "foreignField": "usuario_id", // Campo en la otra colección (pedidos)
+              "as": "pedidos"            // Nombre del campo de salida con los pedidos
+            }
+          }
+        ])
+
+* **Resultado** esperado
+
+        [
+          {
+            "_id": 1,
+            "nombre": "Carlos",
+            "email": "carlos@example.com",
+            "pedidos": [
+              { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 },
+              { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 }
+            ]
+          },
+          {
+            "_id": 2,
+            "nombre": "Ana",
+            "email": "ana@example.com",
+            "pedidos": [
+              { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+            ]
+          }
+        ]
+
+
+**<u>Ejemplo 2</u>**: Realcionar la colección autores con sus libros.
+
+        db.createCollection("authors");
+        db.createCollection("books");
+
+        // Primera instrucción
+        db.authors.insertOne({
+          name: "Diego",
+          email: "dcortes@example.com",
+          age: 25
+        });
+
+        // Segunda instrucción (Se debe obtener el ID del autor y remplazar)
+        db.books.insertMany([
+          {
+            name: "Philosopher's Stone",
+            author_id: ObjectId("id_of_author")
+          },
+          {
+            name: "Secret of programming",
+            author_id: ObjectId("id_of_author")
+          }
+        ]);  
+
+
+        db.getCollection("authors").aggregate([{
+          $lookup: {
+            from: "books",
+            localField: "_id",
+            foreignField: "author_id",
+            as: "books"
+          }
+        }]);
+
+* **Resultado** esperado
+
+        {
+            "_id" : ObjectId("64a8397a001cd56690c6a9cd"),
+            "name" : "Diego",
+            "email" : "dcortes@example.com",
+            "age" : NumberInt(25),
+            "books" : [
+                {
+                    "_id" : ObjectId("64a839a7001cd56690c6a9ce"),
+                    "name" : "Philosopher's Stone",
+                    "author_id" : ObjectId("64a8397a001cd56690c6a9cd")
+                },
+                {
+                    "_id" : ObjectId("64a839a7001cd56690c6a9cf"),
+                    "name" : "Secret of programming",
+                    "author_id" : ObjectId("64a8397a001cd56690c6a9cd")
+                }
+            ]
+        }  
+
+
+### $lookup anidado
+
+Siguiendo con el ejemplo de usuarios y sus pedidos, si cada pedido tiene detalles en una tercera colección **detalles_pedido**, podemos anidar otro $lookup:
+
+**<u>Ejemplo</u>:** Relacionar Usuarios con Pedidos y detalles_pedido
+
+* **Colección `usuarios`**
+
+        [
+          { "_id": 1, "nombre": "Carlos", "email": "carlos@example.com" },
+          { "_id": 2, "nombre": "Ana", "email": "ana@example.com" }
+        ]
+
+* **Colección `pedidos`**
+
+        [
+          { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 },
+          { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 },
+          { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+        ]
+
+* **Colección `detalles_pedido`**
+
+        [
+          { "_id": 201, "pedido_id": 101, "cantidad": 1, "garantia": "2 años" },
+          { "_id": 202, "pedido_id": 102, "cantidad": 2, "garantia": "1 año" },
+          { "_id": 203, "pedido_id": 103, "cantidad": 1, "garantia": "3 años" }
+        ]
+
+* Consulta con **`$lookup` anidado** 
+
+La idea es obtener una lista de usuarios con sus pedidos, y dentro de cada pedido, los detalles de ese pedido.
+
+          db.usuarios.aggregate([
+          {
+            "$lookup": {
+              "from": "pedidos",
+              "localField": "_id",
+              "foreignField": "usuario_id",
+              "as": "pedidos"
+            }
+          },
+          {
+            "$unwind": "$pedidos"  // Descompone el array de pedidos
+          },
+          {
+            "$lookup": {
+              "from": "detalles_pedido",
+              "localField": "pedidos._id",
+              "foreignField": "pedido_id",
+              "as": "pedidos.detalles"
+            }
+          },
+          {
+            "$group": {
+              "_id": "$_id",
+              "nombre": { "$first": "$nombre" },
+              "email": { "$first": "$email" },
+              "pedidos": { "$push": "$pedidos" }
+            }
+          }
+        ])
+
+* **Resultado** esperado
+
+        [
+          {
+            "_id": 1,
+            "nombre": "Carlos",
+            "email": "carlos@example.com",
+            "pedidos": [
+              {
+                "_id": 101,
+                "usuario_id": 1,
+                "producto": "Laptop",
+                "precio": 1200,
+                "detalles": [
+                  { "_id": 201, "pedido_id": 101, "cantidad": 1, "garantia": "2 años" }
+                ]
+              },
+              {
+                "_id": 102,
+                "usuario_id": 1,
+                "producto": "Mouse",
+                "precio": 50,
+                "detalles": [
+                  { "_id": 202, "pedido_id": 102, "cantidad": 2, "garantia": "1 año" }
+                ]
+              }
+            ]
+          },
+          {
+            "_id": 2,
+            "nombre": "Ana",
+            "email": "ana@example.com",
+            "pedidos": [
+              {
+                "_id": 103,
+                "usuario_id": 2,
+                "producto": "Teclado",
+                "precio": 80,
+                "detalles": [
+                  { "_id": 203, "pedido_id": 103, "cantidad": 1, "garantia": "3 años" }
+                ]
+              }
+            ]
+          }
+        ]
 
 ---
+🎯 Explicación del Pipeline  
 
-## **🎯 ¿Qué enfoque usar en cada caso?**
-| Caso de Uso | Recomendación |
-|------------|--------------|
-| Datos relacionados pequeños y consultados juntos | **Embebidos** |
-| Datos que pueden crecer mucho | **Referencias** |
-| Datos reutilizados en múltiples documentos | **Referencias** |
-| Rendimiento en consultas es prioridad | **Embebidos** |
-| Se necesita actualizar datos frecuentemente | **Referencias** |
 
----
+- $lookup (usuarios → pedidos): Une los pedidos a cada usuario.
+- $unwind (pedidos): Descompone la lista de pedidos para poder hacer otro $lookup.
+- $lookup (pedidos → detalles_pedido): Une los detalles a cada pedido.
+- $group: Vuelve a agrupar los datos para reconstruir la estructura.
 
-## **🚀 Conclusión**
-- MongoDB **no usa `JOINs` directamente**, pero puedes hacer relaciones con documentos **embebidos o referenciados**.  
-- **Embebidos** → Son mejores para consultas rápidas y estructuras pequeñas.  
-- **Referenciados** → Son mejores cuando los datos crecen mucho o se usan en varios lugares.  
-- Para unir colecciones referenciadas, usa **`$lookup`**.  
+### El operador `$unwind`
+  
+El operador **$unwind** en MongoDB descompone un array dentro de un documento en múltiples documentos, cada uno con un solo elemento del array.
 
-Si necesitas más ejemplos o un caso específico, dime. 😊🚀
+Es especialmente útil cuando trabajamos con **$lookup**, porque las consultas de agregación en MongoDB manejan arrays, y a veces es necesario convertirlos en documentos individuales para hacer más joins o transformaciones.
+
+**¿Cuándo se usa $unwind?**  
+
+  ✔ Cuando necesitas descomponer arrays en documentos individuales.  
+  ✔ Para hacer joins en múltiples niveles (como unir detalles_pedido a cada pedido).  
+  ✔ Para hacer cálculos en elementos individuales de un array, como contar cuántos productos ha comprado un usuario.
+
+!!!Note "Ejemplo sin $unwind"
+          db.usuarios.aggregate([
+            {
+              "$lookup": {
+                "from": "pedidos",
+                "localField": "_id",
+                "foreignField": "usuario_id",
+                "as": "pedidos"
+              }
+            }
+          ])
+
+      **Resultado**
+
+            [
+              {
+                "_id": 1,
+                "nombre": "Carlos",
+                "pedidos": [
+                  { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 },
+                  { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 }
+                ]
+              },
+              {
+                "_id": 2,
+                "nombre": "Ana",
+                "pedidos": [
+                  { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+                ]
+              }
+            ]
+
+Cada usuario tiene un array con sus pedidos, pero si queremos hacer un segundo $lookup (por ejemplo, para unir detalles de los pedidos), MongoDB no puede unir arrays directamente.
+
+!!!Note "Ejemplo con $unwind"
+          db.usuarios.aggregate([
+            {
+              "$lookup": {
+                "from": "pedidos",
+                "localField": "_id",
+                "foreignField": "usuario_id",
+                "as": "pedidos"
+              }
+            },
+            {
+              "$unwind": "$pedidos"
+            }
+          ])
+
+      **Resultado**
+
+            [
+              {
+                "_id": 1,
+                "nombre": "Carlos",
+                "pedidos": { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 }
+              },
+              {
+                "_id": 1,
+                "nombre": "Carlos",
+                "pedidos": { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 }
+              },
+              {
+                "_id": 2,
+                "nombre": "Ana",
+                "pedidos": { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+              }
+            ]
+
+Ahora, cada usuario tiene múltiples documentos, uno por cada pedido, lo que permite realizar otro $lookup con detalles_pedido.
+
+----
+
+

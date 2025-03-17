@@ -31,6 +31,7 @@ nav:
   - 2 - Bases de Dades Clau-Valor (Redis): 2__bases_de_dades_clauvalor.md
   - Exercicis: exercicis_redis.md
 - MONGO:  
-  - 3 - MongoDB: 3__mongodb.md
+  - 3 - MongoDB : 3__mongodb.md
   - Exercicis: exercicis_mongo.md
-  #- 4 Relaciones: 4_relaciones_mongo.md
+  - 4 - Relacions: 4_relaciones_mongo.md
+  - Actividad: 5_actividad_mongo.md
