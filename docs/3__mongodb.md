@@ -312,24 +312,27 @@ podem fer, com veurem i remarcarem a continuació.
 
 **Pas 1. Instal·lació del servidor (Linux)**{.azul}
 
-1. De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú **Products - > Comunity Edition ->Comunity Server**
+1- De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú **Products - > Comunity Edition ->Comunity Server**
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
 el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient. En
 el cas d'**Ubuntu 22.04 de 64 bits** , aquest fitxer és:
-**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz>**. Però recordeu que us heu d'assegurar de la versió.
+**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz>**. Però recordeu que us heu d'assegurar de la versió.  
 
-2. Descomprimirem aquest fitxer on vulguem, i ja estarà feta la
+
+2- Descomprimirem aquest fitxer on vulguem, i ja estarà feta la
 instal·lació bàsica.
 
 
-3. Es necessari tindre un directori de dades per emmagatzemar la base de dades. Creem el directori de dades en el directori arrel (carpeta d'instal·lació).
+3- Es necessari tindre un directori de dades per emmagatzemar la base de dades. Creem el directori de dades en el directori arrel (carpeta d'instal·lació).
 
         mkdir /data  
         mkdir /data/db
 
-4. Arranquem el servidor:
+4- Arranquem el servidor:
+
+      <directori arrel Mongosh>/bin/mongosh
       
-        ./bin/mongod --dbpath ./data/db
+      ./bin/mongod --dbpath ./data/db
 
 
 
@@ -345,16 +348,16 @@ anterior de MongoDB, però és totalment equivalent:
 
 **Pas 2. Instal·lació del client MongoShell (Linux)**{.azul}
 
-De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú **Products - > Tools ->MongoDB Shell**
+1- De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú **Products - > Tools ->MongoDB Shell**
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions, i millor triar
 el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient. En
 el cas d'**Ubuntu 22.04 de 64 bits** , triarem l'opió genèrica **Linux 64** ja que és la opció que té el paquet **tgz**, i aquest fitxer és:
 **<https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz>**. Però recordeu que us heu d'assegurar de la versió.
 
-Senzillament descomprimirem aquest fitxer on vulguem, i ja estarà feta la
+2- Descomprimirem aquest fitxer on vulguem, i ja estarà feta la
 instal·lació bàsica.
 
-Per a connectar un client, obrim una segona terminal i
+3- Per a connectar un client, obrim una segona terminal i
 executem el client **mongosh** :
 
 
@@ -367,18 +370,17 @@ executem el client **mongosh** :
 
 ### 🖥️Instal·lació en Windows
 
-**Instal·lació del servidor (Windows)**{.azul}
+**Pas 1. Instal·lació del servidor (Windows)**{.azul}
 
-No ofereix cap dificultat. Ens baixem la versió apropiada de MongoDB per a
-Windows, que resultarà ser un .msi directament executable. En el moment de fer aquestos apunts, la versió de 64 bits és la 8.0.5:
+1- Ens baixem la versió apropiada de MongoDB per a Windows, que resultarà ser un .msi directament executable. En el moment de fer aquestos apunts, la versió de 64 bits és la 8.0.5:
 
 <https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-8.0.5-signed.msi>
 
 
-Com en el cas de Linux, abans d'executar el servidor haurem de tenir el
+2- Com en el cas de Linux, abans d'executar el servidor haurem de tenir el
 directori creat. Per defecte el directori serà **\data\db**
 
-Aqueste serien les ordres per a crear el directori i després arrancar el
+3- Aqueste serien les ordres per a crear el directori i després arrancar el
 servidor.
 
     mkdir \data\db  
@@ -391,12 +393,12 @@ Hauria d'aparèixer la imatge següent
 !!!Note "Nota"
     Si vas instal·lar MongoDB amb el MongoDB MSI Installer, normalment el servei ja estarà instal·lat i no caldrà executar-lo.
 
-**Instal·lació del client MongoShell (Windows)**{.azul}
+**Pas 2. Instal·lació del client MongoShell (Windows)**{.azul}
 
-Per a connectar-nos com a clients, ho haurem de fer des d'una altra terminal,
+1- Per a connectar-nos com a clients, ho haurem de fer des d'una altra terminal,
 amb **mongosh.exe**, que és la interfície de línia d'ordres (CLI) oficial de MongoDB, utilitzada per interactuar amb la base de dades mitjançant ordres en JavaScript:
 
-Ens baixem la versió apropiada de MongoDB per a Windows 
+Ens baixem la versió apropiada de MongoDB per a Windows
 
 <https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz>
 
@@ -404,6 +406,50 @@ Ens baixem la versió apropiada de MongoDB per a Windows
     També us podeu descarregar la versió **MongoDB Compass**, que és l'eina gràfica oficial de MongoDB que permet visualitzar, explorar i administrar bases de dades de MongoDB sense necessitat d'utilitzar la línia de comandos.
 
     <https://downloads.mongodb.com/compass/mongodb-compass-1.45.3-win32-x64.exe>
+
+
+<!--
+### 3.2.1 - Connexió al servidor de l'Institut
+
+Quan hem utilitzat el client, hem executat el programa **mongo** sense posar-
+li res més. Per defecte s'ha connectat al servidor que tenim en la mateixa
+màquina.
+
+Però en realitat li podem especificar l'adreça on està el servidor al qual
+volem connectar. En concret, l'adreça del servidor de dades de l'Institut en
+el qual també tenim instal·lat MongoDB:
+
+   
+    mongosh  89.36.214.106
+
+Podem connectar, però no podrem fer cap operació, perquè està habilitada
+l'autenticació per a previndre atacs, cosa que no tenim en el servidor que hem
+instal·lat cadascú en la seua màquina.
+
+Aleshores, si intentem fer qualsevol operació, ens donarà error perquè no
+estem autenticats:
+
+![](T8_3_1_1_1.png)
+
+La manera d'autenticar serà utilitzant el comando **db.auth("_usuari"_ ,
+"_contrasenya"_)**. I en connectarem a un usuari que té permís per a utilitzar
+la BD test:
+
+  * Usuari: **ad**
+  * Contrasenya: **Ad_ieselcamina$**
+
+A partir d'eixe moment ja podrem utilitzar-lo sense problemes:
+
+![](T8_3_1_1_2.png)
+
+-->
+
+## 3.3 - Utilització de MongoDB
+
+Recordeu que tindrem dues teminals:
+
+  * Una amb el servidor en marxa (i que no hem de tancar): **mongod**
+  * Una altra amb el client que es connecta al servidor: **mongosh**
 
 **Probar el funcionament**{.azul}
 
@@ -443,57 +489,8 @@ següent sentència, que ens torna el nom de la Base de Dades:
 
     db.getName()  
     test
-<!--
-### 3.2.1 - Connexió al servidor de l'Institut
 
-Quan hem utilitzat el client, hem executat el programa **mongo** sense posar-
-li res més. Per defecte s'ha connectat al servidor que tenim en la mateixa
-màquina.
-
-Però en realitat li podem especificar l'adreça on està el servidor al qual
-volem connectar. En concret, l'adreça del servidor de dades de l'Institut en
-el qual també tenim instal·lat MongoDB:
-
-   
-    mongosh  89.36.214.106
-
-Podem connectar, però no podrem fer cap operació, perquè està habilitada
-l'autenticació per a previndre atacs, cosa que no tenim en el servidor que hem
-instal·lat cadascú en la seua màquina.
-
-Aleshores, si intentem fer qualsevol operació, ens donarà error perquè no
-estem autenticats:
-
-![](T8_3_1_1_1.png)
-
-La manera d'autenticar serà utilitzant el comando **db.auth("_usuari"_ ,
-"_contrasenya"_)**. I en connectarem a un usuari que té permís per a utilitzar
-la BD test:
-
-  * Usuari: **ad**
-  * Contrasenya: **Ad_ieselcamina$**
-
-A partir d'eixe moment ja podrem utilitzar-lo sense problemes:
-
-![](T8_3_1_1_2.png)
-
--->
-
-## 3.3 - Utilització de MongoDB
-
-Començarem la utilització de MongoDB des de la consola que havíem arrancat al
-final de la instal·lació.
-
-Recordeu que tindrem dues teminals:
-
-  * Una amb el servidor en marxa (i que no hem de tancar): **mongod**
-  * Una altra amb el client que es connecta al servidor: **mongosh**
-
-En aquesta última consola del client podem utilitzar sentències del llenguatge
-**Javascipt** , però el que més ens interessarà, evidentment, són les
-sentències d'accés a dades. Del llenguatge Javascript pràcticament l'únic que
-utilitzarem són variables i algunes funcions.
-
+    
 **Utilització de variables**{.azul}
 
 Com comentàvem el que més utilitzarem del llenguatge **Javascript** és la
