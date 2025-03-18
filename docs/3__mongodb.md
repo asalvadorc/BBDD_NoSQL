@@ -310,47 +310,26 @@ Per a poder fer la instal·lació més bàsica, podrem fer-lo sense permisos
 d'administrador. Si els tenim tot és més còmode, però si no en tenim també ho
 podem fer, com veurem i remarcarem a continuació.
 
-**Instal·lació del servidor (Linux)**{.azul}
+**Pas 1. Instal·lació del servidor (Linux)**{.azul}
 
-De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú **Products - > Comunity Edition ->Comunity Server**
+1. De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú **Products - > Comunity Edition ->Comunity Server**
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
 el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient. En
 el cas d'**Ubuntu 22.04 de 64 bits** , aquest fitxer és:
 **<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz>**. Però recordeu que us heu d'assegurar de la versió.
 
-Senzillament descomprimirem aquest fitxer on vulguem, i ja estarà feta la
+2. Descomprimirem aquest fitxer on vulguem, i ja estarà feta la
 instal·lació bàsica.
 
 
-Per defecte el directori de la Base de Dades és **/data/db**
-
-L'únic problema que podríem tenir si no som administradors és que no tinguem
-permís per crear aquest directori. Aleshores crearem un altre directori i en
-el moment d'arrancar el servidor, li especificarem aquest lloc.
-
-La manera d'arrancar el servidor serà:
-
-    <directori arrel MongoDB>./bin/mongod
-
-Opcionalment li podem dir on està la Base de Dades (si no ho especifiquem
-assumirà que està en **/data/db**):
-
-    <directori arrel MongoDB>./bin/mongod --dbpath <directori de la BD>
-
-Resumint, i estant situats al directori on hem descomprimit MongoDB:
-
-* Creem el directori de dades:
+3. Es necessari tindre un directori de dades per emmagatzemar la base de dades. Creem el directori de dades en el directori arrel (carpeta d'instal·lació).
 
         mkdir /data  
         mkdir /data/db
 
-* Si no som administradors, arranquem el servidor:
+4. Arranquem el servidor:
       
         ./bin/mongod --dbpath ./data/db
-
-* Si som administradors, arranquem el servidor:
-
-        ./bin/mongod
 
 
 
@@ -364,7 +343,7 @@ anterior de MongoDB, però és totalment equivalent:
     Una vegada en marxa el servidor, no hem de tancar aquesta terminal, ja que pararíem el servidor.
 
 
-**Instal·lació del client MongoShell (Linux)**{.azul}
+**Pas 2. Instal·lació del client MongoShell (Linux)**{.azul}
 
 De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú **Products - > Tools ->MongoDB Shell**
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions, i millor triar
