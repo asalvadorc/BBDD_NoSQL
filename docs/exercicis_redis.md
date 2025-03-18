@@ -1,7 +1,5 @@
 # :pencil2: Exercicis
 
-## Exercici 1
-
 Sobre la Base de Dades **REDIS** del Servidor de l'Institut (adreça
 **89.36.214.106**) fer les següents operacions, tant per a guardar una sèrie
 de dades, com per a recuperar-les. Sempre posarem a les claus el prefix

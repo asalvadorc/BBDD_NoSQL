@@ -25,7 +25,7 @@ Realiza consultas en la base de datos MongoDB para obtener información  que com
 
 Investiga sobre la importancia de los índices en MongoDB y cómo  pueden mejorar el rendimiento de las consultas.  
 Crea y gestiona índices en la base de datos MongoDB, utilizando los  comandos adecuados. 
- 
+  
 
 6️⃣ **Entrega**
    

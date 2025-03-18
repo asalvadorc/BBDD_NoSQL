@@ -54,7 +54,7 @@ Redis és extraordinàriament ràpid, especialment quan pot carregar tota la bas
 Redis està construït per a Linux. També funciona, però, des de Windows com
 veurem una miqueta més avant.
 
-**🐧Instal·lació en Linux**{.azul}
+### 🐧Instal·lació en Linux
 
 El lloc des d'on baixar-lo és la pàgina oficial:
 
@@ -79,6 +79,8 @@ Per compilar Redis, primer extrae el fitxer tar, canvia al directori arrel i des
 
 
 Amb açò s'haurien d'haver generat els executables, i ja hauria de funcionar.
+
+**Executar Servidor i Client Redis**
 
 Per a posar en marxa el servidor, quasi que el més còmode serà obrir un
 terminal, situar-nos en el directori **redis-stable/src** i des d'ahi executar
@@ -116,6 +118,8 @@ la imatge es pot comprovar:
 Hem creat una clau anomenada **clau_1** amb el valor **primera** , com es pot
 comprovar en el moment d'obtenir-la amb **get**.
 
+**Conexió a un servidor Redis extern**
+
 Si al programa **redis-cli** no li posem paràmetres, intentarà fer una
 connexió local (localhost). Si volem connectar a un servidor situat en una
 altra adreça, li la posem amb el paràmetre **-h adreça** , per exemple:
@@ -134,15 +138,15 @@ En la següent imatge es veu com sí que hem pogut connectar
 
 ![](redis-auth.png)
 
-**🖥️Instal·lació en Windows de 64 bits**{.azul}
+### 🖥️Instal·lació en Windows de 64 bits
 
 Encara que Redis està construït per a Linux, hi ha versions per a Windows,
 preferiblement de 64 bits.
 
 El lloc on poder baixar els fitxers de Redis per a Windows de 64 bits és: <https://github.com/MSOpenTech/redis/releases>
 
-!!!Tip "Versió"
-    En el moment de fer aquestos apunts, la darreara versió es la 3.0.504.
+!!!Tip ""
+    Redis Insight està disponible per a altres sistemes operatius.
 
 ![](redis_5.png)
 
@@ -159,7 +163,7 @@ Executem **redis-server** directament i ja el tindrem en marxa:
 
 Executem també el **redis-cli** i el resultat serà el mateix que en Linux.
 
-##  2.2 - Entron gràfic: Redis Insight
+##  2.2 - Entorn gràfic: Redis Insight
 
 Com hem comprovat en el punt anterior, la connexió que fem des del client és a
 través de consola. Per tant haurem de posar comandos i ens contestarà la seua
@@ -183,7 +187,7 @@ les plataformes:
 ![](redis_1.png)
 
 
-**Instal·lació en Windows**
+**🖥️Instal·lació en Windows de 64 bits**{.azul}
 
 En Windows el que ens baixarem és un exe. L'executem (permetent l'execució
 quan ho pregunta Windows) i li podem donar a totes les opcions per defecte.
@@ -203,6 +207,8 @@ Per a connectar a un remot, posarem la seua adreça.
 ![](redis_4.png)
 
 En aquesta imatge es veu com hem connectat perfectament als dos servidors. 
+
+
 
 ## 2.3 - Utilització de Redis
 
