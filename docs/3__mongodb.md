@@ -453,8 +453,14 @@ Recordeu que tindrem dues teminals:
 
 **Probar el funcionament**{.azul}
 
-Per a provar el seu funcionament, anem a fer un parell de comandos: un per a
-guardar un document i un altre per a reculerar-lo.
+Per a provar el seu funcionament, anem a fer un parell de comandos: 
+
+![](funcionamiento2.png)
+
+- Mostrar la versió del servidor MongoDB => `db.version()`  
+- Mostrar totes les bases de dades en el teu servidor MongoDB => `show dbs`
+- Mostrar el nom de la BD del servidor MongoDB => `db.getName()`  
+- Mostrar totes les col·leccions en la base de dades seleccionada => `show collections`
 
 Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
 i després l'operació que volem fer. Amb el sgüent:
@@ -2690,7 +2696,11 @@ En l'exemple anterior, ara saltem els 3 primers:
 
 ## 3.5 - Resum Comandos
 
-**Operacions sobre el servidor MongoDB**  
+Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
+i després l'operació que volem fer.
+
+**Operacions sobre el servidor MongoDB**{.azul}  
+
 - Connectar a MongoDB => `mongo`  
 - Seleccionar la base de dades => `use miBaseDeDatos`  
 - Mostrar totes les bases de dades en el teu servidor MongoDB => `show dbs`  
@@ -2701,25 +2711,27 @@ En l'exemple anterior, ara saltem els 3 primers:
 - Mostrar les operacions que s’estan executant en el servidor => `db.currentOp()`  
 - Mostrar informació de la base de dades actual => `db.stats()`  
 
-**Operacions sobre col·leccions**  
+**Operacions sobre col·leccions**{.azul}  
+
 - Mostrar totes les col·leccions en la base de dades seleccionada => `show collections`  
 - Crear una col·lecció dins de la base de dades on estiguem situats => `db.createCollection("nom_de_la_col·lecció")`  
 
-**Altres funcions sobre una col·lecció**  
-`db.nom_de_la_col·lecció.XXXXXXX`  
+**Altres funcions sobre una col·lecció**{.azul}  `db.nom_de_la_col·lecció.XXXXXXX`  
+
 - Eliminar la col·lecció => `drop()`  
 - Formatar l’eixida => `pretty()`  
-- Comptar de manera precisa el nombre de documents de la col·lecció => `countDocuments()`  
+- Comptar de manera precisa el nombre de documents de la col·lecció => `countDocuments()` 
 - Realitzar un recompte per a una estimació ràpida => `estimatedDocumentCount()`  
 
-**Operacions CRUD dins de la col·lecció**  
-`db.nom_de_la_col·lecció.XXXXXXX`  
+**Operacions CRUD dins de la col·lecció**{.azul}  `db.nom_de_la_col·lecció.XXXXXXX`
+
 - **Create (crear document/s)** => `insertOne()`, `insertMany()`  
 - **Read (llegir, buscar document/s)** => `findOne()`, `find()`, `group()`, `sort()`, `limit()`, `skip()`  
 - **Update (modificar document/s)** => `updateOne()`, `updateMany()`, `replaceOne()`  
 - **Delete (eliminar document/s)** => `deleteOne()`, `deleteMany()`  
 
-**Operacions avançades**  
+**Operacions avançades**{.azul}  
+
 - Pipeline o agregació => `aggregation()`  
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
