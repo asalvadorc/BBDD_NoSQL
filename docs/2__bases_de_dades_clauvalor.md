@@ -138,7 +138,7 @@ En la següent imatge es veu com sí que hem pogut connectar
 
 ![](redis-auth.png)
 
-### 🖥️Instal·lació en Windows de 64 bits
+### 🖥️Instal·lació en Windows
 
 Encara que Redis està construït per a Linux, hi ha versions per a Windows,
 preferiblement de 64 bits.

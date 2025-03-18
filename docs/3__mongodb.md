@@ -304,7 +304,7 @@ També està la possibilitat de crear un servidor en el núvol, fins i tot
 gratuït. És l'opció que ens suggereix Mongo per defecte, però nosaltres no la
 utilitzarem.
 
-### Instal·lació en Linux
+### 🐧Instal·lació en Linux
 
 Per a poder fer la instal·lació més bàsica, podrem fer-lo sense permisos
 d'administrador. Si els tenim tot és més còmode, però si no en tenim també ho
@@ -386,7 +386,7 @@ executem el client **mongosh** :
 ![](T8_3_1_2.png)
 
 
-### Instal·lació en Windows
+### 🖥️Instal·lació en Windows
 
 **Instal·lació del servidor (Windows)**{.azul}
 
