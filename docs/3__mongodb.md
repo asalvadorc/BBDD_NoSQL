@@ -490,7 +490,7 @@ següent sentència, que ens torna el nom de la Base de Dades:
     db.getName()  
     test
 
-    
+
 **Utilització de variables**{.azul}
 
 Com comentàvem el que més utilitzarem del llenguatge **Javascript** és la
@@ -2688,6 +2688,39 @@ En l'exemple anterior, ara saltem els 3 primers:
 { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
 ```
 
+### 3.5 Resum Comandos
+
+**Operacions sobre el servidor MongoDB**  
+- Connectar a MongoDB => `mongo`  
+- Seleccionar la base de dades => `use miBaseDeDatos`  
+- Mostrar totes les bases de dades en el teu servidor MongoDB => `show dbs`  
+- Mostrar els usuaris de la base de dades actual => `show users`  
+- Mostrar els rols definits en la base de dades actual => `show roles`  
+- Mostrar la versió del servidor MongoDB => `db.version()`  
+- Mostrar el nom de la BD del servidor MongoDB => `db.getName()`  
+- Mostrar les operacions que s’estan executant en el servidor => `db.currentOp()`  
+- Mostrar informació de la base de dades actual => `db.stats()`  
+
+**Operacions sobre col·leccions**  
+- Mostrar totes les col·leccions en la base de dades seleccionada => `show collections`  
+- Crear una col·lecció dins de la base de dades on estiguem situats => `db.createCollection("nom_de_la_col·lecció")`  
+
+**Altres funcions sobre una col·lecció**  
+`db.nom_de_la_col·lecció.XXXXXXX`  
+- Eliminar la col·lecció => `drop()`  
+- Formatar l’eixida => `pretty()`  
+- Comptar de manera precisa el nombre de documents de la col·lecció => `countDocuments()`  
+- Realitzar un recompte per a una estimació ràpida => `estimatedDocumentCount()`  
+
+**Operacions CRUD dins de la col·lecció**  
+`db.nom_de_la_col·lecció.XXXXXXX`  
+- **Create (crear document/s)** => `insertOne()`, `insertMany()`  
+- **Read (llegir, buscar document/s)** => `findOne()`, `find()`, `group()`, `sort()`, `limit()`, `skip()`  
+- **Update (modificar document/s)** => `updateOne()`, `updateMany()`, `replaceOne()`  
+- **Delete (eliminar document/s)** => `deleteOne()`, `deleteMany()`  
+
+**Operacions avançades**  
+- Pipeline o agregació => `aggregation()`  
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
 SenseObraDerivada 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/)
