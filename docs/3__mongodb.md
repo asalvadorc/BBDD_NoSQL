@@ -2688,7 +2688,7 @@ En l'exemple anterior, ara saltem els 3 primers:
 { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
 ```
 
-### 3.5 Resum Comandos
+## 3.5 - Resum Comandos
 
 **Operacions sobre el servidor MongoDB**  
 - Connectar a MongoDB => `mongo`  
