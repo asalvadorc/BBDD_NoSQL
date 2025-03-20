@@ -462,7 +462,7 @@ Per a provar el seu funcionament, anem a fer alguns comandos:
 - Mostrar el nom de la BD del servidor MongoDB => `db.getName()`  
 - Mostrar totes les col·leccions en la base de dades seleccionada => `show collections`
 
-## 3.4 Utilització de variables
+## 3.4 - Utilització de variables
 
 Com comentàvem el que més utilitzarem del llenguatge **Javascript** és la
 utilització de variables, que ens pot ser molt útil en algunes ocasions.
@@ -2642,7 +2642,7 @@ En l'exemple anterior, ara saltem els 3 primers:
     { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
 
 
-## 3.5 - Resum Comandos
+## 3.10 - Resum Comandos
 
 Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
 i després l'operació que volem fer.
