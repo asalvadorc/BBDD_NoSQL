@@ -33,5 +33,5 @@ nav:
 - MONGO:  
   - 3 - MongoDB : 3__mongodb.md
   - Exercicis: exercicis_mongo.md
-  - 4 - Relacions: 4_relaciones_mongo.md
-  - Actividad: 5_actividad_mongo.md
+  - 4 - Relacions en MongoDB: 4_relaciones_mongo.md
+  - Activitat: 5_actividad_mongo.md

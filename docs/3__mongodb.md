@@ -107,7 +107,7 @@ Amb JSON podrem representar:
   * **Objectes** , que és una col·lecció de membres, cadascú dels quals pot ser una parella clau valor, o altres objectes (fins i tot arrays): es representen entre claus, i amb els elements separats per comes: **{ "nom1" : "valor1" , "nom2": valor2 , valor 3 , ... }**
   * **Arrays** , que són llistes d'elements. Els elements no tenen per què tenir la mateixa estructura, però nosaltres intentarem que sí que la tinguen per coherència. Cada element pot ser un valor , una parella clau valor, un objecte o un array.
 
-Veja'm algun exemples:
+Veje'm algun exemples:
 
     { "p1" : 2 , "p2" : 4 , "p3" : 6 , "p4" : 8 , "p5" : 10 }
 
@@ -444,7 +444,7 @@ A partir d'eixe moment ja podrem utilitzar-lo sense problemes:
 
 -->
 
-## 3.3 - Utilització de MongoDB
+## 3.3 - Funcionament de MongoDB
 
 Recordeu que tindrem dues teminals:
 
@@ -453,7 +453,7 @@ Recordeu que tindrem dues teminals:
 
 **Probar el funcionament**{.azul}
 
-Per a provar el seu funcionament, anem a fer un parell de comandos: 
+Per a provar el seu funcionament, anem a fer alguns comandos: 
 
 ![](funcionamiento2.png)
 
@@ -462,42 +462,7 @@ Per a provar el seu funcionament, anem a fer un parell de comandos:
 - Mostrar el nom de la BD del servidor MongoDB => `db.getName()`  
 - Mostrar totes les col·leccions en la base de dades seleccionada => `show collections`
 
-Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
-i després l'operació que volem fer. Amb el sgüent:
-
-    db.exemple.insertOne( {msg:"Hola, què tal?"} )
-
-Ens contestarà:
-
-    WriteResult({ "nInserted" : 1 })
-
-Indicant que ha inserit un document en la col·lecció **exemple** (si no estava
-creada, la crearà).
-
-I amb el següent comando recuperem la informació:
-
-      db.exemple.find()
-
-Que ens tornarà:
-
-    { "_id" : ObjectId("56cc1acd73b559230de8f71b"), "msg" : "Hola, què tal?" }
-
-Tot ho fa en la mateixa terminal, i a cadascú de nosaltres ens donarà un
-número diferent en **ObjectId**. En la següent imatge es veuen les dues
-operacions:
-
-![](T8_3_1_13.png)
-
-En realitat estem connectats a una Base de Dades anomenada **test**. Podem
-crear i utilitzar més d'una Base de Dades, però en aquest curs tindrés més que
-suficient amb aquesta Base de Dades. Per a comprovar-ho podem executar la
-següent sentència, que ens torna el nom de la Base de Dades:
-
-    db.getName()  
-    test
-
-
-**Utilització de variables**{.azul}
+## 3.4 Utilització de variables
 
 Com comentàvem el que més utilitzarem del llenguatge **Javascript** és la
 utilització de variables, que ens pot ser molt útil en algunes ocasions.
@@ -566,7 +531,7 @@ restriccions:
   * Els valors són dels tipus que veurem en la pregunta 3.2.1
   * Un document guardat ha de contenir obligatòriament un camp anomenat **_id** , i que contindrà un valor únic en la col·lecció i servirà per a identificar-lo. Si en guardar un document no li hem posat camp **_id** , el generarà automàticament MongoDB.
 
-### 3.3.1 - Tipus de dades
+## 3.5 - Tipus de dades
 
 Els valors dels elements, és a dir de les parelles clau valor, poden ser d'uns
 quants tipus. Fem un ràpid repàs.
@@ -580,13 +545,13 @@ variable i després el resultat d'haver guardat la variable. Utilitzarem
 requadres blancs. Els requadres grocs són únicament de la definició d'una
 clau-valor d'un determinat tipus
 
-**NULL**
+**NULL**{.azul}
 
 Més que un tipus de dades és un valor, millor dit, l'absència de valor
 
     { "x" : null }
 
-**BOOLEAN**
+**BOOLEAN**{.azul}
 
 El tipus booleà, que pot agafar els valors true o false.
 
@@ -594,7 +559,7 @@ El tipus booleà, que pot agafar els valors true o false.
 
     { "y" : false }
 
-**NUMBER**
+**NUMBER**{.azul}
 
 Per defecte, el tiups de dades numèrics serà el de coma flotant (**float**),
 simple precisió. Si volem un altre tiups (enter, doble precisió, ...) ho
@@ -611,13 +576,13 @@ funció de conversió:
 
     { "y" : NumberInt("3") }
 
-**STRING**
+**STRING**{.azul}
 
 Es pot guardar qualsevol cadena amb caràcters de la codificació UTF-8
 
     { x : "Hola, què tal?"}
 
-**DATE**
+**DATE**{.azul}
 
 Es guarda data i hora, i internament es guarden en milisegons des de l'any
 inicial. No es guarda el **_Time zone_** , és a dir, la desviació respecte a
@@ -651,7 +616,7 @@ amb la data i hora actual, però un string):
     > z = Date("2022-01-16")  
     Sun Jan 16 2022 22:20:09 GMT+0100 (CET)
 
-**ARRAY**
+**ARRAY**{.azul}
 
 És un conjunt d'elements, cadascun de qualsevol tipus, encara que el més
 habitual és que siguen del mateix tipus. Van entre claudàtors (**[ ]**) i els
@@ -666,7 +631,7 @@ Com comentàvem, cada element de l'array pot ser de qualsevol tipus:
 En MongoDB podrem treballar molt bé amb arrays, i tindrem operacions per a
 poder buscar dins de l'array, modificar un element, crear índex, ...
 
-**DOCUMENTS (OBJECTES)**
+**DOCUMENTS (OBJECTES)**{.azul}
 
 Els documents poden contenir com a elements uns altres documents (**objectes**
 en la terminologia JSON, però **documents** en la terminologia de MongoDB).
@@ -722,7 +687,7 @@ elements d'un array, posant l'índex entre claudàtors.
       > doc.telèfons[0]  
       964223344
 
-**OBJECT ID**
+**OBJECT ID**{.azul}
 
 És un tipus que defineix MongoDB per a poder obtenir valors únics. És el valor
 per defecte de l'element **_id** , necessari en tot document (atenció: en un
@@ -732,13 +697,21 @@ l'objecte de JSON). És un número long, és a dir que utilitza 24 bytes.
 Farem proves de la seua utilització en la seüent pregunta, en el moment
 d'inserir diferents documents.
 
-### 3.3.2 - Operacions bàsiques
+## 3.6 - Operacions CRUD Bàsiques
 
 En aquest punt anem a veure les operacions més bàsiques, per a poder treballar
 sobre exemples pràctics, i així disposar ja d'unes dades inicials per a
 practicar.
 
-#### Inserció elemental: insert {.azul}
+### Creació: insert
+
+MongoDB proporciona els  mètodes següents per inserir documents en una col·lecció:
+  
+  - db.collection.**insertOne()**
+
+  - db.collection.**insertMany()**
+
+![](T8_insert.png)
 
 La funció **insert** afegirà documents a una col·lecció. En el paràmetre posem
 el document directament, o una variable que continga el document. Si la
@@ -746,10 +719,10 @@ col·lecció no existia, la crearà i després afegirà el document. En la segü
 sentència estem treballant sobre la col·lecció **exemple** , que segurament ja
 existirà de quan vam fer la pregunta 3.1 d'instal·lació de MongoDB, que per a
 provar vam inserir un document. Però si no existia, la crearà sense problemes.
-```
-> db.exemple.insert({ msg2 : "Com va la cosa?"})  
-WriteResult({ "nInserted" : 1 })
-```
+
+      > db.exemple.insertOne({ msg2 : "Com va la cosa?"})  
+      
+
 Acabem d'inserir un nou document, i així ens ho avisa ( **{ "nInserted" : 1
 }** , s'ha inserit un document). Automàticament haurà creat un element **_id**
 de tipus **ObjectId** , ja que li fa falta per a identificar el document entre
@@ -760,41 +733,13 @@ l'inserim
 
     > doc = { msg3 : "Per ací no ens podem queixar ..."}  
     { "msg3" : "Per ací no ens podem queixar ..." }  
-    > db.exemple.insert(doc)  
-    WriteResult({ "nInserted" : 1 })
+    > db.exemple.insertOne(doc)  
+    
 
 També ens indica que ha inserit un document. I haurà creat també el camp
 **_id** com veurem en el següent punt.
 
-#### Lectura: find {.azul}
-
-Tenim dues funcions per a recuperar informació: _**find**_ i _**findOne**_.
-
-  * **find()** : recuperarà tots els documents de la col·lecció, encara que podrem posar criteris per a que ens torne tots els documents que acomplesquen aquestos criteris (ho veurem més avant).
-  * **findOne()** : només tornarà un document, en principi el primer. Pot ser sobre tots els documents (i per tant seria el primer document), o posar una condició, i tornaria el primer que acomplirà la condició.
-
-Exemple de **find()** :
-
-    > db.exemple.find()  
-    { "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
-    { "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Com va la cosa?" }  
-    { "_id" : ObjectId("56ce3237c61e04ba81def50d"), "msg3" : "Per ací no ens podem queixar ..." }  
-    >
-
-Exemple de **findOne()** :
-
-    > db.exemple.findOne()  
-    { "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
-    >
-
-En tots els casos podem comprovar que és cert el que veníem afirmant, que ha
-creat automàticament l'element **_id** per a cada document guardat.
-Evidentment, cadascú de nosaltres tindrà una valors diferents.
-
-Inserció especificant el id
-
-Ara que ja sabem consultar els document de la col·lecció amb **find()** anem a
-continuar les insercions de documents, per veure les possibilitats que tenim.
+**Inserció especificant el id**{.azul}
 
 En els document que hem inserit fins el moment, no hem especificat el camp
 **_id** , i Mongo l'ha generat automàticament de tipus **ObjectId**.
@@ -807,7 +752,7 @@ Així per exemple anem a inserir la informació d'uns alumnes. Els posarem en
 una col·lecció nova anomenada **alumnes** , i els intentarem posar un **_id**
 personal. Per exemple posarem els números 51, 52, 53, ...
 
-    > db.alumnes.insert ({_id: 51 , nom: "Rebeca" , cognoms: "Martí Peral"})  
+    > db.alumnes.insertOne ({_id: 51 , nom: "Rebeca" , cognoms: "Martí Peral"})  
     WriteResult({ "nInserted" : 1 })
 
 Ha anat bé, i si mirem els documents que tenim en la col·lecció, comprovarem
@@ -820,7 +765,7 @@ que ens ha respectat el **_id** :
 Però si intentem inserir un altre document amb el mateix **_id** (51), ens
 donarà error:
 
-    > db.alumnes.insert ({_id: 51 , nom: "Raquel" , cognoms: "Gomis Arnau"})  
+    > db.alumnes.insertOne ({_id: 51 , nom: "Raquel" , cognoms: "Gomis Arnau"})  
     WriteResult({  
     "nInserted" : 0,  
     "writeError" : {  
@@ -834,14 +779,14 @@ donarà error:
 Ens avisa que estem duplicant la _clau_ _principal_ , és a dir
 l'identificador.
 
-#### Inserció múltiple {.azul}
+**Inserció múltiple**{.azul}
 
 Quan els documents que volem inserir són senzills, podem inserir més d'un a la
-vegada, posant dis del **insert()** un **array** amb tots els elements. En el
+vegada, posant dis del **insertMany()** un **array** amb tots els elements. En el
 següent exemple creem uns quants nombres primers en la col·lecció del mateix
 nom:
 
-    > db.nombresprimers.insert( [ {_id:2} , {_id:3} , {_id:5} , {_id:7} , {_id:11}
+    > db.nombresprimers.insertMany( [ {_id:2} , {_id:3} , {_id:5} , {_id:7} , {_id:11}
     > , {_id:13} , {_id:17} , {_id:19} ] )  
     BulkWriteResult({  
         "writeErrors" : [ ],  
@@ -868,24 +813,54 @@ Ens avisa que ha fet 8 insercions, i ací els tenim:
     { "_id" : 19 }  
     >
 
-#### Esborrat: remove {.azul}
 
-Per a esborrar un document d 'una col·lecció utilitzarem la funció **remove**
-, passant-li com a paràmetre la condició del document o documents a esborrar.
+### Lectura: find
 
-    > db.nombresprimers.remove( {"_id" : 19} )  
-    WriteResult({ "nRemoved" : 1 })  
+MongoDB ofereix els mètodes següents per llegir documents d'una col·lecció:
+
+  - db.collection.**find()**
+ 
+recuperarà tots els documents de la col·lecció, encara que podrem posar criteris per a que ens torne tots els documents que acomplesquen aquestos criteris (ho veurem més avant).
+ 
+
+![](T8_find.png)
+
+Exemple:
+
+    > db.exemple.find()  
+    { "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
+    { "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Com va la cosa?" }  
+    { "_id" : ObjectId("56ce3237c61e04ba81def50d"), "msg3" : "Per ací no ens podem queixar ..." }  
     >
 
+
+En tots els casos podem comprovar que és cert el que veníem afirmant, que ha
+creat automàticament l'element **_id** per a cada document guardat.
+Evidentment, cadascú de nosaltres tindrà una valors diferents.
+
+
+### Eliminació: delete
+
+Per a esborrar un document d 'una col·lecció utilitzarem la funció **deleteOne**
+, passant-li com a paràmetre la condició del document o documents a esborrar. MongoDB ofereix els mètodes següents per eliminar documents d'una col·lecció:
+
+  - db.collection.**deleteOne()**
+
+  - db.collection.**deleteMany()**
+
+![](T8_delete.png)
+
+    > db.nombresprimers.deleteOne( {"_id" : 19} )  
+    
 
 Ens avisa que ha esborrat un document.
 
 La condició no cal que siga sobre el camp **_id**. Pot ser sobre qualsevol
-camp, i esborrarà tots els que coincideixen.
+camp, **i esborrarà tots els que coincideixen**.
 
-    > db.exemple.remove( {"msg3" : "Per ací no ens podem queixar ..."} )  
-    WriteResult({ "nRemoved" : 1 })  
-    >
+    > db.exemple.deleteMany( {"msg3" : "Per ací no ens podem queixar ..."} )  
+    
+
 
 També tenim la possibilitat d'esborrar tota una col·lecció amb la funció
 **drop()**. Pareu atenció perquè és molt senzilla d'eliminar, i per tant,
@@ -895,7 +870,7 @@ potencialment molt perillosa.
     true  
     >
 
-#### Actualització - update {.azul}
+### Actualització - update
 
 La funció _**update**_ servirà per a actualitzar un document ja guardat.
 Tindrà dos paràmetres:
@@ -903,194 +878,213 @@ Tindrà dos paràmetres:
   * El primer paràmetre serà la condició per a trobar el document que s'ha d'actualitzar.
   * El segon paràmetre serà el nou document que substituirà l'anterior
 
+MongoDB ofereix els mètodes següents per actualitzar els documents d'una col·lecció:
+
+  - db.collection.**updateOne()**
+
+  - db.collection.**updateMany()**
+
+  - db.collection.**replaceOne()**
+
+![](T8_update.png)
+
 Per exemple, si mirem les dades actuals:
-```
-> db.exemple.find()  
-{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
-{ "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Com va la cosa?" }
-```
+
+    > db.exemple.find()  
+    { "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
+    { "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Com va la cosa?" }
+
 Podem comprovar el contingut del segon document, el que te **msg2**. Anem a
 modificar-lo: en el primer paràmetre posem condició de recerca (només hi haurà
 un) i en el segon posem el nou document que substituirà l'anterior
-```
-> db.exemple.update( {msg2:"Com va la cosa?"} , {msg2:"Què? Com va la cosa?"})  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
-```
+
+    > db.exemple.updateOne( {msg2:"Com va la cosa?"} , {msg2:"Què? Com va la cosa?"})  
+    WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
 Observeu que la contestació del **update****()** és que ha fet **match** (hi
 ha hagut coincidència) amb un document, i que ha modificat un. Si no en troba
 cap, no donarà error, senzillament dirà que ha fet match amb 0 documents, i
 que ha modificat 0 documents. Mirem com efectivament ha canviat el segon
 document
-```
-> db.exemple.find()  
-{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
-{ "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Què? Com va la cosa?" }
-```
+
+    > db.exemple.find()  
+    { "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
+    { "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Què? Com va la cosa?" }
+
 Ens vindran molt bé les variables per a les actualitzacions, ja que en moltes
 ocasions serà modificar lleugerament el document, canviant o afegint algun
 element. Ho podrem fer còmodament amb la variable: primer guardem el document
 a modificar en una variable; després modifiquem la variable; i per últim fem
 l'operació d'actualització. Evidentment si tenim alguna variable amb el
 contingut del document ens podríem estalviar el primer pas.
-```
-> doc1 = db.exemple.findOne()  
-{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }
 
-> doc1.titol = "Missatge 1"  
-Missatge 1
+    > doc1 = db.exemple.find()  
+    { "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }
 
-> db.exemple.update( {msg:"Hola, què tal?"} , doc1)  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.exemple.findOne()  
-{  
-  "_id" : ObjectId("56ce310bc61e04ba81def50b"),  
-  "msg" : "Hola, què tal?",  
-  "titol" : "Missatge 1"  
-}  
->
-```
+    > doc1.titol = "Missatge 1"  
+    Missatge 1
 
+    > db.exemple.updateOne( {msg:"Hola, què tal?"} , doc1)  
+    WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
+    > db.exemple.findOne()  
+    {  
+      "_id" : ObjectId("56ce310bc61e04ba81def50b"),  
+      "msg" : "Hola, què tal?",  
+      "titol" : "Missatge 1"  
+    }  
+    >
 
-### 3.3.3 - Operacions d'actualització avançada
+**Reemplaçar un document**{.azul}
 
-Al final de la pregunta anterior hem vist l'actualització de documents ja
+Per reemplaçar tot el contingut d'un document excepte el _id, passeu un document completament nou com a segon argument a Collection.**replaceOne()**.
+
+En reemplaçar un document, aquest ha de constar únicament de parells camp-valor. No podeu incloure expressions d'operadors d'actualització.  
+
+El document de substitució pot tenir camps diferents dels del document original. Al document de reemplaçament, podeu ometre el _id, ja que _id es immutable. No obstant això, si l'inclou _id, heu de tenir el mateix valor que l'actual.
+
+    db.exemple.replaceOne(
+      { "msg" : "Hola, què tal?" },
+      { "msg" : "Hola, què tal?" , "titol2" : "Missatge 2" }
+    )
+
+## 3.7 - Operadors d'actualització
+
+En el apartat anterior hem vist l'actualització de documents ja
 existents a la Base de Dades. Aquesta actualització la féiem modificant tot el
 document, encara que tenim la variant de guardar el document en una variable,
 modificar aquesta variable i després fer l'actualització amb aquesta variable.
 Però observeu que continua sent una modificació de tot el document, una
 substitució del document antic per un document nou.
 
-En aquesta pregunta veurem la utilització d'uns modificadors (_modifiers_) de
-l'operació **update()** , que ens permetran modificar documents de forma
+En aquest apartat veurem la utilització d'uns modificadors (_modifiers_) de
+l'operació **update()**, que ens permetran modificar documents de forma
 potent: creant i eliminant claus (elements) d'un document, o canviant-los, i
 fins i tot afegir o eliminar elements d'un array.
 
 
-#### $set {.azul}
+### $set {.azul}
 
 El modificador **$set** assigna un valor a un camp del document seleccionat de
 la Base de Dades. Si el camp ja existia, modificarà el valor, i si no existia
 el crearà.
 
 La sintaxi del modificador **$set** és la següent:
-```
-{ $set : { clau : valor} }
-```
+
+    { $set : { clau : valor} }
+
 Però recordeu que és un modificador, i l'hem d'utilitzar dins d'una operació
 d'actualització. Anirà en el segon paràmetre del **update()** , i per tant amb
 aquestos modificadors ja no posem tot el document en el segon paràmetre, sinó
 únicament l'operador de modificació.
 
 Mirem-ho millor en un exemple:
-```
-> db.alumnes.insert( {nom:"Abel", cognoms:"Bernat Carrera"} )  
-WriteResult({ "nInserted" : 1 })  
->  
-> db.alumnes.findOne()  
-{  
-  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-  "nom" : "Abel",  
-  "cognoms" : "Bernat Carrera"  
-}  
->
-```
+
+    > db.alumnes.insertOne( {nom:"Abel", cognoms:"Bernat Carrera"} )  
+     
+    
+    > db.alumnes.find()  
+    {  
+      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera"  
+    }  
+    >
+
 Suposem ara que li volem afegir l'edat. Abans ho faríem guardant el document
 en una variable, i afegint el camp, per a guardar després. Ara ho tenim més
 fàcil:
-```
-> db.alumnes.update( {nom:"Abel"} , { $set: {edat:21} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
-```
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $set: {edat:21} } )  
+    
 Ha trobat un, i l'ha modificat. Evidentment, si hi haguera més d'un alumne a
 mb el nom Abel, els modificaria tots.
-```
-> db.alumnes.findOne()  
-{  
-  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-  "nom" : "Abel",  
-  "cognoms" : "Bernat Carrera",  
-  "edat" : 21  
-}
-```
+
+    > db.alumnes.find()  
+    {  
+      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera",  
+      "edat" : 21  
+    }
+
 Es pot especificar més d'un camp amb els valor corresponents. Si no existien
 es crearan, i si ja existien es modificaran:
-```
-> db.alumnes.update( {nom:"Abel"} , { $set: {nota: 8.5 , edat:22} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-  "nom" : "Abel",  
-  "cognoms" : "Bernat Carrera",  
-  "edat" : 22,  
-  "nota" : 8.5  
-}
-```
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $set: {nota: 8.5 , edat:22} } )  
+    
+    > db.alumnes.find()  
+    {  
+      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera",  
+      "edat" : 22,  
+      "nota" : 8.5  
+    }
+
 I fins i tot es pot canviar el tipus d'un camp determinat, i utilitzar arrays,
 i objectes, ...
-```
-> db.alumnes.update( {nom:"Abel"} , { $set: {nota: [8.5,7.5,9] ,
-> adreça:{carrer:"Major",numero:7,cp:"12001"} } } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
 
-> db.alumnes.findOne()  
-{  
-  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-  "nom" : "Abel",  
-  "cognoms" : "Bernat Carrera",  
-  "edat" : 22,  
-  "nota" : [  
-      8.5,  
-      7.5,  
-      9  
-  ],  
-  "adreça" : {  
-      "carrer" : "Major",  
-      "numero" : 7,  
-      "cp" : "12001"  
-  }  
-}  
-```  
+    > db.alumnes.updateOne( {nom:"Abel"} , { $set: {nota: [8.5,7.5,9], adreça:{carrer:"Major",numero:7,cp:"12001"} } } )  
+
+
+    > db.alumnes.find()  
+    {  
+      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera",  
+      "edat" : 22,  
+      "nota" : [  
+          8.5,  
+          7.5,  
+          9  
+      ],  
+      "adreça" : {  
+          "carrer" : "Major",  
+          "numero" : 7,  
+          "cp" : "12001"  
+      }  
+    }  
+
 
 Podem fins i tot modificar ara només el valor d'un camp d'un objecte del
 document. Per exemple, anem a modificar el codi postal de l'anterior alumne.
 La manera d'arribar al codi postal serà **adreça.cp** , però haurem d'anar amb
 compte que vaja entre cometes per a que el trobe:
-```
-> db.alumnes.update( {nom:"Abel"} , { $set: {adreça.cp:"12502"} } )  
-uncaught exception: SyntaxError: missing : after property id :  
-@(shell):1:49  
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $set: {adreça.cp:"12502"} } )  
+    uncaught exception: SyntaxError: missing : after property id :  
+    @(shell):1:49  
   
-> db.alumnes.update( {nom:"Abel"} , { $set: {"adreça.cp":"12502"} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-  "nom" : "Abel",  
-  "cognoms" : "Bernat Carrera",  
-  "edat" : 22,  
-  "nota" : [  
-        8.5,  
-        7.5,  
-        9  
-  ],  
-  "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-  }  
-}
-```
-#### $unset {.azul}
+    > db.alumnes.updateOne( {nom:"Abel"} , { $set: {"adreça.cp":"12502"} } )  
+
+    > db.alumnes.find()  
+    {  
+      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera",  
+      "edat" : 22,  
+      "nota" : [  
+            8.5,  
+            7.5,  
+            9  
+      ],  
+      "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+      }  
+    }
+
+### $unset {.azul}
 
 El modificador **$unset** servirà per a **eliminar** elements (camps) d'un o
 uns documents. Si el camp existia, l'eliminarà, i si no existia, no donarà
 error (avisarà que s'han modificat 0 documents).
 
 La sintaxi és:
-```
-{ $unset : {camp : 1 } }
-```
+
+    { $unset : {camp : 1 } }
+
 Haurem de posar un valor al camp que anem a esborrar per a mantenir la sintaxi
 correcta, i posem 1 que equival a true. També podríem posar -1, que equival a
 false, però aleshores no l'esborraria, i per tant no faríem res. Sempre
@@ -1098,117 +1092,117 @@ posarem 1.
 
 Mirem el següent exemple. Afegim un camp, que serà el número d'ordre, i
 després el llevarem.
-```
-> db.alumnes.update( {nom:"Abel"} , { $set: {num_ordre:10} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-  "nom" : "Abel",  
-  "cognoms" : "Bernat Carrera",  
-  "edat" : 22,  
-  "nota" : [  
-        8.5,  
-        7.5,  
-        9  
-  ],  
-  "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-  },  
-  "num_ordre" : 10  
-}  
-  
-> db.alumnes.update( {nom:"Abel"} , { $unset: {num_ordre:1} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.update( {nom:"Abel"} , { $unset: {puntuacio:1} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
-```
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $set: {num_ordre:10} } )  
+    
+    > db.alumnes.find()  
+    {  
+      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera",  
+      "edat" : 22,  
+      "nota" : [  
+            8.5,  
+            7.5,  
+            9  
+      ],  
+      "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+      },  
+      "num_ordre" : 10  
+    }  
+      
+    > db.alumnes.updateOne( {nom:"Abel"} , { $unset: {num_ordre:1} } )  
+    
+    > db.alumnes.updateOne( {nom:"Abel"} , { $unset: {puntuacio:1} } )  
+    
+
 Hem afegit primer el camp **num_ordre** , i hem mostrat el document per
 comprovar que existeix. Després esborrem el camp **num_ordre** (i ens confirma
 que ha modificat un document). Després intentem esborrar un camp que no
 existeix, **puntuacio**. No dóna error, però ens avisa que ha modificat 0
 documents. Podem comprovar al final com el document ha quedat com esperàvem.
-```
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "nota" : [  
-        8.5,  
-        7.5,  
-        9  
-    ],  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-    }  
-}
-```
-#### $rename {.azul}
+
+    > db.alumnes.find()  
+    {  
+        "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Carrera",  
+        "edat" : 22,  
+        "nota" : [  
+            8.5,  
+            7.5,  
+            9  
+        ],  
+        "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+        }  
+    }
+
+### $rename {.azul}
 
 El modificador **$rename** canviarà el nom d'un camp. Si no existia, no donarà
 error i senzillament no el modificarà. Hem de cuidar de posar el nou nom del
 camp entre cometes, per a que no done error.
 
 La sintaxi és:
-```
-{ $rename : { camp1 : "nou_nom1" , camp2 : "nou_nom2" , ... } }
-```
+
+    { $rename : { camp1 : "nou_nom1" , camp2 : "nou_nom2" , ... } }
+
 Per exemple, canviem el nom del camp **nota** a **notes** :
-```
-> db.alumnes.update( {nom:"Abel"} , { $rename: {nota:"notes"} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "adreça" : {  
-          "carrer" : "Major",  
-          "numero" : 7,  
-          "cp" : "12502"  
-    },  
-    "notes" : [  
-          8.5,  
-          7.5,  
-          9  
-    ]  
-}
-```
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $rename: {nota:"notes"} } )  
+     
+    > db.alumnes.find()  
+    {  
+        "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Carrera",  
+        "edat" : 22,  
+        "adreça" : {  
+              "carrer" : "Major",  
+              "numero" : 7,  
+              "cp" : "12502"  
+        },  
+        "notes" : [  
+              8.5,  
+              7.5,  
+              9  
+        ]  
+    }
+
 Observeu que l'ha canviat de lloc, cosa que ens fa pensar que en canviar de
 nom un camp, el que fa és tornar a crear-lo amb el nou nom, i esborrar el camp
 antic.
 
 En aquest exemple tornem a canviar el nom a **nota** , i intentem canviar el
 nom a un camp inexistent, **camp1**. No donarà error.
-```
-> db.alumnes.update( {nom:"Abel"} , { $rename: {camp1: "camp2" , notes:"nota"} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-  "nom" : "Abel",  
-  "cognoms" : "Bernat Carrera",  
-  "edat" : 22,  
-  "adreça" : {  
-      "carrer" : "Major",  
-      "numero" : 7,  
-      "cp" : "12502"  
-  },  
-  "nota" : [  
-      8.5,  
-      7.5,  
-      9  
-  ]  
-}
-```
-#### $inc {.azul}
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $rename: {camp1: "camp2" , notes:"nota"} } )  
+    
+    > db.alumnes.find()  
+    {  
+      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera",  
+      "edat" : 22,  
+      "adreça" : {  
+          "carrer" : "Major",  
+          "numero" : 7,  
+          "cp" : "12502"  
+      },  
+      "nota" : [  
+          8.5,  
+          7.5,  
+          9  
+      ]  
+    }
+
+### $inc {.azul}
 
 Com cabria esperar, el modificador **$inc** servirà per a incrementar un camp
 numèric. Si el camp existia, l'incrementarà en la quantitat indicada. Si no
@@ -1218,68 +1212,74 @@ amb part fraccionària. Sempre funcionarà bé, excepte quan el camp a
 incrementar no siga numèric, que donarà error.
 
 La sintaxi és aquesta:
-```
-{ $inc : {camp : quantitat } }
-```
+
+    { $inc : {camp : quantitat } }
+
 En els següents exemples, incrementem un camp nou (per tant el crearà amb el
 valor especificat), i després l'incrementem en quantitats positives, negatives
 i fraccionàries, concretament l'inicialitzem amb un **2** , i despés
 l'incrementem en **5** , en **-4** i en **2.25** , per tant el resultat final
 serà **5.25** :
-```
-> db.alumnes.update( {nom:"Abel"} , { $inc: {puntuacio:2} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "nota" : [  
-        8.5,  
-        7.5,  
-        9  
-    ],  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-    },  
-    "puntuacio" : 2  
-}  
-> db.alumnes.update( {nom:"Abel"} , { $inc: {puntuacio:5} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.update( {nom:"Abel"} , { $inc: {puntuacio:-4} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.update( {nom:"Abel"} , { $inc: {puntuacio:2.25} } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "nota" : [  
-        8.5,  
-        7.5,  
-        9  
-    ],  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-    },  
-    "puntuacio" : 5.25  
-}
-```
 
-#### Elements d'un array {.azul}
+    > db.alumnes.updateOne( {nom:"Abel"} , { $inc: {puntuacio:2} } )  
+      
+    > db.alumnes.find()  
+    {  
+        "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Carrera",  
+        "edat" : 22,  
+        "nota" : [  
+            8.5,  
+            7.5,  
+            9  
+        ],  
+        "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+        },  
+        "puntuacio" : 2  
+    }  
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $inc: {puntuacio:5} } )  
+   
+    > db.alumnes.updateOne( {nom:"Abel"} , { $inc: {puntuacio:-4} } )  
+   
+    > db.alumnes.updateOne( {nom:"Abel"} , { $inc: {puntuacio:2.25} } )  
+    
+    > db.alumnes.find()  
+    {  
+        "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Carrera",  
+        "edat" : 22,  
+        "nota" : [  
+            8.5,  
+            7.5,  
+            9  
+        ],  
+        "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+        },  
+        "puntuacio" : 5.25  
+    }
+
+### $min {.azul}
+### $max {.azul}
+### $mul {.azul}
+### $mul {.azul}
+### $currentDate {.azul}
+
+### Arrays
 
 Per a accedir directament a un element d'un array d'un determinat document es
 pot utilitzar la següent sintaxi:
-```
-"array.index"
-```
+
+    "array.index"
+
 Hem de tenir present que el primer element de l'array és el de subíndex 0. I
 no us oblideu de tancar-ho tot entre comentes per a que ho puga trobar.
 
@@ -1287,65 +1287,91 @@ Si no existeix l'element amb el subíndex indicat, donarà error.
 
 Per exemple, anem a pujar un punt la primera nota de l'alumne que estem
 utilitzant en tots els exemples :
-```
->db.alumnes.update( {nom:"Abel"} , { $inc : { "nota.0" : 1 } } )
-```
 
-```
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-    },  
-    "nota" : [  
-        9.5,  
-        7.5,  
-        9  
-    ]  
-}
-```
-#### Inserció en Arrays: $push {.azul}
+    >db.alumnes.updateOne( {nom:"Abel"} , { $inc : { "nota.0" : 1 } } )
+
+
+
+    > db.alumnes.find()  
+    {  
+        "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Carrera",  
+        "edat" : 22,  
+        "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+        },  
+        "nota" : [  
+            9.5,  
+            7.5,  
+            9  
+        ]  
+    }
+
+#### Actualització: $ y $[]
+
+**$**{.azul}
+
+Identifica un element en un array  per actualitzar sense especificar explícitament la posició de l'element en un array.
+
+
+Ejemplo: Modificar la primera nota mayor a 8 en el array nota 
+ 
+    db.alumnes.updateOne(
+      { "_id": ObjectId("56df11d778549bdfbf2125e3"), "nota": { $gt: 8 } },
+      { $set: { "nota.$": 10 } }
+  )
+
+**$[]**{.azul}
+
+L'operador $[] es fa servir per actualitzar tots els elements en un array.
+
+Ejemplo: Aumentar en 1 punto todas las notas en el array nota
+
+    db.alumnes.updateOne(
+        { "_id": ObjectId("56df11d778549bdfbf2125e3") },
+        { $inc: { "nota.$[]": 1 } }
+    )
+
+
+
+#### Inserció: $push
 
 La manera més senzilla d'introduir un element en un array és utilitzar
 **$push** sense més. Si existia l'array, introduirà el o els nous elements al
 final. Si no existia l'array, el crearà amb aquest o aquestos elements.
 
 La sintaxi és:
-```
-{ $push : { clau : element } }
-```
+
+    { $push : { clau : element } }
+
 Per exemple anem a afegir una nota a l'alumne de sempre, i posem-la diferent
 per veure que s'introdueix al final:
-```
-> db.alumnes.update( {nom:"Abel"} , { $push : { nota : 7 } } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
-```
-```
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-    },  
-    "nota" : [  
-        9.5,  
-        7.5,  
-        9,  
-        7  
-    ]  
-}
-```
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $push : { nota : 7 } } )  
+
+
+    > db.alumnes.find()  
+    {  
+        "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Carrera",  
+        "edat" : 22,  
+        "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+        },  
+        "nota" : [  
+            9.5,  
+            7.5,  
+            9,  
+            7  
+        ]  
+    }
+
 També hi ha manera d'introduir un element en una determinada posició que no
 siga al final, però es complica prou la cosa, ja que hem d'utilitzar per una
 banda el modificador **$position** per a dir on s'ha d'inserir, i per una
@@ -1360,42 +1386,42 @@ modificadors més:
 
 Els dos modificadors seguiran la sintaxi de sempre, de clau valor, per tant el
 conjunt de la sintaxi és:
-```
-{ $ push :  
-  { clau_del_array :  
-    { $position : _posició_ ,  
-    $each : [ _valors_ ]  
-    }  
-  }  
-}
-```
-Ací tenim un exemple on introduïm una nota en la primera posició:
-```
-> db.alumnes.update( {nom:"Abel"} , { $push : { nota : { $position : 0 , $each
-> : [5] } } } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "adreça" : {  
-          "carrer" : "Major",  
-          "numero" : 7,  
-          "cp" : "12502"  
-    },  
-    "nota" : [  
-        5,  
-        9.5,  
-        7.5,  
-        9,  
-        7  
-    ]     
-}
-```
-#### Eliminació en arrays: $pop i $pull {.azul}
+    { $ push :  
+      { clau_del_array :  
+        { $position : _posició_ ,  
+        $each : [ _valors_ ]  
+        }  
+      }  
+    }
+
+Ací tenim un exemple on introduïm una nota en la primera posició:
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $push : { nota : { $position : 0 , $each
+    > : [5] } } } )  
+
+
+    > db.alumnes.find()  
+    {  
+        "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Carrera",  
+        "edat" : 22,  
+        "adreça" : {  
+              "carrer" : "Major",  
+              "numero" : 7,  
+              "cp" : "12502"  
+        },  
+        "nota" : [  
+            5,  
+            9.5,  
+            7.5,  
+            9,  
+            7  
+        ]     
+    }
+
+#### Eliminació: $pop i $pull {.azul}
 
 Hi ha més d'una manera d'eliminar elements d'un array.
 
@@ -1403,9 +1429,9 @@ Hi ha més d'una manera d'eliminar elements d'un array.
 
 Si volem eliminar el primer element o l'últim, el modificador adequat és
 **$pop**. La sintaxi és
-```
-{ $pop : { clau : posicio } }
-```
+
+    { $pop : { clau : posicio } }
+
 On en posició podrem posar:
 
   * -1 , i esborrarà el primer element
@@ -1413,72 +1439,72 @@ On en posició podrem posar:
 
 En els següents exemples s'esborren primer l'últim element i després el
 primer.
-```
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "adreça" : {  
-          "carrer" : "Major",  
-          "numero" : 7,  
-          "cp" : "12502"  
-    },  
-    "nota" : [  
-          5,  
-          9.5,  
-          7.5,  
-          9,  
-          7  
-    ]  
-}
-```
 
-```
-> db.alumnes.update( {nom:"Abel"} , { $pop : { nota : 1 } } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-      "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
-      "nom" : "Abel",  
-      "cognoms" : "Bernat Carrera",  
-      "edat" : 22,  
-      "adreça" : {  
-            "carrer" : "Major",  
-            "numero" : 7,  
-            "cp" : "12502"  
-      },  
-      "nota" : [  
+    > db.alumnes.find()  
+    {  
+        "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Carrera",  
+        "edat" : 22,  
+        "adreça" : {  
+              "carrer" : "Major",  
+              "numero" : 7,  
+              "cp" : "12502"  
+        },  
+        "nota" : [  
               5,  
               9.5,  
               7.5,  
-              9  
-      ]  
-}
-```
-```
-> db.alumnes.update( {nom:"Abel"} , { $pop : { nota : -1 } } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
-> db.alumnes.findOne()  
-{  
-      "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
-      "nom" : "Abel",  
-      "cognoms" : "Bernat Carrera",  
-      "edat" : 22,  
-      "adreça" : {  
-            "carrer" : "Major",  
-            "numero" : 7,  
-            "cp" : "12502"  
-      },  
-      "nota" : [  
-            9.5,  
-            7.5,  
-            9  
-      ]  
-}
-```
-**$pull**{.azul} 
+              9,  
+              7  
+        ]  
+    }
+
+
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $pop : { nota : 1 } } )  
+
+    > db.alumnes.find()  
+    {  
+          "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+          "nom" : "Abel",  
+          "cognoms" : "Bernat Carrera",  
+          "edat" : 22,  
+          "adreça" : {  
+                "carrer" : "Major",  
+                "numero" : 7,  
+                "cp" : "12502"  
+          },  
+          "nota" : [  
+                  5,  
+                  9.5,  
+                  7.5,  
+                  9  
+          ]  
+    }
+
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $pop : { nota : -1 } } )  
+
+    > db.alumnes.find()  
+    {  
+          "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+          "nom" : "Abel",  
+          "cognoms" : "Bernat Carrera",  
+          "edat" : 22,  
+          "adreça" : {  
+                "carrer" : "Major",  
+                "numero" : 7,  
+                "cp" : "12502"  
+          },  
+          "nota" : [  
+                9.5,  
+                7.5,  
+                9  
+          ]  
+    }
+
+**$pull**{.azul}
 
 Amb aquest modificador esborrarem els elements de l'array que coincidesquen
 amb una condició, estiguen en la posició que estiguem. Observeu com es pot
@@ -1487,108 +1513,55 @@ eliminar més d'un element.
 Per a poder comprovar-lo bé, primer inserim un altre element al final de
 l'array, amb el valor **7.5** (si heu seguit els mateixos exemples que en
 aquestos apunts, aquest valor ja es troba en la segona posició).
-```
-> db.alumnes.update( {nom:"Abel"} , { $push : { nota : 7.5 } } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
-```
-```  
-> db.alumnes.findOne()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Carrera",  
-    "edat" : 22,  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-    },  
-    "nota" : [  
-        9.5,  
-        7.5,  
-        9,  
-        7.5  
-    ]  
-}
-```
+
+    > db.alumnes.updateOne( {nom:"Abel"} , { $push : { nota : 7.5 } } )  
+    
+
+  
+    > db.alumnes.find()  
+    {  
+        "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Carrera",  
+        "edat" : 22,  
+        "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+        },  
+        "nota" : [  
+            9.5,  
+            7.5,  
+            9,  
+            7.5  
+        ]  
+    }
+
 Ara anem a esborrar amb **$pull** l'element de valor **7.5**
-```
-> db.alumnes.update( {nom:"Abel"} , { $pull : { nota : 7.5 } } )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
-```
-```
-> db.alumnes.findOne()  
-{  
-      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-      "nom" : "Abel",  
-      "cognoms" : "Bernat Carrera",  
-      "edat" : 22,  
-      "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-      },  
-      "nota" : [  
-          9.5,  
-          9  
-      ]  
-}
-```
-#### Upsert {.azul}
 
-Aquesta paraula ja l'havíem comentada en un punt anterior.
+    > db.alumnes.update( {nom:"Abel"} , { $pull : { nota : 7.5 } } )  
 
-En el **update()** normal, si la condició de búsqueda no donava cap resultat
-(parlant ràpid, si no feis _matching_ amb cap document), doncs no actualitzava
-cap document i punt.
 
-El **Upsert** és una variant de l'update, que quan no coincidesca cap document
-amb la condició, crearà un document nou que serà el resultat de combinar el
-criteri que s'ha utilitzat en la condició amb les operacions d'actualització
-fetes en el segon paràmetre
 
-Per a que un **Update** actue d'aquesta manera, li hem de posar un tercer
-paràmetre amb el valor **true** :
-```
-update ( {...} , {...} , true )
-```
-Recordeu que el primer paràmetre era la condició, i el segon l'actualització.
+    > db.alumnes.find()  
+    {  
+          "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+          "nom" : "Abel",  
+          "cognoms" : "Bernat Carrera",  
+          "edat" : 22,  
+          "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+          },  
+          "nota" : [  
+              9.5,  
+              9  
+          ]  
+    }
 
-Mirem-ho en l'exemple dels alumnes. Si anem a actualitzar els cognoms, i es
-troba el document, s'actualitzarà:
-```
-> db.alumnes.update( { nom:"Abel" } , { $set : { cognoms : "Bernat Cantera" }} , true )  
-WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
-```
-Efectivament, ens diu que ha modificat un document.
 
-Però si no es troba el document (per exemple perquè li hem posat el nom
-**Berta**):
-```
-> db.alumnes.update( { nom:"Berta" } , { $set : { cognoms : "Bernat Cantero" }} , true )  
-WriteResult({  
-"nMatched" : 0,  
-"nUpserted" : 1,  
-"nModified" : 0,  
-"_id" : ObjectId("56dfdbd136d8b095cb6bd57a")  
-})
-```
-Ja ens avisa que no ha fet cap _matching_ , i ha fet un **Upsert**. Ho podem
-comprovar mirant tots els document de la col·lecció:
-```
-> db.alumnes.find()  
-{ "_id" : ObjectId("56debe3017bf4ed437dc77c8"), "nom" : "Abel", "cognoms" : "Bernat Cantera", 
-"edat" : 22, "adreça" : { "carrer" : "Major", "numero" : 7, "cp" : "12502" }, "nota" : [ 9.5, 9 ] }  
-{ "_id" : ObjectId("56dfdbd136d8b095cb6bd57a"), "nom" : "Berta", "cognoms" : "Bernat Cantero" }  
->
-```
-El nou document tindrà els camps:
-
-  * **_id** , amb el que ens havia avisat que generaria
-  * Els camps de la condició, que en el nostre exemple és **{ nom:"Berta" }**
-  * Els camps de l'actualització, que en el nostre exemple eren els cognoms
-
-## 3.4 - Consulta de documents
+## 3.8 - Operadors de consulta
 
 En la pregunta anterior hem vist com introduir, eliminar i modificar
 documents. Les consultes de documents han segut molt senzilles, per a
@@ -1596,18 +1569,11 @@ comprovar únicament els resultats.
 
 En aquesta pregunta veurem en profunditat la consulta de documents.
 
-  * Funcions **find()** i **findOne()** , que són les que hem utilitzat fina ara. Veurem en profunditat la seua sintaxi i potència.
+  * Funcion **find()**. Veurem en profunditat la seua sintaxi i potència.
   * Limitarem i ordenarem també els resultats
   * Fins i tot podrem elaborar més els resultats, agrupant els resultats, utilitzant funcions d'agregació (o millor dir operadors d'agregació) i donant-los un aspecte diferent
 
-### 3.4.1 - Paràmetres de les funcions find() i findOne()
-
-Les funcions **find()** i **findOne()** són absolutament equivalents, amb
-l'única diferència que la primera torna tots els documents trobats, mentre que
-la segona només torna el primer document trobat.
-
-Per una millor comprensió, utilitzarem únicament **find()** , per veure tots
-els resultats obtinguts.
+### Paràmetres de find()
 
 La funció **find()** s'ha comparat tradicionalment amb la sentència SELECT de
 SQL. Sempre tornarà un conjunt de documents, que poden variar des de no tornar
@@ -1615,10 +1581,10 @@ cap document, a tornar-los tots els de la col·lecció.
 
 La funció **find()** pot tenir uns quants paràmetres.
 
-  * El primer indica una condició o criteri, i tornarà aquells documents de la col·lecció que acomplesquen la condició o criteri. Aquesta condició ve donada en forma de document (o objecte) JSON, i és com l'havíem vist en la funció **update()** :
-```
-db.col_leccio1.find( { clau1 : valor1 } )
-```
+  * El primer indica una condició o criteri, i tornarà aquells documents de la col·lecció que acomplisquen la condició o criteri. Aquesta condició ve donada en forma de document (o objecte) JSON, i és com l'havíem vist en la funció **update()** :
+
+      db.col_leccio1.find( { clau1 : valor1 } )
+
 Tornarà tots els documents de la col·lecció **col_leccio1** que tinguen el
 camp **clau1** i que en ell tinguen el valor **valor1**.
 
@@ -1626,9 +1592,9 @@ Aquest criteri pot ser el complicat que faça falta, formant-lo en JSON. Pot
 tenir més d'un membre. En definitiva, tornarà aquells documents que facen
 _matching_ amb el document del criteri, és a dir, funcionaria com un **and**
 en cas que tinga més d'un membre en la condició
-```
-db.col_leccio1.find( { clau1 : valor1 , clau2 : valor2 } )
-```
+
+    db.col_leccio1.find( { clau1 : valor1 , clau2 : valor2 } )
+
 que tornaria aquells documents de la **col_lecció1** que tenen el camp
 **clau1** amb el valor **valor1** i que tenen el camp **clau2** amb el valor
 **valor2**
@@ -1636,63 +1602,59 @@ que tornaria aquells documents de la **col_lecció1** que tenen el camp
 Si no volem posar cap criteri, per a que els torne tots, no posem res com a
 paràmetre, o encara millor, li passem un document (objecte) buit, de manera
 que tots els documents de la col·lecció faran _matching_ amb ell.
-```
-db.col_leccio1.find( { } )
-```
-Tindrem açò present, sobretot quan ens toque utilitzar el segon paràmetre de
-**find**. Si no volem cap criteri, posarem el document buit com l'exemple
-anterior.
+
+    db.col_leccio1.find( { } )
 
   * El segon paràmetre ens servirà per a delimitar els camps dels documents que es tornaran. També tindrà el format JSON d'un objecte al qual li posarem com a claus els diferents camps que volem que apareguen o no, i com a valor 1 per a que sí que apareguen i 0 per a que no apareguen.
 
 Si posem algun camp a que sí que aparega (és a dir, amb el valor 1), els únics
-que apareixeran seran aquestos, a més del**_id** que per defecte sempre
+que apareixeran seran aquestos, a més del **_id** que per defecte sempre
 apareix.
-```
-> db.alumnes.find({},{nom:1})  
-{ "_id" : ObjectId("56debe3017bf4ed437dc77c8"), "nom" : "Abel" }  
-{ "_id" : ObjectId("56dfdbd136d8b095cb6bd57a"), "nom" : "Berta" }
-```
+
+    > db.alumnes.find({},{nom:1})  
+    { "_id" : ObjectId("56debe3017bf4ed437dc77c8"), "nom" : "Abel" }  
+    { "_id" : ObjectId("56dfdbd136d8b095cb6bd57a"), "nom" : "Berta" }
+
 Per tant si no volem que aparega **_id** posarem:
-```
-> db.alumnes.find({},{_id:0})  
-{ "nom" : "Abel", "cognoms" : "Bernat Cantera", "edat" : 22, "adreça" : {
-"carrer" : "Major", "numero" : 7, "cp" : "12502" }, "nota" : [ 9.5, 9 ] }  
-{ "nom" : "Berta", "cognoms" : "Bernat Cantero" }
-```
+
+    > db.alumnes.find({},{_id:0})  
+    { "nom" : "Abel", "cognoms" : "Bernat Cantera", "edat" : 22, "adreça" : {
+    "carrer" : "Major", "numero" : 7, "cp" : "12502" }, "nota" : [ 9.5, 9 ] }  
+    { "nom" : "Berta", "cognoms" : "Bernat Cantero" }
+
 I si volem traure únicament el nom:
-```
-> db.alumnes.find({},{nom:1,_id:0})  
-{ "nom" : "Abel" }  
-{ "nom" : "Berta" }
-```
+
+    > db.alumnes.find({},{nom:1,_id:0})  
+    { "nom" : "Abel" }  
+    { "nom" : "Berta" }
+
 Per últim, com que a partir d'ara utilitzarem documents més complicats, si
 volem que ens apareguen els camps que retornem d'una forma un poc més elegant
 o bonica (_pretty_), posarem aquesta funció al final: **find().pretty()**
-```
-> db.alumnes.find().pretty()  
-{  
-      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-      "nom" : "Abel",  
-      "cognoms" : "Bernat Cantera",  
-      "edat" : 22,  
-      "adreça" : {  
-          "carrer" : "Major",  
-          "numero" : 7,  
-          "cp" : "12502"  
-      },  
-      "nota" : [  
-          9.5,  
-          9  
-      ]  
-}  
-{  
-"_id" : ObjectId("56dfdbd136d8b095cb6bd57a"),  
-"nom" : "Berta",  
-"cognoms" : "Bernat Cantero"  
-}
-```
-### 3.4.2 - Operadors de les condicions
+
+    > db.alumnes.find().pretty()  
+    {  
+          "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+          "nom" : "Abel",  
+          "cognoms" : "Bernat Cantera",  
+          "edat" : 22,  
+          "adreça" : {  
+              "carrer" : "Major",  
+              "numero" : 7,  
+              "cp" : "12502"  
+          },  
+          "nota" : [  
+              9.5,  
+              9  
+          ]  
+    }  
+    {  
+    "_id" : ObjectId("56dfdbd136d8b095cb6bd57a"),  
+    "nom" : "Berta",  
+    "cognoms" : "Bernat Cantero"  
+    }
+
+###  Operadors
 
 Abans de començar aquesta pregunta, anem a agafar unes dades de prova, que
 estan en el fitxer **libros_ejemplo.json**
@@ -1705,7 +1667,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
 
     
     
-    db.libro.insert({  
+    db.libro.insertOne({  
         "_id":"9788408117117",  
           "titulo":"Circo Máximo",  
         "autor":"Santiago Posteguillo",  
@@ -1717,7 +1679,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
         "resumen":"Circo Máximo, de Santiago Posteguillo, que ha escrito otras obras de narrativa histórica como Las Legiones Malditas o La traición de Roma, es la segunda parte de la trilogía de Trajano, que comenzó con Los asesinos del emperador, un relato impactante, descomunal, descrito con un trepidante pulso narrativo destinado a trasla dar al lector a la Roma imperial de los césares. Santiago posteguillo se ha convertido en el autor español de referencia de la novela histórica sobre Roma y el mundo antiguo. Bienvenidos al mundo de Marco Ulpio Trajano. Circo Máximo es la historia de Trajano y su gobierno, guerras y traiciones, lealtades insobornables e historias de amor imposibles. Hay una vestal, un juicio, inocentes acusados, un abogado especial, mensajes cifrados, códigos secretos, batallas campales, fortalezas inexpugnables, asedios sin fin, dos aurigas rivales, el Anfiteatro, los gladiadores y tres carreras de cuadrigas. Hay también un caballo especial, diferente a todos, leyes antiguas olvidadas, sacrificios humanos, amargura y terror, pero también destellos de nobleza y esperanza, como la llama de Vesta, que mientras arde preserva a Roma. Sólo que hay noches en las que la llama del Templo de Vesta tiembla. La rueda de la Fortuna comienza entonces a girar. En esos momentos, todo puede pasar y hasta la vida del propio Trajano, aunque él no lo sepa, corre peligro. Y, esto es lo mejor de todo, ocurrió: hubo un complot para asesinar a Marco Ulpio Trajano."  
     })  
       
-    db.libro.insert({  
+    db.libro.insertOne({  
          "_id":"9788401342158",  
           "titulo":"El juego de Ripper",  
           "autor":"Isabel Allende",  
@@ -1729,7 +1691,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
           "resumen":"Tal como predijo la astróloga más reputada de San Francisco, una oleada de crímenes comienza a sacudir la ciudad. En la investigación sobre los asesinatos, el inspector Bob Martín recibirá la ayuda inesperada de un grupo de internautas especializados en juegos de rol, Ripper. 'Mi madre todavía está viva, pero la matará el Viernes Santo a medianoche', le advirtió Amanda Martín al inspector jefe y éste no lo puso en duda, porque la chica había dado pruebas de saber más que él y todos sus colegas del Departamento de Homicidios. La mujer estaba cautiva en algún punto de los dieciocho mil kilómetros cuadrados de la bahía de San Francisco, tenían pocas horas para encontrarla con vida y él no sabía por dónde empezar a buscarla",  
      })  
        
-    db.libro.insert({  
+    db.libro.insertOne({  
         "_id":"9788496208919",  
        "titulo":"Juego de tronos: Canción de hielo y fuego 1",  
        "autor":"George R.R. Martin",  
@@ -1741,7 +1703,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
        "resumen":"Tras el largo verano, el invierno se acerca a los Siete Reinos. Lord Eddars Stark, señor de Invernalia, deja sus dominios para unirse a la corte del rey Robert Baratheon el Usurpador, hombre díscolo y otrora guerrero audaz cuyas mayores aficiones son comer, beber y engendrar bastardos. Eddard Stark desempeñará el cargo de M ano del Rey e intentará desentrañar una maraña de intrigas que pondrá en peligro su vida... y la de los suyos. En un mundo cuyas estaciones duran décadas y en el que retazos de una magia inmemorial y olvidada surgen en los rincones más sombrios y maravillosos, la traición y la lealtad, la compasión y la sed de venganza, el amor y el poder hacen del juego de tronos una poderosa trampa que atrapa en sus fauces a los personajes... y al lector. 'El regreso triunfal de Martin a la fantasía de más alta calidad... con personajes desarrollados con maestría, prosa hábil y pura obstinación.'"  
     })  
       
-    db.libro.insert({  
+    db.libro.insertOne({  
       "_id":"9788499088075",  
       "titulo":"La ladrona de libros",  
       "autor":"Markus Zusak",  
@@ -1753,7 +1715,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
       "resumen":"En plena II Guerra Mundial, la pequeña Liesel hallará su salvación en la lectura. Una novela preciosa, tremendamente humana y emocionante, que describe las peripecias de una niña alemana de nueve años desde que es dada en adopción por su madre hasta el final de la guerra. Su nueva familia, gente sencilla y nada afecta al na zismo, le enseña a leer y a través de los libros Rudy logra distraerse durante los bombardeos y combatir la tristeza. Pero es el libro que ella misma está escribiendo el que finalmente le salvará la vida.",  
     })  
       
-    db.libro.insert({  
+    db.libro.insertOne({  
       "_id":"9788415140054",  
       "titulo":"La princesa de hielo",  
       "autor":"Camilla Lackberg",  
@@ -1764,7 +1726,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
       "resumen":"Misterio y secretos familiares en una emocionante novela de suspense Erica vuelve a su pueblo natal tras el fallecimiento de sus padres, pero se va a encontrar con un nuevo drama. Aparentemente su amiga de la infancia, Alex, se ha suicidado. Pronto se descubre que no solamente fue asesinada sino que estaba embarazada. El primer sospechoso es Anders, un artista fracasado con quien Alex mantenía una relación especial. Pero poco después de ser liberado por falta de pruebas, Anders aparece muerto en su domicilio. Con la ayuda del comisario Patrik, Erica investigará el pasado de su amiga Alex."  
     })  
       
-    db.libro.insert({  
+    db.libro.insertOne({  
       "_id":"9788408113331",  
       "titulo":"Las carreras de Escorpio",  
       "autor":"Maggie Stiefvater",  
@@ -1776,7 +1738,7 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
       "resumen":"En la pequeña isla de Thisby, cada noviembre los caballos de agua de la mitología celta emergen del mar. Y cada noviembre, los hombres los capturan para participar en una emocionante carrera mortal. En las carreras de Escorpio, algunos compiten para ganar. Otros para sobrevivir. Los jinetes intentan dominar a sus caballos de agua el tiempo suficiente para acabar la carrera. Algunos lo consiguen. El resto, muere en el intento. Sean Kendrick es el favorito, y necesita ganar la carrera para ganar, también, su libertad. Pero Puck Connolly está dispuesta a ser su más dura adversaria. Ella nunca quiso participar en las carreras. Pero no tiene elección: o compite y gana o… lo pierde todo.",  
     })  
       
-    db.libro.insert({  
+    db.libro.insertOne({  
       "_id":"9788468738895",  
       "titulo":"Las reglas del juego",  
       "autor":"Anna Casanovas",  
@@ -1790,39 +1752,38 @@ d'obrir-lo. Anirà bé per als exemples posteriors.
 
 
 Podeu comprovar que hi ha 7 documents en la nova col·lecció **libro** :
-```
-> db.libro.count()  
-7
-```
+
+    > db.libro.count()  
+    7
+
 I també podem consultar els títols de forma còmoda:
-```
-> db.libro.find( {} , {titulo:1} )  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo" }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros" }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio" }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
-```
+
+    > db.libro.find( {} , {titulo:1} )  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo" }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros" }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio" }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+
 I un altre exemple, on consultem els llibres que estan en stock (hi ha un camp
 booleà que ho diu: **enstock**), mostrant títol, editorial i preu
-```
-> db.libro.find( {enstock: true} , {titulo:1 , editorial:1 , precio:1} )  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }
-```
+
+    > db.libro.find( {enstock: true} , {titulo:1 , editorial:1 , precio:1} )  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }
+
 I un últim exemple, on consultem els llibres que estan en stock i tenen un
 preu de 21.75 €, mostrant tot excepte el _id i el resum
-```
-> db.libro.find( {enstock: true , precio: 21.75} , {titulo:1 , editorial:1 , > precio:1} )  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }
-```
-Anem a mirar ara operadors que ens serviran per fer millor les consultes.
 
+    > db.libro.find( {enstock: true , precio: 21.75} , {titulo:1 , editorial:1 , > precio:1} )  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }
+
+Anem a mirar ara operadors que ens serviran per fer millor les consultes.
 #### Operadors de comparació
 
 Fins ara en totes les condicions hem utilitzat la igualtat, si un determinat
@@ -1841,67 +1802,62 @@ Aquestos són els operadors de comparació:
 
 La sintaxi per a la seua utilització és, com sempre, acoplar-se a la sintaxi
 JSON:
-```
-clau : { $operador : valor [, ... ] }
-```
+
+    clau : { $operador : valor [, ... ] }
+
 Així per exemple, per a buscar els llibres de més de 10 €:
-```
-> db.libro.find( { precio : { $gt : 10 } } , { titulo:1 , precio:1 } )  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "precio" : 21.75 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "precio" : 21.75 }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23 }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9
-}
-```
+
+    > db.libro.find( { precio : { $gt : 10 } } , { titulo:1 , precio:1 } )  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "precio" : 21.75 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "precio" : 21.75 }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23 }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }
+
 I per a buscar els llibres entre 10 i 20 €:
-```
-> db.libro.find( { precio : { $gt : 10 , $lt:20 } } , { titulo:1 , precio:1 }
-> )  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23 }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9
-}
-```
+
+    > db.libro.find( { precio : { $gt : 10 , $lt:20 } } , { titulo:1 , precio:1 })
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23 }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9}
+
 És especialment útil per a les dates, ja que difícilment trobarem una data (i
 hora) exacta, i voldrem quasi sempre els documents anteriors a una data, o
 posteriors, o entre dues dates. Haurem d'anar amb compte pel tractament
 especial de les dates: hem de comparar coses del mateix tipus, i per tant la
 data amb la qual volem comparar l'haurem de tenir en forma de data:
-```
-> var d = new ISODate("2013-01-01T00:00:00Z")  
-> db.libro.find( {fecha:{$gte:d} } , {fecha:1} )  
-{ "_id" : "9788408117117", "fecha" : ISODate("2013-08-29T00:00:00Z") }  
-{ "_id" : "9788401342158", "fecha" : ISODate("2014-03-01T00:00:00Z") }  
-{ "_id" : "9788408113331", "fecha" : ISODate("2013-06-04T00:00:00Z") }  
-{ "_id" : "9788468738895", "fecha" : ISODate("2014-02-06T00:00:00Z") }
-```
+
+    > var d = new ISODate("2013-01-01T00:00:00Z")  
+    > db.libro.find( {fecha:{$gte:d} } , {fecha:1} )  
+    { "_id" : "9788408117117", "fecha" : ISODate("2013-08-29T00:00:00Z") }  
+    { "_id" : "9788401342158", "fecha" : ISODate("2014-03-01T00:00:00Z") }  
+    { "_id" : "9788408113331", "fecha" : ISODate("2013-06-04T00:00:00Z") }  
+    { "_id" : "9788468738895", "fecha" : ISODate("2014-02-06T00:00:00Z") }
+
  **$in**{.azul}
 
 Servirà per a comprovar si el valor d'un camp està entre els d'una llista,
 proporcionada com un array. La sitaxi és:
-```
-clau : { $in : [valor1 , valor2 , ... , valorN] }
-```
+
+    clau : { $in : [valor1 , valor2 , ... , valorN] }
+
 I ací tenim un exemple, els llibre de les editorials Planeta i Debolsillo:
-```
-> db.libro.find( { editorial: {$in : ["Planeta" , "Debolsillo"]} } , {titulo:1
-> , editorial:1} )  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }  
+
+    > db.libro.find( { editorial: {$in : ["Planeta" , "Debolsillo"]} } , {titulo: , editorial:1} )  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }  
   
-```
  **$nin**{.azul}
 
 És el contrari, traura els que no estan en la llista.
-```
-> db.libro.find( { editorial: {$nin : ["Planeta" , "Debolsillo"]} } , > {titulo:1 , editorial:1} )  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
-```
+
+    > db.libro.find( { editorial: {$nin : ["Planeta" , "Debolsillo"]} } , > {titulo:1 , editorial:1} )  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+
 Observeu com també trau els llibres que no tenen editorial, com és el cas de
 l'últim llibre, Las reglas del juego
 
@@ -1911,80 +1867,80 @@ L'operador anterior, **$in** , ja feia una espècie de OR, però sempre sobre el
 mateix camp. Si l'operació OR la volem fer sobre camps distints, haurem
 d'utilitzar l'operador **$or**. La seua sintaxi ha de jugar amb la
 possibilitat de posar molts elements, i per tant convé l'array:
-```
-$or : [ {clau1:valor1} , {clau2:valor2} , ... , {clauN:valorN} ]
-```
+
+    $or : [ {clau1:valor1} , {clau2:valor2} , ... , {clauN:valorN} ]
+
 Serà cert si s'acompleix alguna de les condicions. Per exemple, traure els
 llibres que no estan en stock o que no tenen editorial:
-```
-> db.libro.find( { $or : [ {enstock:false} , {editorial:null} ] } , {titulo:1 > , enstock:1 , editorial:1} )  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "enstock" : false }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "enstock" : false }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "enstock" : true}
-```
+
+    > db.libro.find( { $or : [ {enstock:false} , {editorial:null} ] } , {titulo:1 > , enstock:1 , editorial:1} )  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "enstock" : false }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "enstock" : false }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "enstock" : true}
+
  **$not**{.azul}
 
 Serveix per a negar una altra condició.
-```
-$not : { condició }
-```
+
+    $not : { condició }
+
 Per exemple els llibres que no són de l'editorial Planeta (observeu que seria
 més senzill utilitzar l'operador **$ne** , però és per a mostrar el seu
 funcionament:
-```
-> db.libro.find( { editorial: {$not : {$eq:"Planeta"} } } , {titulo:1 , editorial:1} )  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }  
-``` 
+
+    > db.libro.find( { editorial: {$not : {$eq:"Planeta"} } } , {titulo:1 , editorial:1} )  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }  
+
 
  **$exists**{.azul}
 
 Servirà per a saber els documents que tenen un determinat camp
-```
-clau : { $exists : _boolean_ }
-```
+
+    clau : { $exists : _boolean_ }
+
 Depenet del valor _boolean_ , el funcionament serà:
 
   * **true** : torna els documents en els quals existeix el camp, encara que el seu valor siga nul
   * **false** : torna els documents que no tenen el camp.
 
 Anem a traure els llibres que tenen el camp **paginas** :
-```
-> db.libro.find( { paginas: {$exists:true} } , {titulo:1 , paginas:1} )  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null }
-```
+
+    > db.libro.find( { paginas: {$exists:true} } , {titulo:1 , paginas:1} )  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null }
+
 Observeu com ens apareix també l'ultim llibre, que té el camp **paginas** amb
 el valor **nul**. En canvi si haguérem fet la consulta preguntant pels que són
 diferents de nul, no apareixeria aquest últim llibre:
-```
-> db.libro.find( { paginas: {$ne:null} } , {titulo:1 , paginas:1} )  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }
-```
+
+    > db.libro.find( { paginas: {$ne:null} } , {titulo:1 , paginas:1} )  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }
+
 I si posem **false** al valor en el **$exists** , únicament ens apareixerà el
 llibre que no té el camp:
-```
-> db.libro.find( { paginas: {$exists:false} } , {titulo:1 , paginas:1} )  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo" }
-```
+
+    > db.libro.find( { paginas: {$exists:false} } , {titulo:1 , paginas:1} )  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }
+
 I per la mateixa raó que abans, si traiem els que tenen **paginas** a null,
 ens eixirà tant qui no té el camp, com qui el té però amb valor nul:
-```
-> db.libro.find( { paginas: null } , {titulo:1 , paginas:1} )  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null}
-```
+
+    > db.libro.find( { paginas: null } , {titulo:1 , paginas:1} )  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null}
+
 Per tant, per a segons quines coses, ens interessa l'operador **$exists** , en
 compte de jugar amb el nul.
 
@@ -1997,31 +1953,31 @@ Les expressions regulars en Mongo tenen la mateixa sintaxi que en Perl, i que
 és molt molt pareguda a la major part de llenguatges de programació.
 
 Mirem alguns exemples. Els llibres dins dels quals està la paraula **juego** :
-```
-> db.libro.find( { titulo: /juego/ } , {titulo:1} )  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
-```
+
+    > db.libro.find( { titulo: /juego/ } , {titulo:1} )  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+
 Ara que tenen la paraula **juego** sense importar majúscules o minúscules:
-```
-> db.libro.find( { titulo: /juego/i } , {titulo:1} )  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
-```
+
+    > db.libro.find( { titulo: /juego/i } , {titulo:1} )  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+
 I ara que tenen la paraula **juego** només al principi.
-```
-> db.libro.find( { titulo: /^juego/i } , {titulo:1} )  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }
-```
+
+    > db.libro.find( { titulo: /^juego/i } , {titulo:1} )  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }
+
 I ara els llibres que en el resum (**resumen**) tenen la paraula **amiga** o
 **amigo** , és a dir **amig** seguit d'una **a** o una **o** :
-```
-> db.libro.find( { resumen: /amig[ao]/i } , {titulo:1} )  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
-```
- **Arrays**{.azul}
+
+    > db.libro.find( { resumen: /amig[ao]/i } , {titulo:1} )  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+
+#### Arrays
 
 Les consultes dins d'arrays de Mongo són molt senzilles.
 
@@ -2035,44 +1991,39 @@ Mirem-ho en un exemple. Anem a crear dos documents que tinguen un array
 cadascun, per exemple de colors. El creem en una col·lecció nova, anomenada
 **colorins** , en dos documents amb el mateix camp de tipus array, **color** ,
 però amb dades diferents********:
-```
-> db.colorins.insert({color: ["roig","blau","groc"]})  
-WriteResult({ "nInserted" : 1 })
-```
 
-```
-> db.colorins.insert({color: ["negre","blanc","roig"]})  
-WriteResult({ "nInserted" : 1 })
-```
-```
-> db.colorins.find();  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
-```
+    > db.colorins.insert({color: ["roig","blau","groc"]})  
+
+    > db.colorins.insert({color: ["negre","blanc","roig"]})  
+
+    > db.colorins.find();  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+
   
 Com es veu en la sintaxi, triar els documents que tenen un camp (en aquest cas
 d'array) que continga un valor, és igual de senzill que quan es tracta d'un
 camp de tipus string, per exemple:
 
-```
-> db.colorins.find({color:"roig"})  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
-```
+
+    > db.colorins.find({color:"roig"})  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+
 
 També podem utilitzar qualsevol dels operadors vistos fins el moment, com per
 exemple l'operador **$in** , que mirarà els documents que tenen algun dels
 colors que s'especifica a continuació:
-```
-> db.colorins.find({color: {$in : ["groc","lila"]} })  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
-```
+
+    > db.colorins.find({color: {$in : ["groc","lila"]} })  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
+
 O per exemple també utilitzar **expressions regulars** :
-```
-> db.colorins.find({color: /bl/ })  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
-```
+
+    > db.colorins.find({color: /bl/ })  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+
  **$ all**{.azul}
 
 L'operador **$all** el podem utilitzar quan vulguem seleccionar els documents
@@ -2080,10 +2031,9 @@ que en l'array tiguen **tots** els elements especificats.
 
 Per exemple, anem a buscar els document que tenen el color roig i blau.
 
-```
-> db.colorins.find({color : { $all : ["roig","blau"]} })  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
-```
+    > db.colorins.find({color : { $all : ["roig","blau"]} })  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
+
  **Subíndex**{.azul}
 
 Si volem mirar exactament una determinada posició de l'array, podem
@@ -2093,10 +2043,10 @@ cometes la clau i la posició, sinó no sabrà trobar-la.
 
 Per exemple, busquem els documents que tenen el roig en la primera posició.
 
-```
-> db.colorins.find({"color.0" : "roig"} )  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
-```
+
+    > db.colorins.find({"color.0" : "roig"} )  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
+
 
 !!! note "Nota"
     Accedir a una determinada posició és fàcil, però no és tan fàcil accedir a una
@@ -2110,17 +2060,17 @@ documents, l'últim color dels quals és el roig. En ella ens creem una variable
 amb l'últim element de l'array (amb **pop()**), i el comparem amb el color
 roig, tornant true en cas de que sí que siguen iguals:
 
-```
-> db.colorins.find(function() { var a =this.color.pop(); return (a =="roig")})  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
-```
+
+    > db.colorins.find(function() { var a =this.color.pop(); return (a =="roig")})  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+
 També hi ha una forma alternativa de fer-ho, que és utilitzant l'operador
 **$where**, que ens permet crear condicions amb sintaxi JavaScript:
 
-```
-> db.colorins.find({$where:"this.color[this.color.length - 1]=='roig'"})  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
-```
+
+    > db.colorins.find({$where:"this.color[this.color.length - 1]=='roig'"})  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+
  **$size**{.azul}
 
 L'operador **$size** ens servirà per a fer condicions sobre el número
@@ -2129,24 +2079,23 @@ d'elements d'un array.
 Incorporem 2 documents nous, amb 2 i 4 elements respectivament, per a poder
 comprovar-lo:
 
-```
-> db.colorins.insert({color: ["negre","blanc"]})  
-WriteResult({ "nInserted" : 1 })
-> db.colorins.insert({color: ["taronja","gris","lila","verd"]})  
-WriteResult({ "nInserted" : 1 })
-```
-```
-> db.colorins.find()  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }  
-{ "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ] }  
-{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris", "lila", "verd" ] }
-```
+
+    > db.colorins.insertOne({color: ["negre","blanc"]})  
+
+    > db.colorins.insertOne({color: ["taronja","gris","lila","verd"]})  
+
+
+    > db.colorins.find()  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }  
+    { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ] }  
+    { "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris", "lila", "verd" ] }
+
 Ara anem a seleccionar els documents que tenen 4 colors
-```
-> db.colorins.find({color:{$size:4}})  
-{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris", "lila", "verd" ] }
-```
+
+    > db.colorins.find({color:{$size:4}})  
+    { "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris", "lila", "verd" ] }
+
 !!! note "Nota"
     L'operador **$size** només admet un valor numèric, i no es poden concatenar
     expressions amb altres operadors, com per exemple intentar la condició que la
@@ -2155,12 +2104,12 @@ Ara anem a seleccionar els documents que tenen 4 colors
     JavaScript. Així la consulta dels documents que tenen 3 o menys colors la
     podríem traure d'aquesta manera:
 
-```
-> db.colorins.find({$where:"this.color.length<=3"})  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }  
-{ "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ]}
-```
+
+    > db.colorins.find({$where:"this.color.length<=3"})  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }  
+    { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ]}
+
 
  **$slice**{.azul}
 
@@ -2170,9 +2119,9 @@ pel número d'ordre d'aquestos elements en l'array. Només el podrem posar, per
 tant, en el segon paràmetre del **find()**.
 
 La sintaxi és:
-```
-clau : {$slice : x }
-```
+
+    clau : {$slice : x }
+
 Els valors que pot agafar **x** són:
 
   * Números positius: serà el número d'elements del principi (per l'esquerra)
@@ -2180,31 +2129,31 @@ Els valors que pot agafar **x** són:
   * Un array de 2 elements (**[x,y]**): traurà a partir de la posició **x** (0 és el primer), tants elements com indique **y**
 
 Per exemple, anem a traure els dos primers colors de cada document:
-```
-> db.colorins.find({} , {color:{$slice:2} })  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau" ] }  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc" ] }  
-{ "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ] }  
-{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris" ] }
-```
+
+    > db.colorins.find({} , {color:{$slice:2} })  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau" ] }  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc" ] }  
+    { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ] }  
+    { "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris" ] }
+
 O traure l'últim color:
-```
-> db.colorins.find({} , {color:{$slice:-1 }})  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "groc" ] }  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "roig" ] }  
-{ "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "blanc" ] }  
-{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "verd" ] }
-```
+
+    > db.colorins.find({} , {color:{$slice:-1 }})  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "groc" ] }  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "roig" ] }  
+    { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "blanc" ] }  
+    { "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "verd" ] }
+
 O traure el tercer element, tinguen els que tinguen. Recordeu que el segon
 element, és el de la posició 2, i en volem traure 1.
-```
-> db.colorins.find({} , {color:{$slice:[2,1] }})  
-{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "groc" ] }  
-{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "roig" ] }  
-{ "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ ] }  
-{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "lila" ] }
-```
-**Recerques en objectes**
+
+    > db.colorins.find({} , {color:{$slice:[2,1] }})  
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "groc" ] }  
+    { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "roig" ] }  
+    { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ ] }  
+    { "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "lila" ] }
+
+#### Recerques en objectes
 
 Per a fer recerques en camps que a la seua vegada són objectes (o documents
 dins de documents, en la terminologia de Mongo), només hem de posar la ruta de
@@ -2212,76 +2161,76 @@ les claus separant per mig de punts, i cuidar de posar-la entre cometes.
 
 Així, per exemple, anem a fer una consulta sobre la col·lecció d'alumnes, que
 eren uns documents en els quals hi havia algun camp de tipus objecte.
-```
-> db.alumnes.find().pretty()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Cantera",  
-    "edat" : 22,  
-    "adreça" : {  
-    "carrer" : "Major",  
-    "numero" : 7,  
-    "cp" : "12502"  
-    },  
-    "nota" : [  
-        9.5,  
-        9  
-    ]  
-}  
-{  
-"_id" : ObjectId("56dfdbd136d8b095cb6bd57a"),  
-"nom" : "Berta",  
-"cognoms" : "Bernat Cantero"  
-}
-```
+
+    > db.alumnes.find().pretty()  
+    {  
+        "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Cantera",  
+        "edat" : 22,  
+        "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+        },  
+        "nota" : [  
+            9.5,  
+            9  
+        ]  
+    }  
+    {  
+    "_id" : ObjectId("56dfdbd136d8b095cb6bd57a"),  
+    "nom" : "Berta",  
+    "cognoms" : "Bernat Cantero"  
+    }
+
 Es podrien traure els documents (els alumnes) que viuen en el codi postal
 12502. Ens ha d'eixir l'únic alumne del qual tenim l'adreça, que justament té
 aquest codi postal. Recordeu que en la clau (realment clau.subclau), ha d'anar
 entre cometes. Hem posat al final **pretty()** per a una millor lectura, però
 evidentment no és necessari.
-```
-> db.alumnes.find({"adreça.cp": "12502"}).pretty()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Cantera",  
-    "edat" : 22,  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-    },  
-    "nota" : [  
-        9.5,  
-        9  
-    ]  
-}
-```
+
+    > db.alumnes.find({"adreça.cp": "12502"}).pretty()  
+    {  
+        "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Cantera",  
+        "edat" : 22,  
+        "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+        },  
+        "nota" : [  
+            9.5,  
+            9  
+        ]  
+    }
+
 I funcionaria igual amb qualsevol número de subnivells, és a dir, documents
 que tenen objectes, els quals tenen objectes, ... I també amb altres tipus
 d'operadors, o expressions regulars, ...
 
 Per exemple, tots els alumnes de Castelló (el codi postal ha de començar per
 12 i contenir 3 xifres més, és a dir, caràcter del 0 al 9, i 3 vegades.
-```
-> db.alumnes.find({"adreça.cp": /^12[0-9]{3}/}).pretty()  
-{  
-    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
-    "nom" : "Abel",  
-    "cognoms" : "Bernat Cantera",  
-    "edat" : 22,  
-    "adreça" : {  
-        "carrer" : "Major",  
-        "numero" : 7,  
-        "cp" : "12502"  
-    },  
-    "nota" : [  
-        9.5,  
-        9  
-    ]  
-}
-```
+
+    > db.alumnes.find({"adreça.cp": /^12[0-9]{3}/}).pretty()  
+    {  
+        "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+        "nom" : "Abel",  
+        "cognoms" : "Bernat Cantera",  
+        "edat" : 22,  
+        "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+        },  
+        "nota" : [  
+            9.5,  
+            9  
+        ]  
+    }
+
  **Limit, Skip i Sort**{.azul}
 
 Una vegada tenim feta una consulta, podem limitar el nombre de documents que
@@ -2292,45 +2241,45 @@ a continuació del **find()** , separats per un punt.
 
 Ho aplicarem als llibres, que és on tenim més documents. I no mostrem tots els
 camps, per a una millor lectura:
-```
-> db.libro.find({} , {titulo:1 , precio:1 , editorial:1})  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }
-```
+
+    > db.libro.find({} , {titulo:1 , precio:1 , editorial:1})  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }
+
  **limit(_n_)**{.azul}
 
 Limita el número de documents tornats a _**n**_ documents.
-```
-> db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).limit(3)  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }
-```
+
+    > db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).limit(3)  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }
+
 Si el número de documents que fa la consulta és menor que _**n**_ , doncs se'n
 tornaran menys. Així per exemple, de l'editorial Planeta només hi ha dos
 llibres. Encara que posem limit(3), se'n tornaran 2.
-```
-> db.libro.find({editorial:"Planeta"} , {titulo:1 , precio:1 , > editorial:1}).limit(3)  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial": "Planeta", "precio" : 17.23 }
-```
+
+    > db.libro.find({editorial:"Planeta"} , {titulo:1 , precio:1 , > editorial:1}).limit(3)  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial": "Planeta", "precio" : 17.23 }
+
  **skip(_n_)**{.azul}
 
 Se saltaran els primers _**n**_ documents. Si hi haguera menys documents dels
 que se salten, doncs no se'n mostraria cap.
-```
-> db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).skip(2)  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }
-```
+
+    > db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).skip(2)  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }
+
  **sort()**{.azul}
 
 Serveix per a ordenar. Com a paràmetre se li passarà un objecte JSON amb les
@@ -2342,29 +2291,28 @@ claus per a ordenar, i els valors seran:
 Si posem més d'una clau, s'ordenarà pel primer, en cas d'empat pel segon, ...
 
 En aquest exemple ordenem pel preu
-```
-> db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).sort({precio:1})  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }
-```
+
+    > db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).sort({precio:1})  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }
+
 I com déiem, es pot posar més d'un camp d'ordenació. Per exemple, per
 editorial en ordre ascendent, i per preu en ordre descendent
-```
-> db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).sort({editorial:1 ,
-> precio:-1})  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }
-```
+
+    > db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).sort({editorial:1 , precio:-1})  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }
+
 Observeu com el primer és el que no té editorial (equivalent a null). I com
 que hi ha dos de l'editorial Planeta, apareix primer el més car, i després el
 més barat.
@@ -2374,13 +2322,13 @@ I evidentment, es poden combinar els mètodes limit, skip i sort.
 En aquest exemple traurem el segon i tercer llibre més car. Per a això ordenem
 per preu de forma descendent, saltem un i limitem a 2. No importa l'ordre com
 col·locar skip, limit i sort.
-```
-> db.libro.find({} , {titulo:1 , precio:1 , > editorial:1}).sort({precio:-1}).skip(1).limit(2)  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }
-```
 
-### 3.4.3 - Agregació
+    > db.libro.find({} , {titulo:1 , precio:1 , > editorial:1}).sort({precio:-1}).skip(1).limit(2)  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }
+
+
+## 3.9 - Agregació
 
 L'agregació ens permetrà fer consultes molt avançades. És un procés un poc
 complicat però molt potent. Ens donarà una potència quasi com la del SQL quan
@@ -2394,10 +2342,10 @@ blocs: filtrat, projecció, agrupacions, ordenació, limitació i _skipping_
 (saltar alguns).
 
 La sintaxi serà:
-```
-db.col_leccio1.aggregate ( _operador $matc_ h ,  _operador $projec_ t ,
-_operador $group_ , _operador $sort_ , _operador $limit_ , _operador $skip_ )
-```
+
+    db.col_leccio1.aggregate ( _operador $matc_ h ,  _operador $projec_ t ,
+    _operador $group_ , _operador $sort_ , _operador $limit_ , _operador $skip_ )
+
 L'ordre dels operadors pot canviar, però hem de tenir en compte que els
 comandos s'executen en el ordre en què els posem (d'esquerra a dreta). Així,
 per exemple, pot ser molt convenient posar el primer operador el $match, que
@@ -2406,9 +2354,9 @@ menys documents i aniran més ràpides.
 
 Cada paràmetre del aggregate, és a dir, cada operador tindrà format JSON, i
 per tant sempre serà de l'estil:
-```
-{ $operador : { clau:valor , ... } }
-```
+
+    { $operador : { clau:valor , ... } }
+
 #### $match {.azul}
 
 Servirà per a filtrar els documents. Aleshores, l'agregació només afectarà als
@@ -2418,18 +2366,18 @@ estudiant.
 El següent exemple selecciona els documents de l'editorial Planeta. Ho fa per
 mig de **aggregate** , però com no fem res més, senzillament selecciona els
 documents.
-```
-> db.libro.aggregate({$match:{editorial:"Planeta"}})
-```
+
+    > db.libro.aggregate({$match:{editorial:"Planeta"}})
+
 En el següent exemple, a més de seleccionar els de l'editorial Planeta després
 apliquem una projecció sobre els camps títol i editorial, per a poder
 visualitzar millor el resultat.
-```
->
-> db.libro.aggregate({$match:{editorial:"Planeta"}},{$project:{titulo:1,editorial:1}})  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial": "Planeta" }
-```
+
+
+    > db.libro.aggregate({$match:{editorial:"Planeta"}},{$project:{titulo:1,editorial:1}})  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial": "Planeta" }
+
 #### $project {.azul}
 
 Ens permet projectar sobre determinats camps del document, però és molt més
@@ -2441,41 +2389,41 @@ també renomenar camps, fer càlculs, etc.
 La manera més senzilla, evidentment és projectar sobre alguns camps dels
 existents, i el funcionament és idèntic al de l'altra vegada (valors 1 per a
 que apareguen, 0 per a que no apareguen; per defecte**_id** sempre apareix):
-```
-> db.libro.aggregate({$project:{titulo:1,editorial:1}})  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta" }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
-```
- **Renomenar**
+
+    > db.libro.aggregate({$project:{titulo:1,editorial:1}})  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta" }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+
+ **Renomenar**{.azul}
 
 **$project** també ens permet renomenar camps existents (després veurem que també
 càlculs). La manera serà posar d'aquest manera:
 
-```json
-{ $project : { "nom_nou" : "$camp_vell" }}
-```
+
+    { $project : { "nom_nou" : "$camp_vell" }}
+
 
 El secret està en el dòlar que va davant del camp vell, ja que d'aquesta
 manera ens referim al valor d'aquest camp. Així per exemple renomenem el camp
 **enstock** a **disponible** , a banda de traure el títol:
 
-```
-> db.libro.aggregate({$project:{titulo:1 , disponible:"$enstock"}})  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "disponible" : true }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "disponible" : true }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" disponible" : true }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "disponible" : false }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "disponible" : true }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "disponible" : false }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "disponible" : true }
-```
 
-  **Camps calculats**
+    > db.libro.aggregate({$project:{titulo:1 , disponible:"$enstock"}})  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "disponible" : true }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "disponible" : true }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" disponible" : true }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "disponible" : false }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "disponible" : true }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "disponible" : false }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "disponible" : true }
+
+
+  **Camps calculats**{.azul}
 
 Amb aquest nom genèric ens referirem a tots els càlculs, expressions i més
 coses que podrem posar per a trasnsformar el que ja tenim. Com veiem, açò és
@@ -2485,17 +2433,17 @@ molt més potent que la projecció normal.
 
 Per exemple, traurem títol del llibre, preu i preu en pessetes (multiplicant
 per 166.386)
-```
-> db.libro.aggregate({$project:{titulo:1 , precio:1 ,
-> preu_pessetes:{$multiply:["$precio" , 166.386]}}})  
-{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "precio" : 21.75, "preu_pessetes" : 3618.8955 }  
-{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "precio" : 21.75, "preu_pessetes" : 3618.8955 }  
-{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "precio" : 9.5, "preu_pessetes" : 1580.667 }  
-{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "precio" : 9.45, "preu_pessetes" : 1572.3476999999998 }  
-{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11, "preu_pessetes" : 1830.2459999999999 }  
-{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23, "preu_pessetes" : 2866.83078 }  
-{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9, "preu_pessetes" : 2645.5374 }
-```
+
+    > db.libro.aggregate({$project:{titulo:1 , precio:1 ,
+    > preu_pessetes:{$multiply:["$precio" , 166.386]}}})  
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "precio" : 21.75, "preu_pessetes" : 3618.8955 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "precio" : 21.75, "preu_pessetes" : 3618.8955 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "precio" : 9.5, "preu_pessetes" : 1580.667 }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "precio" : 9.45, "preu_pessetes" : 1572.3476999999998 }  
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11, "preu_pessetes" : 1830.2459999999999 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23, "preu_pessetes" : 2866.83078 }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9, "preu_pessetes" : 2645.5374 }
+
  
   * **Expressions de dates** : Ja veurem i ja podem anar intuint que moltes agregacions estaran basades en el temps, per a poder fer consultes de documents de la setmana passada, o el mes passat, ... Per a poder fer aquestes agregacions, hi ha un conjunt d'expressions que permeten extraure fàcilment d'una data el seu dia, mes, any, ... en forma de número
 
@@ -2504,16 +2452,16 @@ $dayOfYear, $hour, $minute** i **$second**.
 
 En el següent exemple traurem tots els documents, projectant per la data, any
 i mes:
-```
-> db.libro.aggregate({$project : {fecha:1 , año:{$year:"$fecha"} , > mes:{$month:"$fecha"}}})  
-{ "_id" : "9788408117117", "fecha" : ISODate("2013-08-29T00:00:00Z"), "año" : 2013, "mes" : 8 }  
-{ "_id" : "9788401342158", "fecha" : ISODate("2014-03-01T00:00:00Z"), "año" : 2014, "mes" : 3 }  
-{ "_id" : "9788496208919", "fecha" : ISODate("2011-11-24T00:00:00Z"), "año" : 2011, "mes" : 11 }  
-{ "_id" : "9788499088075", "fecha" : ISODate("2009-01-09T00:00:00Z"), "año" : 2009, "mes" : 1 }  
-{ "_id" : "9788415140054", "fecha" : ISODate("2012-10-30T00:00:00Z"), "año" : 2012, "mes" : 10 }  
-{ "_id" : "9788408113331", "fecha" : ISODate("2013-06-04T00:00:00Z"), "año" : 2013, "mes" : 6 }  
-{ "_id" : "9788468738895", "fecha" : ISODate("2014-02-06T00:00:00Z"), "año" : 2014, "mes" : 2 }
-```
+
+    > db.libro.aggregate({$project : {fecha:1 , año:{$year:"$fecha"} , > mes:{$month:"$fecha"}}})  
+    { "_id" : "9788408117117", "fecha" : ISODate("2013-08-29T00:00:00Z"), "año" : 2013, "mes" : 8 }  
+    { "_id" : "9788401342158", "fecha" : ISODate("2014-03-01T00:00:00Z"), "año" : 2014, "mes" : 3 }  
+    { "_id" : "9788496208919", "fecha" : ISODate("2011-11-24T00:00:00Z"), "año" : 2011, "mes" : 11 }  
+    { "_id" : "9788499088075", "fecha" : ISODate("2009-01-09T00:00:00Z"), "año" : 2009, "mes" : 1 }  
+    { "_id" : "9788415140054", "fecha" : ISODate("2012-10-30T00:00:00Z"), "año" : 2012, "mes" : 10 }  
+    { "_id" : "9788408113331", "fecha" : ISODate("2013-06-04T00:00:00Z"), "año" : 2013, "mes" : 6 }  
+    { "_id" : "9788468738895", "fecha" : ISODate("2014-02-06T00:00:00Z"), "año" : 2014, "mes" : 2 }
+
   
   * **Expressions de strings** : Ens permeten manipular els strings per a extraure subcadenes, concatenar, passar a majúscules o minúscules. Aquestes són algunes de les funcions:
 
@@ -2522,28 +2470,28 @@ i mes:
     > * **$toLower : exp** i **$toUpper : exp** : converteixen l'expressió a majúscules i minúscules respectivament
 
 Per exemple, anem a traure el títol dels llibres amb l'autor entre parèntesis:
-```
-> db.libro.aggregate({$project: { "Llibre:" : {$concat : ["$titulo" , " (" , > "$autor" , ")"]}}})  
-{ "_id" : "9788408117117", "Llibre:" : "Circo Máximo (Santiago Posteguillo)" }  
-{ "_id" : "9788401342158", "Llibre:" : "El juego de Ripper (Isabel Allende)" }  
-{ "_id" : "9788496208919", "Llibre:" : "Juego de tronos: Canción de hielo y fuego 1 (George R.R. Martin)" }  
-{ "_id" : "9788499088075", "Llibre:" : "La ladrona de libros (Markus Zusak)" }  
-{ "_id" : "9788415140054", "Llibre:" : "La princesa de hielo (Camilla Lackberg)" }  
-{ "_id" : "9788408113331", "Llibre:" : "Las carreras de Escorpio (Maggie Stiefvater)" }  
-{ "_id" : "9788468738895", "Llibre:" : "Las reglas del juego (Anna Casanovas)"}
-```
+
+    > db.libro.aggregate({$project: { "Llibre:" : {$concat : ["$titulo" , " (" , > "$autor" , ")"]}}})  
+    { "_id" : "9788408117117", "Llibre:" : "Circo Máximo (Santiago Posteguillo)" }  
+    { "_id" : "9788401342158", "Llibre:" : "El juego de Ripper (Isabel Allende)" }  
+    { "_id" : "9788496208919", "Llibre:" : "Juego de tronos: Canción de hielo y fuego 1 (George R.R. Martin)" }  
+    { "_id" : "9788499088075", "Llibre:" : "La ladrona de libros (Markus Zusak)" }  
+    { "_id" : "9788415140054", "Llibre:" : "La princesa de hielo (Camilla Lackberg)" }  
+    { "_id" : "9788408113331", "Llibre:" : "Las carreras de Escorpio (Maggie Stiefvater)" }  
+    { "_id" : "9788468738895", "Llibre:" : "Las reglas del juego (Anna Casanovas)"}
+
 I ara el mateix, però amb el títol en majúscules:
-```
-> db.libro.aggregate({$project: { "Llibre:" : {$concat :
-> [{$toUpper:"$titulo"}, " (" , "$autor" , ")"]}}})  
-{ "_id" : "9788408117117", "Llibre:" : "CIRCO MáXIMO (Santiago Posteguillo)" }  
-{ "_id" : "9788401342158", "Llibre:" : "EL JUEGO DE RIPPER (Isabel Allende)" }  
-{ "_id" : "9788496208919", "Llibre:" : "JUEGO DE TRONOS: CANCIóN DE HIELO Y FUEGO 1 (George R.R. Martin)" }  
-{ "_id" : "9788499088075", "Llibre:" : "LA LADRONA DE LIBROS (Markus Zusak)" }  
-{ "_id" : "9788415140054", "Llibre:" : "LA PRINCESA DE HIELO (Camilla Lackberg)" }  
-{ "_id" : "9788408113331", "Llibre:" : "LAS CARRERAS DE ESCORPIO (Maggie Stiefvater)" }  
-{ "_id" : "9788468738895", "Llibre:" : "LAS REGLAS DEL JUEGO (Anna Casanovas)" }
-```
+
+    > db.libro.aggregate({$project: { "Llibre:" : {$concat :
+    > [{$toUpper:"$titulo"}, " (" , "$autor" , ")"]}}})  
+    { "_id" : "9788408117117", "Llibre:" : "CIRCO MáXIMO (Santiago Posteguillo)" }  
+    { "_id" : "9788401342158", "Llibre:" : "EL JUEGO DE RIPPER (Isabel Allende)" }  
+    { "_id" : "9788496208919", "Llibre:" : "JUEGO DE TRONOS: CANCIóN DE HIELO Y FUEGO 1 (George R.R. Martin)" }  
+    { "_id" : "9788499088075", "Llibre:" : "LA LADRONA DE LIBROS (Markus Zusak)" }  
+    { "_id" : "9788415140054", "Llibre:" : "LA PRINCESA DE HIELO (Camilla Lackberg)" }  
+    { "_id" : "9788408113331", "Llibre:" : "LAS CARRERAS DE ESCORPIO (Maggie Stiefvater)" }  
+    { "_id" : "9788468738895", "Llibre:" : "LAS REGLAS DEL JUEGO (Anna Casanovas)" }
+
 #### $group {.azul}
 
 Realitza grups sobre els documents seleccionats prèviament, per a valors
@@ -2556,45 +2504,45 @@ pels valors dels quals volem agrupar. Per exemple, si volem agrupar els
 llibres per l'editorial, haurem de definir el **_id** del grup el camp
 editorial
 
-```
-$group : { "_id" : _camp o camps_ }
-```
+
+    $group : { "_id" : _camp o camps_ }
+
 Si agrupem per un únic camp, senzillament el posem amb un dòlar davant i entre
 cometes. Si és més d'un camp, els posem com un objecte. Per exemple, agrupem
 per editorial:
-```
-> db.libro.aggregate( { $group : { "_id" : "$editorial" } } )  
-{ "_id" : "Debolsillo" }  
-{ "_id" : null }  
-{ "_id" : "Gigamesh" }  
-{ "_id" : "Embolsillo" }  
-{ "_id" : "Plaza & Janes" }  
-{ "_id" : "Planeta" }
-```
+
+    > db.libro.aggregate( { $group : { "_id" : "$editorial" } } )  
+    { "_id" : "Debolsillo" }  
+    { "_id" : null }  
+    { "_id" : "Gigamesh" }  
+    { "_id" : "Embolsillo" }  
+    { "_id" : "Plaza & Janes" }  
+    { "_id" : "Planeta" }
+
 Podem observar com hi ha algun llibre que no té editorial.
 
 Ara agrupem per any de publicació (l'extraurem del camp **fecha**):
-```
-> db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } }} )  
-{ "_id" : { "any" : 2012 } }  
-{ "_id" : { "any" : 2009 } }  
-{ "_id" : { "any" : 2011 } }  
-{ "_id" : { "any" : 2014 } }  
-{ "_id" : { "any" : 2013 } }
-```
+
+    > db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } }} )  
+    { "_id" : { "any" : 2012 } }  
+    { "_id" : { "any" : 2009 } }  
+    { "_id" : { "any" : 2011 } }  
+    { "_id" : { "any" : 2014 } }  
+    { "_id" : { "any" : 2013 } }
+
 I ara agrupem per editorial i any de publicació (els dos llibres de Planeta
 són del 2013)
-```
-> db.libro.aggregate( { $group : { "_id" : { "Editorial" : "$editorial" ,
-> "any" : { $year : "$fecha" } } } } )  
-{ "_id" : { "Editorial" : "Embolsillo", "any" : 2012 } }  
-{ "_id" : { "any" : 2014 } }  
-{ "_id" : { "Editorial" : "Debolsillo", "any" : 2009 } }  
-{ "_id" : { "Editorial" : "Gigamesh", "any" : 2011 } }  
-{ "_id" : { "Editorial" : "Plaza & Janes", "any" : 2014 } }  
-{ "_id" : { "Editorial" : "Planeta", "any" : 2013 } }
-```
- **Operadors d'agrupació**
+
+    > db.libro.aggregate( { $group : { "_id" : { "Editorial" : "$editorial" ,
+    > "any" : { $year : "$fecha" } } } } )  
+    { "_id" : { "Editorial" : "Embolsillo", "any" : 2012 } }  
+    { "_id" : { "any" : 2014 } }  
+    { "_id" : { "Editorial" : "Debolsillo", "any" : 2009 } }  
+    { "_id" : { "Editorial" : "Gigamesh", "any" : 2011 } }  
+    { "_id" : { "Editorial" : "Plaza & Janes", "any" : 2014 } }  
+    { "_id" : { "Editorial" : "Planeta", "any" : 2013 } }
+
+ **Operadors d'agrupació**{.azul}
 
 Ens permetran fer alguna operació sobre els documents del grup. Es posen com a
 segon paràmetre del grup (després de la definició del **_id**).
@@ -2611,37 +2559,37 @@ d'una determinada versió. Es pot substituir la seua utilització per l'operador
 **$sum** , sumant la quantitat 1.
 
 Per exemple, la suma dels preus dels llibres de cada editorial:
-```
-> db.libro.aggregate( { $group : { "_id" : "$editorial" , "suma_preus" : {
-> $sum : "$precio"} } } )  
-{ "_id" : "Debolsillo", "suma_preus" : 9.45 }  
-{ "_id" : null, "suma_preus" : 15.9 }  
-{ "_id" : "Gigamesh", "suma_preus" : 9.5 }  
-{ "_id" : "Embolsillo", "suma_preus" : 11 }  
-{ "_id" : "Plaza & Janes", "suma_preus" : 21.75 }  
-{ "_id" : "Planeta", "suma_preus" : 38.980000000000004 }
-```
+
+    > db.libro.aggregate( { $group : { "_id" : "$editorial" , "suma_preus" : {
+    > $sum : "$precio"} } } )  
+    { "_id" : "Debolsillo", "suma_preus" : 9.45 }  
+    { "_id" : null, "suma_preus" : 15.9 }  
+    { "_id" : "Gigamesh", "suma_preus" : 9.5 }  
+    { "_id" : "Embolsillo", "suma_preus" : 11 }  
+    { "_id" : "Plaza & Janes", "suma_preus" : 21.75 }  
+    { "_id" : "Planeta", "suma_preus" : 38.980000000000004 }
+
 O la mitjana dels preus de cada any:
-```
-> db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } ,
-> "mitjana preus" : { $avg : "$precio" } } } )  
-{ "_id" : { "any" : 2012 }, "mitjana preus" : 11 }  
-{ "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }  
-{ "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
-{ "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
-{ "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }
-```
+
+    > db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } ,
+    > "mitjana preus" : { $avg : "$precio" } } } )  
+    { "_id" : { "any" : 2012 }, "mitjana preus" : 11 }  
+    { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }  
+    { "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
+    { "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
+    { "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }
+
 I ara intentem comptar la quantitat de llibres de cada editorial:
-```
-> db.libro.aggregate( { $group : { "_id" : "$editorial" , "quants" : { $sum :
-> 1} } } )  
-{ "_id" : "Debolsillo", "quants" : 1 }  
-{ "_id" : null, "quants" : 1 }  
-{ "_id" : "Gigamesh", "quants" : 1 }  
-{ "_id" : "Embolsillo", "quants" : 1 }  
-{ "_id" : "Plaza & Janes", "quants" : 1 }  
-{ "_id" : "Planeta", "quants" : 2 }
-```
+
+    > db.libro.aggregate( { $group : { "_id" : "$editorial" , "quants" : { $sum :
+    > 1} } } )  
+    { "_id" : "Debolsillo", "quants" : 1 }  
+    { "_id" : null, "quants" : 1 }  
+    { "_id" : "Gigamesh", "quants" : 1 }  
+    { "_id" : "Embolsillo", "quants" : 1 }  
+    { "_id" : "Plaza & Janes", "quants" : 1 }  
+    { "_id" : "Planeta", "quants" : 2 }
+
 #### $sort {.azul}
 
 Serveix per a ordenar i segueix la mateixa sintàxi que en les consultes normal
@@ -2649,50 +2597,50 @@ Serveix per a ordenar i segueix la mateixa sintàxi que en les consultes normal
 o per camps clalculats.
 
 Per exemple ordenem per la suma de preus de cada editorial:
-```
-> db.libro.aggregate( { $group : { "_id" : "$editorial" , "suma_preus" : {
-> $sum : "$precio"} } } , { $sort : { suma_preus : 1 } })  
-{ "_id" : "Debolsillo", "suma_preus" : 9.45 }  
-{ "_id" : "Gigamesh", "suma_preus" : 9.5 }  
-{ "_id" : "Embolsillo", "suma_preus" : 11 }  
-{ "_id" : null, "suma_preus" : 15.9 }  
-{ "_id" : "Plaza & Janes", "suma_preus" : 21.75 }  
-{ "_id" : "Planeta", "suma_preus" : 38.980000000000004 }
-```
+
+    > db.libro.aggregate( { $group : { "_id" : "$editorial" , "suma_preus" : {
+    > $sum : "$precio"} } } , { $sort : { suma_preus : 1 } })  
+    { "_id" : "Debolsillo", "suma_preus" : 9.45 }  
+    { "_id" : "Gigamesh", "suma_preus" : 9.5 }  
+    { "_id" : "Embolsillo", "suma_preus" : 11 }  
+    { "_id" : null, "suma_preus" : 15.9 }  
+    { "_id" : "Plaza & Janes", "suma_preus" : 21.75 }  
+    { "_id" : "Planeta", "suma_preus" : 38.980000000000004 }
+
 I ara ordenem de forma descendent per la mitjana de preus de cada any:
-```
-> db.libro.aggregate( { $group : { "_id" : {"any":{$year:"$fecha"}} , "mitjana
-> preus":{$avg:"$precio"} } } , {$sort:{"mitjana preus":-1}})  
-{ "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }  
-{ "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
-{ "_id" : { "any" : 2012 }, "mitjana preus" : 11 }  
-{ "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
-{ "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
-```
+
+    > db.libro.aggregate( { $group : { "_id" : {"any":{$year:"$fecha"}} , "mitjana
+    > preus":{$avg:"$precio"} } } , {$sort:{"mitjana preus":-1}})  
+    { "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }  
+    { "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
+    { "_id" : { "any" : 2012 }, "mitjana preus" : 11 }  
+    { "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
+    { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
+
 #### $limit {.azul}
 
 Limita el resultat del aggregate al número indicat.
 
 Per exemple, els tres anys de mitjana de preus més cara. És com l'últim
 exemple, afegint el límit:
-```
-> db.libro.aggregate({$group:{"_id":{"any":{$year:"$fecha"}},"mitjana
-> preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$limit:3})  
-{ "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }  
-{ "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
-{ "_id" : { "any" : 2012 }, "mitjana preus" : 11 }
-```
+
+    > db.libro.aggregate({$group:{"_id":{"any":{$year:"$fecha"}},"mitjana
+    > preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$limit:3})  
+    { "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }  
+    { "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
+    { "_id" : { "any" : 2012 }, "mitjana preus" : 11 }
+
 #### $skip {.azul}
 
 Salta el número indicat
 
 En l'exemple anterior, ara saltem els 3 primers:
-```
-> db.libro.aggregate({$group:{"_id":{"any":{$year:"$fecha"}},"mitjana
-> preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$skip:3})  
-{ "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
-{ "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
-```
+
+    > db.libro.aggregate({$group:{"_id":{"any":{$year:"$fecha"}},"mitjana
+    > preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$skip:3})  
+    { "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
+    { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
+
 
 ## 3.5 - Resum Comandos
 

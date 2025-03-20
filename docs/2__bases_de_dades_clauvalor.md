@@ -225,7 +225,7 @@ intentarem fer operacions.
 
 
 
-### 2.2.1 - Strings
+### 2.3.1 - Strings
 
 És el tipus de dades més senzill, més bàsic. Serà una cadena de caràcters de
 tipus _**binary**_**safe** en la qual normalment guardarem les habituals
@@ -566,7 +566,7 @@ Decrementa el valor de la clau el número d'unitat indicat en **decrement**.
     (integer) 6
 
 
-### 2.2.2 - Keys
+### 2.3.2 - Keys
 
 Ara anem a veure comandos que ens permeten treballar amb les claus, per a
 buscar-les, veure si existeixen, etc. No importarà el tipus de les claus (de
@@ -791,7 +791,7 @@ expirarà mai.
     127.0.0.1:6379> get compt1  
     "9"
 
-### 2.2.3 - Hash
+### 2.3.3 - Hash
 
 Ja havíem comentat que el tipus **Hash** és una espècie de registre, amb
 subcamps (en realitat hauríem de dir sub-claus). Pot tenir qualsevol número de
@@ -939,7 +939,7 @@ vist tots en el cas de **String**):
   * **hincrby** : incrementa el camp de la clau
 
 
-### 2.2.4 - List
+### 2.3.4 - List
 
 Les **Llistes** en **Redis** són llistes de Strings ordenades, on cada element
 està associat a un índex de la llista. Es poden recuperar els elements tant de
@@ -1296,7 +1296,7 @@ de final.
     2) "sisena"  
     3) "cinquena"  
 
-### 2.2.5 - Set
+### 2.3.5 - Set
 
 Els **Sets** de **Redis** són conjunts de valors de tipus String no ordenats.
 Podrem afegir, actualitzar i esborrar aquestos elements de forma còmoda i
@@ -1625,7 +1625,7 @@ si l'ha menejat, i 0 si no l'ha menejat.
     1) "groc"  
     2) "roig"
 
-### 2.2.6 - Set ordenat
+### 2.3.6 - Set ordenat
 
 Els **Sets Ordenats** (**Sorted Set**) de **Redis** són Sets que a més de
 guardar els valors, guarden també una **puntuació** (**score**) per a cada
