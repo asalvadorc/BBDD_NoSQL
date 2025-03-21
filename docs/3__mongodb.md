@@ -1266,13 +1266,12 @@ serà **5.25** :
         },  
         "puntuacio" : 5.25  
     }
-
+<!-->
 ### $min {.azul}
 ### $max {.azul}
 ### $mul {.azul}
-### $mul {.azul}
 ### $currentDate {.azul}
-
+-->
 ### Arrays
 
 Per a accedir directament a un element d'un array d'un determinat document es
