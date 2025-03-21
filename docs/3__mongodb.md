@@ -1266,12 +1266,31 @@ serà **5.25** :
         },  
         "puntuacio" : 5.25  
     }
-<!-->
+
 ### $min {.azul}
+
+Actualitza el valor del camp a un valor especificat si aquest és menor que el valor actual del camp.
+
+    db.alumnes..updateOne( { nom:"Abel"}, { $min: { puntuacio: 1 } } )
+
+El valor de puntuació s'actualitza a 1 perquè és menor que el valor actual de 5.  
+
 ### $max {.azul}
+
+Actualitza el valor del camp a un valor especificat si aquest és major que el valor actual del camp.
+
+    db.alumnes..updateOne( { nom:"Abel"}, { $max: { puntuacio: 7 } } )
+
+El valor de puntuació s'actualitza a 7 perquè és menor que el valor actual de 1.  
+
 ### $mul {.azul}
-### $currentDate {.azul}
--->
+ 
+ Multiplica el valor d'un camp per un número.,  $currentDate
+
+        db.alumnes.updateOne({ nom:"Abel"},{ $mul: {puntuacio: 2}})
+
+L'operador $mul multiiplica el camp puntuació per 2.
+
 ### Arrays
 
 Per a accedir directament a un element d'un array d'un determinat document es
