@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_NoSQL/exercicis_mongo/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Exercicis - BBDD - Bases de Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Exercicis";
+        var mkdocs_page_input_path = "exercicis_mongo.md";
+        var mkdocs_page_url = "/BBDD_NoSQL/exercicis_mongo/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../2__bases_de_dades_clauvalor/">2 - Bases de Dades Clau-Valor (Redis)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_redis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../3__mongodb/">3 - MongoDB</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Exercicis</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-2">Exercici 2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-3">Exercici 3</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-4">Exercici 4</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_relaciones_mongo/">4 - Relacions en MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_actividad_mongo/">Activitat</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BBDD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">MONGO</li>
+      <li class="breadcrumb-item active">Exercicis</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h1>
+<h2 id="exercici-2">Exercici 2</h2>
+<p>Sobre la teua Base de Dades <strong>MONGODB</strong> treballarem sobre la col·lecció
+<strong>libro</strong>, la mateixa que hem utilitzat en els exemples. Si no la tens
+creada, executa les sentències del principi de la pregunta <strong>3.4.2</strong>. Fes les
+següents consultes. Copia-les en un únic fitxer de text, de forma numerada. És
+aquest fitxer el que hauràs de pujar.</p>
+<ol>
+<li>Busca els llibres que tenen més de 500 pàgines. Visualitza el _id, el títol i el número de pàgines</li>
+<li>Busca els llibres de l'any 2014. Visualitza únicament títol i data</li>
+<li>Busca els llibres de l'editorial Planeta. Visualitza únicament títol i editorial</li>
+<li>Busca els llibres de l'editorial Planeta de més de 500 pàgines. Visualitza únicament títol, editorial i pàgines</li>
+<li>Busca els llibres que no tenen editorial. Visualitza únicament títol i editorial</li>
+<li>Busca els llibres que en el resum contenen la paraula <strong>caballo</strong>. Visualitza el resum per poder comprovar-ho. Han d'eixir 2 llibres, <strong>Circo máximo</strong> i <strong>Las carreras de Escorpio</strong>.</li>
+<li>Utilitzant la funció <strong>aggregate</strong> , trau l'editorial i la mitjana de pàgines d'aquelles editorials que tenen una mitjana de pàgines superior a 500. Eixiran 3 editorials.</li>
+</ol>
+<h2 id="exercici-3">Exercici 3</h2>
+<p>Aquest exercici l'has de realitzar sobre la teua BD de MongoDB.</p>
+<pre><code>title : Fight Club
+writer : Chuck Palahniuk
+year : 1999
+actors : [
+  Brad Pitt
+  Edward Norton ]
+
+
+title : Pulp Fiction
+writer : Quentin Tarantino
+year : 1994
+actors : [
+  John Travolta
+  Uma Thurman ]
+
+
+
+title : Inglorious Basterds
+writer : Quentin Tarantino
+year : 2009
+actors : [
+  Brad Pitt
+  Diane Kruger
+  Eli Roth ]
+
+
+title : The Hobbit: An Unexpected Journey
+writer : J.R.R. Tolkein
+year : 2012
+franchise : The Hobbit
+
+
+title : The Hobbit: The Desolation of Smaug
+writer : J.R.R. Tolkein
+year : 2013
+franchise : The Hobbit
+
+
+title : The Hobbit: The Battle of the Five Armies
+writer : J.R.R. Tolkein
+year : 2012
+franchise : The Hobbit
+synopsis : Bilbo y compañía se ven obligados a participar en una guerra contra una serie de combatientes y evitar que la Lonely Mountain caiga en manos de una oscuridad creciente.
+
+
+
+title : Pee Wee Herman's Big Adventure
+
+
+title : Avatar
+</code></pre>
+<ol>
+<li>Inserir tots els documents anteriors. Ha de ser <strong>obligatòriament</strong> amb una única sentència, per a la qual cosa hauràs d'utilitzar variables, una per a cada document.</li>
+<li>Consultar tots els documents</li>
+<li>Obtenir els documents amb <strong>writer</strong> igual a <strong>"Quentin Tarantino"</strong></li>
+<li>Obtenir els documents amb <strong>actors</strong> que incloguen a <strong>"Brad Pitt"</strong></li>
+<li>Obtenir els documents amb <strong>franchise</strong> igual a <strong>"The Hobbit"</strong></li>
+<li>Obtenir totes les pel·lícules dels anys 90.</li>
+<li>Obtenir les pel·lícules estrenades entre l'any 2000 i el 2010.</li>
+<li>Agregar sinopsis a <strong>"The Hobbit: An Unexpected Journey"</strong> : <ul>
+<li>"Un hobbit reacio, Bilbo Baggins, se dirige a Lonely Mountain con un enérgico grupo de enanos para reclamar su hogar en la montaña, y el oro que contiene, del dragón Smaug".</li>
+</ul>
+</li>
+<li>Agregar sinopsis a <strong>"The Hobbit: The Desolation of Smaug</strong> ": <ul>
+<li>"Los enanos, junto con Bilbo Baggins y Gandalf the Grey, continúan su búsqueda para recuperar Erebor, su tierra natal, de manos de Smaug. Bilbo Baggins está en posesión de un anillo misterioso y mágico".</li>
+</ul>
+</li>
+<li>Agregar un actor anomenat <strong>"Samuel L. Jackson"</strong> a la pel·lícula "Pulp Fiction"</li>
+<li>Trobar les pel·lícules que en la sinopsis continguen la paraula <strong>"Bilbo"</strong></li>
+<li>Trobar les pel·lícules que en la sinopsis continguen la paraula <strong>"Gandalf"</strong></li>
+<li>Trobar les pel·lícules que en la sinopsis continguen la paraula <strong>"Bilbo"</strong> i no la paraula <strong>"Gandalf"</strong>. S'aconsella utilitzar l'operador <strong>$and</strong></li>
+<li>Trobar les pel·lícules que en la sinopsis continguen la paraula <strong>"enanos"</strong> o <strong>"hobbit"</strong></li>
+<li>Trobar les pel·lícules que en la sinopsis continguen les paraules <strong>"oro"</strong> i <strong>"dragón"</strong></li>
+<li>Eliminar la pel·lícula <strong>"Pee Wee Herman's Big Adventure"</strong></li>
+<li>Eliminar la pel·lícula <strong>"Avatar"</strong></li>
+</ol>
+<h2 id="exercici-4">Exercici 4</h2>
+<p>Sobre la teua Base de Dades MONGODB treballarem sobre la col·lecció <strong>libro</strong>
+, la mateixa que hem utilitzat en els exemples. Si no la tens creada, executa
+les sentències del principi de la pregunta<strong>3.4.2</strong>. Fes les següents
+consultes. Copia-les en un únic fitxer de text, de forma numerada. És aquest
+fitxer el que hauràs de pujar.</p>
+<ol>
+<li>Incrementar el preu dels llibres de l'editorial Planeta en 2€ (recordeu que per a modificar més d'un document, hem de posar com a tercer paràmetre l'opció <strong>{multi:true}</strong> )</li>
+<li>Crear el camp editorial amb el valor nul, per a tots aquells documents que no tinguen el camp editorial</li>
+<li>Fer l'operació inversa: eliminar el camp editorial per a tots aquells que el tinguen nul</li>
+<li>Traure l'any del llibre, a partir de la <strong>fecha</strong> (serà un camp calculat anomenat <strong>año</strong>)</li>
+<li>Aprofita el camp anterior per a traure els llibres estrictament anteriors a l'any 2013. Visualitza <strong>titulo</strong> , <strong>fecha</strong> i <strong>año</strong></li>
+</ol>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 4.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../3__mongodb/" class="btn btn-neutral float-left" title="3 - MongoDB"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../4_relaciones_mongo/" class="btn btn-neutral float-right" title="4 - Relacions en MongoDB">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../3__mongodb/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../4_relaciones_mongo/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

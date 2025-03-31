@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_NoSQL/4_relaciones_mongo/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>4 - Relacions en MongoDB - BBDD - Bases de Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "4 - Relacions en MongoDB";
+        var mkdocs_page_input_path = "4_relaciones_mongo.md";
+        var mkdocs_page_url = "/BBDD_NoSQL/4_relaciones_mongo/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../2__bases_de_dades_clauvalor/">2 - Bases de Dades Clau-Valor (Redis)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_redis/">Exercicis</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../3__mongodb/">3 - MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../exercicis_mongo/">Exercicis</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">4 - Relacions en MongoDB</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#41-relacion-con-documentos-embebidos">4.1. Relación con Documentos Embebidos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#42-relacion-con-referencias">4.2. Relación con Referencias</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#43-relaciones-en-mongodb-con-lookup">4.3. Relaciones en MongoDB con $lookup</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lookup-anidado">$lookup anidado</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#el-operador-unwind">El operador $unwind</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_actividad_mongo/">Activitat</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BBDD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">MONGO</li>
+      <li class="breadcrumb-item active">4 - Relacions en MongoDB</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="implementacion-de-relaciones-en-mongodb"><strong>Implementación de Relaciones en MongoDB</strong></h1>
+<p>MongoDB, al ser una <strong>base de datos NoSQL</strong>, <strong>no maneja relaciones de la misma manera que SQL</strong>. Sin embargo, permite representar relaciones entre documentos utilizando dos enfoques principales:</p>
+<p>1️⃣ Relaciones mediante documentos embebidos.<br />
+2️⃣ Relaciones mediante referencias.</p>
+<p>Cada enfoque tiene ventajas y desventajas, según el caso de uso.</p>
+<hr />
+<h2 id="41-relacion-con-documentos-embebidos">4.1. Relación con Documentos Embebidos</h2>
+<p>Este enfoque <strong>anida los datos relacionados dentro del mismo documento</strong>.<br />
+Se usa cuando los datos relacionados se consultan frecuentemente juntos y no crecen demasiado en tamaño.</p>
+<p><strong><u>Ejemplo</u>:</strong> Cliente con sus Pedidos embebidos</p>
+<pre><code>{
+  "_id": 1,
+  "nombre": "Juan",
+  "email": "juan@email.com",
+  "pedidos": [
+    { "producto": "Laptop", "total": 1200 },
+    { "producto": "Mouse", "total": 25 }
+  ]
+}
+</code></pre>
+<p>✅ <strong>Ventajas</strong><br />
+✔ Rápida recuperación de datos (no requiere <code>JOINs</code>).<br />
+✔ Menos consultas a la base de datos.<br />
+✔ Buena opción si los datos no crecen demasiado.  </p>
+<p>❌ <strong>Desventajas</strong><br />
+✖ Si los pedidos crecen mucho, el documento se hace muy grande.<br />
+✖ No se pueden actualizar pedidos de forma independiente sin modificar el cliente.  </p>
+<hr />
+<h2 id="42-relacion-con-referencias">4.2. Relación con Referencias</h2>
+<p>En este enfoque, los documentos <strong>almacenan solo referencias (IDs) de documentos en otras colecciones</strong>.<br />
+Se usa cuando los datos son reutilizados en múltiples documentos o crecen mucho en tamaño.<br />
+Estas referencias pueden ser de dos tipos; referencias manuales o por DBRefs.</p>
+<p><strong><u>Ejemplo</u>:</strong> Cliente y Pedidos en colecciones separadas con referencia </p>
+<p><strong>Colección <code>clientes</code></strong></p>
+<pre><code>{
+  "_id": 1,
+  "nombre": "Juan",
+  "email": "juan@email.com",
+  "pedidos": [101, 102]  // Referencias a pedidos
+}
+</code></pre>
+<p><strong>Colección <code>pedidos</code></strong></p>
+<pre><code>[
+  { "_id": 101, "cliente_id": 1, "producto": "Laptop", "total": 1200 },
+  { "_id": 102, "cliente_id": 1, "producto": "Mouse", "total": 25 }
+]
+</code></pre>
+<p>✅ <strong>Ventajas</strong><br />
+✔ Evita documentos muy grandes.<br />
+✔ Permite reutilizar datos sin duplicarlos.<br />
+✔ Se pueden actualizar las referencias sin modificar el documento original.  </p>
+<p>❌ <strong>Desventajas</strong><br />
+✖ Se necesitan consultas adicionales (<code>$lookup</code>) para traer los datos completos.<br />
+✖ Puede ser más lento en consultas frecuentes.  </p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">"Regla general</p>
+<ul>
+<li><strong>Si los datos relacionados son de uso frecuente y pequeños →</strong> Usa documentos embebidos.  </li>
+<li><strong>Si los datos crecen mucho o se usan en varias colecciones →</strong> Usa referencias con <code>$lookup</code>.  </li>
+</ul>
+</div>
+<hr />
+<h2 id="43-relaciones-en-mongodb-con-lookup">4.3. Relaciones en MongoDB con <code>$lookup</code></h2>
+<p>En <strong>MongoDB</strong>, la agregación con <strong>$lookup</strong> permite realizar joins entre colecciones.<br />
+Es útil cuando seguimos un enfoque de <strong>modelado de datos con referencias</strong>, donde almacenamos solo el <strong>ObjectId</strong> en lugar de los documentos embebidos.</p>
+<div class="admonition note">
+<p class="admonition-title">Sintaxis</p>
+</div>
+<p><div class="highlight"><pre><span></span><code>    {   
+      $lookup: {       
+        from: &lt;collection_to_join&gt;,     
+        localField: &lt;field_from_the_input_documents&gt;,       
+        foreignField: &lt;field_from_collection&gt;,
+        as: &lt;output_array_field&gt;     
+      }
+    }
+</code></pre></div>
+<strong><u>Ejemplo 1</u>:</strong> Relacionar la coleción Usuarios con sus Pedidos</p>
+<ul>
+<li>
+<p><strong>Colección <code>usuarios</code></strong>  </p>
+<pre><code>[
+  { "_id": 1, "nombre": "Carlos", "email": "carlos@example.com" },
+  { "_id": 2, "nombre": "Ana", "email": "ana@example.com" }
+]
+</code></pre>
+</li>
+<li>
+<p><strong>Colección <code>pedidos</code></strong></p>
+<pre><code>[
+  { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 },
+  { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 },
+  { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+]
+</code></pre>
+</li>
+<li>
+<p><strong>Consulta</strong> con <strong><code>$lookup</code></strong> para unir usuarios con sus pedidos</p>
+<pre><code>db.usuarios.aggregate([
+  {
+    "$lookup": {
+      "from": "pedidos",         // Colección a unir
+      "localField": "_id",       // Campo en la colección actual (usuarios)
+      "foreignField": "usuario_id", // Campo en la otra colección (pedidos)
+      "as": "pedidos"            // Nombre del campo de salida con los pedidos
+    }
+  }
+])
+</code></pre>
+</li>
+<li>
+<p><strong>Resultado</strong> esperado</p>
+<pre><code>[
+  {
+    "_id": 1,
+    "nombre": "Carlos",
+    "email": "carlos@example.com",
+    "pedidos": [
+      { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 },
+      { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 }
+    ]
+  },
+  {
+    "_id": 2,
+    "nombre": "Ana",
+    "email": "ana@example.com",
+    "pedidos": [
+      { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+    ]
+  }
+]
+</code></pre>
+</li>
+</ul>
+<p><strong><u>Ejemplo 2</u></strong>: Realcionar la colección autores con sus libros.</p>
+<pre><code>    db.createCollection("authors");
+    db.createCollection("books");
+
+    // Primera instrucción
+    db.authors.insertOne({
+      name: "Diego",
+      email: "dcortes@example.com",
+      age: 25
+    });
+
+    // Segunda instrucción (Se debe obtener el ID del autor y remplazar)
+    db.books.insertMany([
+      {
+        name: "Philosopher's Stone",
+        author_id: ObjectId("id_of_author")
+      },
+      {
+        name: "Secret of programming",
+        author_id: ObjectId("id_of_author")
+      }
+    ]);
+
+
+    db.getCollection("authors").aggregate([{
+      $lookup: {
+        from: "books",
+        localField: "_id",
+        foreignField: "author_id",
+        as: "books"
+      }
+    }]);
+</code></pre>
+<ul>
+<li><strong>Resultado</strong> esperado<pre><code>{
+    "_id" : ObjectId("64a8397a001cd56690c6a9cd"),
+    "name" : "Diego",
+    "email" : "dcortes@example.com",
+    "age" : NumberInt(25),
+    "books" : [
+        {
+            "_id" : ObjectId("64a839a7001cd56690c6a9ce"),
+            "name" : "Philosopher's Stone",
+            "author_id" : ObjectId("64a8397a001cd56690c6a9cd")
+        },
+        {
+            "_id" : ObjectId("64a839a7001cd56690c6a9cf"),
+            "name" : "Secret of programming",
+            "author_id" : ObjectId("64a8397a001cd56690c6a9cd")
+        }
+    ]
+}
+</code></pre>
+</li>
+</ul>
+<h3 id="lookup-anidado">$lookup anidado</h3>
+<p>Siguiendo con el ejemplo de usuarios y sus pedidos, si cada pedido tiene detalles en una tercera colección <strong>detalles_pedido</strong>, podemos anidar otro $lookup:</p>
+<p><strong><u>Ejemplo</u>:</strong> Relacionar Usuarios con Pedidos y detalles_pedido</p>
+<ul>
+<li>
+<p><strong>Colección <code>usuarios</code></strong></p>
+<pre><code>[
+  { "_id": 1, "nombre": "Carlos", "email": "carlos@example.com" },
+  { "_id": 2, "nombre": "Ana", "email": "ana@example.com" }
+]
+</code></pre>
+</li>
+<li>
+<p><strong>Colección <code>pedidos</code></strong></p>
+<pre><code>[
+  { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 },
+  { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 },
+  { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+]
+</code></pre>
+</li>
+<li>
+<p><strong>Colección <code>detalles_pedido</code></strong></p>
+<pre><code>[
+  { "_id": 201, "pedido_id": 101, "cantidad": 1, "garantia": "2 años" },
+  { "_id": 202, "pedido_id": 102, "cantidad": 2, "garantia": "1 año" },
+  { "_id": 203, "pedido_id": 103, "cantidad": 1, "garantia": "3 años" }
+]
+</code></pre>
+</li>
+<li>
+<p>Consulta con <strong><code>$lookup</code> anidado</strong> </p>
+</li>
+</ul>
+<p>La idea es obtener una lista de usuarios con sus pedidos, y dentro de cada pedido, los detalles de ese pedido.</p>
+<pre><code>      db.usuarios.aggregate([
+      {
+        "$lookup": {
+          "from": "pedidos",
+          "localField": "_id",
+          "foreignField": "usuario_id",
+          "as": "pedidos"
+        }
+      },
+      {
+        "$unwind": "$pedidos"  // Descompone el array de pedidos
+      },
+      {
+        "$lookup": {
+          "from": "detalles_pedido",
+          "localField": "pedidos._id",
+          "foreignField": "pedido_id",
+          "as": "pedidos.detalles"
+        }
+      },
+      {
+        "$group": {
+          "_id": "$_id",
+          "nombre": { "$first": "$nombre" },
+          "email": { "$first": "$email" },
+          "pedidos": { "$push": "$pedidos" }
+        }
+      }
+    ])
+</code></pre>
+<ul>
+<li><strong>Resultado</strong> esperado<pre><code>[
+  {
+    "_id": 1,
+    "nombre": "Carlos",
+    "email": "carlos@example.com",
+    "pedidos": [
+      {
+        "_id": 101,
+        "usuario_id": 1,
+        "producto": "Laptop",
+        "precio": 1200,
+        "detalles": [
+          { "_id": 201, "pedido_id": 101, "cantidad": 1, "garantia": "2 años" }
+        ]
+      },
+      {
+        "_id": 102,
+        "usuario_id": 1,
+        "producto": "Mouse",
+        "precio": 50,
+        "detalles": [
+          { "_id": 202, "pedido_id": 102, "cantidad": 2, "garantia": "1 año" }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": 2,
+    "nombre": "Ana",
+    "email": "ana@example.com",
+    "pedidos": [
+      {
+        "_id": 103,
+        "usuario_id": 2,
+        "producto": "Teclado",
+        "precio": 80,
+        "detalles": [
+          { "_id": 203, "pedido_id": 103, "cantidad": 1, "garantia": "3 años" }
+        ]
+      }
+    ]
+  }
+]
+</code></pre>
+</li>
+</ul>
+<hr />
+<p>🎯 Explicación del Pipeline  </p>
+<ul>
+<li>$lookup (usuarios → pedidos): Une los pedidos a cada usuario.</li>
+<li>$unwind (pedidos): Descompone la lista de pedidos para poder hacer otro $lookup.</li>
+<li>$lookup (pedidos → detalles_pedido): Une los detalles a cada pedido.</li>
+<li>$group: Vuelve a agrupar los datos para reconstruir la estructura.</li>
+</ul>
+<h3 id="el-operador-unwind">El operador <code>$unwind</code></h3>
+<p>El operador <strong>$unwind</strong> en MongoDB descompone un array dentro de un documento en múltiples documentos, cada uno con un solo elemento del array.</p>
+<p>Es especialmente útil cuando trabajamos con <strong>$lookup</strong>, porque las consultas de agregación en MongoDB manejan arrays, y a veces es necesario convertirlos en documentos individuales para hacer más joins o transformaciones.</p>
+<p><strong>¿Cuándo se usa $unwind?</strong>  </p>
+<p>✔ Cuando necesitas descomponer arrays en documentos individuales.<br />
+  ✔ Para hacer joins en múltiples niveles (como unir detalles_pedido a cada pedido).<br />
+  ✔ Para hacer cálculos en elementos individuales de un array, como contar cuántos productos ha comprado un usuario.</p>
+<div class="admonition note">
+<p class="admonition-title">Ejemplo sin $unwind</p>
+<pre><code>  db.usuarios.aggregate([
+    {
+      "$lookup": {
+        "from": "pedidos",
+        "localField": "_id",
+        "foreignField": "usuario_id",
+        "as": "pedidos"
+      }
+    }
+  ])
+</code></pre>
+<p><strong>Resultado</strong></p>
+<pre><code>    [
+      {
+        "_id": 1,
+        "nombre": "Carlos",
+        "pedidos": [
+          { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 },
+          { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 }
+        ]
+      },
+      {
+        "_id": 2,
+        "nombre": "Ana",
+        "pedidos": [
+          { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+        ]
+      }
+    ]
+</code></pre>
+</div>
+<p>Cada usuario tiene un array con sus pedidos, pero si queremos hacer un segundo $lookup (por ejemplo, para unir detalles de los pedidos), MongoDB no puede unir arrays directamente.</p>
+<div class="admonition note">
+<p class="admonition-title">Ejemplo con $unwind</p>
+<pre><code>  db.usuarios.aggregate([
+    {
+      "$lookup": {
+        "from": "pedidos",
+        "localField": "_id",
+        "foreignField": "usuario_id",
+        "as": "pedidos"
+      }
+    },
+    {
+      "$unwind": "$pedidos"
+    }
+  ])
+</code></pre>
+<p><strong>Resultado</strong></p>
+<pre><code>    [
+      {
+        "_id": 1,
+        "nombre": "Carlos",
+        "pedidos": { "_id": 101, "usuario_id": 1, "producto": "Laptop", "precio": 1200 }
+      },
+      {
+        "_id": 1,
+        "nombre": "Carlos",
+        "pedidos": { "_id": 102, "usuario_id": 1, "producto": "Mouse", "precio": 50 }
+      },
+      {
+        "_id": 2,
+        "nombre": "Ana",
+        "pedidos": { "_id": 103, "usuario_id": 2, "producto": "Teclado", "precio": 80 }
+      }
+    ]
+</code></pre>
+</div>
+<p>Ahora, cada usuario tiene múltiples documentos, uno por cada pedido, lo que permite realizar otro $lookup con detalles_pedido.</p>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../exercicis_mongo/" class="btn btn-neutral float-left" title="Exercicis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../5_actividad_mongo/" class="btn btn-neutral float-right" title="Activitat">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../exercicis_mongo/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../5_actividad_mongo/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
