@@ -4,19 +4,32 @@
 
 Sobre la teua Base de Dades **MONGODB** treballarem sobre la col·lecció
 **libro**, la mateixa que hem utilitzat en els exemples. Si no la tens
-creada, executa les sentències del principi de la pregunta **3.4.2**. Fes les
-següents consultes. Copia-les en un únic fitxer de text, de forma numerada. És
-aquest fitxer el que hauràs de pujar.
+creada, executa les sentències del principi de la pregunta **3.8 - Operadors de consulta/ Operadors**. Fes les següents consultes. Copia-les en un únic fitxer de text, de forma numerada. És aquest fitxer el que hauràs de pujar.
 
-  1. Busca els llibres que tenen més de 500 pàgines. Visualitza el _id, el títol i el número de pàgines
-  2. Busca els llibres de l'any 2014. Visualitza únicament títol i data
-  3. Busca els llibres de l'editorial Planeta. Visualitza únicament títol i editorial
-  4. Busca els llibres de l'editorial Planeta de més de 500 pàgines. Visualitza únicament títol, editorial i pàgines
-  5. Busca els llibres que no tenen editorial. Visualitza únicament títol i editorial
+  1. Busca els llibres que tenen més de 500 pàgines. Visualitza el _id, el títol i el número de pàgines.
+  2. Busca els llibres de l'any 2014. Visualitza únicament títol i data.
+  3. Busca els llibres de l'editorial Planeta. Visualitza únicament títol i editorial.
+  4. Busca els llibres de l'editorial Planeta de més de 500 pàgines. Visualitza únicament títol, editorial i pàgines.
+  5. Busca els llibres que no tenen editorial. Visualitza únicament títol i editorial.
   6. Busca els llibres que en el resum contenen la paraula **caballo**. Visualitza el resum per poder comprovar-ho. Han d'eixir 2 llibres, **Circo máximo** i **Las carreras de Escorpio**.
   7. Utilitzant la funció **aggregate** , trau l'editorial i la mitjana de pàgines d'aquelles editorials que tenen una mitjana de pàgines superior a 500. Eixiran 3 editorials.
 
 ## Exercici 3
+
+Sobre la teua Base de Dades MONGODB treballarem sobre la col·lecció **libro**
+, la mateixa que hem utilitzat en els exemples. Si no la tens creada, executa
+les sentències del principi de la pregunta **3.8 - Operadors de consulta/ Operadors**. Fes les següents consultes. Copia-les en un únic fitxer de text, de forma numerada. És aquest
+fitxer el que hauràs de pujar.
+
+  1. Incrementar el preu dels llibres de l'editorial Planeta en 2€ (recordeu que per a modificar més d'un document, hem de posar com a tercer paràmetre l'opció **{multi:true}**).
+  2. Crear el camp editorial amb el valor nul, per a tots aquells documents que no tinguen el camp editorial.
+  3. Fer l'operació inversa: eliminar el camp editorial per a tots aquells que el tinguen nul.
+  4. Traure l'any del llibre, a partir de la **fecha** (serà un camp calculat anomenat **año**).
+  5. Aprofita el camp anterior per a traure els llibres estrictament anteriors a l'any 2013. Visualitza **titulo** , **fecha** i **año**.
+
+
+
+## Exercici 4
 
 Aquest exercici l'has de realitzar sobre la teua BD de MongoDB.
 
@@ -92,21 +105,36 @@ Aquest exercici l'has de realitzar sobre la teua BD de MongoDB.
   15. Trobar les pel·lícules que en la sinopsis continguen les paraules **"oro"** i **"dragón"**
   16. Eliminar la pel·lícula **"Pee Wee Herman's Big Adventure"**
   17. Eliminar la pel·lícula **"Avatar"**
+    
 
+## Exercici 5
 
-## Exercici 4
+Intenta implementar en MongoDB part de la Base de Dades relacional [**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/),  concretament, comença per les taules CATEGORIA i ARTICLE, que les hauràs de
+representar com a documents de 2 col·leccions anomenades de la mateixa manera.
+En els documents de la col·lecció ARTICLE, el codi de categoria serà el
+**_id** , mentre que en els documents de la col·lecció ARTICLE, el codi de
+l'article serà el **_id**.
 
-Sobre la teua Base de Dades MONGODB treballarem sobre la col·lecció **libro**
-, la mateixa que hem utilitzat en els exemples. Si no la tens creada, executa
-les sentències del principi de la pregunta**3.4.2**. Fes les següents
-consultes. Copia-les en un únic fitxer de text, de forma numerada. És aquest
-fitxer el que hauràs de pujar.
+  * Insereix els documents corresponents a les categories de l'exercici **Ex_1** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)).
+  * Insereix els documents corresponents als articles de l'exercici **Ex_2** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)).
+  * Fes una consulta en què apareguen tots els articles amb la seua descripció i també la descripció de la seua categoria.
+  * Modifica l'anterior per a que apareguen només les descripcions de l'article i de la categoria.
+    * Com que les dades del document reunit, que en aquest cas és categoria, podem utilitzar **$unwind** per a "desconstruir" aquest array.
+    * Una vegada desconstruït l'array és quan podrem projectar sobre la descripció de l'article (directament) i sobre la descripció de la categoria reanomenant el camp i subcamp.
+  * Fes una consulta on aparega la descripció de cada categoria, amb el número d'articles de cada categoria i el preu mitjà.
+  * Insereix els documents corresponents als clients de l'exercici 6.95. No ens importarà el codi de població.
+  * Insereix les factures corresponents als exercicis 6.96 i 6.97. Observa que la millor manera d'introduir les línies de factura és dins de la mateixa factura, en un array.
+  * Fes una consulta per a traure el número de factura i el seu total.
 
-  1. Incrementar el preu dels llibres de l'editorial Planeta en 2€ (recordeu que per a modificar més d'un document, hem de posar com a tercer paràmetre l'opció **{multi:true}** )
-  2. Crear el camp editorial amb el valor nul, per a tots aquells documents que no tinguen el camp editorial
-  3. Fer l'operació inversa: eliminar el camp editorial per a tots aquells que el tinguen nul
-  4. Traure l'any del llibre, a partir de la **fecha** (serà un camp calculat anomenat **año**)
-  5. Aprofita el camp anterior per a traure els llibres estrictament anteriors a l'any 2013. Visualitza **titulo** , **fecha** i **año**
+![](T8_Exer_8_1.png)
+
+  * Modifica l'anterior per a traure també el nom del client de la factura
+
+![](T8_Exer_8_2.png)
+
+  * Trau un llistat de clients, com a mínim amb el seu nom, i dels articles que ha comprat, com a mínim amb la descripció de l'article
+
+![](T8_Exer_8_3.png)
 
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
