@@ -122,8 +122,8 @@ l'article serà el **_id**.
     * Com que les dades del document reunit, que en aquest cas és categoria, podem utilitzar **$unwind** per a "desconstruir" aquest array.
     * Una vegada desconstruït l'array és quan podrem projectar sobre la descripció de l'article (directament) i sobre la descripció de la categoria reanomenant el camp i subcamp.
   5. Fes una consulta on aparega la descripció de cada categoria, amb el número d'articles de cada categoria i el preu mitjà.
-  6. Insereix els documents corresponents als clients de l'exercici 6.95. No ens importarà el codi de població.
-  7. Insereix les factures corresponents als exercicis 6.96 i 6.97. Observa que la millor manera d'introduir les línies de factura és dins de la mateixa factura, en un array.
+  6. Insereix els documents corresponents als clients de l'exercici **Ex_3** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)). No ens importarà el codi de població.
+  7. Insereix les factures corresponents als exercicis **Ex_4** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)) i **Ex_5** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)). Observa que la millor manera d'introduir les línies de factura és dins de la mateixa factura, en un array.
   8. Fes una consulta per a traure el número de factura i el seu total.
 
       ![](T8_Exer_8_1.png)
