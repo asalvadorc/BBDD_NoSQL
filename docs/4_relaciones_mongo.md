@@ -411,9 +411,9 @@ Ahora, cada usuario tiene múltiples documentos, uno por cada pedido, lo que per
 ## :pencil2: Exercici 4
 
 Intenta implementar en MongoDB part de la Base de Dades relacional [**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/),  concretament, comença per les taules CATEGORIA i ARTICLE, que les hauràs de
-representar com a documents de 2 col·leccions (col·lecció categoria i col·lecció articulo).
-En els documents de la col·lecció categoria, el codi de categoria serà el
-**_id** , mentre que en els documents de la col·lecció articulo, el codi de
+representar com a documents de 2 col·leccions (col·lecció **categoria** i col·lecció **articulo**).
+En els documents de la col·lecció **categoria**, el codi de categoria serà el
+**_id** , mentre que en els documents de la col·lecció **articulo**, el codi de
 l'article serà el **_id**.
 
   1. Insereix els documents corresponents a les categories de l'exercici **Ex_1** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)).
