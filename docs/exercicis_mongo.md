@@ -115,26 +115,26 @@ En els documents de la col·lecció ARTICLE, el codi de categoria serà el
 **_id** , mentre que en els documents de la col·lecció ARTICLE, el codi de
 l'article serà el **_id**.
 
-  * Insereix els documents corresponents a les categories de l'exercici **Ex_1** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)).
-  * Insereix els documents corresponents als articles de l'exercici **Ex_2** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)).
-  * Fes una consulta en què apareguen tots els articles amb la seua descripció i també la descripció de la seua categoria.
-  * Modifica l'anterior per a que apareguen només les descripcions de l'article i de la categoria.
+  1. Insereix els documents corresponents a les categories de l'exercici **Ex_1** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)).
+  2. Insereix els documents corresponents als articles de l'exercici **Ex_2** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)).
+  3. Fes una consulta en què apareguen tots els articles amb la seua descripció i també la descripció de la seua categoria.
+  4. Modifica l'anterior per a que apareguen només les descripcions de l'article i de la categoria.
     * Com que les dades del document reunit, que en aquest cas és categoria, podem utilitzar **$unwind** per a "desconstruir" aquest array.
     * Una vegada desconstruït l'array és quan podrem projectar sobre la descripció de l'article (directament) i sobre la descripció de la categoria reanomenant el camp i subcamp.
-  * Fes una consulta on aparega la descripció de cada categoria, amb el número d'articles de cada categoria i el preu mitjà.
-  * Insereix els documents corresponents als clients de l'exercici 6.95. No ens importarà el codi de població.
-  * Insereix les factures corresponents als exercicis 6.96 i 6.97. Observa que la millor manera d'introduir les línies de factura és dins de la mateixa factura, en un array.
-  * Fes una consulta per a traure el número de factura i el seu total.
+  5. Fes una consulta on aparega la descripció de cada categoria, amb el número d'articles de cada categoria i el preu mitjà.
+  6. Insereix els documents corresponents als clients de l'exercici 6.95. No ens importarà el codi de població.
+  7. Insereix les factures corresponents als exercicis 6.96 i 6.97. Observa que la millor manera d'introduir les línies de factura és dins de la mateixa factura, en un array.
+  8. Fes una consulta per a traure el número de factura i el seu total.
 
-![](T8_Exer_8_1.png)
+      ![](T8_Exer_8_1.png)
 
-  * Modifica l'anterior per a traure també el nom del client de la factura
+  9. Modifica l'anterior per a traure també el nom del client de la factura
 
-![](T8_Exer_8_2.png)
+      ![](T8_Exer_8_2.png)
 
-  * Trau un llistat de clients, com a mínim amb el seu nom, i dels articles que ha comprat, com a mínim amb la descripció de l'article
+  10. Trau un llistat de clients, com a mínim amb el seu nom, i dels articles que ha comprat, com a mínim amb la descripció de l'article
 
-![](T8_Exer_8_3.png)
+    ![](T8_Exer_8_3.png)
 
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
