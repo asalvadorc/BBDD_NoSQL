@@ -29,9 +29,9 @@ nav:
   - 1 - Introducció: 1__introducci.md
 - REDIS:  
   - 2 - Bases de Dades Clau-Valor (Redis): 2__bases_de_dades_clauvalor.md
-  - Exercicis: exercicis_redis.md
+  ## - Exercicis: exercicis_redis.md
 - MONGO:  
   - 3 - MongoDB : 3__mongodb.md
-  - Exercicis: exercicis_mongo.md
+  ## - Exercicis: exercicis_mongo.md
   - 4 - Relacions en MongoDB: 4_relaciones_mongo.md
-  - Activitat: 5_actividad_mongo.md
+  - Práctica Mongo: 5_actividad_mongo.md

@@ -408,5 +408,37 @@ Cada usuario tiene un array con sus pedidos, pero si queremos hacer un segundo $
 Ahora, cada usuario tiene múltiples documentos, uno por cada pedido, lo que permite realizar otro $lookup con detalles_pedido.
 
 ----
+## :pencil2: Exercici 4
+
+Intenta implementar en MongoDB part de la Base de Dades relacional [**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/),  concretament, comença per les taules CATEGORIA i ARTICLE, que les hauràs de
+representar com a documents de 2 col·leccions (col·lecció categoria i col·lecció articulo).
+En els documents de la col·lecció categoria, el codi de categoria serà el
+**_id** , mentre que en els documents de la col·lecció articulo, el codi de
+l'article serà el **_id**.
+
+  1. Insereix els documents corresponents a les categories de l'exercici **Ex_1** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)).
+  2. Insereix els documents corresponents als articles de l'exercici **Ex_2** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)).
+  3. Fes una consulta en què apareguen tots els articles amb la seua descripció i també la descripció de la seua categoria.
+  4. Modifica l'anterior per a que apareguen només les descripcions de l'article i de la categoria.
+    * Com que les dades del document reunit, que en aquest cas és categoria, podem utilitzar **$unwind** per a "desconstruir" aquest array.
+    * Una vegada desconstruït l'array és quan podrem projectar sobre la descripció de l'article (directament) i sobre la descripció de la categoria reanomenant el camp i subcamp.
+  5. Fes una consulta on aparega la descripció de cada categoria, amb el número d'articles de cada categoria i el preu mitjà.
+  6. Insereix els documents corresponents als clients de l'exercici **Ex_3** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)). No ens importarà el codi de població.
+  7. Insereix les factures corresponents als exercicis **Ex_4** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)) i **Ex_5** ([**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/)). Observa que la millor manera d'introduir les línies de factura és dins de la mateixa factura, en un array.
+  8. Fes una consulta per a traure el número de factura i el seu total.
+
+      ![](T8_Exer_8_1.png)
+
+  9. Modifica l'anterior per a traure també el nom del client de la factura
+
+      ![](T8_Exer_8_2.png)
+
+  10. Trau un llistat de clients, com a mínim amb el seu nom, i dels articles que ha comprat, com a mínim amb la descripció de l'article
+
+    ![](T8_Exer_8_3.png)
+
+Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/)
+   
 
 

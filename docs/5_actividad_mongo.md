@@ -1,4 +1,4 @@
-# :muscle: Actividad práctica
+# :muscle: Práctica Mongo
 
 1️⃣ **Diseño de la base de datos MongoDB:**
    
