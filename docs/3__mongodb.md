@@ -144,7 +144,7 @@ Mirem ara un exemple amb un array:
       [ 5 , 7 , 8 , 7 ]  
     }
 
-on tenim l'element arrel que consta d'un únic membre, notes, que és un array.
+on tenim l'element arrel que consta d'un únic membre, **notes**, que és un array.
 
 També seria correcte d'aquesta manera, per veure que l'element arrel no té
 perquè ser un objecte, sinó també un array
@@ -528,7 +528,7 @@ restriccions:
   * El document (que moltes vegades l'associarem a objecte de JSON) va entre claus ( **{ }** )
   * Els elements d'un objecte van separats per comes, i són parelles clau-valor.
   * La clau no pot ser nula, ni repetir-se en el mateix objecte (sí en diferents objectes, clar)
-  * Els valors són dels tipus que veurem en la pregunta 3.2.1
+  * Els valors són dels tipus que veurem en l'apartat següent.
   * Un document guardat ha de contenir obligatòriament un camp anomenat **_id** , i que contindrà un valor únic en la col·lecció i servirà per a identificar-lo. Si en guardar un document no li hem posat camp **_id** , el generarà automàticament MongoDB.
 
 ## 3.5 - Tipus de dades
