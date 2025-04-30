@@ -720,7 +720,7 @@ sentència estem treballant sobre la col·lecció **exemple** , que segurament j
 existirà de quan vam fer la pregunta 3.1 d'instal·lació de MongoDB, que per a
 provar vam inserir un document. Però si no existia, la crearà sense problemes.
 
-      > db.exemple.insertOne({ msg2 : "Com va la cosa?"})  
+    > db.exemple.insertOne({ msg : "Hola, què tal?"})  
       
 
 Acabem d'inserir un nou document, i així ens ho avisa ( **{ "nInserted" : 1
@@ -728,11 +728,15 @@ Acabem d'inserir un nou document, i així ens ho avisa ( **{ "nInserted" : 1
 de tipus **ObjectId** , ja que li fa falta per a identificar el document entre
 tots els altres de la col·lecció.
 
+Insertem un altre document:
+
+        > db.exemple.insertOne({ msg2 : "Com va la cosa?"})  
+
 I en aquest exemple ens guardem el document en la variable **doc** , i després
 l'inserim
 
     > doc = { msg3 : "Per ací no ens podem queixar ..."}  
-    { "msg3" : "Per ací no ens podem queixar ..." }  
+
     > db.exemple.insertOne(doc)  
     
 
@@ -861,7 +865,6 @@ camp, **i esborrarà tots els que coincideixen**.
     > db.exemple.deleteMany( {"msg3" : "Per ací no ens podem queixar ..."} )  
     
 
-
 També tenim la possibilitat d'esborrar tota una col·lecció amb la funció
 **drop()**. Pareu atenció perquè és molt senzilla d'eliminar, i per tant,
 potencialment molt perillosa.
@@ -898,8 +901,8 @@ Podem comprovar el contingut del segon document, el que te **msg2**. Anem a
 modificar-lo: en el primer paràmetre posem condició de recerca (només hi haurà
 un) i en el segon posem el nou document que substituirà l'anterior
 
-    > db.exemple.updateOne( {msg2:"Com va la cosa?"} , {msg2:"Què? Com va la cosa?"})  
-    WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+    > db.exemple.updateOne( {msg2:"Com va la cosa?"} , {$set: {msg2:"Què? Com va la cosa?"}}) 
+
 
 Observeu que la contestació del **update****()** és que ha fet **match** (hi
 ha hagut coincidència) amb un document, i que ha modificat un. Si no en troba
@@ -1052,6 +1055,7 @@ La manera d'arribar al codi postal serà **adreça.cp** , però haurem d'anar am
 compte que vaja entre cometes per a que el trobe:
 
     > db.alumnes.updateOne( {nom:"Abel"} , { $set: {adreça.cp:"12502"} } )  
+    
     uncaught exception: SyntaxError: missing : after property id :  
     @(shell):1:49  
   
