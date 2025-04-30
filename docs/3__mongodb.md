@@ -1646,8 +1646,7 @@ Per tant si no volem que aparega **_id** posarem:
 
     > db.alumnes.find({},{_id:0})  
    
-    { "nom" : "Abel", "cognoms" : "Bernat Cantera", "edat" : 22, "adreça" : {
-    "carrer" : "Major", "numero" : 7, "cp" : "12502" }, "nota" : [ 9.5, 9 ] }  
+    { "nom" : "Abel", "cognoms" : "Bernat Cantera", "edat" : 22, "adreça" : {"carrer" : "Major", "numero" : 7, "cp" : "12502" }, "nota" : [ 9.5, 9 ] }  
     { "nom" : "Berta", "cognoms" : "Bernat Cantero" }
 
 I si volem traure únicament el nom:
