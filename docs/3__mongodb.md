@@ -757,19 +757,21 @@ una col·lecció nova anomenada **alumnes** , i els intentarem posar un **_id**
 personal. Per exemple posarem els números 51, 52, 53, ...
 
     > db.alumnes.insertOne ({_id: 51 , nom: "Rebeca" , cognoms: "Martí Peral"})  
-    WriteResult({ "nInserted" : 1 })
+    
 
 Ha anat bé, i si mirem els documents que tenim en la col·lecció, comprovarem
 que ens ha respectat el **_id** :
 
     > db.alumnes.find()  
+
     { "_id" : 51, "nom" : "Rebeca", "cognoms" : "Martí Peral" }  
-    >
+    
 
 Però si intentem inserir un altre document amb el mateix **_id** (51), ens
 donarà error:
 
     > db.alumnes.insertOne ({_id: 51 , nom: "Raquel" , cognoms: "Gomis Arnau"})  
+   
     WriteResult({  
     "nInserted" : 0,  
     "writeError" : {  
