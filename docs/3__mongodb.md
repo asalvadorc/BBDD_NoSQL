@@ -901,7 +901,7 @@ Per exemple, si mirem les dades actuals:
 
 Podem comprovar el contingut del segon document, el que te **msg2**. Anem a
 modificar-lo: en el primer paràmetre posem condició de recerca (només hi haurà
-un) i en el segon posem el nou document que substituirà l'anterior
+un) i en el segon posem el nou document que substituirà l'anterior amb el paràmetre **$set**.
 
     > db.exemple.updateOne( {msg2:"Com va la cosa?"} , {$set: {msg2:"Què? Com va la cosa?"}}) 
 
@@ -931,6 +931,7 @@ contingut del document ens podríem estalviar el primer pas.
 
     > db.exemple.updateOne( {msg:"Hola, què tal?"} , doc1)  
     WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })  
+    
     > db.exemple.findOne()  
     {  
       "_id" : ObjectId("56ce310bc61e04ba81def50b"),  
