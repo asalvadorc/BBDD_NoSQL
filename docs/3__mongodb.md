@@ -794,6 +794,7 @@ nom:
 
     > db.nombresprimers.insertMany( [ {_id:2} , {_id:3} , {_id:5} , {_id:7} , {_id:11}
     > , {_id:13} , {_id:17} , {_id:19} ] )  
+    
     BulkWriteResult({  
         "writeErrors" : [ ],  
         "writeConcernErrors" : [ ],  
@@ -1637,12 +1638,14 @@ que apareixeran seran aquestos, a més del **_id** que per defecte sempre
 apareix.
 
     > db.alumnes.find({},{nom:1})  
+  
     { "_id" : ObjectId("56debe3017bf4ed437dc77c8"), "nom" : "Abel" }  
     { "_id" : ObjectId("56dfdbd136d8b095cb6bd57a"), "nom" : "Berta" }
 
 Per tant si no volem que aparega **_id** posarem:
 
     > db.alumnes.find({},{_id:0})  
+   
     { "nom" : "Abel", "cognoms" : "Bernat Cantera", "edat" : 22, "adreça" : {
     "carrer" : "Major", "numero" : 7, "cp" : "12502" }, "nota" : [ 9.5, 9 ] }  
     { "nom" : "Berta", "cognoms" : "Bernat Cantero" }
@@ -1650,6 +1653,7 @@ Per tant si no volem que aparega **_id** posarem:
 I si volem traure únicament el nom:
 
     > db.alumnes.find({},{nom:1,_id:0})  
+  
     { "nom" : "Abel" }  
     { "nom" : "Berta" }
 
@@ -1658,6 +1662,7 @@ volem que ens apareguen els camps que retornem d'una forma un poc més elegant
 o bonica (_pretty_), posarem aquesta funció al final: **find().pretty()**
 
     > db.alumnes.find().pretty()  
+    
     {  
           "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
           "nom" : "Abel",  
