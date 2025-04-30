@@ -1789,6 +1789,7 @@ Podeu comprovar que hi ha 7 documents en la nova col·lecció **libro** :
 I també podem consultar els títols de forma còmoda:
 
     > db.libro.find( {} , {titulo:1} )  
+    
     { "_id" : "9788408117117", "titulo" : "Circo Máximo" }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }  
@@ -1801,6 +1802,7 @@ I un altre exemple, on consultem els llibres que estan en stock (hi ha un camp
 booleà que ho diu: **enstock**), mostrant títol, editorial i preu
 
     > db.libro.find( {enstock: true} , {titulo:1 , editorial:1 , precio:1} )  
+   
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
@@ -1810,6 +1812,7 @@ I un últim exemple, on consultem els llibres que estan en stock i tenen un
 preu de 21.75 €, mostrant tot excepte el _id i el resum
 
     > db.libro.find( {enstock: true , precio: 21.75} , {titulo:1 , editorial:1 , > precio:1} )  
+   
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }
 
@@ -1838,6 +1841,7 @@ JSON:
 Així per exemple, per a buscar els llibres de més de 10 €:
 
     > db.libro.find( { precio : { $gt : 10 } } , { titulo:1 , precio:1 } )  
+  
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "precio" : 21.75 }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "precio" : 21.75 }  
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11 }  
@@ -1847,6 +1851,7 @@ Així per exemple, per a buscar els llibres de més de 10 €:
 I per a buscar els llibres entre 10 i 20 €:
 
     > db.libro.find( { precio : { $gt : 10 , $lt:20 } } , { titulo:1 , precio:1 })
+  
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11 }  
     { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23 }  
     { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9}
@@ -1859,6 +1864,7 @@ data amb la qual volem comparar l'haurem de tenir en forma de data:
 
     > var d = new ISODate("2013-01-01T00:00:00Z")  
     > db.libro.find( {fecha:{$gte:d} } , {fecha:1} )  
+ 
     { "_id" : "9788408117117", "fecha" : ISODate("2013-08-29T00:00:00Z") }  
     { "_id" : "9788401342158", "fecha" : ISODate("2014-03-01T00:00:00Z") }  
     { "_id" : "9788408113331", "fecha" : ISODate("2013-06-04T00:00:00Z") }  
@@ -1874,6 +1880,7 @@ proporcionada com un array. La sitaxi és:
 I ací tenim un exemple, els llibre de les editorials Planeta i Debolsillo:
 
     > db.libro.find( { editorial: {$in : ["Planeta" , "Debolsillo"]} } , {titulo: , editorial:1} )  
+  
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
     { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
     { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }  
@@ -1882,7 +1889,8 @@ I ací tenim un exemple, els llibre de les editorials Planeta i Debolsillo:
 
 És el contrari, traura els que no estan en la llista.
 
-    > db.libro.find( { editorial: {$nin : ["Planeta" , "Debolsillo"]} } , > {titulo:1 , editorial:1} )  
+    > db.libro.find( { editorial: {$nin : ["Planeta" , "Debolsillo"]} } , {titulo:1 , editorial:1} )  
+
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
@@ -1903,7 +1911,8 @@ possibilitat de posar molts elements, i per tant convé l'array:
 Serà cert si s'acompleix alguna de les condicions. Per exemple, traure els
 llibres que no estan en stock o que no tenen editorial:
 
-    > db.libro.find( { $or : [ {enstock:false} , {editorial:null} ] } , {titulo:1 > , enstock:1 , editorial:1} )  
+    > db.libro.find( { $or : [ {enstock:false} , {editorial:null} ] } , {titulo:1 , enstock:1 , editorial:1} )  
+
     { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "enstock" : false }  
     { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "enstock" : false }  
     { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "enstock" : true}
@@ -1919,6 +1928,7 @@ més senzill utilitzar l'operador **$ne** , però és per a mostrar el seu
 funcionament:
 
     > db.libro.find( { editorial: {$not : {$eq:"Planeta"} } } , {titulo:1 , editorial:1} )  
+
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
     { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
@@ -1940,6 +1950,7 @@ Depenet del valor _boolean_ , el funcionament serà:
 Anem a traure els llibres que tenen el camp **paginas** :
 
     > db.libro.find( { paginas: {$exists:true} } , {titulo:1 , paginas:1} )  
+
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
@@ -1952,6 +1963,7 @@ el valor **nul**. En canvi si haguérem fet la consulta preguntant pels que són
 diferents de nul, no apareixeria aquest últim llibre:
 
     > db.libro.find( { paginas: {$ne:null} } , {titulo:1 , paginas:1} )  
+
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
@@ -1962,12 +1974,14 @@ I si posem **false** al valor en el **$exists** , únicament ens apareixerà el
 llibre que no té el camp:
 
     > db.libro.find( { paginas: {$exists:false} } , {titulo:1 , paginas:1} )  
+
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }
 
 I per la mateixa raó que abans, si traiem els que tenen **paginas** a null,
 ens eixirà tant qui no té el camp, com qui el té però amb valor nul:
 
     > db.libro.find( { paginas: null } , {titulo:1 , paginas:1} )  
+
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
     { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null}
 
@@ -1985,12 +1999,14 @@ Les expressions regulars en Mongo tenen la mateixa sintaxi que en Perl, i que
 Mirem alguns exemples. Els llibres dins dels quals està la paraula **juego** :
 
     > db.libro.find( { titulo: /juego/ } , {titulo:1} )  
+
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
     { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
 
 Ara que tenen la paraula **juego** sense importar majúscules o minúscules:
 
     > db.libro.find( { titulo: /juego/i } , {titulo:1} )  
+
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }  
     { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
@@ -1998,12 +2014,14 @@ Ara que tenen la paraula **juego** sense importar majúscules o minúscules:
 I ara que tenen la paraula **juego** només al principi.
 
     > db.libro.find( { titulo: /^juego/i } , {titulo:1} )  
+
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }
 
 I ara els llibres que en el resum (**resumen**) tenen la paraula **amiga** o
 **amigo** , és a dir **amig** seguit d'una **a** o una **o** :
 
     > db.libro.find( { resumen: /amig[ao]/i } , {titulo:1} )  
+
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
     { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
 
@@ -2014,9 +2032,9 @@ Les consultes dins d'arrays de Mongo són molt senzilles.
 La més senzilla és quan busquem un valor d'un tipus senzill, i en aquest cas
 el que farà Mongo és buscar en tot l'array per si està aquest valor. És a dir,
 exactament igual que el que hem fet fins ara.
-```
-db.col_leccio1.find ( { clau_array : valor } )
-```
+
+        db.col_leccio1.find ( { clau_array : valor } )
+
 Mirem-ho en un exemple. Anem a crear dos documents que tinguen un array
 cadascun, per exemple de colors. El creem en una col·lecció nova, anomenada
 **colorins** , en dos documents amb el mateix camp de tipus array, **color** ,
@@ -2026,7 +2044,8 @@ però amb dades diferents********:
 
     > db.colorins.insert({color: ["negre","blanc","roig"]})  
 
-    > db.colorins.find();  
+    > db.colorins.find()
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
 
@@ -2036,7 +2055,8 @@ d'array) que continga un valor, és igual de senzill que quan es tracta d'un
 camp de tipus string, per exemple:
 
 
-    > db.colorins.find({color:"roig"})  
+    > db.colorins.find({color:"roig"}) 
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
 
@@ -2046,11 +2066,13 @@ exemple l'operador **$in** , que mirarà els documents que tenen algun dels
 colors que s'especifica a continuació:
 
     > db.colorins.find({color: {$in : ["groc","lila"]} })  
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
 
 O per exemple també utilitzar **expressions regulars** :
 
     > db.colorins.find({color: /bl/ })  
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
 
@@ -2062,6 +2084,7 @@ que en l'array tiguen **tots** els elements especificats.
 Per exemple, anem a buscar els document que tenen el color roig i blau.
 
     > db.colorins.find({color : { $all : ["roig","blau"]} })  
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
 
  **Subíndex**{.azul}
@@ -2075,6 +2098,7 @@ Per exemple, busquem els documents que tenen el roig en la primera posició.
 
 
     > db.colorins.find({"color.0" : "roig"} )  
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
 
 
@@ -2091,7 +2115,8 @@ amb l'últim element de l'array (amb **pop()**), i el comparem amb el color
 roig, tornant true en cas de que sí que siguen iguals:
 
 
-    > db.colorins.find(function() { var a =this.color.pop(); return (a =="roig")})  
+    > db.colorins.find(function() { var a =this.color.pop(); return (a =="roig")}) 
+
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
 
 També hi ha una forma alternativa de fer-ho, que és utilitzant l'operador
@@ -2099,6 +2124,7 @@ També hi ha una forma alternativa de fer-ho, que és utilitzant l'operador
 
 
     > db.colorins.find({$where:"this.color[this.color.length - 1]=='roig'"})  
+
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
 
  **$size**{.azul}
@@ -2116,6 +2142,7 @@ comprovar-lo:
 
 
     > db.colorins.find()  
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }  
     { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ] }  
@@ -2124,6 +2151,7 @@ comprovar-lo:
 Ara anem a seleccionar els documents que tenen 4 colors
 
     > db.colorins.find({color:{$size:4}})  
+
     { "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris", "lila", "verd" ] }
 
 !!! note "Nota"
@@ -2136,6 +2164,7 @@ Ara anem a seleccionar els documents que tenen 4 colors
 
 
     > db.colorins.find({$where:"this.color.length<=3"})  
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }  
     { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ]}
@@ -2161,6 +2190,7 @@ Els valors que pot agafar **x** són:
 Per exemple, anem a traure els dos primers colors de cada document:
 
     > db.colorins.find({} , {color:{$slice:2} })  
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau" ] }  
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc" ] }  
     { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ] }  
@@ -2169,6 +2199,7 @@ Per exemple, anem a traure els dos primers colors de cada document:
 O traure l'últim color:
 
     > db.colorins.find({} , {color:{$slice:-1 }})  
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "groc" ] }  
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "roig" ] }  
     { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "blanc" ] }  
@@ -2178,6 +2209,7 @@ O traure el tercer element, tinguen els que tinguen. Recordeu que el segon
 element, és el de la posició 2, i en volem traure 1.
 
     > db.colorins.find({} , {color:{$slice:[2,1] }})  
+
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "groc" ] }  
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "roig" ] }  
     { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ ] }  
@@ -2193,6 +2225,7 @@ Així, per exemple, anem a fer una consulta sobre la col·lecció d'alumnes, que
 eren uns documents en els quals hi havia algun camp de tipus objecte.
 
     > db.alumnes.find().pretty()  
+
     {  
         "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
         "nom" : "Abel",  
@@ -2221,6 +2254,7 @@ entre cometes. Hem posat al final **pretty()** per a una millor lectura, però
 evidentment no és necessari.
 
     > db.alumnes.find({"adreça.cp": "12502"}).pretty()  
+
     {  
         "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
         "nom" : "Abel",  
@@ -2245,6 +2279,7 @@ Per exemple, tots els alumnes de Castelló (el codi postal ha de començar per
 12 i contenir 3 xifres més, és a dir, caràcter del 0 al 9, i 3 vegades.
 
     > db.alumnes.find({"adreça.cp": /^12[0-9]{3}/}).pretty()  
+
     {  
         "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
         "nom" : "Abel",  
@@ -2273,6 +2308,7 @@ Ho aplicarem als llibres, que és on tenim més documents. I no mostrem tots els
 camps, per a una millor lectura:
 
     > db.libro.find({} , {titulo:1 , precio:1 , editorial:1})  
+
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
@@ -2285,7 +2321,8 @@ camps, per a una millor lectura:
 
 Limita el número de documents tornats a _**n**_ documents.
 
-    > db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).limit(3)  
+    > db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).limit(3) 
+
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }
@@ -2295,6 +2332,7 @@ tornaran menys. Així per exemple, de l'editorial Planeta només hi ha dos
 llibres. Encara que posem limit(3), se'n tornaran 2.
 
     > db.libro.find({editorial:"Planeta"} , {titulo:1 , precio:1 , > editorial:1}).limit(3)  
+
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
     { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial": "Planeta", "precio" : 17.23 }
 
@@ -2304,6 +2342,7 @@ Se saltaran els primers _**n**_ documents. Si hi haguera menys documents dels
 que se salten, doncs no se'n mostraria cap.
 
     > db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).skip(2)  
+
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
     { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
@@ -2323,6 +2362,7 @@ Si posem més d'una clau, s'ordenarà pel primer, en cas d'empat pel segon, ...
 En aquest exemple ordenem pel preu
 
     > db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).sort({precio:1})  
+
     { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
@@ -2335,6 +2375,7 @@ I com déiem, es pot posar més d'un camp d'ordenació. Per exemple, per
 editorial en ordre ascendent, i per preu en ordre descendent
 
     > db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).sort({editorial:1 , precio:-1})  
+
     { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }  
     { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
@@ -2354,6 +2395,7 @@ per preu de forma descendent, saltem un i limitem a 2. No importa l'ordre com
 col·locar skip, limit i sort.
 
     > db.libro.find({} , {titulo:1 , precio:1 , > editorial:1}).sort({precio:-1}).skip(1).limit(2)  
+
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }  
     { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }
 
@@ -2405,6 +2447,7 @@ visualitzar millor el resultat.
 
 
     > db.libro.aggregate({$match:{editorial:"Planeta"}},{$project:{titulo:1,editorial:1}})  
+
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
     { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial": "Planeta" }
 
@@ -2421,6 +2464,7 @@ existents, i el funcionament és idèntic al de l'altra vegada (valors 1 per a
 que apareguen, 0 per a que no apareguen; per defecte**_id** sempre apareix):
 
     > db.libro.aggregate({$project:{titulo:1,editorial:1}})  
+
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta" }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
@@ -2444,6 +2488,7 @@ manera ens referim al valor d'aquest camp. Així per exemple renomenem el camp
 
 
     > db.libro.aggregate({$project:{titulo:1 , disponible:"$enstock"}})  
+
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "disponible" : true }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "disponible" : true }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" disponible" : true }  
@@ -2464,8 +2509,8 @@ molt més potent que la projecció normal.
 Per exemple, traurem títol del llibre, preu i preu en pessetes (multiplicant
 per 166.386)
 
-    > db.libro.aggregate({$project:{titulo:1 , precio:1 ,
-    > preu_pessetes:{$multiply:["$precio" , 166.386]}}})  
+    > db.libro.aggregate({$project:{titulo:1 , precio:1 , preu_pessetes:{$multiply:["$precio" , 166.386]}}})  
+
     { "_id" : "9788408117117", "titulo" : "Circo Máximo", "precio" : 21.75, "preu_pessetes" : 3618.8955 }  
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "precio" : 21.75, "preu_pessetes" : 3618.8955 }  
     { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "precio" : 9.5, "preu_pessetes" : 1580.667 }  
@@ -2483,7 +2528,8 @@ $dayOfYear, $hour, $minute** i **$second**.
 En el següent exemple traurem tots els documents, projectant per la data, any
 i mes:
 
-    > db.libro.aggregate({$project : {fecha:1 , año:{$year:"$fecha"} , > mes:{$month:"$fecha"}}})  
+    > db.libro.aggregate({$project : {fecha:1 , año:{$year:"$fecha"} , mes:{$month:"$fecha"}}})  
+
     { "_id" : "9788408117117", "fecha" : ISODate("2013-08-29T00:00:00Z"), "año" : 2013, "mes" : 8 }  
     { "_id" : "9788401342158", "fecha" : ISODate("2014-03-01T00:00:00Z"), "año" : 2014, "mes" : 3 }  
     { "_id" : "9788496208919", "fecha" : ISODate("2011-11-24T00:00:00Z"), "año" : 2011, "mes" : 11 }  
@@ -2501,7 +2547,8 @@ i mes:
 
 Per exemple, anem a traure el títol dels llibres amb l'autor entre parèntesis:
 
-    > db.libro.aggregate({$project: { "Llibre:" : {$concat : ["$titulo" , " (" , > "$autor" , ")"]}}})  
+    > db.libro.aggregate({$project: { "Llibre:" : {$concat : ["$titulo" , " (" , "$autor" , ")"]}}})  
+
     { "_id" : "9788408117117", "Llibre:" : "Circo Máximo (Santiago Posteguillo)" }  
     { "_id" : "9788401342158", "Llibre:" : "El juego de Ripper (Isabel Allende)" }  
     { "_id" : "9788496208919", "Llibre:" : "Juego de tronos: Canción de hielo y fuego 1 (George R.R. Martin)" }  
@@ -2512,8 +2559,8 @@ Per exemple, anem a traure el títol dels llibres amb l'autor entre parèntesis:
 
 I ara el mateix, però amb el títol en majúscules:
 
-    > db.libro.aggregate({$project: { "Llibre:" : {$concat :
-    > [{$toUpper:"$titulo"}, " (" , "$autor" , ")"]}}})  
+    > db.libro.aggregate({$project: { "Llibre:" : {$concat : [{$toUpper:"$titulo"}, " (" , "$autor" , ")"]}}})  
+
     { "_id" : "9788408117117", "Llibre:" : "CIRCO MáXIMO (Santiago Posteguillo)" }  
     { "_id" : "9788401342158", "Llibre:" : "EL JUEGO DE RIPPER (Isabel Allende)" }  
     { "_id" : "9788496208919", "Llibre:" : "JUEGO DE TRONOS: CANCIóN DE HIELO Y FUEGO 1 (George R.R. Martin)" }  
@@ -2542,6 +2589,7 @@ cometes. Si és més d'un camp, els posem com un objecte. Per exemple, agrupem
 per editorial:
 
     > db.libro.aggregate( { $group : { "_id" : "$editorial" } } )  
+
     { "_id" : "Debolsillo" }  
     { "_id" : null }  
     { "_id" : "Gigamesh" }  
@@ -2553,7 +2601,8 @@ Podem observar com hi ha algun llibre que no té editorial.
 
 Ara agrupem per any de publicació (l'extraurem del camp **fecha**):
 
-    > db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } }} )  
+    > db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } }} ) 
+
     { "_id" : { "any" : 2012 } }  
     { "_id" : { "any" : 2009 } }  
     { "_id" : { "any" : 2011 } }  
@@ -2563,8 +2612,8 @@ Ara agrupem per any de publicació (l'extraurem del camp **fecha**):
 I ara agrupem per editorial i any de publicació (els dos llibres de Planeta
 són del 2013)
 
-    > db.libro.aggregate( { $group : { "_id" : { "Editorial" : "$editorial" ,
-    > "any" : { $year : "$fecha" } } } } )  
+    > db.libro.aggregate( { $group : { "_id" : { "Editorial" : "$editorial" , "any" : { $year : "$fecha" } } } } )  
+
     { "_id" : { "Editorial" : "Embolsillo", "any" : 2012 } }  
     { "_id" : { "any" : 2014 } }  
     { "_id" : { "Editorial" : "Debolsillo", "any" : 2009 } }  
@@ -2590,8 +2639,8 @@ d'una determinada versió. Es pot substituir la seua utilització per l'operador
 
 Per exemple, la suma dels preus dels llibres de cada editorial:
 
-    > db.libro.aggregate( { $group : { "_id" : "$editorial" , "suma_preus" : {
-    > $sum : "$precio"} } } )  
+    > db.libro.aggregate( { $group : { "_id" : "$editorial" , "suma_preus" : {$sum : "$precio"} } } )  
+
     { "_id" : "Debolsillo", "suma_preus" : 9.45 }  
     { "_id" : null, "suma_preus" : 15.9 }  
     { "_id" : "Gigamesh", "suma_preus" : 9.5 }  
@@ -2601,8 +2650,8 @@ Per exemple, la suma dels preus dels llibres de cada editorial:
 
 O la mitjana dels preus de cada any:
 
-    > db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } ,
-    > "mitjana preus" : { $avg : "$precio" } } } )  
+    > db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } , "mitjana preus" : { $avg : "$precio" } } } )  
+
     { "_id" : { "any" : 2012 }, "mitjana preus" : 11 }  
     { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }  
     { "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
@@ -2612,7 +2661,8 @@ O la mitjana dels preus de cada any:
 I ara intentem comptar la quantitat de llibres de cada editorial:
 
     > db.libro.aggregate( { $group : { "_id" : "$editorial" , "quants" : { $sum :
-    > 1} } } )  
+    1} } } )  
+
     { "_id" : "Debolsillo", "quants" : 1 }  
     { "_id" : null, "quants" : 1 }  
     { "_id" : "Gigamesh", "quants" : 1 }  
@@ -2629,7 +2679,8 @@ o per camps clalculats.
 Per exemple ordenem per la suma de preus de cada editorial:
 
     > db.libro.aggregate( { $group : { "_id" : "$editorial" , "suma_preus" : {
-    > $sum : "$precio"} } } , { $sort : { suma_preus : 1 } })  
+    $sum : "$precio"} } } , { $sort : { suma_preus : 1 } })  
+
     { "_id" : "Debolsillo", "suma_preus" : 9.45 }  
     { "_id" : "Gigamesh", "suma_preus" : 9.5 }  
     { "_id" : "Embolsillo", "suma_preus" : 11 }  
@@ -2640,7 +2691,8 @@ Per exemple ordenem per la suma de preus de cada editorial:
 I ara ordenem de forma descendent per la mitjana de preus de cada any:
 
     > db.libro.aggregate( { $group : { "_id" : {"any":{$year:"$fecha"}} , "mitjana
-    > preus":{$avg:"$precio"} } } , {$sort:{"mitjana preus":-1}})  
+    preus":{$avg:"$precio"} } } , {$sort:{"mitjana preus":-1}})  
+
     { "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }  
     { "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
     { "_id" : { "any" : 2012 }, "mitjana preus" : 11 }  
@@ -2655,7 +2707,8 @@ Per exemple, els tres anys de mitjana de preus més cara. És com l'últim
 exemple, afegint el límit:
 
     > db.libro.aggregate({$group:{"_id":{"any":{$year:"$fecha"}},"mitjana
-    > preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$limit:3})  
+    preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$limit:3}) 
+
     { "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }  
     { "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
     { "_id" : { "any" : 2012 }, "mitjana preus" : 11 }
@@ -2667,7 +2720,8 @@ Salta el número indicat
 En l'exemple anterior, ara saltem els 3 primers:
 
     > db.libro.aggregate({$group:{"_id":{"any":{$year:"$fecha"}},"mitjana
-    > preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$skip:3})  
+    preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$skip:3})  
+    
     { "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
     { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
 
