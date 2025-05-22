@@ -1709,9 +1709,10 @@ Torna el número de valors que estan entre les puntuacions especificades
 
 
 #### ZRANGE {.azul}
+
 <u>_Sintaxi_</u>
 
-   zrange clau inici final [withscores]
+    zrange clau inici final [withscores]
 
 Torna els elements del conjunt ordenat inclosos entre els index inici i final,
 ambdós inclosos. I es trauen per ordre ascentent de puntuació. El primer
@@ -1891,6 +1892,15 @@ Si l'element no existia, l'inserirà, assumint una puntuació inicial de 0.
     5) "Nom3"  
     6) "5"
 
+## 2.4 - Resum de comandos (PDF)
+
+Al següent enllaç disposeu d'un document **pdf** amb un resum de les comandes de Redis classificades per l'operació CRUD que realitzen.
+
+!!!Tip ""
+    [Resum comandos Redis](Redis_resum.pdf)
+
+---
+
 ## :pencil2: Exercici 1
 
 Sobre la Base de Dades **REDIS** del Servidor de l'Institut (adreça
@@ -1929,6 +1939,9 @@ de forma numerada. És aquest fitxer el que hauràs de pujar.
 
   14. Trau les participants de la carrera ordenades pel temps
   15. Penalitza el temps de Bea amb 2 dècimes (0'2), i torna a traure les participants ordenades (Bea ha d'haver perdut 2 posicions, passant de tercera a cinquena posició)
+
+
+
 
 
 Llicenciat sota la  [Llicència Creative Commons Reconeixement NoComercial

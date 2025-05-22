@@ -325,12 +325,12 @@ instal·lació bàsica.
 
 3- Es necessari tindre un directori de dades per emmagatzemar la base de dades. Creem el directori de dades en el directori arrel (carpeta d'instal·lació).
 
-        mkdir /data  
-        mkdir /data/db
+        mkdir data  
+        mkdir data/db
 
 4- Arranquem el servidor:
 
-      <directori arrel Mongosh>/bin/mongosh
+      <directori arrel Mongo> /bin/mongod
       
       ./bin/mongod --dbpath ./data/db
 
@@ -2845,7 +2845,7 @@ Aquest exercici l'has de realitzar sobre la teua BD de MongoDB (col·lecció **p
     
     title : Avatar
 
-  1. Inserir tots els documents anteriors. Ha de ser **obligatòriament** amb una única sentència, per a la qual cosa hauràs d'utilitzar variables, una per a cada document.
+  1. Inserir tots els documents anteriors. Ha de ser **obligatòriament** amb una única sentència, per a la qual cosa pots utilitzar variables, una per a cada document.
   2. Consultar tots els documents
   3. Obtenir els documents amb **writer** igual a **"Quentin Tarantino"**
   4. Obtenir els documents amb **actors** que incloguen a **"Brad Pitt"**
