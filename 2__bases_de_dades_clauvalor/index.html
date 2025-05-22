@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_NoSQL/2__bases_de_dades_clauvalor/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>2 - Bases de Dades Clau-Valor (Redis) - BBDD - Bases de Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2 - Bases de Dades Clau-Valor (Redis)";
+        var mkdocs_page_input_path = "2__bases_de_dades_clauvalor.md";
+        var mkdocs_page_url = "/BBDD_NoSQL/2__bases_de_dades_clauvalor/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2 - Bases de Dades Clau-Valor (Redis)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#21-installacio-de-redis">2.1 - Instal·lació de Redis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#installacio-en-linux">🐧Instal·lació en Linux</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#installacio-en-windows">🖥️Instal·lació en Windows</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#22-entorn-grafic-redis-insight">2.2 - Entorn gràfic: Redis Insight</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#23-utilitzacio-de-redis">2.3 - Utilització de Redis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#231-strings">2.3.1 - Strings</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get">GET</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#set">SET</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#setex">SETEX</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#psetex">PSETEX</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mget">MGET</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mset">MSET</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#append">APPEND</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#strlen">STRLEN</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#getrange">GETRANGE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#setrange">SETRANGE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#incr">INCR</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#decr">DECR</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#incrby">INCRBY</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#decrby">DECRBY</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#232-keys">2.3.2 - Keys</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#keys">KEYS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exists">EXISTS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#del">DEL</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#type">TYPE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rename">RENAME</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#renamenx">RENAMENX</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#expire">EXPIRE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pexpire">PEXPIRE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ttl">TTL</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#pttl">PTTL</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#persist">PERSIST</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#233-hash">2.3.3 - Hash</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#hset">HSET</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hget">HGET</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hgetall">HGETALL</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hdel">HDEL</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hkeys">HKEYS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#hvals">HVALS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#altres-comandos">Altres Comandos</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#234-list">2.3.4 - List</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#lpush">LPUSH</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rpush">RPUSH</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lpop">LPOP</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rpop">RPOP</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lset">LSET</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lindex">LINDEX</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#linsert">LINSERT</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lrange">LRANGE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#llen">LLEN</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lrem">LREM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ltrim">LTRIM</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#235-set">2.3.5 - Set</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#sadd">SADD</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#smembers">SMEMBERS</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sismember">SISMEMBER</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#scard">SCARD</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#srem">SREM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#spop">SPOP</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#srandmember">SRANDMEMBER</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sunion">SUNION</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sunionstore">SUNIONSTORE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sdiff">SDIFF</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sdiffstore">SDIFFSTORE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sinter">SINTER</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#sinterstore">SINTERSTORE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#smove">SMOVE</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#236-set-ordenat">2.3.6 - Set ordenat</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#zadd">ZADD</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zcard">ZCARD</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zscore">ZSCORE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zcount">ZCOUNT</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zrange">ZRANGE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zrangebyscore">ZRANGEBYSCORE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zrank">ZRANK</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zrem">ZREM</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zremrangebyscore">ZREMRANGEBYSCORE</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#zincrby">ZINCRBY</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#24-resum-de-comandos-pdf">2.4 - Resum de comandos (PDF)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercici-1">Exercici 1</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../3__mongodb/">3 - MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_relaciones_mongo/">4 - Relacions en MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_actividad_mongo/">Práctica Mongo</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BBDD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">REDIS</li>
+      <li class="breadcrumb-item active">2 - Bases de Dades Clau-Valor (Redis)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="2-bases-de-dades-clau-valor">2 - Bases de Dades Clau-Valor</h1>
+<p>Dins dels diferents tipus de <strong>Bases de Dades NoSQL</strong>, les <strong>Bases de Dades Clau-Valor</strong> són les més fàcils de comprendre. Aquest model es basa en parelles <strong>clau-valor</strong>, on cada clau representa un identificador únic i el seu valor associat.  </p>
+<p><strong>🔑 Característica principal:</strong> La clau ha de ser <strong>única</strong>, ja que en cas contrari no es podria recuperar correctament la informació.  </p>
+<p>✅ <strong>Avantatge:</strong> No requereix definició de taules ni estructures complexes. Simplement es guarden parelles clau-valor i es recupera la informació mitjançant la clau corresponent.  </p>
+<hr />
+<p><strong class="azul">🔥 Redis: Un exemple de Base de Dades Clau-Valor</strong></p>
+<p>L'exemple més conegut d'aquest tipus de bases de dades és <strong>Redis</strong>, famosa per la seva <strong>potència i eficiència</strong>.  </p>
+<p>En Redis, les <strong>claus</strong> sempre són de tipus <strong>String</strong>, mentre que els <strong>valors</strong> poden ser de diferents tipus:  </p>
+<p><strong class="azul">📌 Tipus de valors en Redis:</strong>  </p>
+<ul>
+<li>
+<p><strong>Cadenes de caràcters (String)</strong>  </p>
+<ul>
+<li>Exemple: nom_1 → "Albert"  </li>
+</ul>
+</li>
+<li>
+<p><strong>Mapes (Hashes)</strong> <em>(semblants a un registre amb subcamps)</em>  </p>
+<ul>
+<li>Exemple: empleat_1 → { nom="Albert", departament="10", sou="1000.0" }  </li>
+</ul>
+</li>
+<li>
+<p><strong>Llistes (Lists)</strong> <em>(conjunts ordenats de valors)</em>  </p>
+<ul>
+<li>Exemple: llista_1 → ["Primer", "Segon", "Tercer"]  </li>
+</ul>
+</li>
+<li>
+<p><strong>Conjunts (Sets)</strong> <em>(conjunts desordenats de valors, l'ordre és imprevisible)</em>  </p>
+<ul>
+<li>Exemple: colors → {"Blau", "Verd", "Roig"}  </li>
+</ul>
+</li>
+<li>
+<p><strong>Conjunts ordenats (Sorted Sets)</strong> <em>(semblants als Sets, però amb ordre definit)</em>  </p>
+<ul>
+<li>Es diferencia de les <strong>llistes</strong> per la forma en què Redis gestiona l'ordenació interna.  </li>
+</ul>
+</li>
+</ul>
+<hr />
+<p><strong class="azul">⚙️ Característiques principals de Redis</strong>  </p>
+<p>🔹 <strong>Arquitectura Client-Servidor</strong><br />
+Redis segueix un model <strong>client-servidor</strong>, on múltiples clients poden connectar-se a un servidor Redis per llegir i escriure dades.  </p>
+<p>🔹 <strong>Alta eficiència i velocitat</strong><br />
+Redis és extraordinàriament ràpid, especialment quan pot carregar tota la base de dades a <strong>memòria</strong>.<br />
+- Tot i que prioritza la velocitat en memòria, també permet sincronització constant a disc per garantir la <strong>persistència</strong> de les dades.  </p>
+<p>🔹 <strong>Replicació Master-Slave per alta disponibilitat</strong><br />
+- Per suportar alts volums de lectura, Redis permet <strong>replicació</strong> (<code>master/slave</code>).<br />
+- Un servidor actua com a <strong>master</strong> i els altres com a <strong>slaves</strong> (rèpliques del master).<br />
+- Els esclaus poden gestionar consultes de lectura per reduir la càrrega sobre el <strong>master</strong>.  </p>
+<hr />
+<h2 id="21-installacio-de-redis">2.1 - Instal·lació de Redis</h2>
+<p>Redis està construït per a Linux. També funciona, però, des de Windows com
+veurem una miqueta més avant.</p>
+<h3 id="installacio-en-linux">🐧Instal·lació en Linux</h3>
+<p>El lloc des d'on baixar-lo és la pàgina oficial:</p>
+<p><a href="https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-from-source/">https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-from-source/</a></p>
+<p>En el moment de fer aquestos apunts, l'última versió estable és la <strong>7.4.1</strong>.  </p>
+<p>Per obtenir els fitxers font de la darrera versió estable de Redis des del lloc de descàrregues de Redis, executeu:</p>
+<pre><code>wget https://download.redis.io/redis-stable.tar.gz
+</code></pre>
+<p><strong>Compilando Redis</strong></p>
+<p>Suposarem que el fitxer està col·locat en el lloc on volem que estiga instal·lat de forma definitiva.
+Per compilar Redis, primer extrae el fitxer tar, canvia al directori arrel i després executa make:</p>
+<pre><code>tar -xzvf redis-stable.tar.gz
+cd redis-stable
+make
+</code></pre>
+<p>Amb açò s'haurien d'haver generat els executables, i ja hauria de funcionar.</p>
+<p><strong>Executar Servidor i Client Redis</strong></p>
+<p>Per a posar en marxa el servidor, quasi que el més còmode serà obrir un
+terminal, situar-nos en el directori <strong>redis-stable/src</strong> i des d'ahi executar
+<strong>redis-server</strong>. Hauria d'eixir una finestra similar a la següent, amb més o
+menys avisos (observeu que al principi de la imatge estàn les ordres donades per a executar el servidor).</p>
+<p><img alt="" src="../redis-server.png" /></p>
+<p>Entre altres coses diu que el servidor està en marxa esperant connexions al
+port 6379, que és el port per defecte de Redis. Aquesta finestra del terminal
+l'haurem de deixar en marxa. Quan vulguem detenir Redis, senzillament fem
+<strong>ctrl-c</strong> , i detindrem l'execució de forma ordenada (guardant-se les dades
+no guardades)</p>
+<p>Podríem haver executat directament <strong>redis-server</strong> fent-li doble-clic des
+d'un explorador d'arxius, per exemple, però aleshores no podríem parar-lo i en
+definitiva controlar-lo tan còmodament.</p>
+<p>Per a fer una connexió des d'un client, també des d'un terminal (un altre)
+executem <strong>redis-cli</strong> :</p>
+<p><img alt="" src="../redis-cli.png" /></p>
+<p>Ja ha fet la connexió, concretament a localhost (127.0.0.1) i al port 6379,
+que havíem quedat que és el port per defecte.</p>
+<p>Comprovem que sí que funciona. Encara no hi ha dades, perquè l'acabem
+d'instal·lar. I recordeu que és una Base de Dades clau-valor. Per crear una
+entrada posarem <strong>set clau valor</strong>. Per a obtenir-la posarem <strong>get clau</strong>. En
+la imatge es pot comprovar:</p>
+<p><img alt="" src="../redis-primera.png" /></p>
+<p>Hem creat una clau anomenada <strong>clau_1</strong> amb el valor <strong>primera</strong> , com es pot
+comprovar en el moment d'obtenir-la amb <strong>get</strong>.</p>
+<p><strong>Conexió a un servidor Redis extern</strong></p>
+<p>Si al programa <strong>redis-cli</strong> no li posem paràmetres, intentarà fer una
+connexió local (localhost). Si volem connectar a un servidor situat en una
+altra adreça, li la posem amb el paràmetre <strong>-h adreça</strong> , per exemple:</p>
+<pre><code>redis-cli -h 192.168.1.26
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Connexió al servidor de l'Institut</p>
+<p>En el servidor de dades de l'Institut també tenim instal·lat redis. Però per a
+no tenir accessos no desitjats, cal una autenticació. Senzillament és posar el
+comando <strong>auth</strong> amb la contrasenya que ja hem utilitzat en altres ocasions:
+<strong>auth ieselcaminas.ad</strong></p>
+</div>
+<p>En la següent imatge es veu com sí que hem pogut connectar</p>
+<p><img alt="" src="../redis-auth.png" /></p>
+<h3 id="installacio-en-windows">🖥️Instal·lació en Windows</h3>
+<p>Encara que Redis està construït per a Linux, hi ha versions per a Windows,
+preferiblement de 64 bits.</p>
+<p>El lloc on poder baixar els fitxers de Redis per a Windows de 64 bits és: <a href="https://github.com/MSOpenTech/redis/releases">https://github.com/MSOpenTech/redis/releases</a></p>
+<div class="admonition tip">
+<p>Redis Insight està disponible per a altres sistemes operatius.</p>
+</div>
+<p><img alt="" src="../redis_5.png" /></p>
+<p>Ens baixem el zip, el descomprimim, i ja ho tindrem disponible (sense fer
+<strong>make</strong> ni res). Observeu com en la carpeta resultat de descomprimir ja tenim
+els executables <strong>redis-server</strong> i <strong>redis-cli</strong> que són els que ens
+interessen:</p>
+<p><img alt="" src="../redis_6.png" /></p>
+<p>Executem <strong>redis-server</strong> directament i ja el tindrem en marxa:</p>
+<p><img alt="" src="../redis_7.png" /></p>
+<p>Executem també el <strong>redis-cli</strong> i el resultat serà el mateix que en Linux.</p>
+<h2 id="22-entorn-grafic-redis-insight">2.2 - Entorn gràfic: Redis Insight</h2>
+<p>Com hem comprovat en el punt anterior, la connexió que fem des del client és a
+través de consola. Per tant haurem de posar comandos i ens contestarà la seua
+execució.</p>
+<p>Podem instal·lar-nos una aplicació gràfica que faça un poc més atractiva la
+presentació.</p>
+<p>La instal·lació d'aquesta eina és <strong>totalment optativa</strong>, no cal que la feu.
+De fet, ens els exemples que es mostraran en tot el tema només s'utilitzarà el
+mode consola.</p>
+<p>És completament independent del servidor, i podem instal·lar-la perfectament
+sense tenir el servidor, utilitzant-la aleshores per a connectar a un servidor
+remot.</p>
+<p>El podem baixar lliurement de la pàgina oficial
+<a href="https://redis.io/insight/">redis.io/insight</a> on podrem comprovar que tenim per a totes
+les plataformes:</p>
+<p><img alt="" src="../redis_1.png" /></p>
+<p><strong class="azul">🖥️Instal·lació en Windows de 64 bits</strong></p>
+<p>En Windows el que ens baixarem és un exe. L'executem (permetent l'execució
+quan ho pregunta Windows) i li podem donar a totes les opcions per defecte.</p>
+<p>Quan l'executem, ens eixirà la següent pantalla:</p>
+<p><img alt="" src="../redis_2.png" /></p>
+<p>Podem comprovar que tenim el botó per a afegir una BD Redis (+ Add Redis database). Per a
+connectar al servidor local la conexió serà <strong>redis://default@127.0.0.1:6379</strong>. En la imatge
+s'ha fet el test de connexió.</p>
+<p><img alt="" src="../redis_3.png" /></p>
+<p>Per a connectar a un remot, posarem la seua adreça.</p>
+<p><img alt="" src="../redis_4.png" /></p>
+<p>En aquesta imatge es veu com hem connectat perfectament als dos servidors. </p>
+<h2 id="23-utilitzacio-de-redis">2.3 - Utilització de Redis</h2>
+<p>Anam a veure la utilització de Redis, Ens connectarem com a clients i
+intentarem fer operacions.</p>
+<ul>
+<li>Les primeres seran les més senzilles, utilitzant únicament el tipus de dades <strong>String</strong>.</li>
+<li>Posteriorment mirarem com treballar amb les claus: buscar-ne una, veure si existeix, buscar unes quantes, ...</li>
+<li>Després ja anirem a pels tipus de dades més complicats: <ul>
+<li><strong>Hash</strong></li>
+<li><strong>List</strong></li>
+<li><strong>Set</strong></li>
+<li><strong>Sorted Set</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="231-strings">2.3.1 - Strings</h3>
+<p>És el tipus de dades més senzill, més bàsic. Serà una cadena de caràcters de
+tipus <em><strong>binary</strong></em><strong>safe</strong> en la qual normalment guardarem les habituals
+cadenes de caràcters, però que també podríem guardar imatges o objectes
+serialitzats. La grandària màxima és de 512Mb.</p>
+<p>Ara veurem els comandos més habituals que afecten a aquest tipus. Com a norma
+general, hem de ser conscients que els comandos no són sensibles a majúscules
+o minúscules, però les claus i els valors sí que ho són. És a dir, el comando
+<strong>get</strong> també es pot escriure <strong>GET</strong> o <strong>Get</strong>. Però la clau <strong>Hola</strong> és
+diferent de la clau <strong>hola</strong>.</p>
+<h4 class="azul" id="get">GET</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>get clau
+</code></pre>
+<p>Torna el valor de la clau especificada, sempre que siga de tipus <strong>String</strong>.
+Si la clau és d'un altre tipus, donarà error. I si la clau no existeix,
+tornarà el valor especial <strong><em>nil</em></strong> .</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; get clau_1  
+"primera"  
+127.0.0.1:6379&gt; get clau_2  
+(nil)
+</code></pre>
+<h4 class="azul" id="set">SET</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>set clau valor
+</code></pre>
+<p>Assigna a la clau especificada com a primer paràmetre el valor especificat com
+a segon paràmetre. Si el valor consta de més d'una paraula, haurà d'anar entre
+cometes dobles.</p>
+<p>Redis sempre guardarà el valor com a string, encara que nosaltres pensem que
+li passem un valor enter o real.</p>
+<p>I una altra característica és que si la clau existeix ja, matxacarà el seu
+contingut, com era de esperar.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; set clau_2 segona  
+OK  
+127.0.0.1:6379&gt; set text "Un text amb més d'una paraula"  
+OK
+
+
+127.0.0.1:6379&gt; set quatre 4  
+OK  
+127.0.0.1:6379&gt; get quatre  
+"4"  
+127.0.0.1:6379&gt; set pi 3.14159265359  
+OK  
+127.0.0.1:6379&gt; get pi  
+"3.14159265359"
+</code></pre>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si poseu algun accent, en tornar el valor (fent get) us semblarà que no s'ha
+guardat bé. Sí que s'haurà guardat bé, el que passa és que posteriorment no es
+visualitza bé en fer el get. Es pot comprovar entrant en el client amb l'opció
+<em><strong>raw</strong></em> , és a dir <strong>redis-cli --raw</strong></p>
+</div>
+<hr />
+<p>El comando <strong>SET</strong> té una opció molt interessant, que servirà per a donar un
+temps de vida a la clau, transcorregut el qual desapareix la clau (amb el seu
+valor clar). Açò s'anomena <em><strong>temps d'expiració</strong></em> i s'aconsegueix amb el
+paràmetre <strong>EX</strong> del comando <strong>SET</strong> seguit del número de segons que volem que
+dure la clau.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; set clau_3 tercera ex 10  
+OK  
+127.0.0.1:6379&gt; get clau_3  
+"tercera"  
+127.0.0.1:6379&gt; get clau_3  
+(nil)
+</code></pre>
+<p>Primer sí que existeix, però al cap de 10 segons ha deixat d'existir.</p>
+<p>De forma equivalent es pot expressar el temps en milisegons, amb el paràmetre
+<strong>PX</strong> en compte de <strong>EX</strong>.</p>
+<p>Havíem comentat al principi, que si en el moment de fer el <strong>SET</strong> la clau ja
+existia, es reemplaçarà el seu contingut. Podem modificar aquest comportament
+amb el paràmetre <strong>NX</strong> (Not eXists): si no existia la clau, la crearà amb el
+valor, però si ja existia, la deixarà com estava. Ens ho indicarà dient OK en
+cas de crear-la i NIL en cas de no crear-la perquà ja existia.</p>
+<pre><code>127.0.0.1:6379&gt; set clau_4 quarta nx  
+OK  
+127.0.0.1:6379&gt; set clau_1 quarta nx  
+(nil)  
+127.0.0.1:6379&gt; get clau_4  
+"quarta"  
+127.0.0.1:6379&gt; get clau_1  
+"primera"
+</code></pre>
+<p>I de forma inversa, si posem el paràmetre <strong>XX</strong> , si ja existeix la clau,
+reemplaçarà el valor, però si no existia, no farà res.</p>
+<h4 class="azul" id="setex">SETEX</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>setex clau segons valor
+</code></pre>
+<p>Funciona igual que el <strong>SET</strong> amb el paràmetre <strong>EX</strong> : crearà la clau amb el
+valor, però tindrà una existència dels segons indicats.</p>
+<h4 class="azul" id="psetex">PSETEX</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>psetex clau milisegons valor
+</code></pre>
+<p>Funciona igual que l'anterior, però el que especifiquem són els milisegons
+d'existència.</p>
+<h4 class="azul" id="mget">MGET</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>mget clau1 clau2 clauN
+</code></pre>
+<p>Torna una llista de valors, els de les claus indicades.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; set mes1 gener  
+OK  
+127.0.0.1:6379&gt; set mes2 febrer  
+OK  
+127.0.0.1:6379&gt; set mes3 març  
+OK  
+127.0.0.1:6379&gt; mget mes1 mes2 mes3  
+1) "gener"  
+2) "febrer"  
+3) "mar\xc3\xa7"
+</code></pre>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Recordeu que els caràcters com vocals accentuades, ç, ñ, ... s'han introduït
+bé, però potser no es visualiten bé. Es pot evitar entrant en el client
+d'aquesta manera <strong>redis-cli --raw</strong></p>
+</div>
+<hr />
+<p>Si alguna de les claus no exiteix, tornarà <strong>nil</strong> en el seu lloc</p>
+<h4 class="azul" id="mset">MSET</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>mset clau1 valor1 clau2 valor2 clauN valorN
+</code></pre>
+<p>Assigna els valors corresponents a les claus. És una operació atòmica: es
+posen (o canvien) tots els valors a l'hora.</p>
+<pre><code>127.0.0.1:6379&gt; mset mes4 abril mes5 maig mes6 juny mes7 juliol  
+OK  
+127.0.0.1:6379&gt; mget mes1 mes2 mes3 mes4 mes5 mes6 mes7  
+1) "gener"  
+2) "febrer"  
+3) "mar\xc3\xa7"  
+4) "abril"  
+5) "maig"  
+6) "juny"  
+7) "juliol"
+</code></pre>
+<p>Si no vulguérem reemplaçar valors, podríem utilitzar el comando <strong>MSETNX</strong> ,
+totalment equivalent, però hauríem de tenir en compte que si alguna ja
+existeix i per tant no pot canviar el valor, no faria l'operació, és a dir,
+tampoc crearia les altres.</p>
+<h4 class="azul" id="append">APPEND</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>append clau1 valor1
+</code></pre>
+<p>Si la clau no existeix la crea assignant-li el valor (com el <strong>SET</strong>), però si
+ja existeix, concatena el valor al final de la cadena que ja hi havia.</p>
+<pre><code>127.0.0.1:6379&gt; append salutacio Hola  
+(integer) 4  
+127.0.0.1:6379&gt; get salutacio  
+"Hola"  
+127.0.0.1:6379&gt; append salutacio ", com va?"  
+(integer) 13  
+127.0.0.1:6379&gt; get salutacio  
+"Hola, com va?"
+</code></pre>
+<h4 class="azul" id="strlen">STRLEN</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>strlen clau1
+</code></pre>
+<p>Torna el número de caràcters que hi ha en el valor de la clau. Si la clau no
+existeix, tornarà 0. Si la clau és d'un altre tipus, tornarà error.</p>
+<pre><code>127.0.0.1:6379&gt; strlen salutacio  
+(integer) 13  
+127.0.0.1:6379&gt; strlen sal  
+(integer) 0
+</code></pre>
+<h4 class="azul" id="getrange">GETRANGE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>getrange clau1 inici final
+</code></pre>
+<p>Extrau una subcadena del valor de la clau (ha de ser de tipus <strong>String</strong>) des
+del número de caràcter d'inici fins al número del final (ambdós inclosos). El
+primer caràcter és el 0. Si posem de final un número major que l'últim, igual
+ho traurà fins el final.</p>
+<p>Es poden posar també valor negatius que ens ajuden a agafar la cadena des del
+final. El -1 és l'últim caràcter, el -2 el penúltim, ... I es poden barrejar
+números positius i negatius. Així el rang 0 -1 és tota la cadena.</p>
+<pre><code>127.0.0.1:6379&gt; getrange salutacio 1 3  
+"ola"  
+127.0.0.1:6379&gt; getrange salutacio 6 50  
+"com va?"  
+127.0.0.1:6379&gt; getrange salutacio 6 -1  
+"com va?"  
+127.0.0.1:6379&gt; getrange salutacio -7 -5  
+"com"
+</code></pre>
+<h4 class="azul" id="setrange">SETRANGE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>setrange clau1 desplaçament valor
+</code></pre>
+<p>Substitueix part del valor de la cadena, a partir del desplaçament, amb el
+vaolr proporcionat. No s'admenten en desplaçament valors negatius.</p>
+<pre><code>127.0.0.1:6379&gt; get salutacio  
+"Hola, com va?"  
+127.0.0.1:6379&gt; setrange salutacio 4 ". C"  
+(integer) 13  
+127.0.0.1:6379&gt; get salutacio  
+"Hola. Com va?"
+</code></pre>
+<h4 class="azul" id="incr">INCR</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>incr clau1
+</code></pre>
+<p>A pesar de que Redis guarda els strings com a tals, com a cadenes de
+caràcters, en algunes ocasions és capaç de transformar la cadena a un número.
+És el cas del comando <strong>INCR</strong> , que converteix la cadena en un enter (si pot)
+i incrementa aquest valor en una unitat.</p>
+<p>Si la clau no existeix la crea assumint que valia 0, i per tant després valdrà
+1.</p>
+<p>Si el valor de la clau no era un número enter, donarà un error.</p>
+<pre><code>127.0.0.1:6379&gt; set compt1 20  
+OK  
+127.0.0.1:6379&gt; get compt1  
+"20"  
+127.0.0.1:6379&gt; incr compt1  
+(integer) 21  
+127.0.0.1:6379&gt; get compt1  
+"21"  
+127.0.0.1:6379&gt; incr compt2  
+(integer) 1  
+127.0.0.1:6379&gt; get compt2  
+"1"  
+127.0.0.1:6379&gt; incr clau_1  
+(error) ERR value is not an integer or out of range  
+127.0.0.1:6379&gt; set compt3 4.25  
+OK  
+127.0.0.1:6379&gt; incr compt3  
+(error) ERR value is not an integer or out of range
+</code></pre>
+<h4 class="azul" id="decr">DECR</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>decr clau1
+</code></pre>
+<p>Decrementa en una unitat el valor de la clau (senpre que siga un enter).</p>
+<p>Pot agafar valors negatius.</p>
+<p>Si la clau no existeix la crea assumint que valia 0, i per tant després valdrà
+-1.</p>
+<pre><code>127.0.0.1:6379&gt; decr compt2  
+(integer) 0  
+127.0.0.1:6379&gt; decr compt2  
+(integer) -1  
+127.0.0.1:6379&gt; get compt2  
+"-1"
+</code></pre>
+<h4 class="azul" id="incrby">INCRBY</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>incrby clau1 increment
+</code></pre>
+<p>Incrementa el valor de la clau en el número d'unitats indicat en <strong>increment</strong>
+(el valor ha de ser enter). L'increment pot ser negatiu.</p>
+<pre><code>127.0.0.1:6379&gt; incrby compt1 10  
+(integer) 31  
+127.0.0.1:6379&gt; incrby compt1 -20  
+(integer) 11
+</code></pre>
+<h4 class="azul" id="decrby">DECRBY</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>decrby clau1 decrement
+</code></pre>
+<p>Decrementa el valor de la clau el número d'unitat indicat en <strong>decrement</strong>.</p>
+<pre><code>127.0.0.1:6379&gt; decrby compt1 5  
+(integer) 6
+</code></pre>
+<h3 id="232-keys">2.3.2 - Keys</h3>
+<p>Ara anem a veure comandos que ens permeten treballar amb les claus, per a
+buscar-les, veure si existeixen, etc. No importarà el tipus de les claus (de
+moment només hem treballat amb claus de tipus <strong>String</strong> , però si ja en
+tinguérem dels altres tipus també es veurien afectades). En cap cas d'aquestos
+comandos accedirem al valor de les claus.</p>
+<h4 class="azul" id="keys">KEYS</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>keys patró
+</code></pre>
+<p>Torna totes les claus que coincideixen amb el patró. En el patró podem posar
+caràcters comodí:</p>
+<ul>
+<li><strong>*</strong> : equival a 0 o més caràcters. Per exemple "Mar*a" podria tornar "Mara", "Maria", "Marta", "Margarita", ...</li>
+<li><strong>?</strong> : equival exactament a un caràcter. Per exemple "Mar?a" podria tornar "Maria" o "Marta", però no "Mara", "Margarita", ...</li>
+<li><strong>[ab]</strong> : serà cert si en el lloc corresponent hi ha un dels caràcters especificats entre els claudàtors. Per exemple "Mar[it]a" podria tornar "Maria" o "Marta", però no "Marga"</li>
+</ul>
+<p>Per a tornar totes les claus utilitzarem **keys ***</p>
+<pre><code>127.0.0.1:6379&gt; keys *  
+1) "compt3"  
+2) "mes5"  
+3) "mes3"  
+4) "comp3"  
+5) "mes7"  
+6) "mes2"  
+1) "mes6"  
+2) "salutacio"  
+3) "mes4"  
+4)  "mes1"  
+5)  "clau_1"  
+6)  "compt1"  
+7)  "compt2"  
+127.0.0.1:6379&gt; keys mes?  
+1) "mes5"  
+2) "mes3"  
+3)  "mes7"  
+4)  "mes2"  
+5)  "mes6"  
+6)  "mes4"  
+7)  "mes1"  
+127.0.0.1:6379&gt; keys c*  
+1)  "compt3"  
+2)  "comp3"  
+3)  "clau_1"  
+4)  "compt1"  
+5)  "compt2"  
+127.0.0.1:6379&gt; keys mes[125]  
+1)  "mes5"  
+2)  "mes2"  
+3)  "mes1"
+</code></pre>
+<h4 class="azul" id="exists">EXISTS</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>exists clau
+</code></pre>
+<p>Torna 1 si la clau existeix, i 0 si no existeix. No importa de quin tipus siga
+la clau.</p>
+<pre><code>127.0.0.1:6379&gt; exists clau_1  
+(integer) 1  
+127.0.0.1:6379&gt; exists clau_25  
+(integer) 0
+</code></pre>
+<h4 class="azul" id="del">DEL</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>del clau1 clau2 clauN
+</code></pre>
+<p>Elimina la clau o claus especificades. Si posem més d'una clau i alguna no
+existeix, la ignorarà i sí que esborrarà les altres.</p>
+<pre><code>127.0.0.1:6379&gt; del compt2  
+(integer) 1  
+127.0.0.1:6379&gt; del mes6 mes7 mes8 mes9  
+(integer) 2
+</code></pre>
+<p>Observeu que ens indica quantes claus ha esborrat. En el primer exemple ha
+esborrat la clau especificada, i en el segon diu que ha esborrat 2, que seran
+<strong>mes6</strong> i <strong>mes7</strong> , ja que <strong>mes8</strong> i <strong>mes9</strong> no existien.</p>
+<h4 class="azul" id="type">TYPE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>type clau
+</code></pre>
+<p>Torna el tipus de la clau especificada. Els valors possibles són:</p>
+<ul>
+<li>string</li>
+<li>hash</li>
+<li>list</li>
+<li>set</li>
+<li>zset (conjunt ordenat)</li>
+</ul>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; type clau_1  
+string
+</code></pre>
+<h4 class="azul" id="rename">RENAME</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>rename clau novaclau
+</code></pre>
+<p>Canvia el nom de la clau a la clau nova, conservant el valor. Dóna error si la
+clau antiga no existeix. Si la clau nova ja existia reemplaçarà el seu valor.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; get salutacio  
+"Hola. Com va?"  
+127.0.0.1:6379&gt; rename salutacio saludar  
+OK  
+127.0.0.1:6379&gt; get salutacio  
+(nil)  
+127.0.0.1:6379&gt; get saludar  
+"Hola. Com va?"  
+127.0.0.1:6379&gt; rename clau_22 clau_23  
+(error) ERR no such key
+</code></pre>
+<h4 class="azul" id="renamenx">RENAMENX</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>renamenx clau novaclau
+</code></pre>
+<p>Igual que l'anterior però únicament si la clau nova no existia. Si ja existia
+no fa res (tornant 0 per a indicar-h0).</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; renamenx compt1 compt3  
+(integer) 0  
+127.0.0.1:6379&gt; get compt1  
+"9"
+</code></pre>
+<p>Estem suposant que la clau <strong>compt3</strong> ja existeix</p>
+<h4 class="azul" id="expire">EXPIRE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>expire clau segons
+</code></pre>
+<p>Assigna com a temps d'expiració de la clau els segons especificats. Si ja
+tenia temps d'expiració, el modifica posant-li aquest valor especificat.</p>
+<p>En cas que a una clau amb temps d'expiració li canviem el nom amb <strong>RENAME</strong> ,
+continuarà amb temps d'expiració que li quedava.</p>
+<h4 class="azul" id="pexpire">PEXPIRE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>pexpire clau milisegons
+</code></pre>
+<p>El mateix però en milisegons</p>
+<h4 class="azul" id="ttl">TTL</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>ttl clau
+</code></pre>
+<p>Torna el temps de vida (fins l'expiració) d'una clau. Si la clau no té temps
+d'expiració, torna -1.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; expire compt3 10  
+(integer) 1  
+127.0.0.1:6379&gt; ttl compt3  
+(integer) 6  
+127.0.0.1:6379&gt; ttl compt3  
+(integer) 3  
+127.0.0.1:6379&gt; ttl compt3  
+(integer) 0  
+127.0.0.1:6379&gt; get compt3  
+(nil)
+</code></pre>
+<h4 class="azul" id="pttl">PTTL</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>pttl clau
+</code></pre>
+<p>Igual que l'anterior, però ens torna el temps en milisegons.</p>
+<h4 class="azul" id="persist">PERSIST</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>persist clau
+</code></pre>
+<p>Elimina el temps d'expiració d'una clau, si és que en tenia. Ara la clau no
+expirarà mai.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; expire compt1 20  
+(integer) 1  
+127.0.0.1:6379&gt; ttl compt1  
+(integer) 12  
+127.0.0.1:6379&gt; ttl compt1  
+(integer) 7  
+127.0.0.1:6379&gt; persist compt1  
+(integer) 1  
+127.0.0.1:6379&gt; ttl compt1  
+(integer) -1  
+127.0.0.1:6379&gt; get compt1  
+"9"
+</code></pre>
+<h3 id="233-hash">2.3.3 - Hash</h3>
+<p>Ja havíem comentat que el tipus <strong>Hash</strong> és una espècie de registre, amb
+subcamps (en realitat hauríem de dir sub-claus). Pot tenir qualsevol número de
+subcamps que són de tipus String.</p>
+<p><strong>Redis</strong> és molt eficient en quant a l'espai que ocupen els <strong>Hash</strong> , i
+sobretot en el temps de recuperació de les dades.</p>
+<p>Els comandos que vam veure per al <strong>String</strong> no es poden aplicar al <strong>Hash</strong>.
+Tanmateix els comandos del <strong>Hash</strong> són molt similars a aquells, començant
+sempre per <strong>H</strong>.</p>
+<h4 class="azul" id="hset">HSET</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>hset clau camp valor
+</code></pre>
+<p>Assigna al camp especificat de la clau especificada el valor especificat. Si
+el valor consta de més d'una paraula, haurà d'anar entre cometes dobles.</p>
+<p>Si la clau no existia, la crearà, i si ja existia, senzillament afegirà el
+camp. I si d'aquesta clau ja existia el camp, modificarà el seu valor.</p>
+<p>Evidentment, en claus diferents poden haver camps amb els mateixos noms.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; hset empleat_1 nom Andreu  
+(integer) 1  
+127.0.0.1:6379&gt; hset empleat_1 departament 10  
+(integer) 1  
+127.0.0.1:6379&gt; hset empleat_1 sou 1000.0  
+(integer) 1
+
+127.0.0.1:6379&gt; hset empleat_2 nom Berta  
+(integer) 1  
+127.0.0.1:6379&gt; hset empleat_2 sou 1500.0  
+(integer) 1
+</code></pre>
+<h4 class="azul" id="hget">HGET</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>hget clau camp
+</code></pre>
+<p>Torna el valor del camp de la clau. Si no existia (el camp o la clau) torna
+<strong>nil</strong>. Només podem especificar un camp.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; hget empleat_1 nom  
+"Andreu"  
+127.0.0.1:6379&gt; hget empleat_1 departament  
+"10"  
+127.0.0.1:6379&gt; hget empleat_2 nom  
+"Berta"  
+127.0.0.1:6379&gt; hget empleat_2 departament  
+(nil)
+</code></pre>
+<h4 class="azul" id="hgetall">HGETALL</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>hgetall clau
+</code></pre>
+<p>Torna una llista amb tots els camps i els seus valors de la clau. La seqüència
+és: camp1 valor1 camp2 valor2 ... Però no ens podem fiar que l'ordre siga el
+mateix ordre que quan el vam definir.</p>
+<p><strong><u>Exemples</u></strong></p>
+<p>127.0.0.1:6379&gt; hgetall empleat_1<br />
+    1) "nom"<br />
+    2) "Andreu"<br />
+    3) "departament"<br />
+    4) "10"<br />
+    5) "sou"<br />
+    6) "1000.0"</p>
+<h4 class="azul" id="hdel">HDEL</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>hdel clau camp1 camp2 campN
+</code></pre>
+<p>Elimina el o els camps especificats. Si no existeixen algun d'ells,
+senzillament l'ignora i si que elimina els altres.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; hdel empleat_1 departament  
+(integer) 1  
+127.0.0.1:6379&gt; hgetall empleat_1  
+1) "nom"  
+2) "Andreu"  
+3) "sou"  
+4) "1000.0"
+</code></pre>
+<h4 class="azul" id="hkeys">HKEYS</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>hkeys clau
+</code></pre>
+<p>Torna una llista amb els camps de la clau. Si la clau no existia, torna una
+llista buida</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; hkeys empleat_1  
+1) "nom"  
+2) "sou"
+</code></pre>
+<h4 class="azul" id="hvals">HVALS</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>hvals clau
+</code></pre>
+<p>Torna una llista amb els valors (únicament els valors) de tots els camps de la
+clau. Si la clau no existia, torna una llista buida</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; hvals empleat_1  
+1) "Andreu"  
+2) "1000.0"
+</code></pre>
+<h4 id="altres-comandos">Altres Comandos</h4>
+<p>També existeixen altres comandos, de funcionament com cabria esperar (els hem
+vist tots en el cas de <strong>String</strong>):</p>
+<ul>
+<li><strong>hmget</strong> : Torna més d'un camp de la clau</li>
+<li><strong>hmset</strong> : assigna més d'un camp a una clau</li>
+<li><strong>hexists</strong> : indica si existeix el subcamp de la clau</li>
+<li><strong>hsetnx</strong> : assigna únicament en cas de que no existisca el camp.</li>
+<li><strong>hincrby</strong> : incrementa el camp de la clau</li>
+</ul>
+<h3 id="234-list">2.3.4 - List</h3>
+<p>Les <strong>Llistes</strong> en <strong>Redis</strong> són llistes de Strings ordenades, on cada element
+està associat a un índex de la llista. Es poden recuperar els elements tant de
+forma ordenada (per l'índex) com accedint directament a una posició.</p>
+<ul>
+<li>
+<p>Els elements es poden afegir al principi, al final o també en una posició
+determinada.</p>
+</li>
+<li>
+<p>La llista es crea en el moment en què s'insereix el primer element, i
+desapareix quan llevem l'últim element que quede.</p>
+</li>
+<li>
+<p>Estan molt ben optimitzades per a la inserció i per a la consulta.</p>
+</li>
+<li>
+<p>Els comandos que afecten a les llistes comencen quasi tots per <strong>L</strong> , excepte
+alguns que comencen per <strong>R</strong> indicant que fan l'operació per la dreta.</p>
+</li>
+<li>
+<p>Els valors dels elements es poden repetir.</p>
+</li>
+</ul>
+<h4 class="azul" id="lpush">LPUSH</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>lpush clau valor1 valor2 valorN
+</code></pre>
+<p>Introdueix els valors a la llista (creant la clau si és necessari). Les
+insereix en la primera posició, o també podríem dir que per l'esquerra (<strong>Left
+PUSH</strong>), imaginant que els elements estan ordenats d'esquerra a dreta. Si
+posem més d'un valor, s'aniran introduint sempre en la primera posició. El
+comando tornarà el número d'elements (strings) de la llista després de la
+inserció.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; lpush llista1 primera segona tercera  
+(integer) 3  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "tercera"  
+2) "segona"  
+3) "primera"  
+127.0.0.1:6379&gt; lpush llista1 quarta cinquena  
+(integer) 5  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "cinquena"  
+2) "quarta"  
+3) "tercera"  
+4) "segona"  
+5) "primera"
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Per a veure el contingut de la llista utilitzarem el comando <strong>lrange llista 0
+-1</strong> , que torna la llista sencera. Veurem de forma més completa aquest
+comando amb posterioritat.</p>
+</div>
+<h4 class="azul" id="rpush">RPUSH</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>rpush clau valor1 valor2 valorN
+</code></pre>
+<p>Introdueix els valors a la llista (creant la clau si és necessari). Les
+insereix en l'última posició, o també podríem dir que per la dreta (<strong>Right
+PUSH</strong>), imaginant que els elements estan ordenats d'esquerra a dreta. El
+comando tornarà el número d'elements (strings) de la llista després de la
+inserció.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; rpush llista1 sisena setena  
+(integer) 7  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "cinquena"  
+2) "quarta"  
+3) "tercera"  
+4) "segona"  
+5) "primera"  
+6) "sisena"  
+7) "setena"
+</code></pre>
+<h4 class="azul" id="lpop">LPOP</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>lpop clau
+</code></pre>
+<p>Torna i elimina el primer element (el de més a l'esquerra).</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; lpop llista1  
+"cinquena"  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "tercera"  
+3) "segona"  
+4) "primera"  
+5) "sisena"  
+6) "setena"
+</code></pre>
+<h4 class="azul" id="rpop">RPOP</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>rpop clau
+</code></pre>
+<p>Torna i elimina l'últim element (el de més a la dreta).</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; rpop llista1  
+"setena"  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "tercera"  
+3) "segona"  
+4) "primera"  
+5) "sisena"
+</code></pre>
+<h4 class="azul" id="lset">LSET</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>lset clau index valor
+</code></pre>
+<p>Substitueix el valor de la posició indicada per l'índex. Tant la clau com
+l'element de la posició indicada han d'existir, sinó donarà error. Ara la
+<strong>L</strong> no significa <strong>Left</strong> sinó <strong>List</strong>.</p>
+<p>La primera posició és la 0. I també es poden posar números negatius: -1 és
+l'últim, -2 el penúltim, ...</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; lset llista1 2 quarta  
+OK  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "tercera"  
+3) "quarta"  
+4) "primera"  
+5) "sisena"  
+127.0.0.1:6379&gt; lset llista1 -1 cinquena  
+OK  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "tercera"  
+3) "quarta"  
+4) "primera"  
+5) "cinquena"
+</code></pre>
+<p>Observeu com es poden repetir els valors</p>
+<h4 class="azul" id="lindex">LINDEX</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>lindex clau index
+</code></pre>
+<p>Torna l'element situat en la posició indicada per l'índex, <strong>però sense
+eliminar-lo de la llista</strong>.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "tercera"  
+3) "quarta"  
+4) "primera"  
+5) "cinquena"  
+127.0.0.1:6379&gt; lindex llista1 0  
+"quarta"  
+127.0.0.1:6379&gt; lindex llista1 3  
+"primera"  
+127.0.0.1:6379&gt; lindex llista1 -1  
+"cinquena"  
+127.0.0.1:6379&gt; lrange llista1 0 -1 
+1) "quarta"  
+2) "tercera"  
+3) "quarta"  
+4) "primera"  
+5) "cinquena"
+</code></pre>
+<h4 class="azul" id="linsert">LINSERT</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>linsert clau BEFORE | AFTER valor1 valor2
+</code></pre>
+<p>Insereix el valor2 abans o després (segons el que triem) de la primera vegada
+que troba el valor1. No substitueix, sinó que insereix en una determinada
+posició. Els elements que van després de l'element introduït veuran
+actualitzat el seu índex.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "tercera"  
+3) "quarta"  
+4) "primera"  
+5) "cinquena"  
+127.0.0.1:6379&gt; linsert llista1 AFTER quarta segona  
+(integer) 6  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "segona"  
+3) "tercera"  
+4) "quarta"  
+5) "primera"  
+6) "cinquena"  
+127.0.0.1:6379&gt; linsert llista1 BEFORE cinquena sisena  
+(integer) 7  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "segona"  
+3) "tercera"  
+4) "quarta"  
+5) "primera"  
+6) "sisena"  
+7) "cinquena"  
+127.0.0.1:6379&gt; lrange llista1 0 -1
+</code></pre>
+<p>Si intentem inserir abans o després un element que no existeix, tornarà -1
+indicant que no l'ha trobat i no farà la inserció.</p>
+<pre><code>127.0.0.1:6379&gt; linsert llista1 BEFORE desena setena  
+(integer) -1  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "segona"  
+3) "tercera"  
+4) "quarta"  
+5) "primera"  
+6) "sisena"  
+7) "cinquena"
+</code></pre>
+<h4 class="azul" id="lrange">LRANGE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>  lrange clau inici final
+</code></pre>
+<p>Torna els elements de la llista inclosos entre els index inici i final, ambdós
+  inclosos. El primer element és el 0. Es poden posar valors negatius, sent -1
+  l'últim, -2 el penúltim, ...</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "segona"  
+3) "tercera"  
+4) "quarta"  
+5) "primera"  
+6) "sisena"  
+7) "cinquena"  
+127.0.0.1:6379&gt; lrange llista1 2 4  
+1) "tercera"  
+2) "quarta"  
+3) "primera"  
+127.0.0.1:6379&gt; lrange llista1 1 -2  
+4) "segona"  
+5) "tercera"  
+6) "quarta"  
+7) "primera"  
+8) "sisena"  
+127.0.0.1:6379&gt; lrange llista1 4 4  
+1) "primera"
+</code></pre>
+<h4 class="azul" id="llen">LLEN</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>llen clau
+</code></pre>
+<p>Torna el número d'elements de la llista</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; llen llista1  
+(integer) 7
+</code></pre>
+<h4 class="azul" id="lrem">LREM</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>lrem clau número valor
+</code></pre>
+<p>Elimina elements de la llista que coincidisquen amb el valor proporcionat. Ja
+sabem que els valors es poden repetir. Amb el número indiquem quants elements
+volem que s'esborrencomençant per l'esquerra: si posem 1 s'esborrarà el primer
+element amb aquest valor, si posem 2 s'esborraran els dos primers elements
+(els de més a l'esquerra) que tingen aquest valor. Si posem 0 s'esborraran
+tots els elements amb aquest valor</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; rpush llista1 segona  
+(integer) 8  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "segona"  
+3) "tercera"  
+4) "quarta"  
+5) "primera"  
+6) "sisena"  
+7) "cinquena"  
+8) "segona"  
+127.0.0.1:6379&gt; lrem llista1 1 segona  
+(integer) 1  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "quarta"  
+2) "tercera"  
+3) "quarta"  
+4) "primera"  
+5) "sisena"  
+6) "cinquena"  
+7) "segona"  
+127.0.0.1:6379&gt; lrem llista1 0 quarta  
+(integer) 2  
+127.0.0.1:6379&gt; lrange llista1 0 -1 
+8) "tercera"  
+9) "primera"  
+10) "sisena"  
+11) "cinquena"  
+12) "segona"
+</code></pre>
+<h4 class="azul" id="ltrim">LTRIM</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>ltrim clau inici final
+</code></pre>
+<p>Elimina els elements que queden fora dels índex inici i final, és a dir
+elimina els que estiguen a l'esquerra d'inici, i els que estiguen a la dreta
+de final.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; ltrim llista1 1 -2  
+OK  
+127.0.0.1:6379&gt; lrange llista1 0 -1  
+1) "primera"  
+2) "sisena"  
+3) "cinquena"
+</code></pre>
+<h3 id="235-set">2.3.5 - Set</h3>
+<p>Els <strong>Sets</strong> de <strong>Redis</strong> són conjunts de valors de tipus String no ordenats.
+Podrem afegir, actualitzar i esborrar aquestos elements de forma còmoda i
+eficient. No es permetran els valors duplicats.</p>
+<p>A més <strong>Redis</strong> ens ofereix operacions interessants com la unió, intersecció i
+diferència de conjunts.</p>
+<p>Com sempre, els comandos són específics, és a dir no ens valen els de Strings,
+List o Hash. Tots els comandos comencen per <strong>S</strong>.</p>
+<h4 class="azul" id="sadd">SADD</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>sadd clau valor1 valor2 valorN
+</code></pre>
+<p>Afegeix els valors al conjunt (creant la clau si és necessari). Recordem que
+l'ordre no és important, i que no es poden repetir els valors; si intentem
+introduir un repetit, no donarà error, però no l'introduirà. El comando
+tornarà el número d'elements que realment s'han afegit.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; sadd colors roig verd blau  
+(integer) 3  
+127.0.0.1:6379&gt; sadd colors verd groc  
+(integer) 1
+</code></pre>
+<h4 class="azul" id="smembers">SMEMBERS</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>smembers clau
+</code></pre>
+<p>Torna tots els valors del conjunt. Si la clau no existeix tornarà un conjunt
+buit. Recordeu que l'ordre dels elements no és predecible</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; smembers colors  
+1) "groc"  
+2) "verd"  
+3) "roig"  
+4) "blau"
+</code></pre>
+<h4 class="azul" id="sismember">SISMEMBER</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>sismember clau valor
+</code></pre>
+<p>Comprova si el valor està en el conjunt, tornant 1 en cas afirmatiu i 0 en cas
+negatiu.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; sismember colors verd  
+(integer) 1  
+127.0.0.1:6379&gt; sismember colors negre  
+(integer) 0
+</code></pre>
+<h4 class="azul" id="scard">SCARD</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>sard clau
+</code></pre>
+<p>Torna la cardinalitat, és a dir, el número d'elements del conjunt en
+l'actualitat.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; scard colors  
+(integer) 4
+</code></pre>
+<h4 class="azul" id="srem">SREM</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>srem clau valor1 valor2 valorN
+</code></pre>
+<p>Elimina els valors del conjunt. Si el conjunt es queda buit, eliminarà la clau
+també. Si algun dels valor no és cap element del conjunt, senzillament
+s'ignorarà. El comando torna el número d'elements realment eliminat.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; srem colors verd negre  
+(integer) 1  
+127.0.0.1:6379&gt; smembers colors  
+1) "groc"  
+2) "roig"  
+3) "blau"
+</code></pre>
+<h4 class="azul" id="spop">SPOP</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>spop clau
+</code></pre>
+<p>Torna i elimina un valor aleatori del conjunt. Recordeu que a més de tornar-
+lo, l'elimina del conjunt.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; smembers colors  
+1) "groc"  
+2) "roig"  
+3) "blau"  
+127.0.0.1:6379&gt; spop colors  
+"groc"  
+127.0.0.1:6379&gt; smembers colors  
+1) "roig"  
+2) "blau"
+</code></pre>
+<h4 class="azul" id="srandmember">SRANDMEMBER</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>srandmember clau
+</code></pre>
+<p>Molt paregut a l'anterior. Torna un valor aleatori del conjunt, però en
+aquesta ocasió no l'elimina del conjunt.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; srandmember colors  
+"blau"  
+127.0.0.1:6379&gt; smembers colors  
+1) "roig"  
+2) "blau"
+</code></pre>
+<h4 class="azul" id="sunion">SUNION</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>sunion clau1 clau2 clauN
+</code></pre>
+<p>Torna la unió dels elements dels conjunts especificats. És una unió correcta,
+és a dir, no es repetirà cap valor.</p>
+<p>No modifica cap conjunt, i el resultat únicament es torna, no es guarda en cap
+lloc de forma permanent.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; smembers colors  
+1) "roig"  
+2) "blau"  
+127.0.0.1:6379&gt; sadd colors1 verd roig groc  
+(integer) 3  
+127.0.0.1:6379&gt; smembers colors1  
+1) "groc"  
+2) "roig"  
+3) "verd"  
+127.0.0.1:6379&gt; sunion colors colors1  
+1) "verd"  
+2) "groc"  
+3) "roig"  
+4) "blau"
+</code></pre>
+<h4 class="azul" id="sunionstore">SUNIONSTORE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>sunionstore clau_destí clau1 clau2 clauN
+</code></pre>
+<p>Igual que l'anterior, però ara sí que es guarda el resultat de la unió en un
+conjunt, clau_destí (el primer especificat). Si la clau_destí ja existia,
+substituirà el contingut.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; smembers colors  
+1) "roig"  
+2) "blau"  
+127.0.0.1:6379&gt; smembers colors1  
+1) "groc"  
+2) "roig"  
+3) "verd"  
+127.0.0.1:6379&gt; sunionstore colors2 colors colors1  
+(integer) 4  
+127.0.0.1:6379&gt; smembers colors2  
+1) "verd"  
+2) "groc"  
+3) "roig"  
+4) "blau"
+</code></pre>
+<h4 class="azul" id="sdiff">SDIFF</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>sdiff clau1 clau2 clauN
+</code></pre>
+<p>Torna la diferència dels elements del primer conjunt respecte de la unió de
+tots els altres. És a dir, torna els elements del primer conjunt que no
+pertanyen acap dels altres.</p>
+<p>No modifica cap conjunt, i el resultat únicament es torna, no es guarda en cap
+lloc de forma permanent.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; smembers colors  
+1) "roig"  
+2) "blau"  
+127.0.0.1:6379&gt; smembers colors1  
+1) "groc"  
+2) "roig"  
+3) "verd"  
+127.0.0.1:6379&gt; sdiff colors1 colors  
+1) "verd"  
+2) "groc"
+</code></pre>
+<h4 class="azul" id="sdiffstore">SDIFFSTORE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>sdiffstore clau_destí clau1 clau2 clauN
+</code></pre>
+<p>Igual que l'anterior, però ara sí que es guarda el resultat de la diferència
+en un conjunt, clau_destí (el primer especificat). Si la clau_destí ja
+existia, substituirà el contingut.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; smembers colors  
+1) "roig"  
+2) "blau"  
+127.0.0.1:6379&gt; smembers colors1  
+1) "groc"  
+2) "roig"  
+3) "verd"  
+127.0.0.1:6379&gt; sdiffstore colors3 colors1 colors  
+(integer) 2  
+127.0.0.1:6379&gt; smembers colors3  
+1) "verd"  
+2) "groc"
+</code></pre>
+<h4 class="azul" id="sinter">SINTER</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>sinter clau1 clau2 clauN
+</code></pre>
+<p>Torna la intersecció dels elements dels conjunts. És a dir, torna els elements
+que pertanyen a tots els conjunts especificats.</p>
+<p>No modifica cap conjunt, i el resultat únicament es torna, no es guarda en cap
+lloc de forma permanent.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; smembers colors  
+1) "roig"  
+2) "blau"  
+127.0.0.1:6379&gt; smembers colors1  
+1) "groc"  
+2) "roig"  
+3) "verd"  
+127.0.0.1:6379&gt; sinter colors colors1  
+1) "roig"
+</code></pre>
+<h4 class="azul" id="sinterstore">SINTERSTORE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>sinterstore clau_destí clau1 clau2 clauN
+</code></pre>
+<p>Igual que l'anterior, però ara sí que es guarda el resultat de la intersecció
+en un conjunt, clau_destí (el primer especificat). Si la clau_destí ja
+existia, substituirà el contingut.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; smembers colors  
+1) "roig"  
+2) "blau"  
+127.0.0.1:6379&gt; smembers colors1  
+3) "groc"  
+4) "roig"  
+5) "verd"  
+127.0.0.1:6379&gt; sinterstore colors4 colors colors1  
+(integer) 1  
+127.0.0.1:6379&gt; smembers colors4  
+6) "roig"
+</code></pre>
+<h4 class="azul" id="smove">SMOVE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>smove clau_font clau_destí valor
+</code></pre>
+<p>Meneja el valor del conjunt orígen (el primer conjunt) al conjunt destí (el
+segon). Això suposarà eliminar-lo del primer i afegir-lo al segon. Tornarà 1
+si l'ha menejat, i 0 si no l'ha menejat.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; smembers colors  
+1) "roig"  
+2) "blau"  
+127.0.0.1:6379&gt; smembers colors1  
+1) "groc"  
+2) "roig"  
+3) "verd"  
+127.0.0.1:6379&gt; smove colors1 colors verd  
+(integer) 1  
+127.0.0.1:6379&gt; smembers colors  
+1) "verd"  
+2) "roig"  
+3) "blau"  
+127.0.0.1:6379&gt; smembers colors1  
+1) "groc"  
+2) "roig"
+</code></pre>
+<h3 id="236-set-ordenat">2.3.6 - Set ordenat</h3>
+<p>Els <strong>Sets Ordenats</strong> (<strong>Sorted Set</strong>) de <strong>Redis</strong> són Sets que a més de
+guardar els valors, guarden també una <strong>puntuació</strong> (<strong>score</strong>) per a cada
+valor, i <strong>Redis</strong> mantindrà el conjunt <strong>ordenat</strong> per aquesta puntuació.</p>
+<p>Els valors no es podran repetir, però sí les puntuacions.</p>
+<p>Molts dels comandos seran iguals que els del <strong>Set</strong> , ja que un conjunt
+ordenat no deixa de ser un conjunt, però amb la informació de la puntuació. En
+aquesta ocasió començaran per <strong>Z</strong></p>
+<h4 class="azul" id="zadd">ZADD</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zadd clau puntuació1 valor1 puntuació2 valor2 puntuacióN valorN
+</code></pre>
+<p>Afegeix els valors al conjunt (creant la clau si és necessari) amb les
+puntuacions corresponents. Les puntuacions seran Strings de valors reals
+(float). No es poden repetir els valors, però sí les puntuacions. Si intentem
+introduir un valor repetit, el que farà serà actualitzar la puntuació. El
+comando tornarà el número d'elements que realment s'han afegit.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zadd puntuacions 1 Nom1 2 Nom2 5 Nom3 4 Nom4  
+(integer) 4
+127.0.0.1:6379&gt; zrange puntuacions 0 -1  
+1) "Nom1"  
+2) "Nom2"  
+3) "Nom4"  
+4) "Nom3"
+</code></pre>
+<h4 class="azul" id="zcard">ZCARD</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zcard clau
+</code></pre>
+<p>Torna la cardinalitat, és a dir, el número d'elements del conjunt ordenat en
+l'actualitat.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zcard puntuacions  
+(integer) 4
+</code></pre>
+<h4 class="azul" id="zscore">ZSCORE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zscore clau valor
+</code></pre>
+<p>Torna la puntuació (score) del valor especificat del conjunt ordenat. Si no
+existeix el valor o no existaix la clao, torna nil.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zscore puntuacions Nom3  
+"5"  
+127.0.0.1:6379&gt; zscore puntuacions Nom7  
+(nil)
+</code></pre>
+<h4 class="azul" id="zcount">ZCOUNT</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zcount clau min max
+</code></pre>
+<p>Torna el número de valors que estan entre les puntuacions especificades
+(ambdues incloses).</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zcount puntuacions 2 5  
+(integer) 3
+</code></pre>
+<h4 class="azul" id="zrange">ZRANGE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zrange clau inici final [withscores]
+</code></pre>
+<p>Torna els elements del conjunt ordenat inclosos entre els index inici i final,
+ambdós inclosos. I es trauen per ordre ascentent de puntuació. El primer
+element és el 0. Es poden posar valors negatius, sent -1 l'últim, -2 el
+penúltim, ... Opcionalment podem posar <strong>WITHSCORES</strong> per a que ens torne
+també la puntuació de cada element</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zrange puntuacions 0 -1  
+1) "Nom1"  
+2) "Nom2"  
+3) "Nom4"  
+4) "Nom3"  
+127.0.0.1:6379&gt; zrange puntuacions 0 -1 withscores  
+1) "Nom1"  
+2) "1"  
+3) "Nom2"  
+4) "2"  
+5) "Nom4"  
+6) "4"  
+7) "Nom3"  
+8) "5"
+</code></pre>
+<p>Si vulguérem traure el conjunt en ordre invers de puntuació, utilitzaríem el
+comando <strong>ZREVRANGE</strong> (<strong>reverse range</strong>).</p>
+<pre><code>127.0.0.1:6379&gt; zrevrange puntuacions 0 -1 withscores  
+1) "Nom3"  
+2) "5"  
+3) "Nom4"  
+4) "4"  
+5) "Nom2"  
+6) "2"  
+7) "Nom1"  
+8) "1"
+</code></pre>
+<h4 class="azul" id="zrangebyscore">ZRANGEBYSCORE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zrangebyscore clau min max [withscores]
+</code></pre>
+<p>Torna els elements del conjunt ordenat que tenen una puntuació compresa entre
+<strong>min</strong> i <strong>max</strong> (ambdues incloses). I es trauen per ordre ascentent de
+puntuació. Opcionalment podem posar <strong>WITHSCORES</strong> per a que ens torne també
+la puntuació de cada element. ****</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zrangebyscore puntuacions 2 5  
+1) "Nom2"  
+2) "Nom4"  
+3) "Nom3"  
+127.0.0.1:6379&gt; zrangebyscore puntuacions 2 5 withscores  
+1) "Nom2"  
+2) "2"  
+3) "Nom4"  
+4) "4"  
+5) "Nom3"  
+6) "5"
+</code></pre>
+<p>Si vulguérem que les puntuacions foren estrictament majors que la puntiuació
+mínima i/o estrictament menor que la puntuació màxima, posaríem un parèntesi
+davany de <strong>min</strong> i/o <strong>max</strong> :</p>
+<pre><code>127.0.0.1:6379&gt; zrangebyscore puntuacions 2 (5 withscores  
+1) "Nom2"  
+2) "2"  
+3) "Nom4"  
+4) "4"
+</code></pre>
+<p>I si vulguérem traure el conjunt en ordre invers de puntuació, utilitzaríem el
+comando <strong>ZREVRANGEBYSCORE</strong> (<strong>reverse range</strong>). Cuideu que com va en ordre
+invers, ara el valor màxim ha de ser el primer, i el mínim el segon.</p>
+<pre><code>127.0.0.1:6379&gt; zrevrangebyscore puntuacions 5 2 withscores  
+1) "Nom3"  
+2) "5"  
+3) "Nom4"  
+4) "4"  
+5) "Nom2"  
+6) "2"
+</code></pre>
+<h4 class="azul" id="zrank">ZRANK</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zrank clau valor
+</code></pre>
+<p>Torna el número d'ordre de l'element amb el valor especificat. El primer valor
+és el 0. Si no existeix, torna <strong>nil</strong>.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zrank puntuacions Nom1  
+(integer) 0  
+127.0.0.1:6379&gt; zrank puntuacions Nom4  
+(integer) 2  
+127.0.0.1:6379&gt; zrank puntuacions Nom7  
+(nil)
+</code></pre>
+<p>Si volem saber el número d'ordre però des del final de la llista (en ordre
+invers), hem d'utilitzar <strong>ZREVRANK</strong> :</p>
+<pre><code>127.0.0.1:6379&gt; zrevrank puntuacions Nom1  
+(integer) 3  
+127.0.0.1:6379&gt; zrevrank puntuacions Nom4  
+(integer) 1
+</code></pre>
+<h4 class="azul" id="zrem">ZREM</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zrem clau valor1 valor2 valorN
+</code></pre>
+<p>Elimina els elements amb els valors especificats. Si algun valor no existeix,
+senzillament l'ignora. Torna el número d'elements realment eliminats.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zrem puntuacions Nom1  
+(integer) 1  
+127.0.0.1:6379&gt; zrange puntuacions 0 -1 withscores  
+1) "Nom2"  
+2) "2"  
+3) "Nom4"  
+4) "4"  
+5) "Nom3"  
+6) "5"
+</code></pre>
+<h4 class="azul" id="zremrangebyscore">ZREMRANGEBYSCORE</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zremrangebyscore clau min max
+</code></pre>
+<p>Elimina els elements amb puntuació compresa entre el mínim i el màxim de forma
+inclusiva.els valors especificats. Si volem fer-ho de forma excusiva (sense
+incloure les puntuacions dels extrems) posarem un parèntesi avant del mínim
+i/o el màxim. Torna el número d'elements realment eliminats.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zremrangebyscore puntuacions (2 4  
+(integer) 1  
+127.0.0.1:6379&gt; zrange puntuacions 0 -1 withscores  
+1) "Nom2"  
+2) "2"  
+3) "Nom3"  
+4) "5"
+</code></pre>
+<h4 class="azul" id="zincrby">ZINCRBY</h4>
+<p><u><em>Sintaxi</em></u></p>
+<pre><code>zincrby clau increment valor
+</code></pre>
+<p>Incrementa la puntuació de l'element especificat. El valor de la puntuació a
+incrementar és un número real. Torna el valor la puntuació final de l'element.
+Si l'element no existia, l'inserirà, assumint una puntuació inicial de 0.</p>
+<p><strong><u>Exemples</u></strong></p>
+<pre><code>127.0.0.1:6379&gt; zincrby puntuacions 1.5 Nom2  
+"3.5"  
+127.0.0.1:6379&gt; zincrby puntuacions 2.75 Nom5  
+"2.75"  
+127.0.0.1:6379&gt; zrange puntuacions 0 -1 withscores  
+1) "Nom5"  
+2) "2.75"  
+3) "Nom2"  
+4) "3.5"  
+5) "Nom3"  
+6) "5"
+</code></pre>
+<h2 id="24-resum-de-comandos-pdf">2.4 - Resum de comandos (PDF)</h2>
+<p>Al següent enllaç disposeu d'un document <strong>pdf</strong> amb un resum de les comandes de Redis classificades per l'operació CRUD que realitzen.</p>
+<div class="admonition tip">
+<p><a href="../Redis_resum.pdf">Resum comandos Redis</a></p>
+</div>
+<hr />
+<h2 id="exercici-1"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercici 1</h2>
+<p>Sobre la Base de Dades <strong>REDIS</strong> del Servidor de l'Institut (adreça
+<strong>89.36.214.106</strong>) fer les següents operacions, tant per a guardar una sèrie
+de dades, com per a recuperar-les. Sempre posarem a les claus el prefix
+<strong>9999x_</strong> , on com sempre heu de substituir 9999 per les 4 últimes xifres del
+vostre DNI, i la x per la letra del NIF. Copia-les en un únic fitxer de text,
+de forma numerada. És aquest fitxer el que hauràs de pujar.</p>
+<ol>
+<li>Crea la clau <strong>9999x_Nom</strong> amb el teu nom</li>
+<li>Crea la clau <strong>9999x_Cognoms</strong> amb els teus cognoms. Una de les dues almenys, nom o cognoms, ha de constar de més d'una paraula.</li>
+<li>Mostra totes les claus teues, i únicament les teues.</li>
+<li>Dóna un temps de vida a la clau <strong>9999x_Nom</strong> de <strong>200 segons</strong>. Comprova el temps de vida que li queda. Posteriorment fes-la <strong>permanent</strong>.</li>
+<li>Crea la clau <strong>9999x_Adreca</strong> , de tipus Hash, amb els subcamps <strong>carrer</strong> , <strong>numero</strong> i <strong>cp</strong>. No importa que les dades siguen falses. Pots fer-lo en una sentència o en més d'una.</li>
+<li>Afegeix a l'anterior el subcamp <strong>poblacio</strong></li>
+<li>Mostra tota la informació de la teua adreça (només la informació, no les subclaus)****</li>
+<li>Crea la clau <strong>9999x_Moduls_ASIX</strong> o <strong>9999x_Moduls_DAM</strong> o <strong>9999x_Moduls_DAW</strong> , depenent del teu cicle. Ha de ser de tipus Set, amb tots els mòduls del teu cicle, que es detallen a continuació. Pots fer-lo en una o en més d'una sentència. <ul>
+<li><strong>ASIX</strong> : ISO, PAX, FH, GBD, LM, FOL, ASO, SXI, IAW, ASGBD, SAD, EIE, PROJ i FCT</li>
+<li><strong>DAW</strong> : SI, BD, PR, LM, ED, FOL, DWEC, DWES, DAW, DIW, EIE, PROJ i FCT</li>
+<li><strong>DAM</strong> : SI, BD, PR, LM, ED, FOL, AD, PMDM, DI, PSP, SGE, EIE, PROJ i FCT.</li>
+</ul>
+</li>
+<li>Crea la clau <strong>9999x_Moduls_meus</strong> , de tipus Set, amb tots els mòduls als quals estàs matriculat. Pots fer-lo en una o en més d'una sentència.</li>
+<li>Guarda en la clau <strong>9999x_Moduls_altres</strong> els mòduls en els quals no estàs matriculat actualment. Ha de ser per mig d'operacions de conjunts. Pots comprovar que el resultat és correcte amb <strong>smembers</strong></li>
+<li>Crea una llista amb el nom <strong>9999x_Notes_BD</strong> amb la nota de 4 exercicis de BD. Les notes seran: 7, 9, 6, 10. Han de quedar en aquest ordre (no en ordre invers)</li>
+<li>Modifica la tercera nota, que passa de ser 6 a 8.</li>
+<li>
+<p>Crea un <strong>Set Ordenat</strong> (<strong>zset</strong>) anomenat <strong>9999x_Carrera</strong> amb els següents valors. Pots fer-lo en una o en més d'una sentència. I ves amb compte perquè els temps han de ser numèrics  </p>
+<pre><code>Sandra  12'52
+Isabel  12'25
+Marta   12'10
+Maria   12'07
+Rosa    11'95
+Bea     11'97
+Balma   11'90
+Anna    12'74
+</code></pre>
+</li>
+<li>
+<p>Trau les participants de la carrera ordenades pel temps</p>
+</li>
+<li>Penalitza el temps de Bea amb 2 dècimes (0'2), i torna a traure les participants ordenades (Bea ha d'haver perdut 2 posicions, passant de tercera a cinquena posició)</li>
+</ol>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 4.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../1__introducci/" class="btn btn-neutral float-left" title="1 - Introducció"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../3__mongodb/" class="btn btn-neutral float-right" title="3 - MongoDB">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../1__introducci/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../3__mongodb/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

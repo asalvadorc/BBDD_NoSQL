@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_NoSQL/5_actividad_mongo/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Práctica Mongo - BBDD - Bases de Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Pr\u00e1ctica Mongo";
+        var mkdocs_page_input_path = "5_actividad_mongo.md";
+        var mkdocs_page_url = "/BBDD_NoSQL/5_actividad_mongo/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../2__bases_de_dades_clauvalor/">2 - Bases de Dades Clau-Valor (Redis)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../3__mongodb/">3 - MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_relaciones_mongo/">4 - Relacions en MongoDB</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Práctica Mongo</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BBDD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">MONGO</li>
+      <li class="breadcrumb-item active">Práctica Mongo</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="practica-mongo"><img alt="💪" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f4aa.png" title=":muscle:" /> Práctica Mongo</h1>
+<p>1️⃣ <strong>Diseño de la base de datos MongoDB:</strong></p>
+<p>Diseña una base de datos MongoDB que sea adecuada para un  escenario de tu elección.
+Describe la estructura de la base de datos, incluyendo las colecciones  y los documentos que la componen (al menos 3 colecciones relacionadas). Incorpora una imagen ilustrando la BD. </p>
+<p>2️⃣ <strong>Creación y población de la base de datos MongoDB:</strong></p>
+<p>Crea la base de datos y las colecciones necesarias en MongoDB,  utilizando los comandos adecuados. 
+Inserta datos en la base de datos, asegurándose de que los  documentos cumplan con la estructura definida en el diseño. </p>
+<p>3️⃣ <strong>Operaciones CRUD en MongoDB:</strong> </p>
+<p>Muestra y realiza ejemplos concretos de cómo realizar operaciones de  inserción, consulta, actualización y eliminación de documentos en la  base de datos. </p>
+<p>4️⃣ <strong>Consultas y filtros en MongoDB:</strong> </p>
+<p>Realiza consultas en la base de datos MongoDB para obtener información mediante el uso de la función aggregate.</p>
+<p>Realiza consultas en la base de datos MongoDB para obtener información  que combine varias colecciones (uso de $lookup y $unwind). </p>
+<p>5️⃣ <strong>Gestión de índices en MongoDB:</strong> </p>
+<p>Investiga sobre la importancia de los índices en MongoDB y cómo  pueden mejorar el rendimiento de las consultas.<br />
+Crea y gestiona índices en la base de datos MongoDB, utilizando los  comandos adecuados. </p>
+<p>6️⃣ <strong>Entrega</strong></p>
+<p>Deberás entregar un documento en formato digital que funcionará como tutorial. Puedes utilizar cualquier recurso educativo abierto, incluso puedes utilizar varios, por ejemplo pdf, infografía, presentación, ebook, mapa mental, mural digital, vídeo, etc. Cada apartado contendrá una explicación de lo que se pide y vendrá acompañado  de capturas de pantalla o el código que has utilizado para su consecución.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../4_relaciones_mongo/" class="btn btn-neutral float-left" title="4 - Relacions en MongoDB"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../4_relaciones_mongo/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

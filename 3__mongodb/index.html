@@ -1,0 +1,2739 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://asalvadorc.github.io/BBDD_NoSQL/3__mongodb/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>3 - MongoDB - BBDD - Bases de Dades</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+        <link href="../img/favicon.ico" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3 - MongoDB";
+        var mkdocs_page_input_path = "3__mongodb.md";
+        var mkdocs_page_url = "/BBDD_NoSQL/3__mongodb/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="..">
+          <img src="../assets/logocaminas.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">BD NoSQL</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../1__introducci/">1 - Introducció</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">REDIS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../2__bases_de_dades_clauvalor/">2 - Bases de Dades Clau-Valor (Redis)</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MONGO</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3 - MongoDB</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#31-estructura-json">3.1 - Estructura JSON</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#32-installacio-de-mongodb">3.2 - Instal·lació de MongoDB</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#installacio-en-linux">🐧Instal·lació en Linux</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#installacio-en-windows">🖥️Instal·lació en Windows</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#33-funcionament-de-mongodb">3.3 - Funcionament de MongoDB</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#34-utilitzacio-de-variables">3.4 - Utilització de variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#35-tipus-de-dades">3.5 - Tipus de dades</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#36-operacions-crud-basiques">3.6 - Operacions CRUD Bàsiques</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creacio-insert">Creació: insert</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lectura-find">Lectura: find</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#eliminacio-delete">Eliminació: delete</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#actualitzacio-update">Actualització - update</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#37-operadors-dactualitzacio">3.7 - Operadors d'actualització</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#set">$set</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unset">$unset</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rename">$rename</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#inc">$inc</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#min">$min</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#max">$max</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mul">$mul</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#arrays">Arrays</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#actualitzacio-y">Actualització: $ y $[]</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#insercio-push">Inserció: $push</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#eliminacio-pop-i-pull">Eliminació: $pop i $pull</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#38-operadors-de-consulta">3.8 - Operadors de consulta</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#parametres-de-find">Paràmetres de find()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#operadors">Operadors</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#operadors-de-comparacio">Operadors de comparació</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#expressions-regulars">Expressions regulars</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#arrays_1">Arrays</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#recerques-en-objectes">Recerques en objectes</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#39-agregacio">3.9 - Agregació</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#match">$match</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#project">$project</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#group">$group</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sort">$sort</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#limit">$limit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#skip">$skip</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#310-resum-comandos">3.10 - Resum Comandos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercicis">Exercicis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#exercici-2">Exercici 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exercici-3">Exercici 3</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../4_relaciones_mongo/">4 - Relacions en MongoDB</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../5_actividad_mongo/">Práctica Mongo</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">BBDD - Bases de Dades</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">MONGO</li>
+      <li class="breadcrumb-item active">3 - MongoDB</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="3-mongodb">3 - MongoDB</h1>
+<p>Segurament <strong>MongoDB</strong> és el més famós dels Sistemes Gestors de Bases de Dades
+<strong>NoSQL</strong>.</p>
+<p>El nom de <strong>MongoDB</strong> prové de la paraula anglesa <em>hu<strong>mongo</strong>us</em>, que
+significa enorme, que és el propòsit d'aquesta Base de Dades: guardar grans
+quantitats d'informació. És de codi obert i està programada en C++. El va
+crear l'empresa <strong>10gen</strong> (actualment <strong>MongoDB Inc.</strong>)</p>
+<p>És un SGBD <strong>Documental</strong> , és a dir, que servirà per a guardar documents. La
+manera interna de guardar-los és en format <strong>BSON</strong> (Binary JSON) que en
+essència és una variant del JSON per a poder guardar físicament les dades
+d'una manera més eficient.</p>
+<p>En un servidor Mongo poden haver més d'una Base de Dades, encara que nosaltres
+només en gastarem una: <strong>test</strong>.</p>
+<ul>
+<li>En cada Base de Dades la informació es guardarà en <strong>col·leccions</strong>.</li>
+<li>Cada col·lecció constarà d'uns quants <strong>documents</strong>.</li>
+<li>I cada document seran una sèrie de dades guardades en forma de <strong>clau-valor</strong> , dels tipus suportats per MongoDB, i amb el format JSON (en realitat BSON)</li>
+</ul>
+<p>Per tant, en Mongo no hi ha taules. Mirem uns exemples de documents JSON per a
+guardar la informació de llibres i autors. Depenen de com s'haja d'accedir a
+la informació ens podem plantejar guardar els llibres amb els seus autors, o
+guardar els autors, amb els seus llibres. Fins i tot ens podríem guardar els
+dos, per a poder accedir de totes les maneres, encara que és a costa de doblar
+la informació.</p>
+<p>De la primera manera, guardant els llibres amb el seu autor, podríem tenir
+documents amb aquesta estructura, que es podrien guardar en una col·lecció
+anomenada <strong>Llibres</strong> :</p>
+<pre><code>  {  
+    _id:101,  
+    titol:"El secret de Khadrell",  
+    autor: {  
+    nom:"Pep",  
+    cognoms:"Castellano Puchol",  
+    any_naixement:1960  
+    },  
+    isbn:"84-95620-72-3"  
+  },  
+  {  
+    _id:102,  
+    titol:"L'Ombra del Vent",  
+    autor: {  
+    nom:"Carlos",  
+    cognoms:"Ruiz Zafon",  
+    pais:"Espanya"  
+    },  
+    pagines:490,  
+    editorial:"Planeta"  
+  }
+</code></pre>
+<p>Observeu com els objectes no tenen per què tenir la mateixa estructura. La
+manera d'accedir al nom d'un autor seria aquesta: <em>objecte.autor.nom</em></p>
+<p>Una manera alternativa de guardar la informació, com havíem comentat abans
+seria organitzar per autors, amb els seus llibres. D'aquesta manera podríem
+anar omplint la col·lecció <strong>Autors</strong> amb un o més documents d'aquest estil:</p>
+<pre><code>{  
+    _id: 201,  
+    nom:"Pep",  
+    cognoms:"Castellano Puchol",  
+    any_naixement:1960,  
+    llibres: [  
+    {  
+      titol:"El secret de Khadrell",  
+      isbn:"84-95620-72-3"  
+    },  
+    {  
+      titol:"Habitació 502",  
+      editorial:"Tabarca"  
+    }  
+  ]  
+},  
+{  
+    _id:202,  
+    nom:"Carlos",  
+    cognoms:"Ruiz Zafon",  
+    pais:"Espanya",  
+    llibres: [  
+      {  
+        titol:"L'Ombra del Vent",  
+        pagines:490,  
+        editorial:"Planeta"  
+      }  
+  ]  
+}
+</code></pre>
+<p>Observeu com per a un autor, ara tenim un array ( els claudàtors: <strong>[ ]</strong>) amb
+els seus llibres.</p>
+<p>Quina de les dues maneres és millor per a guardar la informació? Doncs depén
+de l'accés que s'haja de fer a les dades. La millor serà segurament aquella
+que depenent dels accessos que s'hagen de fer, torne la informació de forma
+més ràpida.</p>
+<h2 id="31-estructura-json">3.1 - Estructura JSON</h2>
+<p>Amb JSON podrem representar:</p>
+<ul>
+<li><strong>Valors</strong> , de tipus <strong>caràcter</strong> (entre cometes dobles), <strong>numèric</strong> (sense cometes) , <strong>booleà</strong> (true o false) o <strong>null</strong>.</li>
+<li><strong>Parelles clau valor</strong> , és a dir un nom simbòlic acompanyat d'un valor associat.. Es representen així: <strong>"nom" : valor</strong></li>
+<li><strong>Objectes</strong> , que és una col·lecció de membres, cadascú dels quals pot ser una parella clau valor, o altres objectes (fins i tot arrays): es representen entre claus, i amb els elements separats per comes: <strong>{ "nom1" : "valor1" , "nom2": valor2 , valor 3 , ... }</strong></li>
+<li><strong>Arrays</strong> , que són llistes d'elements. Els elements no tenen per què tenir la mateixa estructura, però nosaltres intentarem que sí que la tinguen per coherència. Cada element pot ser un valor , una parella clau valor, un objecte o un array.</li>
+</ul>
+<p>Veje'm algun exemples:</p>
+<pre><code>{ "p1" : 2 , "p2" : 4 , "p3" : 6 , "p4" : 8 , "p5" : 10 }
+</code></pre>
+<p>en aquest cas tenim un objecte, l'arrel, que té 5 membres, tots ells parelles
+clau-valor.</p>
+<pre><code>{  
+  "num": 1 ,  
+  "nom": "Andreu" ,  
+  "departament": 10 ,  
+  "edat": 32 ,  
+  "sou": 1000.0  
+}
+</code></pre>
+<p>ara un objecte, l'arrel, també amb 5 membres que són parelles clau-valor.
+Observeu com la clau sempre la posem entre cometes, i el valor quan és un
+string també, però quan és numèric, no.</p>
+<pre><code>{ "empleat" :  
+  { "num": 1 ,  
+    "nom": "Andreu" ,  
+    "departament": 10 ,  
+    "edat": 32 ,  
+    "sou": 1000.0  
+  }  
+}
+</code></pre>
+<p>en aquest cas tenim un objecte, l'arrel que consta d'un únic objecte,
+<strong>empleat</strong> , el qual consta de 5 membres clau-valor.</p>
+<p>Mirem ara un exemple amb un array:</p>
+<pre><code>{ "notes" :  
+  [ 5 , 7 , 8 , 7 ]  
+}
+</code></pre>
+<p>on tenim l'element arrel que consta d'un únic membre, <strong>notes</strong>, que és un array.</p>
+<p>També seria correcte d'aquesta manera, per veure que l'element arrel no té
+perquè ser un objecte, sinó també un array</p>
+<pre><code>[ 5 , 7 , 8 , 7 ]
+</code></pre>
+<p>I ara un més complet amb la mateixa estructura que el fitxer XML que havíem
+vist en la pregunta 4. Tindrem un objecte arrel, amb només un objecte,
+<strong>empresa</strong> , que té un únic element <strong>empleat</strong> que és un array amb 4
+elements, cadascun dels empleats:</p>
+<pre><code>{ "empresa":  
+  { "empleat":  
+    [ {  
+          "num": "1",  
+          "nom": "Andreu",  
+          "departament": "10",  
+          "edat": "32",  
+          "sou": "1000.0"  
+        },  
+        {  
+          "num": "2",  
+          "nom": "Bernat",  
+          "departament": "20",  
+          "edat": "28",  
+          "sou": "1200.0"  
+        },  
+        {  
+          "num": "3",  
+          "nom": "Clàudia",  
+          "departament": "10",  
+          "edat": "26",  
+          "sou": "1100.0"  
+        },  
+        {  
+          "num": "4",  
+          "nom": "Damià",  
+          "departament": "10",  
+          "edat": "40",  
+          "sou": "1500.0"  
+        }
+    ]  
+  }  
+}
+</code></pre>
+<p>Anem a veure un parell de casos més reals. Aquesta és la contestació que fa el
+WebService de <strong>Bicicas</strong> en sol·licitar l'estat actual de bicicletes en els
+diferents punts (en el moment de fer els apunts es consulta en l'adreça
+<a href="http://gestiona.bicicas.es/apps/apps.php">http://gestiona.bicicas.es/apps/apps.php</a>):</p>
+<pre><code>[  
+  {"ocupacion":  
+    [  
+      {"id":"01","punto":"UJI -
+      FCHS","puestos":27,"ocupados":12,"latitud":"39.99533","longitud":"-0.06999",
+      "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+      {"id":"02","punto":"ESTACIÓN DE FERROCARRIL Y
+      AUTOBUSES","puestos":24,"ocupados":7,"latitud":"39.98765","longitud":"-0.05281",
+      "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+      {"id":"03","punto":"PLAZA DE
+      PESCADERÍA","puestos":28,"ocupados":4,"latitud":"39.98580","longitud":"-0.03798",
+      "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+      ...  
+    ]  
+  }  
+]
+</code></pre>
+<p>Com podeu comprovar, l'arrel no és un objecte, sinó un <strong>Array</strong>. En l'array
+només ens interessa el primer element que és un objecte amb un únic membre,
+<strong>ocupacion</strong>(en l'exemple no hi ha més elements, però en poden haver més en
+un moment determinat, quan volen fer avisos). I <strong>ocupacion és un array</strong> ,
+amb <strong>un objecte per cada estació de bicicas</strong> , amb les parelles clau valor
+<strong>id</strong> , <strong>punto</strong> , <strong>puestos</strong> (les bicicletes que caben), <strong>ocupados</strong>
+(quantes bicicletes hi ha col·locades en aquest moment), <strong>latitud</strong> i
+<strong>longitud</strong> (les coordenades), ...</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>En realitat ens apareixerà tota la informació molt més apegada, perquè
+realment està en una única línia.</p>
+<p>Per a poder observar millor l'estructura podem utilitzar un <strong>visor</strong> de json.
+Normalment el navegador Firefox els visualitza bé, encara que també depén de
+la versió. Si tenim instal·lada una versió que admet la visualització de JSON,
+ho intentarà interpretar, encara que segurament la millor manera de veure el
+format JSON és,tiar les opcions <strong>Dades sense processar -- &gt; Format
+d'impressió</strong>, que és la que veiem a la dreta:</p>
+<table>
+<thead>
+<tr>
+<th><img alt="" src="../T3_5_1_0_1.png" /></th>
+<th><img alt="" src="../T3_5_1_0_2.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Si la versió nostra de Firefox no visualitza el format JSON, podem buscar un
+visor dels molts que hi ha per internet. En la figura n'hem utilitzat un, i es
+pot observar com facilita molt la lectura.</p>
+<p><img alt="" src="../T3_5_1_1.png" /></p>
+</div>
+<p>Un altre exemple. Un WebService de GeoNames (una Base de Dade geogràfica
+gratuïta i accessible a través d'Internet) ens proporciona informació dels
+llocs que troba dins d'un rectangle delimitat per un latitud al nord i al sud,
+i una longitud a l'esti a l'oest (en l'exemple: nord 40.01, sud 39.9, est 0.1
+i oest -0.1). Per exemple,
+<a href="https://maps.googleapis.com/maps/api/geocode/json?latlng=40,0">http://api.geonames.org/citiesJSON?north=40.01&amp;south=39.99&amp;east=0.01&amp;west=-0.01&amp;lang=ES&amp;username=demo</a>
+torna el següent:</p>
+<pre><code>{
+  "geonames": [
+    {
+      "lng": -0.04935,
+      "geonameId": 2519752,
+      "countrycode": "ES",
+      "name": "Castelló de la Plana",
+      "fclName": "city, village,...",
+      "toponymName": "Castelló de la Plana",
+      "fcodeName": "seat of a second-order administrative division",
+      "wikipedia": "en.wikipedia.org/wiki/Castell%C3%B3n_de_la_Plana",
+      "lat": 39.98567,
+      "fcl": "P",
+      "population": 180005,
+      "fcode": "PPLA2"
+    },
+    {
+      "lng": -0.06313,
+      "geonameId": 2521909,
+      "countrycode": "ES",
+      "name": "Almazora",
+      "fclName": "city, village,...",
+      "toponymName": "Almassora",
+      "fcodeName": "populated place",
+      "wikipedia": "en.wikipedia.org/wiki/Almassora",
+      "lat": 39.94729,
+      "fcl": "P",
+      "population": 24963,
+      "fcode": "PPL"
+    },
+    ...
+    ]
+}
+</code></pre>
+<p>A partir de l'arrel (que ara sí que és un objecte), tenim un membre:
+<strong>geonames</strong>, que és un array (un element per cada "lloc" trobat), on cada
+element té informació diversa, com el nom del lloc, les coordenades, la
+població, ...</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>De fa uns mesos que Google limita el servei anterior, i ha de ser amb un
+usuari validat. No valdrà la pena, per al poc profit que li trauríem. Mostrem
+en què consisteix el servei únicament a nivell il·lustratiu</p>
+</div>
+<h2 id="32-installacio-de-mongodb">3.2 - Instal·lació de MongoDB</h2>
+<p>Podrem instal·lar MongoDB en qualsevol plataforma. I fins i tot sense tenir
+permisos d'administrador, com veurem en el cas d'Ubuntu.</p>
+<p>També està la possibilitat de crear un servidor en el núvol, fins i tot
+gratuït. És l'opció que ens suggereix Mongo per defecte, però nosaltres no la
+utilitzarem.</p>
+<h3 id="installacio-en-linux">🐧Instal·lació en Linux</h3>
+<p>Per a poder fer la instal·lació més bàsica, podrem fer-lo sense permisos
+d'administrador. Si els tenim tot és més còmode, però si no en tenim també ho
+podem fer, com veurem i remarcarem a continuació.</p>
+<p><strong class="azul">Pas 1. Instal·lació del servidor (Linux)</strong></p>
+<p>1- De la pàgina de <strong>MongoDB (<a href="https://www.mongodb.com/try/download/community">https://www.mongodb.com/try/download/community</a>)</strong> anem al menú <strong>Products - &gt; Comunity Edition -&gt;Comunity Server</strong>
+i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
+el paquet <strong>tgz</strong>, ja que amb descomprimir el fitxer serà suficient. En
+el cas d'<strong>Ubuntu 22.04 de 64 bits</strong> , aquest fitxer és:
+<strong><a href="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz">https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz</a></strong>. Però recordeu que us heu d'assegurar de la versió.  </p>
+<p>2- Descomprimirem aquest fitxer on vulguem, i ja estarà feta la
+instal·lació bàsica.</p>
+<p>3- Es necessari tindre un directori de dades per emmagatzemar la base de dades. Creem el directori de dades en el directori arrel (carpeta d'instal·lació).</p>
+<pre><code>    mkdir data  
+    mkdir data/db
+</code></pre>
+<p>4- Arranquem el servidor:</p>
+<pre><code>  &lt;directori arrel Mongo&gt; /bin/mongod
+
+  ./bin/mongod --dbpath ./data/db
+</code></pre>
+<p>La següent imatge il·lustra aquesta segona opció. Està per a una versió
+anterior de MongoDB, però és totalment equivalent:</p>
+<p><img alt="" src="../T8_3_1_1.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Una vegada en marxa el servidor, no hem de tancar aquesta terminal, ja que pararíem el servidor.</p>
+</div>
+<p><strong class="azul">Pas 2. Instal·lació del client MongoShell (Linux)</strong></p>
+<p>1- De la pàgina de <strong>MongoDB (<a href="https://www.mongodb.com/try/download/shell">https://www.mongodb.com/try/download/shell</a>)</strong> anem al menú <strong>Products - &gt; Tools -&gt;MongoDB Shell</strong>
+i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions, i millor triar
+el paquet <strong>tgz</strong>, ja que amb descomprimir el fitxer serà suficient. En
+el cas d'<strong>Ubuntu 22.04 de 64 bits</strong> , triarem l'opió genèrica <strong>Linux 64</strong> ja que és la opció que té el paquet <strong>tgz</strong>, i aquest fitxer és:
+<strong><a href="https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz">https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz</a></strong>. Però recordeu que us heu d'assegurar de la versió.</p>
+<p>2- Descomprimirem aquest fitxer on vulguem, i ja estarà feta la
+instal·lació bàsica.</p>
+<p>3- Per a connectar un client, obrim una segona terminal i
+executem el client <strong>mongosh</strong> :</p>
+<pre><code>&lt;directori arrel Mongosh&gt;/bin/mongosh
+
+./bin/mongosh
+</code></pre>
+<p><img alt="" src="../T8_3_1_2.png" /></p>
+<h3 id="installacio-en-windows">🖥️Instal·lació en Windows</h3>
+<p><strong class="azul">Pas 1. Instal·lació del servidor (Windows)</strong></p>
+<p>1- Ens baixem la versió apropiada de MongoDB per a Windows, que resultarà ser un .msi directament executable. En el moment de fer aquestos apunts, la versió de 64 bits és la 8.0.5:</p>
+<p><a href="https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-8.0.5-signed.msi">https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-8.0.5-signed.msi</a></p>
+<p>2- Com en el cas de Linux, abans d'executar el servidor haurem de tenir el
+directori creat. Per defecte el directori serà <strong>\data\db</strong></p>
+<p>3- Aqueste serien les ordres per a crear el directori i després arrancar el
+servidor.</p>
+<pre><code>mkdir \data\db  
+C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe
+</code></pre>
+<p>Hauria d'aparèixer la imatge següent</p>
+<p><img alt="" src="../T8_3_1_11.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Si vas instal·lar MongoDB amb el MongoDB MSI Installer, normalment el servei ja estarà instal·lat i no caldrà executar-lo.</p>
+</div>
+<p><strong class="azul">Pas 2. Instal·lació del client MongoShell (Windows)</strong></p>
+<p>1- Per a connectar-nos com a clients, ho haurem de fer des d'una altra terminal,
+amb <strong>mongosh.exe</strong>, que és la interfície de línia d'ordres (CLI) oficial de MongoDB, utilitzada per interactuar amb la base de dades mitjançant ordres en JavaScript:</p>
+<p>Ens baixem la versió apropiada de MongoDB per a Windows</p>
+<p><a href="https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz">https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Mongo Compass</p>
+<p>També us podeu descarregar la versió <strong>MongoDB Compass</strong>, que és l'eina gràfica oficial de MongoDB que permet visualitzar, explorar i administrar bases de dades de MongoDB sense necessitat d'utilitzar la línia de comandos.</p>
+<p><a href="https://downloads.mongodb.com/compass/mongodb-compass-1.45.3-win32-x64.exe">https://downloads.mongodb.com/compass/mongodb-compass-1.45.3-win32-x64.exe</a></p>
+</div>
+<!--
+### 3.2.1 - Connexió al servidor de l'Institut
+
+Quan hem utilitzat el client, hem executat el programa **mongo** sense posar-
+li res més. Per defecte s'ha connectat al servidor que tenim en la mateixa
+màquina.
+
+Però en realitat li podem especificar l'adreça on està el servidor al qual
+volem connectar. En concret, l'adreça del servidor de dades de l'Institut en
+el qual també tenim instal·lat MongoDB:
+
+
+    mongosh  89.36.214.106
+
+Podem connectar, però no podrem fer cap operació, perquè està habilitada
+l'autenticació per a previndre atacs, cosa que no tenim en el servidor que hem
+instal·lat cadascú en la seua màquina.
+
+Aleshores, si intentem fer qualsevol operació, ens donarà error perquè no
+estem autenticats:
+
+![](T8_3_1_1_1.png)
+
+La manera d'autenticar serà utilitzant el comando **db.auth("_usuari"_ ,
+"_contrasenya"_)**. I en connectarem a un usuari que té permís per a utilitzar
+la BD test:
+
+  * Usuari: **ad**
+  * Contrasenya: **Ad_ieselcamina$**
+
+A partir d'eixe moment ja podrem utilitzar-lo sense problemes:
+
+![](T8_3_1_1_2.png)
+
+-->
+
+<h2 id="33-funcionament-de-mongodb">3.3 - Funcionament de MongoDB</h2>
+<p>Recordeu que tindrem dues teminals:</p>
+<ul>
+<li>Una amb el servidor en marxa (i que no hem de tancar): <strong>mongod</strong></li>
+<li>Una altra amb el client que es connecta al servidor: <strong>mongosh</strong></li>
+</ul>
+<p><strong class="azul">Probar el funcionament</strong></p>
+<p>Per a provar el seu funcionament, anem a fer alguns comandos: </p>
+<p><img alt="" src="../funcionamiento2.png" /></p>
+<ul>
+<li>Mostrar la versió del servidor MongoDB =&gt; <code>db.version()</code>  </li>
+<li>Mostrar totes les bases de dades en el teu servidor MongoDB =&gt; <code>show dbs</code></li>
+<li>Mostrar el nom de la BD del servidor MongoDB =&gt; <code>db.getName()</code>  </li>
+<li>Mostrar totes les col·leccions en la base de dades seleccionada =&gt; <code>show collections</code></li>
+</ul>
+<h2 id="34-utilitzacio-de-variables">3.4 - Utilització de variables</h2>
+<p>Com comentàvem el que més utilitzarem del llenguatge <strong>Javascript</strong> és la
+utilització de variables, que ens pot ser molt útil en algunes ocasions.
+Podrem utilitzar-les durant la sessió, però evidentment no perduraran d'una
+sessió a l'altra.</p>
+<p>Per a definir una variable podem posar opcionalment davant la paraula
+reservada <strong>var</strong> , però no és necessari. Posarem el nom de la variable, el
+signe igual, i a continuació el valor de la variable, que pot ser una
+constant, o una expressió utilitzant constants, operadors, altres variables,
+funcions de Javascript, ...</p>
+<p>Especialment interessant són les variables que poden contenir un document
+JSON.</p>
+<pre><code>Per exemple:
+  &gt; a = 30  
+  30  
+  &gt; b = a/4  
+  7.5  
+  &gt; Math.sqrt(b)  
+  2.7386127875258306  
+  &gt; doc = {camp1: "Hola", camp2: 45, camp3: new Date()}  
+  {  
+    "camp1" : "Hola",  
+    "camp2" : 45,  
+    "camp3" : ISODate("2022-01-16T18:07:51.118Z")  
+  }  
+  &gt;
+</code></pre>
+<p>Una variable de tipus JSON es podrà modificar molt fàcilment, tota ella, o
+algun dels elements. Per a arribar als elements posarem
+<strong><em>nom_variable.nom_camp</em></strong> :</p>
+<pre><code>&gt; doc.camp4 = 3.141592  
+3.141592
+
+
+&gt; doc.camp5 = [ 2 , 4 , 6 , 8]  
+[ 2, 4, 6, 8 ]
+</code></pre>
+<p>I si ara intentem traure el contingut de la variable:</p>
+<pre><code>&gt; doc  
+{  
+  "camp1" : "Hola",  
+  "camp2" : 45,  
+  "camp3" : ISODate("2022-01-16T18:07:51.118Z"),  
+  "camp4" : 3.141592,  
+  "camp5" : [  
+              2,  
+              4,  
+              6,  
+              8  
+    ]  
+}  
+&gt;
+</code></pre>
+<p>També hem de fer constar que en un document, que serà de tipus JSON
+(pràcticament), serà un conjunt de parelles clau-valor, amb algunes
+restriccions:</p>
+<ul>
+<li>El document (que moltes vegades l'associarem a objecte de JSON) va entre claus ( <strong>{ }</strong> )</li>
+<li>Els elements d'un objecte van separats per comes, i són parelles clau-valor.</li>
+<li>La clau no pot ser nula, ni repetir-se en el mateix objecte (sí en diferents objectes, clar)</li>
+<li>Els valors són dels tipus que veurem en l'apartat següent.</li>
+<li>Un document guardat ha de contenir obligatòriament un camp anomenat <strong>_id</strong> , i que contindrà un valor únic en la col·lecció i servirà per a identificar-lo. Si en guardar un document no li hem posat camp <strong>_id</strong> , el generarà automàticament MongoDB.</li>
+</ul>
+<h2 id="35-tipus-de-dades">3.5 - Tipus de dades</h2>
+<p>Els valors dels elements, és a dir de les parelles clau valor, poden ser d'uns
+quants tipus. Fem un ràpid repàs.</p>
+<p>En els exemples que van a continuació definim senzillament parelles clau-valor
+dels diferents tipus, o en tot cas ens ho guardem en variables, però no
+guardarem encara en la Base de Dades (ho farem en la següent pregunta).</p>
+<p>Quan guardem en una variable es mostrarà el prompt, la definició de la
+variable i després el resultat d'haver guardat la variable. Utilitzarem
+requadres blancs. Els requadres grocs són únicament de la definició d'una
+clau-valor d'un determinat tipus</p>
+<p><strong class="azul">NULL</strong></p>
+<p>Més que un tipus de dades és un valor, millor dit, l'absència de valor</p>
+<pre><code>{ "x" : null }
+</code></pre>
+<p><strong class="azul">BOOLEAN</strong></p>
+<p>El tipus booleà, que pot agafar els valors true o false.</p>
+<pre><code>{ "x" : true }
+
+{ "y" : false }
+</code></pre>
+<p><strong class="azul">NUMBER</strong></p>
+<p>Per defecte, el tiups de dades numèrics serà el de coma flotant (<strong>float</strong>),
+simple precisió. Si volem un altre tiups (enter, doble precisió, ...) ho
+haurem d'indicar expressament. Així els dos següents valors són float:</p>
+<pre><code>{ "x" : 3.14 }
+
+{ "y" : 3 }
+</code></pre>
+<p>Si volem que siga estrictament enter, per exemple, haurem d'utilitzar una
+funció de conversió:</p>
+<pre><code>{ "x" : NumberDouble("3.14") }
+
+{ "y" : NumberInt("3") }
+</code></pre>
+<p><strong class="azul">STRING</strong></p>
+<p>Es pot guardar qualsevol cadena amb caràcters de la codificació UTF-8</p>
+<pre><code>{ x : "Hola, què tal?"}
+</code></pre>
+<p><strong class="azul">DATE</strong></p>
+<p>Es guarda data i hora, i internament es guarden en milisegons des de l'any
+inicial. No es guarda el <strong><em>Time zone</em></strong> , és a dir, la desviació respecte a
+l'hora internacional.</p>
+<pre><code>{ x : ISODate("2022-01-16T11:15:27.471Z") }
+</code></pre>
+<p>Normalment utilitzarem funcions de tractament de la data-hora. L'anterior era
+per a convertir el string en data-hora. La següent és per a obtenir la data-
+hora actual:</p>
+<pre><code>{ x : new Date() }
+</code></pre>
+<p>És a dir, que si no posem paràmetre, ens dóna la data-hora actual. Però li
+podem posar com a paràmetre la data-hora que volem que genere. En aquest
+exemple, només posem data, per tant l'hora serà les 00:00:</p>
+<pre><code>&gt; z = new Date("2022-01-16")  
+ISODate("2022-01-16T00:00:00Z")
+</code></pre>
+<p>En aquest sí que posem una determinada hora, i observeu com hem deposar la T
+(Time) entre el dia i l'hora:</p>
+<pre><code>&gt; z = new Date("2022-02-16T18:00")  
+ISODate("2022-01-16T18:00:00Z")
+</code></pre>
+<p>És molt important que posem sempre <strong>New Date()</strong> per a generar una data-hora.
+Si posem únicament <strong>Date()</strong> , el que estem generant és un string (segurament
+amb la data i hora actual, però un string):</p>
+<pre><code>&gt; z = Date("2022-01-16")  
+Sun Jan 16 2022 22:20:09 GMT+0100 (CET)
+</code></pre>
+<p><strong class="azul">ARRAY</strong></p>
+<p>És un conjunt d'elements, cadascun de qualsevol tipus, encara que el més
+habitual és que siguen del mateix tipus. Van entre claudàtors (<strong>[ ]</strong>) i els
+elements separats per comes.</p>
+<pre><code>{ x : [ 2 , 4 , 6 , 8 ] }
+</code></pre>
+<p>Com comentàvem, cada element de l'array pot ser de qualsevol tipus:</p>
+<pre><code>{ y : [ 2 , 3.14 , "Hola" , new Date() ] }
+</code></pre>
+<p>En MongoDB podrem treballar molt bé amb arrays, i tindrem operacions per a
+poder buscar dins de l'array, modificar un element, crear índex, ...</p>
+<p><strong class="azul">DOCUMENTS (OBJECTES)</strong></p>
+<p>Els documents poden contenir com a elements uns altres documents (<strong>objectes</strong>
+en la terminologia JSON, però <strong>documents</strong> en la terminologia de MongoDB).</p>
+<p>Van entre claus ( <strong>{ }</strong> ), i els elements que contindran van separats per
+comes i seran parelles clau-valor de qualsevol tipus (fins i tot altres
+documents).</p>
+<pre><code>{ x : { a : 1 , b : 2 } }
+</code></pre>
+<p>Posar documents dins d'uns altres documents (el que s'anomena <em>embedded</em>
+<em>document</em>) ens permet guardar la informació d'una manera més real, no tan
+plana. Així per exemple, les dades d'una persona les podríem definir de la
+següent manera. Les posarem en una variable, per veure després com podem
+accedir als diferents elements, encara que el més normal serà guardar-lo en la
+Base de Dades (amb <strong>insert()</strong>). Si copiem el que va a
+continuació al terminal de Mongo, ens apareixerà amb un format estrany. És
+perquè la sentència d'assignació a la variable ocupa més d'una línia, i
+apareixeran 3 punts al principi per a indicar que continua la sentència. Però
+funcionarà perfectament :</p>
+<pre><code>doc = {  
+  nom:"Joan Martí",  
+  adreça: {  
+  carrer:"Major",  
+  número:1,  
+  població:"Castelló"  
+  } ,  
+  telèfons : [964223344,678345123]  
+}
+</code></pre>
+<p>Observeu com aquesta estructura que ha quedat tan clara, segurament en una
+Base de Dades Relacional ens hauria tocat guardar en 3 taules: la de persones,
+la d'adreces i la de telèfons.</p>
+<p>Per a accedir als elements d'un document posàvem el punt. Doncs el mateix per
+als elements d'un document dins d'un document. I també podem accedir als
+elements d'un array, posant l'índex entre claudàtors.</p>
+<pre><code>  &gt; doc.nom  
+  Joan Martí
+
+  &gt; doc.adreça  
+  { "carrer" : "Major", "número" : 1, "població" : "Castelló" }
+
+  &gt; doc.adreça.carrer  
+  Major
+
+  &gt; doc.telèfons  
+  [ 964223344, 678345123 ]
+
+  &gt; doc.telèfons[0]  
+  964223344
+</code></pre>
+<p><strong class="azul">OBJECT ID</strong></p>
+<p>És un tipus que defineix MongoDB per a poder obtenir valors únics. És el valor
+per defecte de l'element <strong>_id</strong> , necessari en tot document (atenció: en un
+document, no en un element de tipus document que hem dit equivalent a
+l'objecte de JSON). És un número long, és a dir que utilitza 24 bytes.</p>
+<p>Farem proves de la seua utilització en la seüent pregunta, en el moment
+d'inserir diferents documents.</p>
+<h2 id="36-operacions-crud-basiques">3.6 - Operacions CRUD Bàsiques</h2>
+<p>En aquest punt anem a veure les operacions més bàsiques, per a poder treballar
+sobre exemples pràctics, i així disposar ja d'unes dades inicials per a
+practicar.</p>
+<h3 id="creacio-insert">Creació: insert</h3>
+<p>MongoDB proporciona els  mètodes següents per inserir documents en una col·lecció:</p>
+<ul>
+<li>
+<p>db.collection.<strong>insertOne()</strong></p>
+</li>
+<li>
+<p>db.collection.<strong>insertMany()</strong></p>
+</li>
+</ul>
+<p><img alt="" src="../T8_insert.png" /></p>
+<p>La funció <strong>insert</strong> afegirà documents a una col·lecció. En el paràmetre posem
+el document directament, o una variable que continga el document. Si la
+col·lecció no existia, la crearà i després afegirà el document. En la següent
+sentència estem treballant sobre la col·lecció <strong>exemple</strong> , que segurament ja
+existirà de quan vam fer la pregunta 3.1 d'instal·lació de MongoDB, que per a
+provar vam inserir un document. Però si no existia, la crearà sense problemes.</p>
+<pre><code>&gt; db.exemple.insertOne({ msg : "Hola, què tal?"})
+</code></pre>
+<p>Acabem d'inserir un nou document, i així ens ho avisa ( <strong>{ "nInserted" : 1
+}</strong> , s'ha inserit un document). Automàticament haurà creat un element <strong>_id</strong>
+de tipus <strong>ObjectId</strong> , ja que li fa falta per a identificar el document entre
+tots els altres de la col·lecció.</p>
+<p>Insertem un altre document:</p>
+<pre><code>    &gt; db.exemple.insertOne({ msg2 : "Com va la cosa?"})
+</code></pre>
+<p>I en aquest exemple ens guardem el document en la variable <strong>doc</strong> , i després
+l'inserim</p>
+<pre><code>&gt; doc = { msg3 : "Per ací no ens podem queixar ..."}
+
+&gt; db.exemple.insertOne(doc)
+</code></pre>
+<p>També ens indica que ha inserit un document. I haurà creat també el camp
+<strong>_id</strong> com veurem en el següent punt.</p>
+<p><strong class="azul">Inserció especificant el id</strong></p>
+<p>En els document que hem inserit fins el moment, no hem especificat el camp
+<strong>_id</strong> , i Mongo l'ha generat automàticament de tipus <strong>ObjectId</strong>.</p>
+<p>Però nosaltres podrem posar aquest camp <strong>_id</strong> amb el valor que vulguem. Això
+sí, haurem d'estar segurs que aquest valor no l'agafa cap altre document de la
+col·lecció, o ens donarà un error.</p>
+<p>Així per exemple anem a inserir la informació d'uns alumnes. Els posarem en
+una col·lecció nova anomenada <strong>alumnes</strong> , i els intentarem posar un <strong>_id</strong>
+personal. Per exemple posarem els números 51, 52, 53, ...</p>
+<pre><code>&gt; db.alumnes.insertOne ({_id: 51 , nom: "Rebeca" , cognoms: "Martí Peral"})
+</code></pre>
+<p>Ha anat bé, i si mirem els documents que tenim en la col·lecció, comprovarem
+que ens ha respectat el <strong>_id</strong> :</p>
+<pre><code>&gt; db.alumnes.find()
+
+{ "_id" : 51, "nom" : "Rebeca", "cognoms" : "Martí Peral" }
+</code></pre>
+<p>Però si intentem inserir un altre document amb el mateix <strong>_id</strong> (51), ens
+donarà error:</p>
+<pre><code>&gt; db.alumnes.insertOne ({_id: 51 , nom: "Raquel" , cognoms: "Gomis Arnau"})
+
+WriteResult({  
+"nInserted" : 0,  
+"writeError" : {  
+    "code" : 11000,  
+    "errmsg" : "E11000 duplicate key error collection: test.alumnes index: _id_
+    dup key: { : 51.0 }"  
+  }  
+})  
+&gt;
+</code></pre>
+<p>Ens avisa que estem duplicant la <em>clau</em> <em>principal</em> , és a dir
+l'identificador.</p>
+<p><strong class="azul">Inserció múltiple</strong></p>
+<p>Quan els documents que volem inserir són senzills, podem inserir més d'un a la
+vegada, posant dis del <strong>insertMany()</strong> un <strong>array</strong> amb tots els elements. En el
+següent exemple creem uns quants nombres primers en la col·lecció del mateix
+nom:</p>
+<pre><code>&gt; db.nombresprimers.insertMany( [ {_id:2} , {_id:3} , {_id:5} , {_id:7} , {_id:11}
+&gt; , {_id:13} , {_id:17} , {_id:19} ] )
+
+BulkWriteResult({  
+    "writeErrors" : [ ],  
+    "writeConcernErrors" : [ ],  
+    "nInserted" : 8,  
+    "nUpserted" : 0,  
+    "nMatched" : 0,  
+    "nModified" : 0,  
+    "nRemoved" : 0,  
+    "upserted" : [ ]  
+})  
+&gt;
+</code></pre>
+<p>Ens avisa que ha fet 8 insercions, i ací els tenim:</p>
+<pre><code>&gt; db.nombresprimers.find()  
+{ "_id" : 2 }  
+{ "_id" : 3 }  
+{ "_id" : 5 }  
+{ "_id" : 7 }  
+{ "_id" : 11 }  
+{ "_id" : 13 }  
+{ "_id" : 17 }  
+{ "_id" : 19 }  
+&gt;
+</code></pre>
+<h3 id="lectura-find">Lectura: find</h3>
+<p>MongoDB ofereix els mètodes següents per llegir documents d'una col·lecció:</p>
+<ul>
+<li>db.collection.<strong>find()</strong></li>
+</ul>
+<p>recuperarà tots els documents de la col·lecció, encara que podrem posar criteris per a que ens torne tots els documents que acomplesquen aquestos criteris (ho veurem més avant).</p>
+<p><img alt="" src="../T8_find.png" /></p>
+<p>Exemple:</p>
+<pre><code>&gt; db.exemple.find()  
+{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
+{ "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Com va la cosa?" }  
+{ "_id" : ObjectId("56ce3237c61e04ba81def50d"), "msg3" : "Per ací no ens podem queixar ..." }  
+&gt;
+</code></pre>
+<p>En tots els casos podem comprovar que és cert el que veníem afirmant, que ha
+creat automàticament l'element <strong>_id</strong> per a cada document guardat.
+Evidentment, cadascú de nosaltres tindrà una valors diferents.</p>
+<h3 id="eliminacio-delete">Eliminació: delete</h3>
+<p>Per a esborrar un document d 'una col·lecció utilitzarem la funció <strong>deleteOne</strong>
+, passant-li com a paràmetre la condició del document o documents a esborrar. MongoDB ofereix els mètodes següents per eliminar documents d'una col·lecció:</p>
+<ul>
+<li>
+<p>db.collection.<strong>deleteOne()</strong></p>
+</li>
+<li>
+<p>db.collection.<strong>deleteMany()</strong></p>
+</li>
+</ul>
+<p><img alt="" src="../T8_delete.png" /></p>
+<pre><code>&gt; db.nombresprimers.deleteOne( {"_id" : 19} )
+</code></pre>
+<p>Ens avisa que ha esborrat un document.</p>
+<p>La condició no cal que siga sobre el camp <strong>_id</strong>. Pot ser sobre qualsevol
+camp, <strong>i esborrarà tots els que coincideixen</strong>.</p>
+<pre><code>&gt; db.exemple.deleteMany( {"msg3" : "Per ací no ens podem queixar ..."} )
+</code></pre>
+<p>També tenim la possibilitat d'esborrar tota una col·lecció amb la funció
+<strong>drop()</strong>. Pareu atenció perquè és molt senzilla d'eliminar, i per tant,
+potencialment molt perillosa.</p>
+<pre><code>&gt; db.nombresprimers.drop()  
+true  
+&gt;
+</code></pre>
+<h3 id="actualitzacio-update">Actualització - update</h3>
+<p>La funció <em><strong>update</strong></em> servirà per a actualitzar un document ja guardat.
+Tindrà dos paràmetres:</p>
+<ul>
+<li>El primer paràmetre serà la condició per a trobar el document que s'ha d'actualitzar.</li>
+<li>El segon paràmetre serà el nou document que substituirà l'anterior</li>
+</ul>
+<p>MongoDB ofereix els mètodes següents per actualitzar els documents d'una col·lecció:</p>
+<ul>
+<li>
+<p>db.collection.<strong>updateOne()</strong></p>
+</li>
+<li>
+<p>db.collection.<strong>updateMany()</strong></p>
+</li>
+<li>
+<p>db.collection.<strong>replaceOne()</strong></p>
+</li>
+</ul>
+<p><img alt="" src="../T8_update.png" /></p>
+<p>Per exemple, si mirem les dades actuals:</p>
+<pre><code>&gt; db.exemple.find()  
+{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
+{ "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Com va la cosa?" }
+</code></pre>
+<p>Podem comprovar el contingut del segon document, el que te <strong>msg2</strong>. Anem a
+modificar-lo: en el primer paràmetre posem condició de recerca (només hi haurà
+un) i en el segon posem el nou document que substituirà l'anterior amb el paràmetre <strong>$set</strong>.</p>
+<pre><code>&gt; db.exemple.updateOne( {msg2:"Com va la cosa?"} , {$set: {msg2:"Què? Com va la cosa?"}})
+</code></pre>
+<p>Observeu que la contestació del <strong>update</strong><strong>()</strong> és que ha fet <strong>match</strong> (hi
+ha hagut coincidència) amb un document, i que ha modificat un. Si no en troba
+cap, no donarà error, senzillament dirà que ha fet match amb 0 documents, i
+que ha modificat 0 documents. Mirem com efectivament ha canviat el segon
+document</p>
+<pre><code>&gt; db.exemple.find()  
+{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }  
+{ "_id" : ObjectId("56ce31f6c61e04ba81def50c"), "msg2" : "Què? Com va la cosa?" }
+</code></pre>
+<p>Ens vindran molt bé les variables per a les actualitzacions, ja que en moltes
+ocasions serà modificar lleugerament el document, canviant o afegint algun
+element. Ho podrem fer còmodament amb la variable: primer guardem el document
+a modificar en una variable; després modifiquem la variable; i per últim fem
+l'operació d'actualització. Evidentment si tenim alguna variable amb el
+contingut del document ens podríem estalviar el primer pas.</p>
+<pre><code>&gt; doc1 = db.exemple.find()  
+{ "_id" : ObjectId("56ce310bc61e04ba81def50b"), "msg" : "Hola, què tal?" }
+
+&gt; doc1.titol = "Missatge 1"  
+Missatge 1
+
+&gt; db.exemple.updateOne( {msg:"Hola, què tal?"} , doc1)  
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+&gt; db.exemple.findOne()  
+{  
+  "_id" : ObjectId("56ce310bc61e04ba81def50b"),  
+  "msg" : "Hola, què tal?",  
+  "titol" : "Missatge 1"  
+}  
+&gt;
+</code></pre>
+<p><strong class="azul">Reemplaçar un document</strong></p>
+<p>Per reemplaçar tot el contingut d'un document excepte el _id, passeu un document completament nou com a segon argument a Collection.<strong>replaceOne()</strong>.</p>
+<p>En reemplaçar un document, aquest ha de constar únicament de parells camp-valor. No podeu incloure expressions d'operadors d'actualització.  </p>
+<p>El document de substitució pot tenir camps diferents dels del document original. Al document de reemplaçament, podeu ometre el _id, ja que _id es immutable. No obstant això, si l'inclou _id, heu de tenir el mateix valor que l'actual.</p>
+<pre><code>db.exemple.replaceOne(
+  { "msg" : "Hola, què tal?" },
+  { "msg" : "Hola, què tal?" , "titol2" : "Missatge 2" }
+)
+</code></pre>
+<h2 id="37-operadors-dactualitzacio">3.7 - Operadors d'actualització</h2>
+<p>En el apartat anterior hem vist l'actualització de documents ja
+existents a la Base de Dades. Aquesta actualització la féiem modificant tot el
+document, encara que tenim la variant de guardar el document en una variable,
+modificar aquesta variable i després fer l'actualització amb aquesta variable.
+Però observeu que continua sent una modificació de tot el document, una
+substitució del document antic per un document nou.</p>
+<p>En aquest apartat veurem la utilització d'uns modificadors (<em>modifiers</em>) de
+l'operació <strong>update()</strong>, que ens permetran modificar documents de forma
+potent: creant i eliminant claus (elements) d'un document, o canviant-los, i
+fins i tot afegir o eliminar elements d'un array.</p>
+<h3 class="azul" id="set">$set</h3>
+<p>El modificador <strong>$set</strong> assigna un valor a un camp del document seleccionat de
+la Base de Dades. Si el camp ja existia, modificarà el valor, i si no existia
+el crearà.</p>
+<p>La sintaxi del modificador <strong>$set</strong> és la següent:</p>
+<pre><code>{ $set : { clau : valor} }
+</code></pre>
+<p>Però recordeu que és un modificador, i l'hem d'utilitzar dins d'una operació
+d'actualització. Anirà en el segon paràmetre del <strong>update()</strong> , i per tant amb
+aquestos modificadors ja no posem tot el document en el segon paràmetre, sinó
+únicament l'operador de modificació.</p>
+<p>Mirem-ho millor en un exemple:</p>
+<pre><code>&gt; db.alumnes.insertOne( {nom:"Abel", cognoms:"Bernat Carrera"} )
+
+
+&gt; db.alumnes.find()  
+{  
+  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+  "nom" : "Abel",  
+  "cognoms" : "Bernat Carrera"  
+}  
+&gt;
+</code></pre>
+<p>Suposem ara que li volem afegir l'edat. Abans ho faríem guardant el document
+en una variable, i afegint el camp, per a guardar després. Ara ho tenim més
+fàcil:</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $set: {edat:21} } )
+</code></pre>
+<p>Ha trobat un, i l'ha modificat. Evidentment, si hi haguera més d'un alumne a
+mb el nom Abel, els modificaria tots.</p>
+<pre><code>&gt; db.alumnes.find()  
+{  
+  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+  "nom" : "Abel",  
+  "cognoms" : "Bernat Carrera",  
+  "edat" : 21  
+}
+</code></pre>
+<p>Es pot especificar més d'un camp amb els valor corresponents. Si no existien
+es crearan, i si ja existien es modificaran:</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $set: {nota: 8.5 , edat:22} } )
+
+&gt; db.alumnes.find()  
+{  
+  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+  "nom" : "Abel",  
+  "cognoms" : "Bernat Carrera",  
+  "edat" : 22,  
+  "nota" : 8.5  
+}
+</code></pre>
+<p>I fins i tot es pot canviar el tipus d'un camp determinat, i utilitzar arrays,
+i objectes, ...</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $set: {nota: [8.5,7.5,9], adreça:{carrer:"Major",numero:7,cp:"12001"} } } )
+
+
+&gt; db.alumnes.find()  
+{  
+  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+  "nom" : "Abel",  
+  "cognoms" : "Bernat Carrera",  
+  "edat" : 22,  
+  "nota" : [  
+      8.5,  
+      7.5,  
+      9  
+  ],  
+  "adreça" : {  
+      "carrer" : "Major",  
+      "numero" : 7,  
+      "cp" : "12001"  
+  }  
+}
+</code></pre>
+<p>Podem fins i tot modificar ara només el valor d'un camp d'un objecte del
+document. Per exemple, anem a modificar el codi postal de l'anterior alumne.
+La manera d'arribar al codi postal serà <strong>adreça.cp</strong> , però haurem d'anar amb
+compte que vaja entre cometes per a que el trobe:</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $set: {adreça.cp:"12502"} } )
+
+uncaught exception: SyntaxError: missing : after property id :  
+@(shell):1:49
+
+&gt; db.alumnes.updateOne( {nom:"Abel"} , { $set: {"adreça.cp":"12502"} } )
+
+&gt; db.alumnes.find()  
+{  
+  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+  "nom" : "Abel",  
+  "cognoms" : "Bernat Carrera",  
+  "edat" : 22,  
+  "nota" : [  
+        8.5,  
+        7.5,  
+        9  
+  ],  
+  "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+  }  
+}
+</code></pre>
+<h3 class="azul" id="unset">$unset</h3>
+<p>El modificador <strong>$unset</strong> servirà per a <strong>eliminar</strong> elements (camps) d'un o
+uns documents. Si el camp existia, l'eliminarà, i si no existia, no donarà
+error (avisarà que s'han modificat 0 documents).</p>
+<p>La sintaxi és:</p>
+<pre><code>{ $unset : {camp : 1 } }
+</code></pre>
+<p>Haurem de posar un valor al camp que anem a esborrar per a mantenir la sintaxi
+correcta, i posem 1 que equival a true. També podríem posar -1, que equival a
+false, però aleshores no l'esborraria, i per tant no faríem res. Sempre
+posarem 1.</p>
+<p>Mirem el següent exemple. Afegim un camp, que serà el número d'ordre, i
+després el llevarem.</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $set: {num_ordre:10} } )
+
+&gt; db.alumnes.find()  
+{  
+  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+  "nom" : "Abel",  
+  "cognoms" : "Bernat Carrera",  
+  "edat" : 22,  
+  "nota" : [  
+        8.5,  
+        7.5,  
+        9  
+  ],  
+  "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+  },  
+  "num_ordre" : 10  
+}
+
+&gt; db.alumnes.updateOne( {nom:"Abel"} , { $unset: {num_ordre:1} } )
+
+&gt; db.alumnes.updateOne( {nom:"Abel"} , { $unset: {puntuacio:1} } )
+</code></pre>
+<p>Hem afegit primer el camp <strong>num_ordre</strong> , i hem mostrat el document per
+comprovar que existeix. Després esborrem el camp <strong>num_ordre</strong> (i ens confirma
+que ha modificat un document). Després intentem esborrar un camp que no
+existeix, <strong>puntuacio</strong>. No dóna error, però ens avisa que ha modificat 0
+documents. Podem comprovar al final com el document ha quedat com esperàvem.</p>
+<pre><code>&gt; db.alumnes.find()  
+{  
+    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Carrera",  
+    "edat" : 22,  
+    "nota" : [  
+        8.5,  
+        7.5,  
+        9  
+    ],  
+    "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+    }  
+}
+</code></pre>
+<h3 class="azul" id="rename">$rename</h3>
+<p>El modificador <strong>$rename</strong> canviarà el nom d'un camp. Si no existia, no donarà
+error i senzillament no el modificarà. Hem de cuidar de posar el nou nom del
+camp entre cometes, per a que no done error.</p>
+<p>La sintaxi és:</p>
+<pre><code>{ $rename : { camp1 : "nou_nom1" , camp2 : "nou_nom2" , ... } }
+</code></pre>
+<p>Per exemple, canviem el nom del camp <strong>nota</strong> a <strong>notes</strong> :</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $rename: {nota:"notes"} } )
+
+&gt; db.alumnes.find()  
+{  
+    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Carrera",  
+    "edat" : 22,  
+    "adreça" : {  
+          "carrer" : "Major",  
+          "numero" : 7,  
+          "cp" : "12502"  
+    },  
+    "notes" : [  
+          8.5,  
+          7.5,  
+          9  
+    ]  
+}
+</code></pre>
+<p>Observeu que l'ha canviat de lloc, cosa que ens fa pensar que en canviar de
+nom un camp, el que fa és tornar a crear-lo amb el nou nom, i esborrar el camp
+antic.</p>
+<p>En aquest exemple tornem a canviar el nom a <strong>nota</strong> , i intentem canviar el
+nom a un camp inexistent, <strong>camp1</strong>. No donarà error.</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $rename: {camp1: "camp2" , notes:"nota"} } )
+
+&gt; db.alumnes.find()  
+{  
+  "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+  "nom" : "Abel",  
+  "cognoms" : "Bernat Carrera",  
+  "edat" : 22,  
+  "adreça" : {  
+      "carrer" : "Major",  
+      "numero" : 7,  
+      "cp" : "12502"  
+  },  
+  "nota" : [  
+      8.5,  
+      7.5,  
+      9  
+  ]  
+}
+</code></pre>
+<h3 class="azul" id="inc">$inc</h3>
+<p>Com cabria esperar, el modificador <strong>$inc</strong> servirà per a incrementar un camp
+numèric. Si el camp existia, l'incrementarà en la quantitat indicada. Si no
+existia, crearà el camp amb un valor inicial de 0, i incrementarà el valor amb
+la quantitat indicada. La quantitat pot ser positiva, negativa o fins i tot
+amb part fraccionària. Sempre funcionarà bé, excepte quan el camp a
+incrementar no siga numèric, que donarà error.</p>
+<p>La sintaxi és aquesta:</p>
+<pre><code>{ $inc : {camp : quantitat } }
+</code></pre>
+<p>En els següents exemples, incrementem un camp nou (per tant el crearà amb el
+valor especificat), i després l'incrementem en quantitats positives, negatives
+i fraccionàries, concretament l'inicialitzem amb un <strong>2</strong> , i despés
+l'incrementem en <strong>5</strong> , en <strong>-4</strong> i en <strong>2.25</strong> , per tant el resultat final
+serà <strong>5.25</strong> :</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $inc: {puntuacio:2} } )
+
+&gt; db.alumnes.find()  
+{  
+    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Carrera",  
+    "edat" : 22,  
+    "nota" : [  
+        8.5,  
+        7.5,  
+        9  
+    ],  
+    "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+    },  
+    "puntuacio" : 2  
+}
+
+&gt; db.alumnes.updateOne( {nom:"Abel"} , { $inc: {puntuacio:5} } )
+
+&gt; db.alumnes.updateOne( {nom:"Abel"} , { $inc: {puntuacio:-4} } )
+
+&gt; db.alumnes.updateOne( {nom:"Abel"} , { $inc: {puntuacio:2.25} } )
+
+&gt; db.alumnes.find()  
+{  
+    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Carrera",  
+    "edat" : 22,  
+    "nota" : [  
+        8.5,  
+        7.5,  
+        9  
+    ],  
+    "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+    },  
+    "puntuacio" : 5.25  
+}
+</code></pre>
+<h3 class="azul" id="min">$min</h3>
+<p>Actualitza el valor del camp a un valor especificat si aquest és menor que el valor actual del camp.</p>
+<pre><code>db.alumnes..updateOne( { nom:"Abel"}, { $min: { puntuacio: 1 } } )
+</code></pre>
+<p>El valor de puntuació s'actualitza a 1 perquè és menor que el valor actual de 5.  </p>
+<h3 class="azul" id="max">$max</h3>
+<p>Actualitza el valor del camp a un valor especificat si aquest és major que el valor actual del camp.</p>
+<pre><code>db.alumnes..updateOne( { nom:"Abel"}, { $max: { puntuacio: 7 } } )
+</code></pre>
+<p>El valor de puntuació s'actualitza a 7 perquè és menor que el valor actual de 1.  </p>
+<h3 class="azul" id="mul">$mul</h3>
+<p>Multiplica el valor d'un camp per un número.,  $currentDate</p>
+<pre><code>    db.alumnes.updateOne({ nom:"Abel"},{ $mul: {puntuacio: 2}})
+</code></pre>
+<p>L'operador $mul multiiplica el camp puntuació per 2.</p>
+<h3 id="arrays">Arrays</h3>
+<p>Per a accedir directament a un element d'un array d'un determinat document es
+pot utilitzar la següent sintaxi:</p>
+<pre><code>"array.index"
+</code></pre>
+<p>Hem de tenir present que el primer element de l'array és el de subíndex 0. I
+no us oblideu de tancar-ho tot entre comentes per a que ho puga trobar.</p>
+<p>Si no existeix l'element amb el subíndex indicat, donarà error.</p>
+<p>Per exemple, anem a pujar un punt la primera nota de l'alumne que estem
+utilitzant en tots els exemples :</p>
+<pre><code>&gt;db.alumnes.updateOne( {nom:"Abel"} , { $inc : { "nota.0" : 1 } } )
+
+
+
+&gt; db.alumnes.find()  
+{  
+    "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Carrera",  
+    "edat" : 22,  
+    "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+    },  
+    "nota" : [  
+        9.5,  
+        7.5,  
+        9  
+    ]  
+}
+</code></pre>
+<h4 id="actualitzacio-y">Actualització: $ y $[]</h4>
+<p><strong class="azul">$</strong></p>
+<p>Identifica un element en un array  per actualitzar sense especificar explícitament la posició de l'element en un array.</p>
+<p>Ejemplo: Modificar la primera nota mayor a 8 en el array nota </p>
+<pre><code>db.alumnes.updateOne(
+  { "_id": ObjectId("56df11d778549bdfbf2125e3"), "nota": { $gt: 8 } },
+  { $set: { "nota.$": 10 } }
+</code></pre>
+<p>)</p>
+<p><strong class="azul">$[]</strong></p>
+<p>L'operador $[] es fa servir per actualitzar tots els elements en un array.</p>
+<p>Ejemplo: Aumentar en 1 punto todas las notas en el array nota</p>
+<pre><code>db.alumnes.updateOne(
+    { "_id": ObjectId("56df11d778549bdfbf2125e3") },
+    { $inc: { "nota.$[]": 1 } }
+)
+</code></pre>
+<h4 id="insercio-push">Inserció: $push</h4>
+<p>La manera més senzilla d'introduir un element en un array és utilitzar
+<strong>$push</strong> sense més. Si existia l'array, introduirà el o els nous elements al
+final. Si no existia l'array, el crearà amb aquest o aquestos elements.</p>
+<p>La sintaxi és:</p>
+<pre><code>{ $push : { clau : element } }
+</code></pre>
+<p>Per exemple anem a afegir una nota a l'alumne de sempre, i posem-la diferent
+per veure que s'introdueix al final:</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $push : { nota : 7 } } )
+
+
+&gt; db.alumnes.find()  
+{  
+    "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Carrera",  
+    "edat" : 22,  
+    "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+    },  
+    "nota" : [  
+        9.5,  
+        7.5,  
+        9,  
+        7  
+    ]  
+}
+</code></pre>
+<p>També hi ha manera d'introduir un element en una determinada posició que no
+siga al final, però es complica prou la cosa, ja que hem d'utilitzar per una
+banda el modificador <strong>$position</strong> per a dir on s'ha d'inserir, i per una
+altra banda el modificador <strong>$each</strong> per a poder especificar el o els valors
+que es volen inserir. Es posa a continuació únicament de forma il·lustrativa.</p>
+<p>Per a inserir en una determinada posició hem d'utilitzar obligatòriament 2
+modificadors més:</p>
+<ul>
+<li><strong>$position</strong> indicarà a partir de quina posició es farà l'acció (normalment d'inserir en l'array, és a dir, <strong>$push</strong>)</li>
+<li><strong>$each</strong> ens permet especificar una sèrie de valors com un array, i vol dir que es farà l'operació per a cada valor de l'array</li>
+</ul>
+<p>Els dos modificadors seguiran la sintaxi de sempre, de clau valor, per tant el
+conjunt de la sintaxi és:</p>
+<pre><code>{ $ push :  
+  { clau_del_array :  
+    { $position : _posició_ ,  
+    $each : [ _valors_ ]  
+    }  
+  }  
+}
+</code></pre>
+<p>Ací tenim un exemple on introduïm una nota en la primera posició:</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $push : { nota : { $position : 0 , $each
+&gt; : [5] } } } )
+
+
+&gt; db.alumnes.find()  
+{  
+    "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Carrera",  
+    "edat" : 22,  
+    "adreça" : {  
+          "carrer" : "Major",  
+          "numero" : 7,  
+          "cp" : "12502"  
+    },  
+    "nota" : [  
+        5,  
+        9.5,  
+        7.5,  
+        9,  
+        7  
+    ]     
+}
+</code></pre>
+<h4 class="azul" id="eliminacio-pop-i-pull">Eliminació: $pop i $pull</h4>
+<p>Hi ha més d'una manera d'eliminar elements d'un array.</p>
+<p><strong class="azul">$pop</strong></p>
+<p>Si volem eliminar el primer element o l'últim, el modificador adequat és
+<strong>$pop</strong>. La sintaxi és</p>
+<pre><code>{ $pop : { clau : posicio } }
+</code></pre>
+<p>On en posició podrem posar:</p>
+<ul>
+<li>-1 , i esborrarà el primer element</li>
+<li>1 , i esborrarà l'últim</li>
+</ul>
+<p>En els següents exemples s'esborren primer l'últim element i després el
+primer.</p>
+<pre><code>&gt; db.alumnes.find()  
+{  
+    "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Carrera",  
+    "edat" : 22,  
+    "adreça" : {  
+          "carrer" : "Major",  
+          "numero" : 7,  
+          "cp" : "12502"  
+    },  
+    "nota" : [  
+          5,  
+          9.5,  
+          7.5,  
+          9,  
+          7  
+    ]  
+}
+
+
+
+&gt; db.alumnes.updateOne( {nom:"Abel"} , { $pop : { nota : 1 } } )
+
+&gt; db.alumnes.find()  
+{  
+      "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera",  
+      "edat" : 22,  
+      "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+      },  
+      "nota" : [  
+              5,  
+              9.5,  
+              7.5,  
+              9  
+      ]  
+}
+
+
+&gt; db.alumnes.updateOne( {nom:"Abel"} , { $pop : { nota : -1 } } )
+
+&gt; db.alumnes.find()  
+{  
+      "_id" : ObjectId("56df11d778549bdfbf2125e3"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera",  
+      "edat" : 22,  
+      "adreça" : {  
+            "carrer" : "Major",  
+            "numero" : 7,  
+            "cp" : "12502"  
+      },  
+      "nota" : [  
+            9.5,  
+            7.5,  
+            9  
+      ]  
+}
+</code></pre>
+<p><strong class="azul">$pull</strong></p>
+<p>Amb aquest modificador esborrarem els elements de l'array que coincidesquen
+amb una condició, estiguen en la posició que estiguem. Observeu com es pot
+eliminar més d'un element.</p>
+<p>Per a poder comprovar-lo bé, primer inserim un altre element al final de
+l'array, amb el valor <strong>7.5</strong> (si heu seguit els mateixos exemples que en
+aquestos apunts, aquest valor ja es troba en la segona posició).</p>
+<pre><code>&gt; db.alumnes.updateOne( {nom:"Abel"} , { $push : { nota : 7.5 } } )
+
+
+
+&gt; db.alumnes.find()  
+{  
+    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Carrera",  
+    "edat" : 22,  
+    "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+    },  
+    "nota" : [  
+        9.5,  
+        7.5,  
+        9,  
+        7.5  
+    ]  
+}
+</code></pre>
+<p>Ara anem a esborrar amb <strong>$pull</strong> l'element de valor <strong>7.5</strong></p>
+<pre><code>&gt; db.alumnes.update( {nom:"Abel"} , { $pull : { nota : 7.5 } } )
+
+
+
+&gt; db.alumnes.find()  
+{  
+      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Carrera",  
+      "edat" : 22,  
+      "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+      },  
+      "nota" : [  
+          9.5,  
+          9  
+      ]  
+}
+</code></pre>
+<h2 id="38-operadors-de-consulta">3.8 - Operadors de consulta</h2>
+<p>En la pregunta anterior hem vist com introduir, eliminar i modificar
+documents. Les consultes de documents han segut molt senzilles, per a
+comprovar únicament els resultats.</p>
+<p>En aquesta pregunta veurem en profunditat la consulta de documents.</p>
+<ul>
+<li>Funcion <strong>find()</strong>. Veurem en profunditat la seua sintaxi i potència.</li>
+<li>Limitarem i ordenarem també els resultats</li>
+<li>Fins i tot podrem elaborar més els resultats, agrupant els resultats, utilitzant funcions d'agregació (o millor dir operadors d'agregació) i donant-los un aspecte diferent</li>
+</ul>
+<h3 id="parametres-de-find">Paràmetres de find()</h3>
+<p>La funció <strong>find()</strong> s'ha comparat tradicionalment amb la sentència SELECT de
+SQL. Sempre tornarà un conjunt de documents, que poden variar des de no tornar
+cap document, a tornar-los tots els de la col·lecció.</p>
+<p>La funció <strong>find()</strong> pot tenir uns quants paràmetres.</p>
+<ul>
+<li>
+<p>El primer indica una condició o criteri, i tornarà aquells documents de la col·lecció que acomplisquen la condició o criteri. Aquesta condició ve donada en forma de document (o objecte) JSON, i és com l'havíem vist en la funció <strong>update()</strong> :</p>
+<p>db.col_leccio1.find( { clau1 : valor1 } )</p>
+</li>
+</ul>
+<p>Tornarà tots els documents de la col·lecció <strong>col_leccio1</strong> que tinguen el
+camp <strong>clau1</strong> i que en ell tinguen el valor <strong>valor1</strong>.</p>
+<p>Aquest criteri pot ser el complicat que faça falta, formant-lo en JSON. Pot
+tenir més d'un membre. En definitiva, tornarà aquells documents que facen
+<em>matching</em> amb el document del criteri, és a dir, funcionaria com un <strong>and</strong>
+en cas que tinga més d'un membre en la condició</p>
+<pre><code>db.col_leccio1.find( { clau1 : valor1 , clau2 : valor2 } )
+</code></pre>
+<p>que tornaria aquells documents de la <strong>col_lecció1</strong> que tenen el camp
+<strong>clau1</strong> amb el valor <strong>valor1</strong> i que tenen el camp <strong>clau2</strong> amb el valor
+<strong>valor2</strong></p>
+<p>Si no volem posar cap criteri, per a que els torne tots, no posem res com a
+paràmetre, o encara millor, li passem un document (objecte) buit, de manera
+que tots els documents de la col·lecció faran <em>matching</em> amb ell.</p>
+<pre><code>db.col_leccio1.find( { } )
+</code></pre>
+<ul>
+<li>El segon paràmetre ens servirà per a delimitar els camps dels documents que es tornaran. També tindrà el format JSON d'un objecte al qual li posarem com a claus els diferents camps que volem que apareguen o no, i com a valor 1 per a que sí que apareguen i 0 per a que no apareguen.</li>
+</ul>
+<p>Si posem algun camp a que sí que aparega (és a dir, amb el valor 1), els únics
+que apareixeran seran aquestos, a més del <strong>_id</strong> que per defecte sempre
+apareix.</p>
+<pre><code>&gt; db.alumnes.find({},{nom:1})
+
+{ "_id" : ObjectId("56debe3017bf4ed437dc77c8"), "nom" : "Abel" }  
+{ "_id" : ObjectId("56dfdbd136d8b095cb6bd57a"), "nom" : "Berta" }
+</code></pre>
+<p>Per tant si no volem que aparega <strong>_id</strong> posarem:</p>
+<pre><code>&gt; db.alumnes.find({},{_id:0})
+
+{ "nom" : "Abel", "cognoms" : "Bernat Cantera", "edat" : 22, "adreça" : {"carrer" : "Major", "numero" : 7, "cp" : "12502" }, "nota" : [ 9.5, 9 ] }  
+{ "nom" : "Berta", "cognoms" : "Bernat Cantero" }
+</code></pre>
+<p>I si volem traure únicament el nom:</p>
+<pre><code>&gt; db.alumnes.find({},{nom:1,_id:0})
+
+{ "nom" : "Abel" }  
+{ "nom" : "Berta" }
+</code></pre>
+<p>Per últim, com que a partir d'ara utilitzarem documents més complicats, si
+volem que ens apareguen els camps que retornem d'una forma un poc més elegant
+o bonica (<em>pretty</em>), posarem aquesta funció al final: <strong>find().pretty()</strong></p>
+<pre><code>&gt; db.alumnes.find().pretty()
+
+{  
+      "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+      "nom" : "Abel",  
+      "cognoms" : "Bernat Cantera",  
+      "edat" : 22,  
+      "adreça" : {  
+          "carrer" : "Major",  
+          "numero" : 7,  
+          "cp" : "12502"  
+      },  
+      "nota" : [  
+          9.5,  
+          9  
+      ]  
+}  
+{  
+"_id" : ObjectId("56dfdbd136d8b095cb6bd57a"),  
+"nom" : "Berta",  
+"cognoms" : "Bernat Cantero"  
+}
+</code></pre>
+<h3 id="operadors">Operadors</h3>
+<p>Abans de començar aquesta pregunta, anem a agafar unes dades de prova, que
+estan en el fitxer <strong>libros_ejemplo.json</strong></p>
+<p>Només heu de copiar el contingut del fitxer en la terminal del client de
+Mongo.</p>
+<p>Posem ací el contingut per a que pugueu pegar-li una miradeta sense necessitat
+d'obrir-lo. Anirà bé per als exemples posteriors.</p>
+<pre><code>db.libro.insertOne({  
+    "_id":"9788408117117",  
+      "titulo":"Circo Máximo",  
+    "autor":"Santiago Posteguillo",  
+    "editorial":"Planeta",  
+    "enstock":true,  
+    "paginas":1100,  
+    "precio":21.75,  
+    "fecha":new ISODate("2013-08-29T00:00:00Z"),          
+    "resumen":"Circo Máximo, de Santiago Posteguillo, que ha escrito otras obras de narrativa histórica como Las Legiones Malditas o La traición de Roma, es la segunda parte de la trilogía de Trajano, que comenzó con Los asesinos del emperador, un relato impactante, descomunal, descrito con un trepidante pulso narrativo destinado a trasla dar al lector a la Roma imperial de los césares. Santiago posteguillo se ha convertido en el autor español de referencia de la novela histórica sobre Roma y el mundo antiguo. Bienvenidos al mundo de Marco Ulpio Trajano. Circo Máximo es la historia de Trajano y su gobierno, guerras y traiciones, lealtades insobornables e historias de amor imposibles. Hay una vestal, un juicio, inocentes acusados, un abogado especial, mensajes cifrados, códigos secretos, batallas campales, fortalezas inexpugnables, asedios sin fin, dos aurigas rivales, el Anfiteatro, los gladiadores y tres carreras de cuadrigas. Hay también un caballo especial, diferente a todos, leyes antiguas olvidadas, sacrificios humanos, amargura y terror, pero también destellos de nobleza y esperanza, como la llama de Vesta, que mientras arde preserva a Roma. Sólo que hay noches en las que la llama del Templo de Vesta tiembla. La rueda de la Fortuna comienza entonces a girar. En esos momentos, todo puede pasar y hasta la vida del propio Trajano, aunque él no lo sepa, corre peligro. Y, esto es lo mejor de todo, ocurrió: hubo un complot para asesinar a Marco Ulpio Trajano."  
+})
+
+db.libro.insertOne({  
+     "_id":"9788401342158",  
+      "titulo":"El juego de Ripper",  
+      "autor":"Isabel Allende",  
+      "editorial":"Plaza &amp; Janes",  
+      "enstock":true,  
+      "paginas":480,  
+      "precio":21.75,  
+    "fecha":new ISODate("2014-03-01T00:00:00Z"),          
+      "resumen":"Tal como predijo la astróloga más reputada de San Francisco, una oleada de crímenes comienza a sacudir la ciudad. En la investigación sobre los asesinatos, el inspector Bob Martín recibirá la ayuda inesperada de un grupo de internautas especializados en juegos de rol, Ripper. 'Mi madre todavía está viva, pero la matará el Viernes Santo a medianoche', le advirtió Amanda Martín al inspector jefe y éste no lo puso en duda, porque la chica había dado pruebas de saber más que él y todos sus colegas del Departamento de Homicidios. La mujer estaba cautiva en algún punto de los dieciocho mil kilómetros cuadrados de la bahía de San Francisco, tenían pocas horas para encontrarla con vida y él no sabía por dónde empezar a buscarla",  
+ })  
+   
+db.libro.insertOne({  
+    "_id":"9788496208919",  
+   "titulo":"Juego de tronos: Canción de hielo y fuego 1",  
+   "autor":"George R.R. Martin",  
+   "editorial":"Gigamesh",  
+   "enstock":true,  
+   "paginas":793,  
+   "precio":9.5,  
+   "fecha":new ISODate("2011-11-24T00:00:00Z"),       
+   "resumen":"Tras el largo verano, el invierno se acerca a los Siete Reinos. Lord Eddars Stark, señor de Invernalia, deja sus dominios para unirse a la corte del rey Robert Baratheon el Usurpador, hombre díscolo y otrora guerrero audaz cuyas mayores aficiones son comer, beber y engendrar bastardos. Eddard Stark desempeñará el cargo de M ano del Rey e intentará desentrañar una maraña de intrigas que pondrá en peligro su vida... y la de los suyos. En un mundo cuyas estaciones duran décadas y en el que retazos de una magia inmemorial y olvidada surgen en los rincones más sombrios y maravillosos, la traición y la lealtad, la compasión y la sed de venganza, el amor y el poder hacen del juego de tronos una poderosa trampa que atrapa en sus fauces a los personajes... y al lector. 'El regreso triunfal de Martin a la fantasía de más alta calidad... con personajes desarrollados con maestría, prosa hábil y pura obstinación.'"  
+})
+
+db.libro.insertOne({  
+  "_id":"9788499088075",  
+  "titulo":"La ladrona de libros",  
+  "autor":"Markus Zusak",  
+  "editorial":"Debolsillo",  
+  "enstock":false,  
+  "paginas":544,  
+  "precio":9.45,  
+  "fecha":new ISODate("2009-01-09T00:00:00Z"),        
+  "resumen":"En plena II Guerra Mundial, la pequeña Liesel hallará su salvación en la lectura. Una novela preciosa, tremendamente humana y emocionante, que describe las peripecias de una niña alemana de nueve años desde que es dada en adopción por su madre hasta el final de la guerra. Su nueva familia, gente sencilla y nada afecta al na zismo, le enseña a leer y a través de los libros Rudy logra distraerse durante los bombardeos y combatir la tristeza. Pero es el libro que ella misma está escribiendo el que finalmente le salvará la vida.",  
+})
+
+db.libro.insertOne({  
+  "_id":"9788415140054",  
+  "titulo":"La princesa de hielo",  
+  "autor":"Camilla Lackberg",  
+  "editorial":"Embolsillo",  
+  "enstock":true,  
+  "precio":11,  
+  "fecha":new ISODate("2012-10-30T00:00:00Z"),      
+  "resumen":"Misterio y secretos familiares en una emocionante novela de suspense Erica vuelve a su pueblo natal tras el fallecimiento de sus padres, pero se va a encontrar con un nuevo drama. Aparentemente su amiga de la infancia, Alex, se ha suicidado. Pronto se descubre que no solamente fue asesinada sino que estaba embarazada. El primer sospechoso es Anders, un artista fracasado con quien Alex mantenía una relación especial. Pero poco después de ser liberado por falta de pruebas, Anders aparece muerto en su domicilio. Con la ayuda del comisario Patrik, Erica investigará el pasado de su amiga Alex."  
+})
+
+db.libro.insertOne({  
+  "_id":"9788408113331",  
+  "titulo":"Las carreras de Escorpio",  
+  "autor":"Maggie Stiefvater",  
+  "editorial":"Planeta",  
+  "enstock":false,  
+  "paginas":290,  
+  "precio":17.23,  
+  "fecha":new ISODate("2013-06-04T00:00:00Z"),    
+  "resumen":"En la pequeña isla de Thisby, cada noviembre los caballos de agua de la mitología celta emergen del mar. Y cada noviembre, los hombres los capturan para participar en una emocionante carrera mortal. En las carreras de Escorpio, algunos compiten para ganar. Otros para sobrevivir. Los jinetes intentan dominar a sus caballos de agua el tiempo suficiente para acabar la carrera. Algunos lo consiguen. El resto, muere en el intento. Sean Kendrick es el favorito, y necesita ganar la carrera para ganar, también, su libertad. Pero Puck Connolly está dispuesta a ser su más dura adversaria. Ella nunca quiso participar en las carreras. Pero no tiene elección: o compite y gana o… lo pierde todo.",  
+})
+
+db.libro.insertOne({  
+  "_id":"9788468738895",  
+  "titulo":"Las reglas del juego",  
+  "autor":"Anna Casanovas",  
+  "enstock":true,  
+  "paginas":null,  
+  "precio":15.90,  
+  "fecha":new ISODate("2014-02-06T00:00:00Z"),  
+  "resumen":"Susana Lobato tiene la vida perfectamente planeada y está a punto de conseguir todo lo que quiere: va a tener su propio programa de noticias económicas y en dos meses va a casarse con un hombre maravilloso. Pero una noche Tim anula la boda y la abandona para perseguir un sueño que no la incluye a ella.Kev MacMurray acaba de cumplir treinta y cinco años y siente que ha llegado el momento de dar un cambio a su vida. No sabe por qué, pero últimamente se está asfixiando y está convencido de que no puede seguir donde está. Lo único que lo retiene es la boda de Tim, su mejor amigo.Pero Tim anula la boda y una noche Kev coincide con Susana y respira por primera vez en mucho tiempo.¿Por qué no le había sucedido antes? Se suponía que él y Susana no se soportaban ¿Desde cuándo siente que si no besa a la prometida de su mejor amigo no podrá seguir respirando?Susana nunca había reaccionado así con nadie. ¿Puede correr el riesgo de averiguar qué pasará si se entrega a Kev?Y qué pasará si vuelve Tim, ¿podrán dar un paso atrás?.",  
+})
+</code></pre>
+<p>Podeu comprovar que hi ha 7 documents en la nova col·lecció <strong>libro</strong> :</p>
+<pre><code>&gt; db.libro.count()  
+7
+</code></pre>
+<p>I també podem consultar els títols de forma còmoda:</p>
+<pre><code>&gt; db.libro.find( {} , {titulo:1} )
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo" }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros" }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio" }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+</code></pre>
+<p>I un altre exemple, on consultem els llibres que estan en stock (hi ha un camp
+booleà que ho diu: <strong>enstock</strong>), mostrant títol, editorial i preu</p>
+<pre><code>&gt; db.libro.find( {enstock: true} , {titulo:1 , editorial:1 , precio:1} )
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes", "precio" : 21.75 }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }
+</code></pre>
+<p>I un últim exemple, on consultem els llibres que estan en stock i tenen un
+preu de 21.75 €, mostrant tot excepte el _id i el resum</p>
+<pre><code>&gt; db.libro.find( {enstock: true , precio: 21.75} , {titulo:1 , editorial:1 , &gt; precio:1} )
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes", "precio" : 21.75 }
+</code></pre>
+<p>Anem a mirar ara operadors que ens serviran per fer millor les consultes.</p>
+<h4 id="operadors-de-comparacio">Operadors de comparació</h4>
+<p>Fins ara en totes les condicions hem utilitzat la igualtat, si un determinat
+camp era igual a un determinat valor. Però hi ha infinitat de consultes en les
+quals voldrem altres operacions de comparació: major, major o igual, menor,
+...</p>
+<p>Aquestos són els operadors de comparació:</p>
+<ul>
+<li><strong>$lt</strong> (<em>less than</em>) <strong>menor</strong></li>
+<li><strong>$lte</strong>(<em>less than or equal</em>)<strong>menor o igual</strong></li>
+<li><strong>$gt</strong>(<em>gretaer than</em>) major</li>
+<li><strong>$gte</strong> (<em>gretaer than or equal</em>) <strong>major o igual</strong></li>
+<li><strong>$ne</strong> (<em>not equal</em>) <strong>distint</strong></li>
+<li><strong>$eq</strong> (<em>equal</em>) <strong>igual</strong> (però aquest quasi que no caldria, perquè en no posar res es refereix a la igualtat com fins ara)</li>
+</ul>
+<p>La sintaxi per a la seua utilització és, com sempre, acoplar-se a la sintaxi
+JSON:</p>
+<pre><code>clau : { $operador : valor [, ... ] }
+</code></pre>
+<p>Així per exemple, per a buscar els llibres de més de 10 €:</p>
+<pre><code>&gt; db.libro.find( { precio : { $gt : 10 } } , { titulo:1 , precio:1 } )
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "precio" : 21.75 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "precio" : 21.75 }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23 }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }
+</code></pre>
+<p>I per a buscar els llibres entre 10 i 20 €:</p>
+<pre><code>&gt; db.libro.find( { precio : { $gt : 10 , $lt:20 } } , { titulo:1 , precio:1 })
+
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23 }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9}
+</code></pre>
+<p>És especialment útil per a les dates, ja que difícilment trobarem una data (i
+hora) exacta, i voldrem quasi sempre els documents anteriors a una data, o
+posteriors, o entre dues dates. Haurem d'anar amb compte pel tractament
+especial de les dates: hem de comparar coses del mateix tipus, i per tant la
+data amb la qual volem comparar l'haurem de tenir en forma de data:</p>
+<pre><code>&gt; var d = new ISODate("2013-01-01T00:00:00Z")  
+&gt; db.libro.find( {fecha:{$gte:d} } , {fecha:1} )
+
+{ "_id" : "9788408117117", "fecha" : ISODate("2013-08-29T00:00:00Z") }  
+{ "_id" : "9788401342158", "fecha" : ISODate("2014-03-01T00:00:00Z") }  
+{ "_id" : "9788408113331", "fecha" : ISODate("2013-06-04T00:00:00Z") }  
+{ "_id" : "9788468738895", "fecha" : ISODate("2014-02-06T00:00:00Z") }
+</code></pre>
+<p><strong class="azul">$in</strong></p>
+<p>Servirà per a comprovar si el valor d'un camp està entre els d'una llista,
+proporcionada com un array. La sitaxi és:</p>
+<pre><code>clau : { $in : [valor1 , valor2 , ... , valorN] }
+</code></pre>
+<p>I ací tenim un exemple, els llibre de les editorials Planeta i Debolsillo:</p>
+<pre><code>&gt; db.libro.find( { editorial: {$in : ["Planeta" , "Debolsillo"]} } , {titulo: , editorial:1} )
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }
+</code></pre>
+<p><strong class="azul">$nin</strong></p>
+<p>És el contrari, traura els que no estan en la llista.</p>
+<pre><code>&gt; db.libro.find( { editorial: {$nin : ["Planeta" , "Debolsillo"]} } , {titulo:1 , editorial:1} )
+
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes" }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+</code></pre>
+<p>Observeu com també trau els llibres que no tenen editorial, com és el cas de
+l'últim llibre, Las reglas del juego</p>
+<p><strong class="azul">$or</strong></p>
+<p>L'operador anterior, <strong>$in</strong> , ja feia una espècie de OR, però sempre sobre el
+mateix camp. Si l'operació OR la volem fer sobre camps distints, haurem
+d'utilitzar l'operador <strong>$or</strong>. La seua sintaxi ha de jugar amb la
+possibilitat de posar molts elements, i per tant convé l'array:</p>
+<pre><code>$or : [ {clau1:valor1} , {clau2:valor2} , ... , {clauN:valorN} ]
+</code></pre>
+<p>Serà cert si s'acompleix alguna de les condicions. Per exemple, traure els
+llibres que no estan en stock o que no tenen editorial:</p>
+<pre><code>&gt; db.libro.find( { $or : [ {enstock:false} , {editorial:null} ] } , {titulo:1 , enstock:1 , editorial:1} )
+
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "enstock" : false }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "enstock" : false }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "enstock" : true}
+</code></pre>
+<p><strong class="azul">$not</strong></p>
+<p>Serveix per a negar una altra condició.</p>
+<pre><code>$not : { condició }
+</code></pre>
+<p>Per exemple els llibres que no són de l'editorial Planeta (observeu que seria
+més senzill utilitzar l'operador <strong>$ne</strong> , però és per a mostrar el seu
+funcionament:</p>
+<pre><code>&gt; db.libro.find( { editorial: {$not : {$eq:"Planeta"} } } , {titulo:1 , editorial:1} )
+
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes" }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+</code></pre>
+<p><strong class="azul">$exists</strong></p>
+<p>Servirà per a saber els documents que tenen un determinat camp</p>
+<pre><code>clau : { $exists : _boolean_ }
+</code></pre>
+<p>Depenet del valor <em>boolean</em> , el funcionament serà:</p>
+<ul>
+<li><strong>true</strong> : torna els documents en els quals existeix el camp, encara que el seu valor siga nul</li>
+<li><strong>false</strong> : torna els documents que no tenen el camp.</li>
+</ul>
+<p>Anem a traure els llibres que tenen el camp <strong>paginas</strong> :</p>
+<pre><code>&gt; db.libro.find( { paginas: {$exists:true} } , {titulo:1 , paginas:1} )
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null }
+</code></pre>
+<p>Observeu com ens apareix també l'ultim llibre, que té el camp <strong>paginas</strong> amb
+el valor <strong>nul</strong>. En canvi si haguérem fet la consulta preguntant pels que són
+diferents de nul, no apareixeria aquest últim llibre:</p>
+<pre><code>&gt; db.libro.find( { paginas: {$ne:null} } , {titulo:1 , paginas:1} )
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }
+</code></pre>
+<p>I si posem <strong>false</strong> al valor en el <strong>$exists</strong> , únicament ens apareixerà el
+llibre que no té el camp:</p>
+<pre><code>&gt; db.libro.find( { paginas: {$exists:false} } , {titulo:1 , paginas:1} )
+
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo" }
+</code></pre>
+<p>I per la mateixa raó que abans, si traiem els que tenen <strong>paginas</strong> a null,
+ens eixirà tant qui no té el camp, com qui el té però amb valor nul:</p>
+<pre><code>&gt; db.libro.find( { paginas: null } , {titulo:1 , paginas:1} )
+
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null}
+</code></pre>
+<p>Per tant, per a segons quines coses, ens interessa l'operador <strong>$exists</strong> , en
+compte de jugar amb el nul.</p>
+<h4 id="expressions-regulars">Expressions regulars</h4>
+<p>Mongo accepta les expressions regulars de forma nativa, cosa que dóna molta
+potència per a poder buscar informació diversa.</p>
+<p>Les expressions regulars en Mongo tenen la mateixa sintaxi que en Perl, i que
+és molt molt pareguda a la major part de llenguatges de programació.</p>
+<p>Mirem alguns exemples. Els llibres dins dels quals està la paraula <strong>juego</strong> :</p>
+<pre><code>&gt; db.libro.find( { titulo: /juego/ } , {titulo:1} )
+
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+</code></pre>
+<p>Ara que tenen la paraula <strong>juego</strong> sense importar majúscules o minúscules:</p>
+<pre><code>&gt; db.libro.find( { titulo: /juego/i } , {titulo:1} )
+
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper" }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+</code></pre>
+<p>I ara que tenen la paraula <strong>juego</strong> només al principi.</p>
+<pre><code>&gt; db.libro.find( { titulo: /^juego/i } , {titulo:1} )
+
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" }
+</code></pre>
+<p>I ara els llibres que en el resum (<strong>resumen</strong>) tenen la paraula <strong>amiga</strong> o
+<strong>amigo</strong> , és a dir <strong>amig</strong> seguit d'una <strong>a</strong> o una <strong>o</strong> :</p>
+<pre><code>&gt; db.libro.find( { resumen: /amig[ao]/i } , {titulo:1} )
+
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+</code></pre>
+<h4 id="arrays_1">Arrays</h4>
+<p>Les consultes dins d'arrays de Mongo són molt senzilles.</p>
+<p>La més senzilla és quan busquem un valor d'un tipus senzill, i en aquest cas
+el que farà Mongo és buscar en tot l'array per si està aquest valor. És a dir,
+exactament igual que el que hem fet fins ara.</p>
+<pre><code>    db.col_leccio1.find ( { clau_array : valor } )
+</code></pre>
+<p>Mirem-ho en un exemple. Anem a crear dos documents que tinguen un array
+cadascun, per exemple de colors. El creem en una col·lecció nova, anomenada
+<strong>colorins</strong> , en dos documents amb el mateix camp de tipus array, <strong>color</strong> ,
+però amb dades diferents<strong><em>*</em></strong>*:</p>
+<pre><code>&gt; db.colorins.insert({color: ["roig","blau","groc"]})
+
+&gt; db.colorins.insert({color: ["negre","blanc","roig"]})
+
+&gt; db.colorins.find()
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+</code></pre>
+<p>Com es veu en la sintaxi, triar els documents que tenen un camp (en aquest cas
+d'array) que continga un valor, és igual de senzill que quan es tracta d'un
+camp de tipus string, per exemple:</p>
+<pre><code>&gt; db.colorins.find({color:"roig"})
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+</code></pre>
+<p>També podem utilitzar qualsevol dels operadors vistos fins el moment, com per
+exemple l'operador <strong>$in</strong> , que mirarà els documents que tenen algun dels
+colors que s'especifica a continuació:</p>
+<pre><code>&gt; db.colorins.find({color: {$in : ["groc","lila"]} })
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
+</code></pre>
+<p>O per exemple també utilitzar <strong>expressions regulars</strong> :</p>
+<pre><code>&gt; db.colorins.find({color: /bl/ })
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+</code></pre>
+<p><strong class="azul">$ all</strong></p>
+<p>L'operador <strong>$all</strong> el podem utilitzar quan vulguem seleccionar els documents
+que en l'array tiguen <strong>tots</strong> els elements especificats.</p>
+<p>Per exemple, anem a buscar els document que tenen el color roig i blau.</p>
+<pre><code>&gt; db.colorins.find({color : { $all : ["roig","blau"]} })
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
+</code></pre>
+<p><strong class="azul">Subíndex</strong></p>
+<p>Si volem mirar exactament una determinada posició de l'array, podem
+especificar la posició immediatament després de la clau, <strong>separada per un
+punt</strong>. Recordeu que la primera posició és la <strong>0</strong>. Hem de posar entre
+cometes la clau i la posició, sinó no sabrà trobar-la.</p>
+<p>Per exemple, busquem els documents que tenen el roig en la primera posició.</p>
+<pre><code>&gt; db.colorins.find({"color.0" : "roig"} )
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Accedir a una determinada posició és fàcil, però no és tan fàcil accedir a una
+posició calculada, per exemple a l'última posició. Ja fa falta coneixements un
+poc més avançats de JavaScript, per a posar dins del <strong>find()</strong> una funció en
+JavaScript, i actuar dins d'aquesta.</p>
+</div>
+<hr />
+<p>Únicament de manera il·lustrativa, posem ací la manera de traure els
+documents, l'últim color dels quals és el roig. En ella ens creem una variable
+amb l'últim element de l'array (amb <strong>pop()</strong>), i el comparem amb el color
+roig, tornant true en cas de que sí que siguen iguals:</p>
+<pre><code>&gt; db.colorins.find(function() { var a =this.color.pop(); return (a =="roig")})
+
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+</code></pre>
+<p>També hi ha una forma alternativa de fer-ho, que és utilitzant l'operador
+<strong>$where</strong>, que ens permet crear condicions amb sintaxi JavaScript:</p>
+<pre><code>&gt; db.colorins.find({$where:"this.color[this.color.length - 1]=='roig'"})
+
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
+</code></pre>
+<p><strong class="azul">$size</strong></p>
+<p>L'operador <strong>$size</strong> ens servirà per a fer condicions sobre el número
+d'elements d'un array.</p>
+<p>Incorporem 2 documents nous, amb 2 i 4 elements respectivament, per a poder
+comprovar-lo:</p>
+<pre><code>&gt; db.colorins.insertOne({color: ["negre","blanc"]})
+
+&gt; db.colorins.insertOne({color: ["taronja","gris","lila","verd"]})
+
+
+&gt; db.colorins.find()
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }  
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }  
+{ "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ] }  
+{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris", "lila", "verd" ] }
+</code></pre>
+<p>Ara anem a seleccionar els documents que tenen 4 colors</p>
+<pre><code>&gt; db.colorins.find({color:{$size:4}})
+
+{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris", "lila", "verd" ] }
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>L'operador <strong>$size</strong> només admet un valor numèric, i no es poden concatenar
+expressions amb altres operadors, com per exemple intentar la condició que la
+grandària de l'array siga menor o igual a un determinat valor. Es pot tornar a
+esquivar la qüestió amb l'operador <strong>$where</strong> , i posar la condició en
+JavaScript. Així la consulta dels documents que tenen 3 o menys colors la
+podríem traure d'aquesta manera:</p>
+<blockquote>
+<p>db.colorins.find({$where:"this.color.length&lt;=3"})  </p>
+</blockquote>
+<p :=":" ObjectId_56e16972aa3c92aaed389da6_="ObjectId(&quot;56e16972aa3c92aaed389da6&quot;)," _="]" __id_="&quot;_id&quot;" _blanc_="&quot;blanc&quot;" _color_="&quot;color&quot;" _negre_="&quot;negre&quot;,">{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }<br />
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }<br /></p>
+</div>
+<p><strong class="azul">$slice</strong></p>
+<p>L'operador <strong>$slice</strong> no és un operador que es puga posar en les condicions
+(criteris), sinó que servirà per a extraure determinats elements de l'array,
+pel número d'ordre d'aquestos elements en l'array. Només el podrem posar, per
+tant, en el segon paràmetre del <strong>find()</strong>.</p>
+<p>La sintaxi és:</p>
+<pre><code>clau : {$slice : x }
+</code></pre>
+<p>Els valors que pot agafar <strong>x</strong> són:</p>
+<ul>
+<li>Números positius: serà el número d'elements del principi (per l'esquerra)</li>
+<li>Números negatius: serà el número d'elements del final (per la dreta)</li>
+<li>Un array de 2 elements (<strong>[x,y]</strong>): traurà a partir de la posició <strong>x</strong> (0 és el primer), tants elements com indique <strong>y</strong></li>
+</ul>
+<p>Per exemple, anem a traure els dos primers colors de cada document:</p>
+<pre><code>&gt; db.colorins.find({} , {color:{$slice:2} })
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau" ] }  
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc" ] }  
+{ "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "negre", "blanc" ] }  
+{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "taronja", "gris" ] }
+</code></pre>
+<p>O traure l'últim color:</p>
+<pre><code>&gt; db.colorins.find({} , {color:{$slice:-1 }})
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "groc" ] }  
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "roig" ] }  
+{ "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ "blanc" ] }  
+{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "verd" ] }
+</code></pre>
+<p>O traure el tercer element, tinguen els que tinguen. Recordeu que el segon
+element, és el de la posició 2, i en volem traure 1.</p>
+<pre><code>&gt; db.colorins.find({} , {color:{$slice:[2,1] }})
+
+{ "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "groc" ] }  
+{ "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "roig" ] }  
+{ "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ ] }  
+{ "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "lila" ] }
+</code></pre>
+<h4 id="recerques-en-objectes">Recerques en objectes</h4>
+<p>Per a fer recerques en camps que a la seua vegada són objectes (o documents
+dins de documents, en la terminologia de Mongo), només hem de posar la ruta de
+les claus separant per mig de punts, i cuidar de posar-la entre cometes.</p>
+<p>Així, per exemple, anem a fer una consulta sobre la col·lecció d'alumnes, que
+eren uns documents en els quals hi havia algun camp de tipus objecte.</p>
+<pre><code>&gt; db.alumnes.find().pretty()
+
+{  
+    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Cantera",  
+    "edat" : 22,  
+    "adreça" : {  
+    "carrer" : "Major",  
+    "numero" : 7,  
+    "cp" : "12502"  
+    },  
+    "nota" : [  
+        9.5,  
+        9  
+    ]  
+}  
+{  
+"_id" : ObjectId("56dfdbd136d8b095cb6bd57a"),  
+"nom" : "Berta",  
+"cognoms" : "Bernat Cantero"  
+}
+</code></pre>
+<p>Es podrien traure els documents (els alumnes) que viuen en el codi postal
+12502. Ens ha d'eixir l'únic alumne del qual tenim l'adreça, que justament té
+aquest codi postal. Recordeu que en la clau (realment clau.subclau), ha d'anar
+entre cometes. Hem posat al final <strong>pretty()</strong> per a una millor lectura, però
+evidentment no és necessari.</p>
+<pre><code>&gt; db.alumnes.find({"adreça.cp": "12502"}).pretty()
+
+{  
+    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Cantera",  
+    "edat" : 22,  
+    "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+    },  
+    "nota" : [  
+        9.5,  
+        9  
+    ]  
+}
+</code></pre>
+<p>I funcionaria igual amb qualsevol número de subnivells, és a dir, documents
+que tenen objectes, els quals tenen objectes, ... I també amb altres tipus
+d'operadors, o expressions regulars, ...</p>
+<p>Per exemple, tots els alumnes de Castelló (el codi postal ha de començar per
+12 i contenir 3 xifres més, és a dir, caràcter del 0 al 9, i 3 vegades.</p>
+<pre><code>&gt; db.alumnes.find({"adreça.cp": /^12[0-9]{3}/}).pretty()
+
+{  
+    "_id" : ObjectId("56debe3017bf4ed437dc77c8"),  
+    "nom" : "Abel",  
+    "cognoms" : "Bernat Cantera",  
+    "edat" : 22,  
+    "adreça" : {  
+        "carrer" : "Major",  
+        "numero" : 7,  
+        "cp" : "12502"  
+    },  
+    "nota" : [  
+        9.5,  
+        9  
+    ]  
+}
+</code></pre>
+<p><strong class="azul">Limit, Skip i Sort</strong></p>
+<p>Una vegada tenim feta una consulta, podem limitar el nombre de documents que
+ens ha de tornar, o ordenar-los.</p>
+<p>Per a això hi ha uns mètodes que apliqiuem al final del <strong>find()</strong> , és a dir,
+a continuació del <strong>find()</strong> , separats per un punt.</p>
+<p>Ho aplicarem als llibres, que és on tenim més documents. I no mostrem tots els
+camps, per a una millor lectura:</p>
+<pre><code>&gt; db.libro.find({} , {titulo:1 , precio:1 , editorial:1})
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes", "precio" : 21.75 }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }
+</code></pre>
+<p><strong class="azul">limit(<em>n</em>)</strong></p>
+<p>Limita el número de documents tornats a <em><strong>n</strong></em> documents.</p>
+<pre><code>&gt; db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).limit(3)
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes", "precio" : 21.75 }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }
+</code></pre>
+<p>Si el número de documents que fa la consulta és menor que <em><strong>n</strong></em> , doncs se'n
+tornaran menys. Així per exemple, de l'editorial Planeta només hi ha dos
+llibres. Encara que posem limit(3), se'n tornaran 2.</p>
+<pre><code>&gt; db.libro.find({editorial:"Planeta"} , {titulo:1 , precio:1 , &gt; editorial:1}).limit(3)
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial": "Planeta", "precio" : 17.23 }
+</code></pre>
+<p><strong class="azul">skip(<em>n</em>)</strong></p>
+<p>Se saltaran els primers <em><strong>n</strong></em> documents. Si hi haguera menys documents dels
+que se salten, doncs no se'n mostraria cap.</p>
+<pre><code>&gt; db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).skip(2)
+
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }
+</code></pre>
+<p><strong class="azul">sort()</strong></p>
+<p>Serveix per a ordenar. Com a paràmetre se li passarà un objecte JSON amb les
+claus per a ordenar, i els valors seran:</p>
+<ul>
+<li>1: ordre ascendent</li>
+<li>-1: ordre descendent</li>
+</ul>
+<p>Si posem més d'una clau, s'ordenarà pel primer, en cas d'empat pel segon, ...</p>
+<p>En aquest exemple ordenem pel preu</p>
+<pre><code>&gt; db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).sort({precio:1})
+
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes", "precio" : 21.75 }
+</code></pre>
+<p>I com déiem, es pot posar més d'un camp d'ordenació. Per exemple, per
+editorial en ordre ascendent, i per preu en ordre descendent</p>
+<pre><code>&gt; db.libro.find({} , {titulo:1 , precio:1 , editorial:1}).sort({editorial:1 , precio:-1})
+
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9 }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo", "precio" : 9.45 }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo", "precio" : 11 }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh", "precio" : 9.5 }  
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta", "precio" : 21.75 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes", "precio" : 21.75 }
+</code></pre>
+<p>Observeu com el primer és el que no té editorial (equivalent a null). I com
+que hi ha dos de l'editorial Planeta, apareix primer el més car, i després el
+més barat.</p>
+<p>I evidentment, es poden combinar els mètodes limit, skip i sort.</p>
+<p>En aquest exemple traurem el segon i tercer llibre més car. Per a això ordenem
+per preu de forma descendent, saltem un i limitem a 2. No importa l'ordre com
+col·locar skip, limit i sort.</p>
+<pre><code>&gt; db.libro.find({} , {titulo:1 , precio:1 , &gt; editorial:1}).sort({precio:-1}).skip(1).limit(2)
+
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes", "precio" : 21.75 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }
+</code></pre>
+<h2 id="39-agregacio">3.9 - Agregació</h2>
+<p>L'agregació ens permetrà fer consultes molt avançades. És un procés un poc
+complicat però molt potent. Ens donarà una potència quasi com la del SQL quan
+comencem a utilitzar el GROUP BY i HAVING.</p>
+<p>La tècnica que s'utilitza és la del <em><strong>pipeline</strong></em> , és a dir fer una sèrie de
+comandos, cadascun agafa les dades que proporciona l'anterior i a la seua
+vegada proporciona les dades al següent comando. D'aquesta manera es tractarà
+un conjunt de documents i es faran "operacions" sobre ells seqüencialment en
+blocs: filtrat, projecció, agrupacions, ordenació, limitació i <em>skipping</em>
+(saltar alguns).</p>
+<p>La sintaxi serà:</p>
+<pre><code>db.col_leccio1.aggregate ( _operador $matc_ h ,  _operador $projec_ t ,
+_operador $group_ , _operador $sort_ , _operador $limit_ , _operador $skip_ )
+</code></pre>
+<p>L'ordre dels operadors pot canviar, però hem de tenir en compte que els
+comandos s'executen en el ordre en què els posem (d'esquerra a dreta). Així,
+per exemple, pot ser molt convenient posar el primer operador el $match, que
+és el de seleccionar documents, així les altres operacions es faran sobre
+menys documents i aniran més ràpides.</p>
+<p>Cada paràmetre del aggregate, és a dir, cada operador tindrà format JSON, i
+per tant sempre serà de l'estil:</p>
+<pre><code>{ $operador : { clau:valor , ... } }
+</code></pre>
+<h4 class="azul" id="match">$match</h4>
+<p>Servirà per a filtrar els documents. Aleshores, l'agregació només afectarà als
+documents seleccionats. Es poden utilitzar tots els operadors que hem anat
+estudiant.</p>
+<p>El següent exemple selecciona els documents de l'editorial Planeta. Ho fa per
+mig de <strong>aggregate</strong> , però com no fem res més, senzillament selecciona els
+documents.</p>
+<pre><code>&gt; db.libro.aggregate({$match:{editorial:"Planeta"}})
+</code></pre>
+<p>En el següent exemple, a més de seleccionar els de l'editorial Planeta després
+apliquem una projecció sobre els camps títol i editorial, per a poder
+visualitzar millor el resultat.</p>
+<pre><code>&gt; db.libro.aggregate({$match:{editorial:"Planeta"}},{$project:{titulo:1,editorial:1}})
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial": "Planeta" }
+</code></pre>
+<h4 class="azul" id="project">$project</h4>
+<p>Ens permet projectar sobre determinats camps del document, però és molt més
+complet que en la projecció "normal" que havíem fet fins ara, ja que permet
+també renomenar camps, fer càlculs, etc.</p>
+<p><strong>Projeccció</strong></p>
+<p>La manera més senzilla, evidentment és projectar sobre alguns camps dels
+existents, i el funcionament és idèntic al de l'altra vegada (valors 1 per a
+que apareguen, 0 per a que no apareguen; per defecte<strong>_id</strong> sempre apareix):</p>
+<pre><code>&gt; db.libro.aggregate({$project:{titulo:1,editorial:1}})
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta" }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza &amp; Janes" }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
+</code></pre>
+<p><strong class="azul">Renomenar</strong></p>
+<p><strong>$project</strong> també ens permet renomenar camps existents (després veurem que també
+càlculs). La manera serà posar d'aquest manera:</p>
+<pre><code>{ $project : { "nom_nou" : "$camp_vell" }}
+</code></pre>
+<p>El secret està en el dòlar que va davant del camp vell, ja que d'aquesta
+manera ens referim al valor d'aquest camp. Així per exemple renomenem el camp
+<strong>enstock</strong> a <strong>disponible</strong> , a banda de traure el títol:</p>
+<pre><code>&gt; db.libro.aggregate({$project:{titulo:1 , disponible:"$enstock"}})
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "disponible" : true }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "disponible" : true }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1" disponible" : true }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "disponible" : false }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "disponible" : true }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "disponible" : false }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "disponible" : true }
+</code></pre>
+<p><strong class="azul">Camps calculats</strong></p>
+<p>Amb aquest nom genèric ens referirem a tots els càlculs, expressions i més
+coses que podrem posar per a trasnsformar el que ja tenim. Com veiem, açò és
+molt més potent que la projecció normal.</p>
+<ul>
+<li><strong>Expressions matemàtiques</strong> : Podrem aplicar fórmules per a sumar (<strong>$add</strong>), restar (<strong>$subtract</strong>), multiplicar (<strong>$multiply</strong>), dividir (<strong>$divide</strong>) i més coses (potència, arrel quadrada, valor absolut, mòdul, ...). Cada operació té el seu operador que serà una paraula precedida pel dòlar, i amb la sintaxi de JSON, on posarem els operands en un array. </li>
+</ul>
+<p>Per exemple, traurem títol del llibre, preu i preu en pessetes (multiplicant
+per 166.386)</p>
+<pre><code>&gt; db.libro.aggregate({$project:{titulo:1 , precio:1 , preu_pessetes:{$multiply:["$precio" , 166.386]}}})
+
+{ "_id" : "9788408117117", "titulo" : "Circo Máximo", "precio" : 21.75, "preu_pessetes" : 3618.8955 }  
+{ "_id" : "9788401342158", "titulo" : "El juego de Ripper", "precio" : 21.75, "preu_pessetes" : 3618.8955 }  
+{ "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "precio" : 9.5, "preu_pessetes" : 1580.667 }  
+{ "_id" : "9788499088075", "titulo" : "La ladrona de libros", "precio" : 9.45, "preu_pessetes" : 1572.3476999999998 }  
+{ "_id" : "9788415140054", "titulo" : "La princesa de hielo", "precio" : 11, "preu_pessetes" : 1830.2459999999999 }  
+{ "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "precio" : 17.23, "preu_pessetes" : 2866.83078 }  
+{ "_id" : "9788468738895", "titulo" : "Las reglas del juego", "precio" : 15.9, "preu_pessetes" : 2645.5374 }
+</code></pre>
+<ul>
+<li><strong>Expressions de dates</strong> : Ja veurem i ja podem anar intuint que moltes agregacions estaran basades en el temps, per a poder fer consultes de documents de la setmana passada, o el mes passat, ... Per a poder fer aquestes agregacions, hi ha un conjunt d'expressions que permeten extraure fàcilment d'una data el seu dia, mes, any, ... en forma de número</li>
+</ul>
+<p>Són les expressions: <strong>$year, $month, $week, $dayOfMonth, $DayOfWeek,
+$dayOfYear, $hour, $minute</strong> i <strong>$second</strong>.</p>
+<p>En el següent exemple traurem tots els documents, projectant per la data, any
+i mes:</p>
+<pre><code>&gt; db.libro.aggregate({$project : {fecha:1 , año:{$year:"$fecha"} , mes:{$month:"$fecha"}}})
+
+{ "_id" : "9788408117117", "fecha" : ISODate("2013-08-29T00:00:00Z"), "año" : 2013, "mes" : 8 }  
+{ "_id" : "9788401342158", "fecha" : ISODate("2014-03-01T00:00:00Z"), "año" : 2014, "mes" : 3 }  
+{ "_id" : "9788496208919", "fecha" : ISODate("2011-11-24T00:00:00Z"), "año" : 2011, "mes" : 11 }  
+{ "_id" : "9788499088075", "fecha" : ISODate("2009-01-09T00:00:00Z"), "año" : 2009, "mes" : 1 }  
+{ "_id" : "9788415140054", "fecha" : ISODate("2012-10-30T00:00:00Z"), "año" : 2012, "mes" : 10 }  
+{ "_id" : "9788408113331", "fecha" : ISODate("2013-06-04T00:00:00Z"), "año" : 2013, "mes" : 6 }  
+{ "_id" : "9788468738895", "fecha" : ISODate("2014-02-06T00:00:00Z"), "año" : 2014, "mes" : 2 }
+</code></pre>
+<ul>
+<li>
+<p><strong>Expressions de strings</strong> : Ens permeten manipular els strings per a extraure subcadenes, concatenar, passar a majúscules o minúscules. Aquestes són algunes de les funcions:</p>
+<blockquote>
+<ul>
+<li><strong>$substr : [exp , inici , llargària]</strong> : extrau una subcadena del string del primer paràmetre, des de la posició que indica el segon paràmetre (o primer caràcter) i tants caràcters com el tercer paràmetre</li>
+<li><strong>$concat : [ exp1 , exp2 , ...]</strong> : concatena les expressions que hi ha en l'array</li>
+<li><strong>$toLower : exp</strong> i <strong>$toUpper : exp</strong> : converteixen l'expressió a majúscules i minúscules respectivament</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>Per exemple, anem a traure el títol dels llibres amb l'autor entre parèntesis:</p>
+<pre><code>&gt; db.libro.aggregate({$project: { "Llibre:" : {$concat : ["$titulo" , " (" , "$autor" , ")"]}}})
+
+{ "_id" : "9788408117117", "Llibre:" : "Circo Máximo (Santiago Posteguillo)" }  
+{ "_id" : "9788401342158", "Llibre:" : "El juego de Ripper (Isabel Allende)" }  
+{ "_id" : "9788496208919", "Llibre:" : "Juego de tronos: Canción de hielo y fuego 1 (George R.R. Martin)" }  
+{ "_id" : "9788499088075", "Llibre:" : "La ladrona de libros (Markus Zusak)" }  
+{ "_id" : "9788415140054", "Llibre:" : "La princesa de hielo (Camilla Lackberg)" }  
+{ "_id" : "9788408113331", "Llibre:" : "Las carreras de Escorpio (Maggie Stiefvater)" }  
+{ "_id" : "9788468738895", "Llibre:" : "Las reglas del juego (Anna Casanovas)"}
+</code></pre>
+<p>I ara el mateix, però amb el títol en majúscules:</p>
+<pre><code>&gt; db.libro.aggregate({$project: { "Llibre:" : {$concat : [{$toUpper:"$titulo"}, " (" , "$autor" , ")"]}}})
+
+{ "_id" : "9788408117117", "Llibre:" : "CIRCO MáXIMO (Santiago Posteguillo)" }  
+{ "_id" : "9788401342158", "Llibre:" : "EL JUEGO DE RIPPER (Isabel Allende)" }  
+{ "_id" : "9788496208919", "Llibre:" : "JUEGO DE TRONOS: CANCIóN DE HIELO Y FUEGO 1 (George R.R. Martin)" }  
+{ "_id" : "9788499088075", "Llibre:" : "LA LADRONA DE LIBROS (Markus Zusak)" }  
+{ "_id" : "9788415140054", "Llibre:" : "LA PRINCESA DE HIELO (Camilla Lackberg)" }  
+{ "_id" : "9788408113331", "Llibre:" : "LAS CARRERAS DE ESCORPIO (Maggie Stiefvater)" }  
+{ "_id" : "9788468738895", "Llibre:" : "LAS REGLAS DEL JUEGO (Anna Casanovas)" }
+</code></pre>
+<h4 class="azul" id="group">$group</h4>
+<p>Realitza grups sobre els documents seleccionats prèviament, per a valors
+iguals del camp o expressions que determinem. Posteriorment, amb els grups,
+podrem realitzar operacions, com sumar o traure la mitjana d'alguna quantitat
+dels documents del grup, o el màxim o mínim, ...</p>
+<p>Per a poder agrupar, haurem de definir com a <strong>_id</strong> del grup el camp o camps
+pels valors dels quals volem agrupar. Per exemple, si volem agrupar els
+llibres per l'editorial, haurem de definir el <strong>_id</strong> del grup el camp
+editorial</p>
+<pre><code>$group : { "_id" : _camp o camps_ }
+</code></pre>
+<p>Si agrupem per un únic camp, senzillament el posem amb un dòlar davant i entre
+cometes. Si és més d'un camp, els posem com un objecte. Per exemple, agrupem
+per editorial:</p>
+<pre><code>&gt; db.libro.aggregate( { $group : { "_id" : "$editorial" } } )
+
+{ "_id" : "Debolsillo" }  
+{ "_id" : null }  
+{ "_id" : "Gigamesh" }  
+{ "_id" : "Embolsillo" }  
+{ "_id" : "Plaza &amp; Janes" }  
+{ "_id" : "Planeta" }
+</code></pre>
+<p>Podem observar com hi ha algun llibre que no té editorial.</p>
+<p>Ara agrupem per any de publicació (l'extraurem del camp <strong>fecha</strong>):</p>
+<pre><code>&gt; db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } }} )
+
+{ "_id" : { "any" : 2012 } }  
+{ "_id" : { "any" : 2009 } }  
+{ "_id" : { "any" : 2011 } }  
+{ "_id" : { "any" : 2014 } }  
+{ "_id" : { "any" : 2013 } }
+</code></pre>
+<p>I ara agrupem per editorial i any de publicació (els dos llibres de Planeta
+són del 2013)</p>
+<pre><code>&gt; db.libro.aggregate( { $group : { "_id" : { "Editorial" : "$editorial" , "any" : { $year : "$fecha" } } } } )
+
+{ "_id" : { "Editorial" : "Embolsillo", "any" : 2012 } }  
+{ "_id" : { "any" : 2014 } }  
+{ "_id" : { "Editorial" : "Debolsillo", "any" : 2009 } }  
+{ "_id" : { "Editorial" : "Gigamesh", "any" : 2011 } }  
+{ "_id" : { "Editorial" : "Plaza &amp; Janes", "any" : 2014 } }  
+{ "_id" : { "Editorial" : "Planeta", "any" : 2013 } }
+</code></pre>
+<p><strong class="azul">Operadors d'agrupació</strong></p>
+<p>Ens permetran fer alguna operació sobre els documents del grup. Es posen com a
+segon paràmetre del grup (després de la definició del <strong>_id</strong>).</p>
+<ul>
+<li><strong>$sum : valor</strong> : sumarà el valor de tots els documents del grup. El valor pot ser un camp numèric, o alguna altra cosa més complicada.</li>
+<li><strong>$avg : valor</strong> : calcularà la mitjana dels valors per als documents del grup</li>
+<li><strong>$max : valor</strong> : màxim</li>
+<li><strong>$min : valor</strong> : mínim</li>
+<li><strong>$first : exp</strong> : agafarà el primer valor de l'expressió del grup, ignorant les altres del grup</li>
+<li><strong>$last : exp</strong> : agafarà l'últim</li>
+</ul>
+<p>La documentació diu que també existeix l'operador <strong>$count</strong> , però a partir
+d'una determinada versió. Es pot substituir la seua utilització per l'operador
+<strong>$sum</strong> , sumant la quantitat 1.</p>
+<p>Per exemple, la suma dels preus dels llibres de cada editorial:</p>
+<pre><code>&gt; db.libro.aggregate( { $group : { "_id" : "$editorial" , "suma_preus" : {$sum : "$precio"} } } )
+
+{ "_id" : "Debolsillo", "suma_preus" : 9.45 }  
+{ "_id" : null, "suma_preus" : 15.9 }  
+{ "_id" : "Gigamesh", "suma_preus" : 9.5 }  
+{ "_id" : "Embolsillo", "suma_preus" : 11 }  
+{ "_id" : "Plaza &amp; Janes", "suma_preus" : 21.75 }  
+{ "_id" : "Planeta", "suma_preus" : 38.980000000000004 }
+</code></pre>
+<p>O la mitjana dels preus de cada any:</p>
+<pre><code>&gt; db.libro.aggregate( { $group : { "_id" : { "any" : { $year : "$fecha" } } , "mitjana preus" : { $avg : "$precio" } } } )
+
+{ "_id" : { "any" : 2012 }, "mitjana preus" : 11 }  
+{ "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }  
+{ "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
+{ "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
+{ "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }
+</code></pre>
+<p>I ara intentem comptar la quantitat de llibres de cada editorial:</p>
+<pre><code>&gt; db.libro.aggregate( { $group : { "_id" : "$editorial" , "quants" : { $sum :
+1} } } )
+
+{ "_id" : "Debolsillo", "quants" : 1 }  
+{ "_id" : null, "quants" : 1 }  
+{ "_id" : "Gigamesh", "quants" : 1 }  
+{ "_id" : "Embolsillo", "quants" : 1 }  
+{ "_id" : "Plaza &amp; Janes", "quants" : 1 }  
+{ "_id" : "Planeta", "quants" : 2 }
+</code></pre>
+<h4 class="azul" id="sort">$sort</h4>
+<p>Serveix per a ordenar i segueix la mateixa sintàxi que en les consultes normal
+(1: ordre ascendent; -1: ordre descendent). Podrem ordenar pels camps normals
+o per camps clalculats.</p>
+<p>Per exemple ordenem per la suma de preus de cada editorial:</p>
+<pre><code>&gt; db.libro.aggregate( { $group : { "_id" : "$editorial" , "suma_preus" : {
+$sum : "$precio"} } } , { $sort : { suma_preus : 1 } })
+
+{ "_id" : "Debolsillo", "suma_preus" : 9.45 }  
+{ "_id" : "Gigamesh", "suma_preus" : 9.5 }  
+{ "_id" : "Embolsillo", "suma_preus" : 11 }  
+{ "_id" : null, "suma_preus" : 15.9 }  
+{ "_id" : "Plaza &amp; Janes", "suma_preus" : 21.75 }  
+{ "_id" : "Planeta", "suma_preus" : 38.980000000000004 }
+</code></pre>
+<p>I ara ordenem de forma descendent per la mitjana de preus de cada any:</p>
+<pre><code>&gt; db.libro.aggregate( { $group : { "_id" : {"any":{$year:"$fecha"}} , "mitjana
+preus":{$avg:"$precio"} } } , {$sort:{"mitjana preus":-1}})
+
+{ "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }  
+{ "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
+{ "_id" : { "any" : 2012 }, "mitjana preus" : 11 }  
+{ "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
+{ "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
+</code></pre>
+<h4 class="azul" id="limit">$limit</h4>
+<p>Limita el resultat del aggregate al número indicat.</p>
+<p>Per exemple, els tres anys de mitjana de preus més cara. És com l'últim
+exemple, afegint el límit:</p>
+<pre><code>&gt; db.libro.aggregate({$group:{"_id":{"any":{$year:"$fecha"}},"mitjana
+preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$limit:3})
+
+{ "_id" : { "any" : 2013 }, "mitjana preus" : 19.490000000000002 }  
+{ "_id" : { "any" : 2014 }, "mitjana preus" : 18.825 }  
+{ "_id" : { "any" : 2012 }, "mitjana preus" : 11 }
+</code></pre>
+<h4 class="azul" id="skip">$skip</h4>
+<p>Salta el número indicat</p>
+<p>En l'exemple anterior, ara saltem els 3 primers:</p>
+<pre><code>&gt; db.libro.aggregate({$group:{"_id":{"any":{$year:"$fecha"}},"mitjana
+preus":{$avg:"$precio"}}} , {$sort:{"mitjana preus":-1}} , {$skip:3})
+
+{ "_id" : { "any" : 2011 }, "mitjana preus" : 9.5 }  
+{ "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
+</code></pre>
+<h2 id="310-resum-comandos">3.10 - Resum Comandos</h2>
+<p>Per a qualsevol operació s'ha de posar <strong>db</strong> seguit del nom de la col·lecció,
+i després l'operació que volem fer.</p>
+<p><strong class="azul">Operacions sobre el servidor MongoDB</strong>  </p>
+<ul>
+<li>Connectar a MongoDB =&gt; <code>mongo</code>  </li>
+<li>Seleccionar la base de dades =&gt; <code>use miBaseDeDatos</code>  </li>
+<li>Mostrar totes les bases de dades en el teu servidor MongoDB =&gt; <code>show dbs</code>  </li>
+<li>Mostrar els usuaris de la base de dades actual =&gt; <code>show users</code>  </li>
+<li>Mostrar els rols definits en la base de dades actual =&gt; <code>show roles</code>  </li>
+<li>Mostrar la versió del servidor MongoDB =&gt; <code>db.version()</code>  </li>
+<li>Mostrar el nom de la BD del servidor MongoDB =&gt; <code>db.getName()</code>  </li>
+<li>Mostrar les operacions que s’estan executant en el servidor =&gt; <code>db.currentOp()</code>  </li>
+<li>Mostrar informació de la base de dades actual =&gt; <code>db.stats()</code>  </li>
+</ul>
+<p><strong class="azul">Operacions sobre col·leccions</strong>  </p>
+<ul>
+<li>Mostrar totes les col·leccions en la base de dades seleccionada =&gt; <code>show collections</code>  </li>
+<li>Crear una col·lecció dins de la base de dades on estiguem situats =&gt; <code>db.createCollection("nom_de_la_col·lecció")</code>  </li>
+</ul>
+<p><strong class="azul">Altres funcions sobre una col·lecció</strong>  <code>db.nom_de_la_col·lecció.XXXXXXX</code>  </p>
+<ul>
+<li>Eliminar la col·lecció =&gt; <code>drop()</code>  </li>
+<li>Formatar l’eixida =&gt; <code>pretty()</code>  </li>
+<li>Comptar de manera precisa el nombre de documents de la col·lecció =&gt; <code>countDocuments()</code> </li>
+<li>Realitzar un recompte per a una estimació ràpida =&gt; <code>estimatedDocumentCount()</code>  </li>
+</ul>
+<p><strong class="azul">Operacions CRUD dins de la col·lecció</strong>  <code>db.nom_de_la_col·lecció.XXXXXXX</code></p>
+<ul>
+<li><strong>Create (crear document/s)</strong> =&gt; <code>insertOne()</code>, <code>insertMany()</code>  </li>
+<li><strong>Read (llegir, buscar document/s)</strong> =&gt; <code>findOne()</code>, <code>find()</code>, <code>group()</code>, <code>sort()</code>, <code>limit()</code>, <code>skip()</code>  </li>
+<li><strong>Update (modificar document/s)</strong> =&gt; <code>updateOne()</code>, <code>updateMany()</code>, <code>replaceOne()</code>  </li>
+<li><strong>Delete (eliminar document/s)</strong> =&gt; <code>deleteOne()</code>, <code>deleteMany()</code>  </li>
+</ul>
+<p><strong class="azul">Operacions avançades</strong>  </p>
+<ul>
+<li>Pipeline o agregació =&gt; <code>aggregation()</code>  </li>
+</ul>
+<h2 id="exercicis"><img alt="✏️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/270f.png" title=":pencil2:" /> Exercicis</h2>
+<h3 id="exercici-2">Exercici 2</h3>
+<p>Sobre la teua Base de Dades <strong>MONGODB</strong> treballarem sobre la col·lecció
+<strong>libro</strong>, la mateixa que hem utilitzat en els exemples. Si no la tens
+creada, executa les sentències del principi de la pregunta <strong>3.8 - Operadors de consulta/ Operadors</strong>. Fes les següents consultes. Copia-les en un únic fitxer de text, de forma numerada. És aquest fitxer el que hauràs de pujar.</p>
+<ol>
+<li>Busca els llibres que tenen més de 500 pàgines. Visualitza el _id, el títol i el número de pàgines.</li>
+<li>Busca els llibres de l'any 2014. Visualitza únicament títol i data.</li>
+<li>Busca els llibres de l'editorial Planeta. Visualitza únicament títol i editorial.</li>
+<li>Busca els llibres de l'editorial Planeta de més de 500 pàgines. Visualitza únicament títol, editorial i pàgines.</li>
+<li>Busca els llibres que no tenen editorial. Visualitza únicament títol i editorial.</li>
+<li>Busca els llibres que en el resum contenen la paraula <strong>caballo</strong>. Visualitza el resum per poder comprovar-ho. Han d'eixir 2 llibres, <strong>Circo máximo</strong> i <strong>Las carreras de Escorpio</strong>.</li>
+<li>
+<p>Utilitzant la funció <strong>aggregate</strong> , trau l'editorial i la mitjana de pàgines d'aquelles editorials que tenen una mitjana de pàgines superior a 500. Eixiran 3 editorials.</p>
+</li>
+<li>
+<p>Incrementar el preu dels llibres de l'editorial Planeta en 2€ (recordeu que per a modificar més d'un document, hem de posar com a tercer paràmetre l'opció <strong>{multi:true}</strong>).</p>
+</li>
+<li>Crear el camp editorial amb el valor nul, per a tots aquells documents que no tinguen el camp editorial.</li>
+<li>Fer l'operació inversa: eliminar el camp editorial per a tots aquells que el tinguen nul.</li>
+<li>Traure l'any del llibre, a partir de la <strong>fecha</strong> (serà un camp calculat anomenat <strong>año</strong>).</li>
+<li>Aprofita el camp anterior per a traure els llibres estrictament anteriors a l'any 2013. Visualitza <strong>titulo</strong> , <strong>fecha</strong> i <strong>año</strong>.</li>
+</ol>
+<h3 id="exercici-3">Exercici 3</h3>
+<p>Aquest exercici l'has de realitzar sobre la teua BD de MongoDB (col·lecció <strong>pelicula</strong>).</p>
+<pre><code>title : Fight Club
+writer : Chuck Palahniuk
+year : 1999
+actors : [
+  Brad Pitt
+  Edward Norton ]
+
+
+title : Pulp Fiction
+writer : Quentin Tarantino
+year : 1994
+actors : [
+  John Travolta
+  Uma Thurman ]
+
+
+
+title : Inglorious Basterds
+writer : Quentin Tarantino
+year : 2009
+actors : [
+  Brad Pitt
+  Diane Kruger
+  Eli Roth ]
+
+
+title : The Hobbit: An Unexpected Journey
+writer : J.R.R. Tolkein
+year : 2012
+franchise : The Hobbit
+
+
+title : The Hobbit: The Desolation of Smaug
+writer : J.R.R. Tolkein
+year : 2013
+franchise : The Hobbit
+
+
+title : The Hobbit: The Battle of the Five Armies
+writer : J.R.R. Tolkein
+year : 2012
+franchise : The Hobbit
+synopsis : Bilbo y compañía se ven obligados a participar en una guerra contra una serie de combatientes y evitar que la Lonely Mountain caiga en manos de una oscuridad creciente.
+
+
+
+title : Pee Wee Herman's Big Adventure
+
+
+title : Avatar
+</code></pre>
+<ol>
+<li>Inserir tots els documents anteriors. Ha de ser <strong>obligatòriament</strong> amb una única sentència, per a la qual cosa pots utilitzar variables, una per a cada document.</li>
+<li>Consultar tots els documents</li>
+<li>Obtenir els documents amb <strong>writer</strong> igual a <strong>"Quentin Tarantino"</strong></li>
+<li>Obtenir els documents amb <strong>actors</strong> que incloguen a <strong>"Brad Pitt"</strong></li>
+<li>Obtenir els documents amb <strong>franchise</strong> igual a <strong>"The Hobbit"</strong></li>
+<li>Obtenir totes les pel·lícules dels anys 90.</li>
+<li>Obtenir les pel·lícules estrenades entre l'any 2000 i el 2010.</li>
+<li>Agregar sinopsis a <strong>"The Hobbit: An Unexpected Journey"</strong> : <ul>
+<li>"Un hobbit reacio, Bilbo Baggins, se dirige a Lonely Mountain con un enérgico grupo de enanos para reclamar su hogar en la montaña, y el oro que contiene, del dragón Smaug".</li>
+</ul>
+</li>
+<li>Agregar sinopsis a <strong>"The Hobbit: The Desolation of Smaug</strong> ": <ul>
+<li>"Los enanos, junto con Bilbo Baggins y Gandalf the Grey, continúan su búsqueda para recuperar Erebor, su tierra natal, de manos de Smaug. Bilbo Baggins está en posesión de un anillo misterioso y mágico".</li>
+</ul>
+</li>
+<li>Agregar un actor anomenat <strong>"Samuel L. Jackson"</strong> a la pel·lícula "Pulp Fiction"</li>
+<li>Trobar les pel·lícules que en la sinopsis continguen la paraula <strong>"Bilbo"</strong></li>
+<li>Trobar les pel·lícules que en la sinopsis continguen la paraula <strong>"Gandalf"</strong></li>
+<li>Trobar les pel·lícules que en la sinopsis continguen la paraula <strong>"Bilbo"</strong> i no la paraula <strong>"Gandalf"</strong>. S'aconsella utilitzar l'operador <strong>$and</strong></li>
+<li>Trobar les pel·lícules que en la sinopsis continguen la paraula <strong>"enanos"</strong> o <strong>"hobbit"</strong></li>
+<li>Trobar les pel·lícules que en la sinopsis continguen les paraules <strong>"oro"</strong> i <strong>"dragón"</strong></li>
+<li>Eliminar la pel·lícula <strong>"Pee Wee Herman's Big Adventure"</strong></li>
+<li>Eliminar la pel·lícula <strong>"Avatar"</strong></li>
+</ol>
+<p>Llicenciat sota la  <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Llicència Creative Commons Reconeixement NoComercial
+SenseObraDerivada 4.0</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2__bases_de_dades_clauvalor/" class="btn btn-neutral float-left" title="2 - Bases de Dades Clau-Valor (Redis)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../4_relaciones_mongo/" class="btn btn-neutral float-right" title="4 - Relacions en MongoDB">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2__bases_de_dades_clauvalor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../4_relaciones_mongo/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

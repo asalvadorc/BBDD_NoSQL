@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://asalvadorc.github.io/BBDD_NoSQL/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/BBDD_NoSQL/1__introducci/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/BBDD_NoSQL/2__bases_de_dades_clauvalor/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/BBDD_NoSQL/3__mongodb/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/BBDD_NoSQL/4_relaciones_mongo/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/BBDD_NoSQL/5_actividad_mongo/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/BBDD_NoSQL/exercicis_mongo/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+    <url>
+         <loc>https://asalvadorc.github.io/BBDD_NoSQL/exercicis_redis/</loc>
+         <lastmod>2025-05-22</lastmod>
+    </url>
+</urlset>
