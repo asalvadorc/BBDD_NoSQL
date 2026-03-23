@@ -1,4 +1,3 @@
-site_url : https://asalvadorc.github.io/BBDD_NoSQL
 site_name: BBDD - Bases de Dades
 
 extra_css:
@@ -27,8 +26,8 @@ nav:
 
 - BD NoSQL:
   - 1 - Introducció: 1__introducci.md
-- REDIS:  
-  - 2 - Bases de Dades Clau-Valor (Redis): 2__bases_de_dades_clauvalor.md
+##- REDIS:  
+  ##- 2 - Bases de Dades Clau-Valor (Redis): 2__bases_de_dades_clauvalor.md
   ## - Exercicis: exercicis_redis.md
 - MONGO:  
   - 3 - MongoDB : 3__mongodb.md
