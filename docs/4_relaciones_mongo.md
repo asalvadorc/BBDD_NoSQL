@@ -74,7 +74,7 @@ Estas referencias pueden ser de dos tipos; referencias manuales o por DBRefs.
 
 ---
 
-!!!Tip ""Regla general" 
+!!!Tip "Regla general" 
     - **Si los datos relacionados son de uso frecuente y pequeños →** Usa documentos embebidos.  
     - **Si los datos crecen mucho o se usan en varias colecciones →** Usa referencias con `$lookup`.  
 
