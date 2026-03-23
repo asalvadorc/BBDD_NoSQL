@@ -2401,6 +2401,8 @@ col·locar skip, limit i sort.
 
 ## 3.9 - Agregació
 
+![alt text](image-1.png)
+
 L'agregació ens permetrà fer consultes molt avançades. És un procés un poc
 complicat però molt potent. Ens donarà una potència quasi com la del SQL quan
 comencem a utilitzar el GROUP BY i HAVING.
@@ -2412,10 +2414,25 @@ un conjunt de documents i es faran "operacions" sobre ells seqüencialment en
 blocs: filtrat, projecció, agrupacions, ordenació, limitació i _skipping_
 (saltar alguns).
 
-La sintaxi serà:
+    db.collectionName.aggregate(pipeline, options),
 
-    db.col_leccio1.aggregate ( _operador $matc_ h ,  _operador $projec_ t ,
-    _operador $group_ , _operador $sort_ , _operador $limit_ , _operador $skip_ )
+donde:  
+- collectionName - es el nombre de una colección,  
+- pipeline - es un array que contiene las etapas de agregación,  
+- options - parámetros opcionales para la agregación   
+
+    pipeline=  
+      _operador $match_,
+      _operador $project_,
+      _operador $group_ , 
+      _operador $sort_ , 
+      _operador $limit_ , 
+      _operador $skip_ 
+        
+Cada paràmetre del aggregate, és a dir, cada operador tindrà format JSON, i per tant sempre serà de l'estil:
+
+
+    { $operador : { clau:valor , ... } }
 
 L'ordre dels operadors pot canviar, però hem de tenir en compte que els
 comandos s'executen en el ordre en què els posem (d'esquerra a dreta). Així,
@@ -2423,10 +2440,7 @@ per exemple, pot ser molt convenient posar el primer operador el $match, que
 és el de seleccionar documents, així les altres operacions es faran sobre
 menys documents i aniran més ràpides.
 
-Cada paràmetre del aggregate, és a dir, cada operador tindrà format JSON, i
-per tant sempre serà de l'estil:
 
-    { $operador : { clau:valor , ... } }
 
 #### $match {.azul}
 
