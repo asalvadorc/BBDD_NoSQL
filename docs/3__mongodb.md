@@ -54,7 +54,7 @@ anomenada **Llibres** :
       }
 
 Observeu com els objectes no tenen per què tenir la mateixa estructura. La
-manera d'accedir al nom d'un autor seria aquesta: _objecte.autor.nom_
+manera d'accedir al nom d'un autor seria aquesta: **_objecte.autor.nom_**
 
 Una manera alternativa de guardar la informació, com havíem comentat abans
 seria organitzar per autors, amb els seus llibres. D'aquesta manera podríem
@@ -107,12 +107,15 @@ Amb JSON podrem representar:
   * **Objectes** , que és una col·lecció de membres, cadascú dels quals pot ser una parella clau valor, o altres objectes (fins i tot arrays): es representen entre claus, i amb els elements separats per comes: **{ "nom1" : "valor1" , "nom2": valor2 , valor 3 , ... }**
   * **Arrays** , que són llistes d'elements. Els elements no tenen per què tenir la mateixa estructura, però nosaltres intentarem que sí que la tinguen per coherència. Cada element pot ser un valor , una parella clau valor, un objecte o un array.
 
-Veje'm algun exemples:
+**Veje'm algun exemples**:
+
+Objecte, que té 5 membres, tots ells parelles clau-valor.
 
     { "p1" : 2 , "p2" : 4 , "p3" : 6 , "p4" : 8 , "p5" : 10 }
 
-en aquest cas tenim un objecte, l'arrel, que té 5 membres, tots ells parelles
-clau-valor.
+Objecte, també amb 5 membres que són parelles clau-valor.
+Observeu com la clau sempre la posem entre cometes, i el valor quan és un
+string també, però quan és numèric, no.
 
     {  
       "num": 1 ,  
@@ -122,9 +125,7 @@ clau-valor.
       "sou": 1000.0  
     }
 
-ara un objecte, l'arrel, també amb 5 membres que són parelles clau-valor.
-Observeu com la clau sempre la posem entre cometes, i el valor quan és un
-string també, però quan és numèric, no.
+Objecte, que consta d'un únic objecte, **empleat** , el qual consta de 5 membres clau-valor.
 
     { "empleat" :  
       { "num": 1 ,  
@@ -135,24 +136,21 @@ string també, però quan és numèric, no.
       }  
     }
 
-en aquest cas tenim un objecte, l'arrel que consta d'un únic objecte,
-**empleat** , el qual consta de 5 membres clau-valor.
 
-Mirem ara un exemple amb un array:
+Mirem ara un exemple amb un array: on tenim l'element arrel que consta d'un únic objecte, **notes**, que és un array.
 
     { "notes" :  
       [ 5 , 7 , 8 , 7 ]  
     }
 
-on tenim l'element arrel que consta d'un únic membre, **notes**, que és un array.
+
 
 També seria correcte d'aquesta manera, per veure que l'element arrel no té
 perquè ser un objecte, sinó també un array
 
     [ 5 , 7 , 8 , 7 ]
 
-I ara un més complet amb la mateixa estructura que el fitxer XML que havíem
-vist en la pregunta 4. Tindrem un objecte arrel, amb només un objecte,
+I ara un més complet. Tindrem un objecte arrel, amb només un objecte,
 **empresa** , que té un únic element **empleat** que és un array amb 4
 elements, cadascun dels empleats:
 
@@ -198,23 +196,44 @@ diferents punts (en el moment de fer els apunts es consulta en l'adreça
     [  
       {"ocupacion":  
         [  
-          {"id":"01","punto":"UJI -
-          FCHS","puestos":27,"ocupados":12,"latitud":"39.99533","longitud":"-0.06999",
-          "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
-          {"id":"02","punto":"ESTACIÓN DE FERROCARRIL Y
-          AUTOBUSES","puestos":24,"ocupados":7,"latitud":"39.98765","longitud":"-0.05281",
-          "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
-          {"id":"03","punto":"PLAZA DE
-          PESCADERÍA","puestos":28,"ocupados":4,"latitud":"39.98580","longitud":"-0.03798",
-          "porcentajeAltaOcupacion":"80","porcentajeBajaOcupacion":"20"},  
+          {
+          "id":"01",
+          "punto":"UJI - FCHS",
+          "puestos":27,
+          "ocupados":12,
+          "latitud":"39.99533",
+          "longitud":"-0.06999", 
+          "porcentajeAltaOcupacion":"80",
+          "porcentajeBajaOcupacion":"20"
+          },  
+          {
+          "id":"02",
+          "punto":"ESTACIÓN DE FERROCARRIL Y AUTOBUSES",
+          "puestos":24,
+          "ocupados":7,
+          "latitud":"39.98765",
+          "longitud":"-0.05281",
+          "porcentajeAltaOcupacion":"80",
+          "porcentajeBajaOcupacion":"20"
+          },  
+          {
+          "id":"03",
+          "punto":"PLAZA DE PESCADERÍA",
+          "puestos":28,
+          "ocupados":4,
+          "latitud":"39.98580",
+          "longitud":"-0.03798",
+          "porcentajeAltaOcupacion":"80",
+          "porcentajeBajaOcupacion":"20"
+          },  
           ...  
         ]  
       }  
     ]
 
 Com podeu comprovar, l'arrel no és un objecte, sinó un **Array**. En l'array
-només ens interessa el primer element que és un objecte amb un únic membre,
-**ocupacion**(en l'exemple no hi ha més elements, però en poden haver més en
+només ens interessa el primer element que és un objecte amb un únic membre, 
+**ocupacion** (en l'exemple no hi ha més elements, però en poden haver més en
 un moment determinat, quan volen fer avisos). I **ocupacion és un array** ,
 amb **un objecte per cada estació de bicicas** , amb les parelles clau valor
 **id** , **punto** , **puestos** (les bicicletes que caben), **ocupados**
@@ -241,60 +260,6 @@ amb **un objecte per cada estació de bicicas** , amb les parelles clau valor
 
       ![](T3_5_1_1.png)
 
-Un altre exemple. Un WebService de GeoNames (una Base de Dade geogràfica
-gratuïta i accessible a través d'Internet) ens proporciona informació dels
-llocs que troba dins d'un rectangle delimitat per un latitud al nord i al sud,
-i una longitud a l'esti a l'oest (en l'exemple: nord 40.01, sud 39.9, est 0.1
-i oest -0.1). Per exemple,
-[http://api.geonames.org/citiesJSON?north=40.01&south=39.99&east=0.01&west=-0.01&lang=ES&username=demo](https://maps.googleapis.com/maps/api/geocode/json?latlng=40,0)
-torna el següent:
-
-    
-    
-    {
-      "geonames": [
-        {
-          "lng": -0.04935,
-          "geonameId": 2519752,
-          "countrycode": "ES",
-          "name": "Castelló de la Plana",
-          "fclName": "city, village,...",
-          "toponymName": "Castelló de la Plana",
-          "fcodeName": "seat of a second-order administrative division",
-          "wikipedia": "en.wikipedia.org/wiki/Castell%C3%B3n_de_la_Plana",
-          "lat": 39.98567,
-          "fcl": "P",
-          "population": 180005,
-          "fcode": "PPLA2"
-        },
-        {
-          "lng": -0.06313,
-          "geonameId": 2521909,
-          "countrycode": "ES",
-          "name": "Almazora",
-          "fclName": "city, village,...",
-          "toponymName": "Almassora",
-          "fcodeName": "populated place",
-          "wikipedia": "en.wikipedia.org/wiki/Almassora",
-          "lat": 39.94729,
-          "fcl": "P",
-          "population": 24963,
-          "fcode": "PPL"
-        },
-        ...
-        ]
-    }
-
-A partir de l'arrel (que ara sí que és un objecte), tenim un membre:
-**geonames**, que és un array (un element per cada "lloc" trobat), on cada
-element té informació diversa, com el nom del lloc, les coordenades, la
-població, ...
-
-!!!Note "Nota"
-    De fa uns mesos que Google limita el servei anterior, i ha de ser amb un
-    usuari validat. No valdrà la pena, per al poc profit que li trauríem. Mostrem
-    en què consisteix el servei únicament a nivell il·lustratiu
-
 ## 3.2 - Instal·lació de MongoDB
 
 Podrem instal·lar MongoDB en qualsevol plataforma. I fins i tot sense tenir
@@ -314,9 +279,7 @@ podem fer, com veurem i remarcarem a continuació.
 
 1- De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/community>)** anem al menú **Products - > Comunity Edition ->Comunity Server**
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions. I millor triar
-el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient. En
-el cas d'**Ubuntu 22.04 de 64 bits** , aquest fitxer és:
-**<https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu2204-8.0.5.tgz>**. Però recordeu que us heu d'assegurar de la versió.  
+el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient.
 
 
 2- Descomprimirem aquest fitxer on vulguem, i ja estarà feta la
@@ -328,44 +291,37 @@ instal·lació bàsica.
         mkdir data  
         mkdir data/db
 
-4- Arranquem el servidor:
-
-      <directori arrel Mongo> /bin/mongod
+4- Arranquem el servidor en el directori arrel (carpeta d'instal·lació):
       
       ./bin/mongod --dbpath ./data/db
 
 
-
-La següent imatge il·lustra aquesta segona opció. Està per a una versió
-anterior de MongoDB, però és totalment equivalent:
-
-![](T8_3_1_1.png)
+![alt text](image-3.png)
 
 
 !!! note "Nota"
     Una vegada en marxa el servidor, no hem de tancar aquesta terminal, ja que pararíem el servidor.
 
-
+<a id="instalacionl"></a>
 **Pas 2. Instal·lació del client MongoShell (Linux)**{.azul}
 
 1- De la pàgina de **MongoDB (<https://www.mongodb.com/try/download/shell>)** anem al menú **Products - > Tools ->MongoDB Shell**
 i ens baixem la versió apropiada per al nostre Sistema Operatiu. Observeu com en el cas de Linux hi ha moltes versions, per a moltes distribucions, i millor triar
 el paquet **tgz**, ja que amb descomprimir el fitxer serà suficient. En
-el cas d'**Ubuntu 22.04 de 64 bits** , triarem l'opió genèrica **Linux 64** ja que és la opció que té el paquet **tgz**, i aquest fitxer és:
-**<https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz>**. Però recordeu que us heu d'assegurar de la versió.
+el cas d'**Ubuntu 22.04 de 64 bits** , triarem l'opió genèrica **Linux 64** ja que és la opció que té el paquet **tgz**.
 
 2- Descomprimirem aquest fitxer on vulguem, i ja estarà feta la
 instal·lació bàsica.
 
 3- Per a connectar un client, obrim una segona terminal i
-executem el client **mongosh** :
+executem el client **mongosh** en el directori arrel (carpeta d'instal·lació):
 
 
-    <directori arrel Mongosh>/bin/mongosh
- 
     ./bin/mongosh
 
-![](T8_3_1_2.png)
+![alt text](image-4.png)
+
+
 
 
 ### 🖥️Instal·lació en Windows
@@ -393,56 +349,98 @@ Hauria d'aparèixer la imatge següent
 !!!Note "Nota"
     Si vas instal·lar MongoDB amb el MongoDB MSI Installer, normalment el servei ja estarà instal·lat i no caldrà executar-lo.
 
+<a id="instalacionw"></a>
 **Pas 2. Instal·lació del client MongoShell (Windows)**{.azul}
 
 1- Per a connectar-nos com a clients, ho haurem de fer des d'una altra terminal,
 amb **mongosh.exe**, que és la interfície de línia d'ordres (CLI) oficial de MongoDB, utilitzada per interactuar amb la base de dades mitjançant ordres en JavaScript:
 
-Ens baixem la versió apropiada de MongoDB per a Windows
+Ens baixem la versió apropiada de MongoDB per a Windows <https://www.mongodb.com/try/download/shell>
 
-<https://downloads.mongodb.com/compass/mongosh-2.4.0-linux-x64.tgz>
+Cuando instal·les mongosh (MongoDB Shell) en Windows, el sistema l’afegeix automàticament al PATH. Això significa que podràs executar-lo des de qualsevol terminal i des de qualsevol carpeta:
+
+    C:\> mongosh
 
 !!!Tip "Mongo Compass"
     També us podeu descarregar la versió **MongoDB Compass**, que és l'eina gràfica oficial de MongoDB que permet visualitzar, explorar i administrar bases de dades de MongoDB sense necessitat d'utilitzar la línia de comandos.
 
     <https://downloads.mongodb.com/compass/mongodb-compass-1.45.3-win32-x64.exe>
 
+### 🐳 Instal·lació amb Docker
 
-<!--
-### 3.2.1 - Connexió al servidor de l'Institut
+1- Crear carpeta del projecte
 
-Quan hem utilitzat el client, hem executat el programa **mongo** sense posar-
-li res més. Per defecte s'ha connectat al servidor que tenim en la mateixa
-màquina.
+    mkdir mongodb-docker
+    cd mongodb-docker
 
-Però en realitat li podem especificar l'adreça on està el servidor al qual
-volem connectar. En concret, l'adreça del servidor de dades de l'Institut en
-el qual també tenim instal·lat MongoDB:
+2- Crear arxiu docker-compose.yml
 
-   
-    mongosh  89.36.214.106
+    version: '3.8'
 
-Podem connectar, però no podrem fer cap operació, perquè està habilitada
-l'autenticació per a previndre atacs, cosa que no tenim en el servidor que hem
-instal·lat cadascú en la seua màquina.
+    services:
+        mongodb:
+            image: mongo:7
+            container_name: mongodb
+            restart: always
+            ports:
+                - "27017:27017"
+            environment:
+                MONGO_INITDB_ROOT_USERNAME: admin
+                MONGO_INITDB_ROOT_PASSWORD: admin
+            volumes:
+                - mongo_data:/data/db
 
-Aleshores, si intentem fer qualsevol operació, ens donarà error perquè no
-estem autenticats:
+    volumes:
+        mongo_data:
 
-![](T8_3_1_1_1.png)
+3- Alçar el contenidor    
 
-La manera d'autenticar serà utilitzant el comando **db.auth("_usuari"_ ,
-"_contrasenya"_)**. I en connectarem a un usuari que té permís per a utilitzar
-la BD test:
+    docker compose up -d
 
-  * Usuari: **ad**
-  * Contrasenya: **Ad_ieselcamina$**
+4- Verificar que funciona
 
-A partir d'eixe moment ja podrem utilitzar-lo sense problemes:
+    docker ps
 
-![](T8_3_1_1_2.png)
 
--->
+5- Connectar-se a MongoDB. Ací tens dues opcions:
+
+**Opció 1**: Executar mongosh dins del contenidor (mongosh ja està instal·lat dins).
+
+    docker exec -it mongodb mongosh -u admin -p admin
+
+**Opció 2**: Executar mongosh des de fora del contenidor: 
+
+- En Windows:
+    - Instal·lar mongosh (si no el tens):
+     
+        - [Anar a Instal·lació del client MongoShell (Windows)](#instalacionw) 
+
+    - Connectar-se:
+
+        **Sin autenticación**: puedes entrar pero te bloquea operaciones sensibles.
+
+            mongosh "mongodb://localhost:27017"
+
+        **Con autenticación**:
+
+            mongosh "mongodb://admin:admin@host.docker.internal:27017/?authSource=admin"
+
+- En linux:
+
+    - Instal·lar mongosh (si no el tens):
+
+        - [Anar a Instal·lació del client MongoShell (Linux)](#instalacionl) 
+
+    - Connectar-se des de directori arrel Mongosh:
+
+        **Sin autenticación**: puedes entrar pero te bloquea operaciones sensibles.
+
+            ./bin/mongosh "mongodb://localhost:27017"
+
+        **Con autenticación**:
+
+            ./bin/mongosh "mongodb://admin:admin@localhost:27017"    
+
 
 ## 3.3 - Funcionament de MongoDB
 
@@ -464,8 +462,9 @@ Per a provar el seu funcionament, anem a fer alguns comandos:
 
 ## 3.4 - Utilització de variables
 
-Com comentàvem el que més utilitzarem del llenguatge **Javascript** és la
-utilització de variables, que ens pot ser molt útil en algunes ocasions.
+Especialment interessant són les variables que poden contenir un document
+JSON.
+
 Podrem utilitzar-les durant la sessió, però evidentment no perduraran d'una
 sessió a l'altra.
 
@@ -475,8 +474,6 @@ signe igual, i a continuació el valor de la variable, que pot ser una
 constant, o una expressió utilitzant constants, operadors, altres variables,
 funcions de Javascript, ...
 
-Especialment interessant són les variables que poden contenir un document
-JSON.
 
     Per exemple:
       > a = 30  
@@ -665,8 +662,8 @@ funcionarà perfectament :
     }
 
 Observeu com aquesta estructura que ha quedat tan clara, segurament en una
-Base de Dades Relacional ens hauria tocat guardar en 3 taules: la de persones,
-la d'adreces i la de telèfons.
+Base de Dades Relacional ens hauria tocat guardar en 3 taules: **_la de persones_**,
+**_la d'adreces_** i **_la de telèfons_**.
 
 Per a accedir als elements d'un document posàvem el punt. Doncs el mateix per
 als elements d'un document dins d'un document. I també podem accedir als
@@ -703,13 +700,27 @@ En aquest punt anem a veure les operacions més bàsiques, per a poder treballar
 sobre exemples pràctics, i així disposar ja d'unes dades inicials per a
 practicar.
 
+### Col·lecció
+
+Hi ha dues maneres de crear una col·lecció:
+
+- Utilitzant createCollection():
+
+        db.createCollection("posts")
+
+- Amb el comandament insert:
+
+        db.posts.insertOne(object)
+
+Açò crearà la col·lecció "posts" si encara no existix.  
+
 ### Creació: insert
 
 MongoDB proporciona els  mètodes següents per inserir documents en una col·lecció:
   
-  - db.collection.**insertOne()**
+  - db.collection.**insertOne()**, per insetar un solo document.
 
-  - db.collection.**insertMany()**
+  - db.collection.**insertMany()**, per insertar un conjunt de documents.
 
 ![](T8_insert.png)
 
@@ -845,6 +856,75 @@ En tots els casos podem comprovar que és cert el que veníem afirmant, que ha
 creat automàticament l'element **_id** per a cada document guardat.
 Evidentment, cadascú de nosaltres tindrà una valors diferents.
 
+#### Operadors d’element
+
+S’utilitzen per a validar l’estructura o el tipus de les dades dins dels documents.
+
+* **$exists**: Comprova si un camp existix o no.
+* **$type**: Comprova el tipus de dada d’un camp.
+
+**$exists**{.azul}
+
+Servirà per a saber els documents que tenen un determinat camp.
+
+    clau : { $exists : _boolean_ }
+
+Depenet del valor _boolean_ , el funcionament serà:
+
+  * **true** : torna els documents en els quals existeix el camp, encara que el seu valor siga nul
+  * **false** : torna els documents que no tenen el camp.
+
+Anem a traure els llibres que tenen el camp **paginas** :
+
+    > db.libro.find( { paginas: {$exists:true} } , {titulo:1 , paginas:1} )  
+
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null }
+
+Observeu com ens apareix també l'ultim llibre, que té el camp **paginas** amb
+el valor **nul**. En canvi si haguérem fet la consulta preguntant pels que són
+diferents de nul, no apareixeria aquest últim llibre:
+
+    > db.libro.find( { paginas: {$ne:null} } , {titulo:1 , paginas:1} )  
+
+    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
+    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
+    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
+    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
+    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }
+
+I si posem **false** al valor en el **$exists** , únicament ens apareixerà el
+llibre que no té el camp:
+
+    > db.libro.find( { paginas: {$exists:false} } , {titulo:1 , paginas:1} )  
+
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }
+
+I per la mateixa raó que abans, si traiem els que tenen **paginas** a null,
+ens eixirà tant qui no té el camp, com qui el té però amb valor nul:
+
+    > db.libro.find( { paginas: null } , {titulo:1 , paginas:1} )  
+
+    { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
+    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null}
+
+Per tant, per a segons quines coses, ens interessa l'operador **$exists** , en
+compte de jugar amb el nul.
+
+**$type**{.azul}
+
+Comprova el tipus de dada d’un camp.
+
+Selecciona els documents on el camp paginas és de tipus enter
+
+    db.libro.find(
+    { paginas: { $type: "int" } },
+    { titulo: 1, paginas: 1 }
+    )
 
 ### Eliminació: delete
 
@@ -1816,21 +1896,30 @@ preu de 21.75 €, mostrant tot excepte el _id i el resum
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }
 
 Anem a mirar ara operadors que ens serviran per fer millor les consultes.
-#### Operadors de comparació
+#### Operadors de comparació i lògics
 
 Fins ara en totes les condicions hem utilitzat la igualtat, si un determinat
 camp era igual a un determinat valor. Però hi ha infinitat de consultes en les
 quals voldrem altres operacions de comparació: major, major o igual, menor,
 ...
 
-Aquestos són els operadors de comparació:
+Comprarció:
 
-  * **$lt** (_less than_) **menor**
-  * **$lte**(_less than or equal_)**menor o igual**
-  * **$gt**(_gretaer than_) major
-  * **$gte** (_gretaer than or equal_) **major o igual**
-  * **$ne** (_not equal_) **distint**
-  * **$eq** (_equal_) **igual** (però aquest quasi que no caldria, perquè en no posar res es refereix a la igualtat com fins ara)
+* **$eq**: Els valors són iguals
+* **$ne**: Els valors no són iguals
+* **$gt**: El valor és major que un altre valor
+* **$gte**: El valor és major o igual que un altre valor
+* **$lt**: El valor és menor que un altre valor
+* **$lte**: El valor és menor o igual que un altre valor
+* **$in**: El valor coincidix dins d’un array
+
+Lògics:
+
+* **$and**: Retorna els documents on ambdues consultes coincidixen
+* **$or**: Retorna els documents on alguna de les consultes coincidix
+* **$nor**: Retorna els documents on cap de les consultes coincidix
+* **$not**: Retorna els documents on la consulta no coincidix
+
 
 La sintaxi per a la seua utilització és, com sempre, acoplar-se a la sintaxi
 JSON:
@@ -1935,58 +2024,7 @@ funcionament:
     { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }  
 
 
- **$exists**{.azul}
-
-Servirà per a saber els documents que tenen un determinat camp
-
-    clau : { $exists : _boolean_ }
-
-Depenet del valor _boolean_ , el funcionament serà:
-
-  * **true** : torna els documents en els quals existeix el camp, encara que el seu valor siga nul
-  * **false** : torna els documents que no tenen el camp.
-
-Anem a traure els llibres que tenen el camp **paginas** :
-
-    > db.libro.find( { paginas: {$exists:true} } , {titulo:1 , paginas:1} )  
-
-    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
-    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
-    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
-    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
-    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }  
-    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null }
-
-Observeu com ens apareix també l'ultim llibre, que té el camp **paginas** amb
-el valor **nul**. En canvi si haguérem fet la consulta preguntant pels que són
-diferents de nul, no apareixeria aquest últim llibre:
-
-    > db.libro.find( { paginas: {$ne:null} } , {titulo:1 , paginas:1} )  
-
-    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "paginas" : 1100 }  
-    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "paginas" : 480 }  
-    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "paginas" : 793 }  
-    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "paginas" : 544 }  
-    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "paginas" : 290 }
-
-I si posem **false** al valor en el **$exists** , únicament ens apareixerà el
-llibre que no té el camp:
-
-    > db.libro.find( { paginas: {$exists:false} } , {titulo:1 , paginas:1} )  
-
-    { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }
-
-I per la mateixa raó que abans, si traiem els que tenen **paginas** a null,
-ens eixirà tant qui no té el camp, com qui el té però amb valor nul:
-
-    > db.libro.find( { paginas: null } , {titulo:1 , paginas:1} )  
-
-    { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
-    { "_id" : "9788468738895", "titulo" : "Las reglas del juego", "paginas" : null}
-
-Per tant, per a segons quines coses, ens interessa l'operador **$exists** , en
-compte de jugar amb el nul.
-
+ 
 #### Expressions regulars
 
 Mongo accepta les expressions regulars de forma nativa, cosa que dóna molta

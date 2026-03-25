@@ -86,8 +86,7 @@ En **MongoDB**, la agregación con **$lookup** permite realizar joins entre cole
 Es útil cuando seguimos un enfoque de **modelado de datos con referencias**, donde almacenamos solo el **ObjectId** en lugar de los documentos embebidos.
 
 !!!Note "Sintaxis"
-  ```
-      {   
+        {   
         $lookup: {       
           from: <collection_to_join>,     
           localField: <field_from_the_input_documents>,       
@@ -95,7 +94,7 @@ Es útil cuando seguimos un enfoque de **modelado de datos con referencias**, do
           as: <output_array_field>     
         }
       }
-  ```
+  
 **<u>Ejemplo 1</u>:** Relacionar la coleción Usuarios con sus Pedidos
 
 * **Colección `usuarios`**  
