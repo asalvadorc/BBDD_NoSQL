@@ -1903,7 +1903,7 @@ camp era igual a un determinat valor. Però hi ha infinitat de consultes en les
 quals voldrem altres operacions de comparació: major, major o igual, menor,
 ...
 
-Comprarció:
+Comparació:
 
 * **$eq**: Els valors són iguals
 * **$ne**: Els valors no són iguals
@@ -1911,7 +1911,7 @@ Comprarció:
 * **$gte**: El valor és major o igual que un altre valor
 * **$lt**: El valor és menor que un altre valor
 * **$lte**: El valor és menor o igual que un altre valor
-* **$in**: El valor coincidix dins d’un array
+
 
 Lògics:
 
@@ -1958,36 +1958,7 @@ data amb la qual volem comparar l'haurem de tenir en forma de data:
     { "_id" : "9788408113331", "fecha" : ISODate("2013-06-04T00:00:00Z") }  
     { "_id" : "9788468738895", "fecha" : ISODate("2014-02-06T00:00:00Z") }
 
- **$in**{.azul}
-
-Servirà per a comprovar si el valor d'un camp està entre els d'una llista,
-proporcionada com un array. La sitaxi és:
-
-    clau : { $in : [valor1 , valor2 , ... , valorN] }
-
-I ací tenim un exemple, els llibre de les editorials Planeta i Debolsillo:
-
-    > db.libro.find( { editorial: {$in : ["Planeta" , "Debolsillo"]} } , {titulo: , editorial:1} )  
-  
-    { "_id" : "9788408117117", "titulo" : "Circo Máximo", "editorial" : "Planeta"}  
-    { "_id" : "9788499088075", "titulo" : "La ladrona de libros", "editorial" : "Debolsillo" }  
-    { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta" }  
-  
- **$nin**{.azul}
-
-És el contrari, traura els que no estan en la llista.
-
-    > db.libro.find( { editorial: {$nin : ["Planeta" , "Debolsillo"]} } , {titulo:1 , editorial:1} )  
-
-    { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes" }  
-    { "_id" : "9788496208919", "titulo" : "Juego de tronos: Canción de hielo y fuego 1", "editorial" : "Gigamesh" }  
-    { "_id" : "9788415140054", "titulo" : "La princesa de hielo", "editorial" : "Embolsillo" }  
-    { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
-
-Observeu com també trau els llibres que no tenen editorial, com és el cas de
-l'últim llibre, Las reglas del juego
-
- **$or**{.azul}
+  **$or**{.azul}
 
 L'operador anterior, **$in** , ja feia una espècie de OR, però sempre sobre el
 mateix camp. Si l'operació OR la volem fer sobre camps distints, haurem
@@ -2075,7 +2046,7 @@ exactament igual que el que hem fet fins ara.
 Mirem-ho en un exemple. Anem a crear dos documents que tinguen un array
 cadascun, per exemple de colors. El creem en una col·lecció nova, anomenada
 **colorins** , en dos documents amb el mateix camp de tipus array, **color** ,
-però amb dades diferents********:
+però amb dades diferents:
 
     > db.colorins.insert({color: ["roig","blau","groc"]})  
 
@@ -2098,11 +2069,26 @@ camp de tipus string, per exemple:
     { "_id" : ObjectId("56e14398f6663c8169030e0a"), "color" : [ "negre", "blanc", "roig" ] }
 
 
-També podem utilitzar qualsevol dels operadors vistos fins el moment, com per
-exemple l'operador **$in** , que mirarà els documents que tenen algun dels
-colors que s'especifica a continuació:
+També podem utilitzar el següents operadors:
 
-    > db.colorins.find({color: {$in : ["groc","lila"]} })  
+**$in**{.azul}
+
+Servirà per a comprovar si el valor d'un camp està entre els d'una llista,
+proporcionada com un array. La sitaxi és:
+
+    clau : { $in : [valor1 , valor2 , ... , valorN] }
+
+I ací tenim un exemple, els llibre de les editorials Planeta i Debolsillo:
+
+   > db.colorins.find({color: {$in : ["groc","lila"]} })
+
+    { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] } 
+  
+ **$nin**{.azul}
+
+És el contrari, traura els que no estan en la llista.
+
+    > db.colorins.find({color: {$nin : ["negre"]} })
 
     { "_id" : ObjectId("56e1438ff6663c8169030e09"), "color" : [ "roig", "blau", "groc" ] }
 
