@@ -10,7 +10,7 @@ Cada enfoque tiene ventajas y desventajas, según el caso de uso.
 
 ---
 
-## 4.1. Relación con Documentos Embebidos
+## 3.1. Relación con Documentos Embebidos
 Este enfoque **anida los datos relacionados dentro del mismo documento**.  
 Se usa cuando los datos relacionados se consultan frecuentemente juntos y no crecen demasiado en tamaño.
 
@@ -38,7 +38,7 @@ Se usa cuando los datos relacionados se consultan frecuentemente juntos y no cre
 
 ---
 
-## 4.2. Relación con Referencias
+## 3.2. Relación con Referencias
 En este enfoque, los documentos **almacenan solo referencias (IDs) de documentos en otras colecciones**.  
 Se usa cuando los datos son reutilizados en múltiples documentos o crecen mucho en tamaño.  
 Estas referencias pueden ser de dos tipos; referencias manuales o por DBRefs.
@@ -80,7 +80,7 @@ Estas referencias pueden ser de dos tipos; referencias manuales o por DBRefs.
 
 ---
 
-## 4.3. Relaciones en MongoDB con `$lookup`
+## 3.3. Relaciones en MongoDB con `$lookup`
 
 En **MongoDB**, la agregación con **$lookup** permite realizar joins entre colecciones.  
 Es útil cuando seguimos un enfoque de **modelado de datos con referencias**, donde almacenamos solo el **ObjectId** en lugar de los documentos embebidos.
@@ -407,7 +407,7 @@ Cada usuario tiene un array con sus pedidos, pero si queremos hacer un segundo $
 Ahora, cada usuario tiene múltiples documentos, uno por cada pedido, lo que permite realizar otro $lookup con detalles_pedido.
 
 ----
-## :pencil2: Exercici 4
+## :pencil2: Exercici 3
 
 Intenta implementar en MongoDB part de la Base de Dades relacional [**factures**](https://asalvadorc.github.io/BBDD_PostgreSQL_DML/exercicis_de_tot_el_tema/),  concretament, comença per les taules CATEGORIA i ARTICLE, que les hauràs de
 representar com a documents de 2 col·leccions (col·lecció **categoria** i col·lecció **articulo**).

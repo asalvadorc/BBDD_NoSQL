@@ -98,7 +98,7 @@ de l'accés que s'haja de fer a les dades. La millor serà segurament aquella
 que depenent dels accessos que s'hagen de fer, torne la informació de forma
 més ràpida.
 
-## 3.1 - Estructura JSON
+## 2.1 - Estructura JSON
 
 Amb JSON podrem representar:
 
@@ -260,7 +260,7 @@ amb **un objecte per cada estació de bicicas** , amb les parelles clau valor
 
       ![](T3_5_1_1.png)
 
-## 3.2 - Instal·lació de MongoDB
+## 2.2 - Instal·lació de MongoDB
 
 Podrem instal·lar MongoDB en qualsevol plataforma. I fins i tot sense tenir
 permisos d'administrador, com veurem en el cas d'Ubuntu.
@@ -442,7 +442,7 @@ Cuando instal·les mongosh (MongoDB Shell) en Windows, el sistema l’afegeix au
             ./bin/mongosh "mongodb://admin:admin@localhost:27017"    
 
 
-## 3.3 - Funcionament de MongoDB
+## 2.3 - Funcionament de MongoDB
 
 Recordeu que tindrem dues teminals:
 
@@ -460,7 +460,7 @@ Per a provar el seu funcionament, anem a fer alguns comandos:
 - Mostrar el nom de la BD del servidor MongoDB => `db.getName()`  
 - Mostrar totes les col·leccions en la base de dades seleccionada => `show collections`
 
-## 3.4 - Utilització de variables
+## 2.4 - Utilització de variables
 
 Especialment interessant són les variables que poden contenir un document
 JSON.
@@ -528,7 +528,7 @@ restriccions:
   * Els valors són dels tipus que veurem en l'apartat següent.
   * Un document guardat ha de contenir obligatòriament un camp anomenat **_id** , i que contindrà un valor únic en la col·lecció i servirà per a identificar-lo. Si en guardar un document no li hem posat camp **_id** , el generarà automàticament MongoDB.
 
-## 3.5 - Tipus de dades
+## 2.5 - Tipus de dades
 
 Els valors dels elements, és a dir de les parelles clau valor, poden ser d'uns
 quants tipus. Fem un ràpid repàs.
@@ -694,7 +694,7 @@ l'objecte de JSON). És un número long, és a dir que utilitza 24 bytes.
 Farem proves de la seua utilització en la seüent pregunta, en el moment
 d'inserir diferents documents.
 
-## 3.6 - Operacions CRUD Bàsiques
+## 2.6 - Operacions CRUD Bàsiques
 
 En aquest punt anem a veure les operacions més bàsiques, per a poder treballar
 sobre exemples pràctics, i així disposar ja d'unes dades inicials per a
@@ -1034,7 +1034,7 @@ El document de substitució pot tenir camps diferents dels del document original
       { "msg" : "Hola, què tal?" , "titol2" : "Missatge 2" }
     )
 
-## 3.7 - Operadors d'actualització
+## 2.7 - Operadors d'actualització
 
 En el apartat anterior hem vist l'actualització de documents ja
 existents a la Base de Dades. Aquesta actualització la féiem modificant tot el
@@ -1667,7 +1667,7 @@ Ara anem a esborrar amb **$pull** l'element de valor **7.5**
     }
 
 
-## 3.8 - Operadors de consulta
+## 2.8 - Operadors de consulta
 
 En la pregunta anterior hem vist com introduir, eliminar i modificar
 documents. Les consultes de documents han segut molt senzilles, per a
@@ -1763,7 +1763,6 @@ o bonica (_pretty_), posarem aquesta funció al final: **find().pretty()**
     "cognoms" : "Bernat Cantero"  
     }
 
-###  Operadors
 
 Abans de començar aquesta pregunta, anem a agafar unes dades de prova, que
 estan en el fitxer **libros_ejemplo.json**
@@ -1896,7 +1895,7 @@ preu de 21.75 €, mostrant tot excepte el _id i el resum
     { "_id" : "9788401342158", "titulo" : "El juego de Ripper", "editorial" : "Plaza & Janes", "precio" : 21.75 }
 
 Anem a mirar ara operadors que ens serviran per fer millor les consultes.
-#### Operadors de comparació i lògics
+### Operadors de comparació i lògics
 
 Fins ara en totes les condicions hem utilitzat la igualtat, si un determinat
 camp era igual a un determinat valor. Però hi ha infinitat de consultes en les
@@ -1996,7 +1995,7 @@ funcionament:
 
 
  
-#### Expressions regulars
+### Expressions regulars
 
 Mongo accepta les expressions regulars de forma nativa, cosa que dóna molta
 potència per a poder buscar informació diversa.
@@ -2033,7 +2032,7 @@ I ara els llibres que en el resum (**resumen**) tenen la paraula **amiga** o
     { "_id" : "9788415140054", "titulo" : "La princesa de hielo" }  
     { "_id" : "9788468738895", "titulo" : "Las reglas del juego" }
 
-#### Arrays
+### Operadors d'Arrays
 
 Les consultes dins d'arrays de Mongo són molt senzilles.
 
@@ -2238,7 +2237,7 @@ element, és el de la posició 2, i en volem traure 1.
     { "_id" : ObjectId("56e16972aa3c92aaed389da6"), "color" : [ ] }  
     { "_id" : ObjectId("56e16990aa3c92aaed389da7"), "color" : [ "lila" ] }
 
-#### Recerques en objectes
+### Recerques en objectes
 
 Per a fer recerques en camps que a la seua vegada són objectes (o documents
 dins de documents, en la terminologia de Mongo), només hem de posar la ruta de
@@ -2423,7 +2422,7 @@ col·locar skip, limit i sort.
     { "_id" : "9788408113331", "titulo" : "Las carreras de Escorpio", "editorial" : "Planeta", "precio" : 17.23 }
 
 
-## 3.9 - Agregació
+## 2.9 - Agregació
 
 ![alt text](image-1.png)
 
@@ -2763,7 +2762,7 @@ En l'exemple anterior, ara saltem els 3 primers:
     { "_id" : { "any" : 2009 }, "mitjana preus" : 9.45 }
 
 
-## 3.10 - Resum Comandos
+## 2.10 - Resum Comandos
 
 Per a qualsevol operació s'ha de posar **db** seguit del nom de la col·lecció,
 i després l'operació que volem fer.
@@ -2805,7 +2804,7 @@ i després l'operació que volem fer.
 
 ## :pencil2: Exercicis
 
-### Exercici 2
+### Exercici 1
 
 Sobre la teua Base de Dades **MONGODB** treballarem sobre la col·lecció
 **libro**, la mateixa que hem utilitzat en els exemples. Si no la tens
@@ -2827,7 +2826,7 @@ creada, executa les sentències del principi de la pregunta **3.8 - Operadors de
 
 
 
-### Exercici 3
+### Exercici 2
 
 Aquest exercici l'has de realitzar sobre la teua BD de MongoDB (col·lecció **pelicula**).
     
